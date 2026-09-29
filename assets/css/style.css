@@ -120,11 +120,14 @@ html[dir="rtl"] .nav__logo img { inset-inline-start: 0; }
 
 /* ---------------------------------------------------------------- hero */
 .hero { height: 100svh; min-height: 620px; overflow: hidden; background: var(--espresso); color: var(--cream); isolation: isolate; }
-.hero__frames { position: absolute; inset: 0; }
-.hero__frame {
-  position: absolute; inset: -2%; background-size: cover; background-position: center; opacity: 0;
-  will-change: opacity, transform;
-}
+.hero__stage { position: absolute; inset: 0; overflow: hidden; }
+.hero__kb { position: absolute; inset: 0; animation: kb 46s ease-in-out infinite alternate; transform-origin: 55% 45%; will-change: transform; }
+@keyframes kb { from { transform: scale(1.1); } to { transform: scale(1.0) translate3d(-1%, .6%, 0); } }
+.hl { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity; user-select: none; -webkit-user-drag: none; }
+.hl:first-child { opacity: 1; }
+.hl--light { mix-blend-mode: screen; }
+@supports (mix-blend-mode: plus-lighter) { .hl--light { mix-blend-mode: plus-lighter; } }
+.hero__traffic { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .hero__shade {
   position: absolute; inset: 0; z-index: 1;
   background:
@@ -156,21 +159,37 @@ html[lang="en"] .hero__en { display: none; }
 .is-ready .hero__title .reveal-hero:nth-child(2) { transition-delay: .24s; }
 .is-ready .hero__en { transition-delay: .36s; }
 .is-ready .hero__actions { transition-delay: .48s; }
-.is-ready .daybar { transition-delay: .7s; }
-
-.daybar {
-  position: absolute; z-index: 2; inset-inline-end: clamp(20px, 5vw, 64px); bottom: clamp(36px, 6vh, 56px);
-  display: flex; align-items: center; gap: 14px; direction: ltr; color: var(--cream);
+.is-ready .daybar {
+  position: absolute; z-index: 3; left: clamp(20px, 5vw, 64px); bottom: clamp(34px, 6vh, 56px);
+  direction: ltr; color: var(--cream); padding: 14px 20px 16px; border-radius: 20px;
+  background: rgba(28, 20, 15, .32); backdrop-filter: blur(12px); border: 1px solid rgba(246, 238, 226, .14);
 }
-.daybar__track { position: relative; width: clamp(120px, 16vw, 220px); height: 1px; background: rgba(246, 238, 226, .35); }
-.daybar__track i { position: absolute; top: 50%; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 50%; background: var(--sand); box-shadow: 0 0 0 5px rgba(237, 216, 186, .18); left: 0; }
-.daybar__icon { width: 16px; height: 16px; opacity: .85; }
-.daybar__icon.sun { border-radius: 50%; border: 1.5px solid var(--sand); box-shadow: 0 0 0 3px transparent; }
+html[dir="ltr"] .daybar { left: auto; right: clamp(20px, 5vw, 64px); }
+.daybar__hint { font-size: 12px; color: rgba(246, 238, 226, .7); margin-bottom: 8px; letter-spacing: .04em; text-align: center; direction: rtl; }
+html[lang="en"] html[dir="ltr"] .daybar { left: auto; right: clamp(20px, 5vw, 64px); }
+.daybar__hint { direction: ltr; letter-spacing: .14em; text-transform: uppercase; font-size: 10.5px; }
+.daybar__row { display: flex; align-items: center; gap: 14px; }
+.daybar__track {
+  position: relative; width: clamp(190px, 22vw, 300px); height: 30px; cursor: grab; touch-action: none; outline: none;
+}
+.daybar__track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 3px;
+  background: linear-gradient(90deg, #f4d9a6, #e9a86a 45%, #b0607a 62%, #3b4a7c 78%, #151b35); opacity: .75; }
+.daybar__track.is-drag { cursor: grabbing; }
+.daybar__fill { display: none; }
+.daybar__dot {
+  position: absolute; top: 50%; left: 0; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
+  background: var(--sand); box-shadow: 0 0 0 6px rgba(237, 216, 186, .2), 0 4px 14px rgba(0, 0, 0, .35);
+  transition: transform .3s var(--ease), box-shadow .3s;
+}
+.daybar__track:hover .daybar__dot, .daybar__track.is-drag .daybar__dot, .daybar__track:focus-visible .daybar__dot {
+  transform: scale(1.18); box-shadow: 0 0 0 10px rgba(237, 216, 186, .22), 0 4px 18px rgba(0, 0, 0, .4);
+}
+.daybar__icon { width: 16px; height: 16px; opacity: .9; flex: none; }
+.daybar__icon.sun { border-radius: 50%; background: #f4d9a6; box-shadow: 0 0 10px rgba(244, 217, 166, .8); }
 .daybar__icon.moon { border-radius: 50%; box-shadow: inset -5px -2px 0 0 var(--sand); transform: rotate(-20deg); }
-.daybar__clock { display: grid; line-height: 1.2; min-width: 92px; }
-.daybar__clock b { font-size: 20px; font-weight: 300; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
-.daybar__clock em { font-style: normal; font-size: 12px; color: var(--sand); letter-spacing: .12em; }
-
+.daybar__clock { display: grid; line-height: 1.2; min-width: 86px; }
+.daybar__clock b { font-size: 21px; font-weight: 300; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+.daybar__clock em { font-style: normal; font-size: 12px; color: var(--sand); letter-spacing: .08em; }
 .hero__scroll { position: absolute; z-index: 2; left: 50%; bottom: 24px; width: 26px; height: 42px; margin-left: -13px; border: 1px solid rgba(246, 238, 226, .5); border-radius: 20px; }
 .hero__scroll span { position: absolute; left: 50%; top: 8px; width: 3px; height: 8px; margin-left: -1.5px; border-radius: 2px; background: var(--sand); animation: wheel 2s var(--ease) infinite; }
 @keyframes wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
@@ -456,9 +475,10 @@ html[dir="rtl"] .gbtn[data-dir="-1"]::before { transform: translate(-65%, -50%) 
   .dim { position: relative; display: none; }
   .dim.is-active { display: block; }
   .dim__svc { grid-template-columns: 1fr; }
-  .daybar { inset-inline-start: clamp(20px, 5vw, 64px); inset-inline-end: auto; }
+  .daybar, html[dir="ltr"] .daybar { left: 16px; right: 16px; bottom: 22px; padding: 12px 16px 14px; }
+  .daybar__track { flex: 1; width: auto; }
   .hero__scroll { display: none; }
-  .hero__content { bottom: 120px; }
+  .hero__content { bottom: 172px; }
   .form { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr 1fr; gap: 34px 18px; }
   .steps li { padding-inline-end: 0; }

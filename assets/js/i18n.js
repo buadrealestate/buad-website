@@ -7,6 +7,7 @@ window.BUAD_EN = {
 
   'hero.kicker': 'A pioneering urban development · The northern entrance to Makkah',
   'hero.title1': 'Al Jumum', 'hero.title2': 'Interface',
+  'hero.hint': 'Drag to change the time',
   'hero.cta1': 'Discover the Project', 'hero.cta2': 'Meet Buad',
 
   'intro.eyebrow': 'BUAD Real Estate',

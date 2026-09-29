@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero-1-day.webp" media="(min-width: 900px)">
-<link rel="preload" as="image" href="assets/img/hero-1-day-m.webp" media="(max-width: 899px)">
+<link rel="preload" as="image" href="assets/img/hero/h1-day.webp" media="(min-width: 900px)">
+<link rel="preload" as="image" href="assets/img/hero/h1-day-m.webp" media="(max-width: 899px)">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -50,13 +50,17 @@
 
 <!-- ============================================================ hero: day to night -->
 <section class="hero" id="hero">
-  <div class="hero__frames" id="frames">
-    <div class="hero__frame" data-src="hero-1-day"></div>
-    <div class="hero__frame" data-src="hero-2-afternoon"></div>
-    <div class="hero__frame" data-src="hero-3-dusk"></div>
-    <div class="hero__frame" data-src="hero-4-sunset"></div>
-    <div class="hero__frame" data-src="hero-5-bluehour"></div>
-    <div class="hero__frame" data-src="hero-6-night"></div>
+  <div class="hero__stage" id="stage">
+    <div class="hero__kb">
+      <img class="hl" data-src="h1-day" alt="" fetchpriority="high">
+      <img class="hl" data-src="h2-afternoon" alt="">
+      <img class="hl" data-src="h3-dusk" alt="">
+      <img class="hl" data-src="h4-bluehour" alt="">
+      <img class="hl hl--light" data-src="lights-1" alt="">
+      <img class="hl hl--light" data-src="lights-2" alt="">
+      <img class="hl hl--light" data-src="lights-3" alt="">
+      <canvas class="hero__traffic" id="traffic"></canvas>
+    </div>
   </div>
   <div class="hero__shade"></div>
   <div class="hero__grain"></div>
@@ -74,11 +78,17 @@
     </div>
   </div>
 
-  <div class="daybar reveal-hero" aria-hidden="true">
-    <span class="daybar__icon sun"></span>
-    <span class="daybar__track"><i id="dayDot"></i></span>
-    <span class="daybar__icon moon"></span>
-    <span class="daybar__clock"><b id="dayClock">07:00</b> <em id="dayPhase" data-phase>نهار</em></span>
+  <div class="daybar reveal-hero">
+    <p class="daybar__hint" data-i18n="hero.hint">اسحب لتغيير الوقت</p>
+    <div class="daybar__row">
+      <span class="daybar__icon sun" aria-hidden="true"></span>
+      <div class="daybar__track" id="dayTrack" role="slider" tabindex="0" aria-label="Time of day" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <i class="daybar__fill" id="dayFill"></i>
+        <i class="daybar__dot" id="dayDot"></i>
+      </div>
+      <span class="daybar__icon moon" aria-hidden="true"></span>
+      <span class="daybar__clock"><b id="dayClock">09:00</b> <em id="dayPhase">النهار</em></span>
+    </div>
   </div>
 
   <a href="#intro" class="hero__scroll" aria-label="scroll"><span></span></a>
@@ -352,7 +362,7 @@
 <!-- ============================================================ why buad -->
 <section class="why">
   <div class="wrap why__grid">
-    <div class="why__media reveal"><div class="parallax"><img src="assets/img/office-reception.webp" alt="" loading="lazy" decoding="async"></div></div>
+    <div class="why__media reveal"><div class="parallax"><img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async"></div></div>
     <div>
       <div class="head reveal">
         <p class="eyebrow" data-i18n="w.eyebrow">الميزة التنافسية</p>
@@ -461,6 +471,7 @@
 </footer>
 
 <script src="assets/js/i18n.js"></script>
+<script src="assets/js/roads.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
