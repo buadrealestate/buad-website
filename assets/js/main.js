@@ -11,35 +11,21 @@
   document.body.classList.add('is-loading');
   $('#year').textContent = new Date().getFullYear();
 
-  /* ------------------------------------------------------------ hero: interactive day -> night */
-  // One camera, four renders (day, afternoon, dusk, blue hour) + three lights layers added on top.
-  // t in [0,1] drives everything: which render shows, how many lights are on, how the traffic looks.
+  /* ------------------------------------------------------------ hero: day -> night film, driven by the time slider */
+  // hero.mp4 is the Higgsfield time-lapse played forward then backward (ping-pong), so it loops seamlessly.
+  // The first half (day -> night) is what the slider scrubs; autoplay simply plays the loop.
   const mobile = innerWidth < 900;
-  const layers = $$('#stage .hl');
-  const [L_AFT, L_DUSK, L_BLUE, L_1, L_2, L_3] = layers.slice(1);
+  const video = $('#heroVideo');
   const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-  const smooth = (a, b, x) => { const k = clamp((x - a) / (b - a)); return k * k * (3 - 2 * k); };
-  const PHASES = [[0, 'النهار', 'Day'], [.3, 'العصر', 'Afternoon'], [.47, 'الغروب', 'Sunset'],
-                  [.62, 'الشفق', 'Blue hour'], [.8, 'الليل', 'Night']];
-  const srcOf = el => `assets/img/hero/${el.dataset.src}${mobile ? '-m' : ''}.webp`;
-  const loadImg = src => new Promise(res => { const i = new Image(); i.onload = i.onerror = () => res(src); i.src = src; });
+  const PHASES = [[0, 'النهار', 'Day'], [.36, 'العصر', 'Afternoon'], [.55, 'الغروب', 'Sunset'],
+                  [.7, 'الشفق', 'Blue hour'], [.84, 'الليل', 'Night']];
+  const H0 = 11, H1 = 21.5;                         // clock at the start / end of the film
+  let T = 0, lastPhase = '', half = 0;
 
-  const retry = img => img.addEventListener('error', () => {           // one quiet retry on a flaky network
-    if (img.dataset.retried) return; img.dataset.retried = 1; setTimeout(() => { img.src = img.src + '?r=1'; }, 800);
-  });
-
-  let T = 0, lightsOn = 0, lastPhase = '';
-  function applyTime(t) {
+  function showTime(t) {
     T = clamp(t);
-    L_AFT.style.opacity = smooth(.12, .32, T);
-    L_DUSK.style.opacity = smooth(.34, .52, T);
-    L_BLUE.style.opacity = smooth(.52, .7, T);
-    lightsOn = smooth(.58, .82, T);
-    L_1.style.opacity = smooth(.58, .74, T);
-    L_2.style.opacity = smooth(.66, .84, T);
-    L_3.style.opacity = smooth(.76, .95, T);
-    const hours = 9 + 12.75 * T, hh = Math.floor(hours), mm = Math.floor((hours - hh) * 60);
+    const hours = H0 + (H1 - H0) * T, hh = Math.floor(hours), mm = Math.floor((hours - hh) * 60);
     clock.textContent = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
     dot.style.left = `${(T * 100).toFixed(2)}%`;
     track.setAttribute('aria-valuenow', Math.round(T * 100));
@@ -48,22 +34,30 @@
     const name = ph[document.documentElement.lang === 'en' ? 2 : 1];
     if (name !== lastPhase) { lastPhase = name; phaseEl.textContent = name; }
   }
+  const applyTime = showTime;                        // used by the language switch
 
-  // autoplay: slow ping-pong day -> night -> day; pauses while the user holds the slider
-  const PERIOD = 36;                       // seconds for a full day -> night -> day
-  let auto = !reduce, userAt = 0, phase0 = 0, dragging = false;
-  const pingpong = s => (1 - Math.cos(2 * Math.PI * s / PERIOD)) / 2;
-  function resumeFrom(t) {                 // continue the autoplay from the current position
-    const s = Math.acos(1 - 2 * clamp(t)) * PERIOD / (2 * Math.PI);
-    phase0 = performance.now() / 1000 - s;
+  // scrubbing: seek to the requested time, never queue more than one seek at a time
+  let wantT = null, seeking = false;
+  function seek(t) {
+    showTime(t);
+    if (!half) return;
+    wantT = T * half;
+    if (!seeking) { seeking = true; video.currentTime = wantT; wantT = null; }
   }
+  video.addEventListener('seeked', () => {
+    seeking = false;
+    if (wantT !== null) { seeking = true; video.currentTime = wantT; wantT = null; }
+  });
 
+  let dragging = false, userAt = 0, auto = !reduce;
   function setFromPointer(e) {
     const r = track.getBoundingClientRect();
-    applyTime((e.clientX - r.left) / r.width);
+    seek((e.clientX - r.left) / r.width);
   }
   track.addEventListener('pointerdown', e => {
-    dragging = true; auto = false; track.classList.add('is-drag');
+    dragging = true; auto = false; video.pause(); track.classList.add('is-drag');
+    // if the loop is in its night -> day half, jump to the same moment in the day -> night half
+    if (half && video.currentTime > half) video.currentTime = 2 * half - video.currentTime;
     track.setPointerCapture(e.pointerId); setFromPointer(e);
   });
   track.addEventListener('pointermove', e => { if (dragging) setFromPointer(e); });
@@ -72,108 +66,49 @@
   track.addEventListener('pointercancel', release);
   track.addEventListener('keydown', e => {
     const k = { ArrowRight: .04, ArrowUp: .04, ArrowLeft: -.04, ArrowDown: -.04 }[e.key];
-    if (k) { e.preventDefault(); auto = false; userAt = performance.now(); applyTime(T + k); }
+    if (k) { e.preventDefault(); auto = false; video.pause(); userAt = performance.now(); seek(T + k); }
   });
 
-  /* traffic on the highways: cars by day, headlights and tail-lights at night */
-  const cv = $('#traffic'), ctx = cv.getContext('2d');
-  const FW = 1600, FH = 892.7;              // frame the road coordinates are expressed in
-  const roads = Object.entries(window.BUAD_ROADS || {}).map(([name, pts]) => {
-    const seg = []; let len = 0;
-    for (let k = 1; k < pts.length; k++) {
-      const [x0, y0] = pts[k - 1], [x1, y1] = pts[k], l = Math.hypot(x1 - x0, y1 - y0);
-      seg.push({ x0, y0, dx: (x1 - x0) / l, dy: (y1 - y0) / l, l, at: len }); len += l;
-    }
-    return { seg, len, reverse: /_2$/.test(name), dense: name === 'link' ? .45 : 1 };
-  });
-  function pointAt(r, d) {
-    let s = r.seg[r.seg.length - 1];
-    for (const q of r.seg) if (d <= q.at + q.l) { s = q; break; }
-    const k = d - s.at;
-    return [s.x0 + s.dx * k, s.y0 + s.dy * k, s.dx, s.dy];
-  }
-  const rnd = (a, b) => a + Math.random() * (b - a);
-  const COLORS = ['#f4f1ea', '#e9e6df', '#cfd2d4', '#2d2f33', '#8d9196', '#b7b2a6', '#7a2a24', '#28415e'];
-  const cars = [];
-  roads.forEach(r => {
-    const n = Math.round(r.len / 34 * r.dense);
-    for (let k = 0; k < n; k++) {
-      cars.push({ r, d: rnd(0, r.len), v: rnd(26, 46), c: COLORS[(Math.random() * COLORS.length) | 0], big: Math.random() < .12 });
-    }
-  });
-  let scale = 1, ox = 0, oy = 0, dpr = 1;
-  function fit() {
-    dpr = Math.min(devicePixelRatio || 1, mobile ? 1.5 : 2);
-    const w = cv.clientWidth, h = cv.clientHeight;
-    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
-    scale = Math.max(w / FW, h / FH); ox = (w - FW * scale) / 2; oy = (h - FH * scale) / 2;
-  }
-  addEventListener('resize', fit);
-
-  function drawTraffic(dt) {
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    ctx.setTransform(dpr * scale, 0, 0, dpr * scale, dpr * ox, dpr * oy);
-    const night = lightsOn, day = 1 - smooth(.5, .72, T);
-    for (const car of cars) {
-      car.d += car.v * dt;
-      if (car.d > car.r.len) car.d -= car.r.len;
-      const dd = car.r.reverse ? car.r.len - car.d : car.d;
-      let [x, y, dx, dy] = pointAt(car.r, dd);
-      if (car.r.reverse) { dx = -dx; dy = -dy; }
-      const L = car.big ? 6.5 : 3.6, W = car.big ? 2.2 : 1.8;
-      if (day > .02) {                                   // the car body
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.globalAlpha = .92 * day + .25 * (1 - day);
-        ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(dy, dx));
-        ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.fillRect(-L / 2 + .5, -W / 2 + .7, L, W);
-        ctx.fillStyle = car.c; ctx.fillRect(-L / 2, -W / 2, L, W);
-        ctx.restore();
-      }
-      if (night > .02) {                                 // head- and tail-lights, additive glow
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.globalAlpha = 1;
-        const hx = x + dx * (L / 2 + 3), hy = y + dy * (L / 2 + 3), tx = x - dx * L / 2, ty = y - dy * L / 2;
-        let g = ctx.createRadialGradient(hx, hy, 0, hx, hy, 4.2);
-        g.addColorStop(0, `rgba(255,248,226,${.95 * night})`); g.addColorStop(.35, `rgba(255,232,190,${.45 * night})`);
-        g.addColorStop(1, 'rgba(255,225,170,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(hx, hy, 4.2, 0, 7); ctx.fill();
-        g = ctx.createRadialGradient(tx, ty, 0, tx, ty, 2.3);
-        g.addColorStop(0, `rgba(255,70,50,${.95 * night})`); g.addColorStop(1, 'rgba(255,40,30,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(tx, ty, 2.3, 0, 7); ctx.fill();
-      }
-    }
-    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
-  }
-
-  let prevNow = null, heroVisible = true;
-  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe($('#hero'));
+  let heroVisible = true;
+  new IntersectionObserver(([e]) => {
+    heroVisible = e.isIntersecting;
+    if (!heroVisible) video.pause(); else if (auto) video.play().catch(() => {});
+  }).observe($('#hero'));
   function frame(now) {
-    const dt = prevNow === null ? 0 : Math.min((now - prevNow) / 1000, .05);
-    prevNow = now;
-    if (heroVisible) {
-      if (!auto && !dragging && now - userAt > 6000 && !reduce) { auto = true; resumeFrom(T); }
-      if (auto) applyTime(pingpong(now / 1000 - phase0));
-      drawTraffic(reduce ? 0 : dt);
+    if (heroVisible && half) {
+      if (!auto && !dragging && now - userAt > 6000 && !reduce) { auto = true; video.play().catch(() => {}); }
+      if (auto) {                                     // follow the film with the slider
+        const ct = video.currentTime;
+        showTime(ct <= half ? ct / half : (2 * half - ct) / half);
+      }
     }
     requestAnimationFrame(frame);
   }
 
   /* ------------------------------------------------------------ loader */
   const bar = $('.loader__line i');
+  const poster = $('#heroPoster');
   (async () => {
-    const first = loadImg(srcOf(layers[0]));
-    bar.style.width = '45%';
-    await Promise.race([first, new Promise(r => setTimeout(r, 4500))]);
-    layers.forEach(retry);
-    layers[0].src = srcOf(layers[0]);
+    const src = `assets/video/hero${mobile ? '-m' : ''}.mp4`;
+    video.src = src;
+    bar.style.width = '35%';
+    const ready = new Promise(res => {
+      video.addEventListener('loadeddata', res, { once: true });
+      video.addEventListener('error', res, { once: true });
+    });
+    await Promise.race([ready, new Promise(r => setTimeout(r, 5000))]);
     bar.style.width = '100%';
-    layers.slice(1).forEach(l => { l.src = srcOf(l); });      // the rest streams in behind the loader
+    const start = () => {
+      half = (video.duration || 0) / 2;
+      video.classList.add('is-on');
+      if (auto) video.play().catch(() => {});
+    };
+    if (video.readyState >= 1) start(); else video.addEventListener('loadedmetadata', start, { once: true });
     setTimeout(() => {
       $('#loader').classList.add('is-done');
       document.body.classList.remove('is-loading');
       document.body.classList.add('is-ready');
-      fit(); applyTime(0); resumeFrom(0);
+      showTime(0);
       requestAnimationFrame(frame);
     }, 450);
   })();
@@ -295,7 +230,7 @@
     html.dir = en ? 'ltr' : 'rtl';
     document.title = en ? EN['meta.title'] : arTitle;
     $('#langBtn').textContent = en ? 'ع' : 'EN';
-    lastPhase = ''; applyTime(T);
+    lastPhase = ''; showTime(T);
     store.set('buad-lang', lang);
   }
   $('#langBtn').addEventListener('click', () => setLang(html.lang === 'en' ? 'ar' : 'en'));

@@ -123,11 +123,9 @@ html[dir="rtl"] .nav__logo img { inset-inline-start: 0; }
 .hero__stage { position: absolute; inset: 0; overflow: hidden; }
 .hero__kb { position: absolute; inset: 0; animation: kb 46s ease-in-out infinite alternate; transform-origin: 55% 45%; will-change: transform; }
 @keyframes kb { from { transform: scale(1.1); } to { transform: scale(1.0) translate3d(-1%, .6%, 0); } }
-.hl { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity; user-select: none; -webkit-user-drag: none; }
-.hl:first-child { opacity: 1; }
-.hl--light { mix-blend-mode: screen; }
-@supports (mix-blend-mode: plus-lighter) { .hl--light { mix-blend-mode: plus-lighter; } }
-.hero__traffic { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero__poster, .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; }
+.hero__video { opacity: 0; transition: opacity 1.2s var(--ease); }
+.hero__video.is-on { opacity: 1; }
 .hero__shade {
   position: absolute; inset: 0; z-index: 1;
   background:

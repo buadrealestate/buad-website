@@ -14,8 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero/h1-day.webp" media="(min-width: 900px)">
-<link rel="preload" as="image" href="assets/img/hero/h1-day-m.webp" media="(max-width: 899px)">
+<link rel="preload" as="image" href="assets/img/hero/h1-day-m.webp">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -52,14 +51,8 @@
 <section class="hero" id="hero">
   <div class="hero__stage" id="stage">
     <div class="hero__kb">
-      <img class="hl" data-src="h1-day" alt="" fetchpriority="high">
-      <img class="hl" data-src="h2-afternoon" alt="">
-      <img class="hl" data-src="h3-dusk" alt="">
-      <img class="hl" data-src="h4-bluehour" alt="">
-      <img class="hl hl--light" data-src="lights-1" alt="">
-      <img class="hl hl--light" data-src="lights-2" alt="">
-      <img class="hl hl--light" data-src="lights-3" alt="">
-      <canvas class="hero__traffic" id="traffic"></canvas>
+      <img class="hero__poster" id="heroPoster" src="assets/img/hero/h1-day.webp" srcset="assets/img/hero/h1-day-m.webp 1280w, assets/img/hero/h1-day.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
+      <video class="hero__video" id="heroVideo" muted playsinline loop preload="auto" disablepictureinpicture></video>
     </div>
   </div>
   <div class="hero__shade"></div>
@@ -471,7 +464,6 @@
 </footer>
 
 <script src="assets/js/i18n.js"></script>
-<script src="assets/js/roads.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
