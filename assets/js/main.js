@@ -12,9 +12,10 @@
   $('#year').textContent = new Date().getFullYear();
 
   /* ------------------------------------------------------------ hero: day -> night film, driven by the time slider */
-  // hero.mp4 is the Higgsfield time-lapse played forward then backward (ping-pong), so it loops seamlessly.
-  // The first half (day -> night) is what the slider scrubs; autoplay simply plays the loop.
+  // hero.mp4 = the Higgsfield time-lapse (day -> night), played forward; at the end the night view holds, then
+  // dissolves back into the day poster and the film starts again. The slider scrubs the whole film.
   const mobile = innerWidth < 900;
+  const portrait = innerHeight > innerWidth && innerWidth < 900;
   const video = $('#heroVideo');
   const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -22,7 +23,7 @@
   const PHASES = [[0, 'النهار', 'Day'], [.25, 'العصر', 'Afternoon'], [.42, 'الغروب', 'Sunset'],
                   [.55, 'الشفق', 'Blue hour'], [.78, 'الليل', 'Night']];
   const clockAt = t => t < .5 ? 11 + 7 * (t / .5) : 18 + 3.5 * ((t - .5) / .5);
-  let T = 0, lastPhase = '', half = 0;
+  let T = 0, lastPhase = '', dur = 0;              // dur = film duration (s)
 
   function showTime(t) {
     T = clamp(t);
@@ -41,8 +42,8 @@
   let wantT = null, seeking = false;
   function seek(t) {
     showTime(t);
-    if (!half) return;
-    wantT = T * half;
+    if (!dur) return;
+    wantT = T * dur;
     if (!seeking) { seeking = true; video.currentTime = wantT; wantT = null; }
   }
   video.addEventListener('seeked', () => {
@@ -57,8 +58,7 @@
   }
   track.addEventListener('pointerdown', e => {
     dragging = true; auto = false; video.pause(); track.classList.add('is-drag');
-    // if the loop is in its night -> day half, jump to the same moment in the day -> night half
-    if (half && video.currentTime > half) video.currentTime = 2 * half - video.currentTime;
+    video.classList.add('is-on'); clearTimeout(loopTimer);
     track.setPointerCapture(e.pointerId); setFromPointer(e);
   });
   track.addEventListener('pointermove', e => { if (dragging) setFromPointer(e); });
@@ -70,18 +70,30 @@
     if (k) { e.preventDefault(); auto = false; video.pause(); userAt = performance.now(); seek(T + k); }
   });
 
+  // end of the film: hold the night, dissolve into the day poster, start again
+  let loopTimer = 0;
+  function restart() {
+    video.classList.remove('is-on');                  // fades to the day poster underneath (CSS transition)
+    loopTimer = setTimeout(() => {
+      video.currentTime = 0; showTime(0);
+      video.play().catch(() => {});
+      setTimeout(() => video.classList.add('is-on'), 120);
+    }, 1400);
+  }
+  video.addEventListener('ended', () => { if (auto) loopTimer = setTimeout(restart, 2200); });
+
   let heroVisible = true;
   new IntersectionObserver(([e]) => {
     heroVisible = e.isIntersecting;
     if (!heroVisible) video.pause(); else if (auto) video.play().catch(() => {});
   }).observe($('#hero'));
   function frame(now) {
-    if (heroVisible && half) {
-      if (!auto && !dragging && now - userAt > 6000 && !reduce) { auto = true; video.play().catch(() => {}); }
-      if (auto) {                                     // follow the film with the slider
-        const ct = video.currentTime;
-        showTime(ct <= half ? ct / half : (2 * half - ct) / half);
+    if (heroVisible && dur) {
+      if (!auto && !dragging && now - userAt > 6000 && !reduce) {
+        auto = true;
+        if (video.currentTime >= dur - .05) restart(); else video.play().catch(() => {});
       }
+      if (auto && video.classList.contains('is-on')) showTime(video.currentTime / dur);
     }
     requestAnimationFrame(frame);
   }
@@ -90,7 +102,7 @@
   const bar = $('.loader__line i');
   const poster = $('#heroPoster');
   (async () => {
-    const src = `assets/video/hero${mobile ? '-m' : ''}.mp4`;
+    const src = `assets/video/hero${portrait ? '-m' : ''}.mp4`;
     video.src = src;
     bar.style.width = '35%';
     const ready = new Promise(res => {
@@ -100,7 +112,7 @@
     await Promise.race([ready, new Promise(r => setTimeout(r, 5000))]);
     bar.style.width = '100%';
     const start = () => {
-      half = (video.duration || 0) / 2;
+      dur = video.duration || 0;
       video.classList.add('is-on');
       if (auto) video.play().catch(() => {});
     };
