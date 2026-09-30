@@ -15,7 +15,9 @@
   // hero.mp4 = the Higgsfield time-lapse (day -> night), played forward; at the end the night view holds, then
   // dissolves back into the day poster and the film starts again. The slider scrubs the whole film.
   const mobile = innerWidth < 900;
-  const portrait = innerHeight > innerWidth && innerWidth < 900;
+  // portrait phones get the portrait cut; everything else the full 16:9 film (re-checked on resize)
+  const isPortrait = () => innerHeight > innerWidth * 1.15 && innerWidth < 820;
+  const filmSrc = () => `assets/video/hero${isPortrait() ? '-m' : ''}.mp4`;
   const video = $('#heroVideo');
   const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -82,6 +84,21 @@
   }
   video.addEventListener('ended', () => { if (auto) loopTimer = setTimeout(restart, 2200); });
 
+  let resizeT = 0;
+  addEventListener('resize', () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => {
+      const want = filmSrc();
+      if (!video.currentSrc || video.currentSrc.endsWith(want)) return;
+      const t = video.currentTime, playing = !video.paused;
+      video.src = want;
+      video.addEventListener('loadedmetadata', () => {
+        dur = video.duration || dur; video.currentTime = t;
+        if (playing) video.play().catch(() => {});
+      }, { once: true });
+    }, 250);
+  });
+
   let heroVisible = true;
   new IntersectionObserver(([e]) => {
     heroVisible = e.isIntersecting;
@@ -102,8 +119,7 @@
   const bar = $('.loader__line i');
   const poster = $('#heroPoster');
   (async () => {
-    const src = `assets/video/hero${portrait ? '-m' : ''}.mp4`;
-    video.src = src;
+    video.src = filmSrc();
     bar.style.width = '35%';
     const ready = new Promise(res => {
       video.addEventListener('loadeddata', res, { once: true });
