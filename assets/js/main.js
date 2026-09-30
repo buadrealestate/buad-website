@@ -18,14 +18,15 @@
   const video = $('#heroVideo');
   const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-  const PHASES = [[0, 'النهار', 'Day'], [.36, 'العصر', 'Afternoon'], [.55, 'الغروب', 'Sunset'],
-                  [.7, 'الشفق', 'Blue hour'], [.84, 'الليل', 'Night']];
-  const H0 = 11, H1 = 21.5;                         // clock at the start / end of the film
+  // the film = clip A (day -> sunset, first half) + clip B (dusk -> night, second half)
+  const PHASES = [[0, 'النهار', 'Day'], [.25, 'العصر', 'Afternoon'], [.42, 'الغروب', 'Sunset'],
+                  [.55, 'الشفق', 'Blue hour'], [.78, 'الليل', 'Night']];
+  const clockAt = t => t < .5 ? 11 + 7 * (t / .5) : 18 + 3.5 * ((t - .5) / .5);
   let T = 0, lastPhase = '', half = 0;
 
   function showTime(t) {
     T = clamp(t);
-    const hours = H0 + (H1 - H0) * T, hh = Math.floor(hours), mm = Math.floor((hours - hh) * 60);
+    const hours = clockAt(T), hh = Math.floor(hours), mm = Math.floor((hours - hh) * 60);
     clock.textContent = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
     dot.style.left = `${(T * 100).toFixed(2)}%`;
     track.setAttribute('aria-valuenow', Math.round(T * 100));
