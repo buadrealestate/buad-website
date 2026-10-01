@@ -2,6 +2,7 @@
 window.BUAD_EN = {
   'meta.title': 'BUAD | An Integrated Management, Development & Operations Ecosystem',
 
+  'a11y.skip': 'Skip to content', 'f.err': 'Please enter your name and a phone number or a message.', 'f.ok': 'Opening your e-mail app to send the message…',
   'nav.about': 'About', 'nav.dims': 'Dimensions', 'nav.jumum': 'Al Jumum', 'nav.projects': 'Projects',
   'nav.creds': 'Credentials', 'nav.contact': 'Contact Us',
 

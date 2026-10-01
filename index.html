@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<a class="skip" href="#intro" data-i18n="a11y.skip">تخطَّ إلى المحتوى</a>
 
 <!-- ============================================================ loader -->
 <div class="loader" id="loader" aria-hidden="true">
@@ -60,7 +61,7 @@
     <p class="hero__tagline reveal-hero" data-i18n="hero.tagline">مستقبل أبعد... بقيمة أعمق</p>
     <p class="hero__sub reveal-hero" data-i18n="hero.sub">منظومة متكاملة للإدارة والتطوير والتشغيل</p>
     <div class="hero__actions reveal-hero">
-      <a href="#about" class="btn btn--light" data-i18n="hero.cta2">تعرّف على بُعد</a>
+      <a href="#about" class="btn btn--light btn--ico"><span data-i18n="hero.cta2">تعرّف على بُعد</span><i class="btn__ico" aria-hidden="true"></i></a>
       <a href="#jumum" class="btn btn--ghost" data-i18n="hero.cta3">مشاريعنا</a>
     </div>
   </div>
@@ -301,20 +302,20 @@
       <p class="eyebrow" data-i18n="p.eyebrow">تجارب فعلية</p>
       <h2 class="h2" data-i18n="p.title">تقف خلف كل بُعد من أبعادنا</h2>
     </div>
-    <div class="projects__grid">
-      <article class="project reveal">
+    <div class="projects__grid projects__grid--bento">
+      <article class="project project--feature reveal">
         <div class="project__img"><img src="assets/img/proj-diriyah.webp" alt="" loading="lazy" decoding="async"></div>
         <p class="project__dim" data-i18n="p1.dim">بُعد الإمداد والخدمات اللوجستية</p>
         <h3 data-i18n="p1.t">الدرعية – الرياض</h3>
         <p data-i18n="p1.d">حققنا تحالفات متعددة مع مصانع البيوت الجاهزة وقواطع CLL، جمعت بين السرعة والجودة والاستدامة: سلاسل الإمداد، والكوادر الفنية المتخصصة، والخدمات اللوجستية المتكاملة، وحلول المباني الجاهزة.</p>
       </article>
-      <article class="project reveal">
+      <article class="project project--row reveal">
         <div class="project__img"><img src="assets/img/proj-usfan.webp" alt="" loading="lazy" decoding="async"></div>
         <p class="project__dim" data-i18n="p2.dim">بُعد التطوير وإدارة المشاريع</p>
         <h3 data-i18n="p2.t">عسفان – طريق مكة المدينة</h3>
         <p data-i18n="p2.d">تطوير البنية التحتية وتنفيذ تمديد شبكة ألياف بصرية حديثة بطول يقارب 150 كيلومترًا لصالح شركة الاتصالات السعودية (stc)، بما يعزز التحول الرقمي.</p>
       </article>
-      <article class="project reveal">
+      <article class="project project--row reveal">
         <div class="project__img"><img src="assets/img/proj-industrial.webp" alt="" loading="lazy" decoding="async"></div>
         <p class="project__dim" data-i18n="p3.dim">بُعد الاستثمار والصفقات</p>
         <h3 data-i18n="p3.t">مشروع الصناعية – جدة</h3>
@@ -428,12 +429,12 @@
         <li><span data-i18n="ct.addr">العنوان</span><b data-i18n="ct.addrv">مكة المكرمة – المملكة العربية السعودية</b></li>
         <li><span data-i18n="ct.cr">السجل التجاري</span><b dir="ltr">4030560162</b></li>
       </ul>
-      <a class="btn btn--dark reveal" href="https://wa.me/966550000126" target="_blank" rel="noopener" data-i18n="ct.wa">تواصل عبر واتساب</a>
+      <a class="btn btn--dark btn--ico reveal" href="https://wa.me/966550000126" target="_blank" rel="noopener"><span data-i18n="ct.wa">تواصل عبر واتساب</span><i class="btn__ico" aria-hidden="true"></i></a>
     </div>
     <form class="form reveal" id="contactForm" novalidate>
-      <label><span data-i18n="f.name">الاسم</span><input name="name" required></label>
+      <label><span data-i18n="f.name">الاسم</span><input name="name" required autocomplete="name"></label>
       <label><span data-i18n="f.org">الجهة / المنشأة</span><input name="org"></label>
-      <label><span data-i18n="f.phone">رقم التواصل</span><input name="phone" inputmode="tel" dir="ltr"></label>
+      <label><span data-i18n="f.phone">رقم التواصل</span><input name="phone" inputmode="tel" dir="ltr" autocomplete="tel"></label>
       <label><span data-i18n="f.need">البُعد المطلوب</span>
         <select name="need">
           <option data-i18n="d1.t">الاستثمار والصفقات</option><option data-i18n="d2.t">العقود والمناقصات</option>
@@ -443,7 +444,8 @@
         </select>
       </label>
       <label class="full"><span data-i18n="f.msg">رسالتك</span><textarea name="msg" rows="4"></textarea></label>
-      <button class="btn btn--dark full" type="submit" data-i18n="f.send">إرسال</button>
+      <p class="form__msg full" id="formMsg" role="status" aria-live="polite"></p>
+      <button class="btn btn--dark btn--ico full" type="submit"><span data-i18n="f.send">إرسال</span><i class="btn__ico" aria-hidden="true"></i></button>
     </form>
   </div>
 </section>

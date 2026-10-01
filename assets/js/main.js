@@ -291,19 +291,38 @@
   const saved = store.get('buad-lang') || (new URLSearchParams(location.search).get('lang'));
   if (saved === 'en') setLang('en');
 
-  /* ------------------------------------------------------------ contact form -> e-mail */
-  $('#contactForm').addEventListener('submit', e => {
+  /* ------------------------------------------------------------ contact form -> e-mail (with inline validation) */
+  const form = $('#contactForm'), msg = $('#formMsg');
+  form.addEventListener('input', e => { e.target.classList.remove('is-invalid'); msg.classList.remove('is-err'); msg.textContent = ''; });
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    const f = new FormData(e.target);
+    const f = new FormData(form);
     const en = html.lang === 'en';
+    const name = (f.get('name') || '').trim(), phone = (f.get('phone') || '').trim(), text = (f.get('msg') || '').trim();
+    if (!name || (!phone && !text)) {
+      if (!name) form.elements.name.classList.add('is-invalid');
+      if (!phone && !text) { form.elements.phone.classList.add('is-invalid'); form.elements.msg.classList.add('is-invalid'); }
+      msg.classList.add('is-err');
+      msg.textContent = en ? EN['f.err'] : 'فضلاً اكتب الاسم ورقم التواصل أو رسالتك.';
+      return;
+    }
     const lines = [
-      `${en ? 'Name' : 'الاسم'}: ${f.get('name') || ''}`,
+      `${en ? 'Name' : 'الاسم'}: ${name}`,
       `${en ? 'Organization' : 'الجهة'}: ${f.get('org') || ''}`,
-      `${en ? 'Phone' : 'رقم التواصل'}: ${f.get('phone') || ''}`,
+      `${en ? 'Phone' : 'رقم التواصل'}: ${phone}`,
       `${en ? 'Interest' : 'البُعد المطلوب'}: ${f.get('need') || ''}`,
-      '', f.get('msg') || ''
+      '', text
     ];
+    msg.textContent = en ? EN['f.ok'] : 'جارٍ فتح البريد الإلكتروني لإرسال رسالتك…';
     const subject = en ? 'Inquiry from the BUAD website' : 'استفسار من موقع بُعد';
-    location.href = `mailto:info@buad-r.sa?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    location.href = `mailto:info@buad-r.sa?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join(String.fromCharCode(10)))}`;
   });
+
+  /* ------------------------------------------------------------ current section in the navigation */
+  const navMap = new Map($$('#navLinks a[href^="#"]').map(a => [a.getAttribute('href').slice(1), a]));
+  const navObs = new IntersectionObserver(entries => entries.forEach(e => {
+    const a = navMap.get(e.target.id);
+    if (a && e.isIntersecting) { navMap.forEach(x => x.classList.remove('is-active')); a.classList.add('is-active'); }
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  navMap.forEach((a, id) => { const el = document.getElementById(id); if (el) navObs.observe(el); });
 })();
