@@ -23,10 +23,14 @@
 <!-- ============================================================ loader -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__inner">
-    <img src="assets/img/logo-mark-sand.png" alt="" class="loader__mark">
+    <div class="loader__mark"><img src="assets/img/logo-mark-sand.png" alt=""></div>
+    <img src="assets/img/logo-h-light.png" alt="" class="loader__word">
     <span class="loader__line"><i></i></span>
+    <p class="loader__tag" data-i18n="hero.tagline">مستقبل أبعد... بقيمة أعمق</p>
   </div>
 </div>
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
 
 <!-- ============================================================ header -->
 <header class="nav" id="nav">
@@ -57,7 +61,7 @@
   </div>
   <div class="hero__shade hero__shade--brand"></div>
   <h1 class="sr-only">بُعد | BUAD</h1>
-  <div class="hero__brand">
+  <div class="hero__brand" id="heroBrand">
     <p class="hero__tagline reveal-hero" data-i18n="hero.tagline">مستقبل أبعد... بقيمة أعمق</p>
     <p class="hero__sub reveal-hero" data-i18n="hero.sub">منظومة متكاملة للإدارة والتطوير والتشغيل</p>
     <div class="hero__actions reveal-hero">
@@ -70,6 +74,7 @@
 
 <!-- ============================================================ intro statement -->
 <section class="intro" id="intro">
+  <span class="deco deco--lg" style="top:12%;inset-inline-start:6%" data-speed=".22" data-x="-40"></span><span class="deco" style="bottom:14%;inset-inline-end:9%" data-speed="-.18" data-x="30"></span>
   <div class="wrap">
     <p class="eyebrow" data-i18n="intro.eyebrow">بُعد العقارية</p>
     <h2 class="intro__title split" data-i18n="intro.title">من هنا.. يبدأ بُعد جديد لأعمالك</h2>
@@ -79,9 +84,14 @@
 </section>
 
 <!-- ============================================================ about -->
+<div class="band" aria-hidden="true">
+  <div class="band__row" data-band="1"><span>بُعد</span><i></i><span>BUAD</span><i></i><span>مستقبل أبعد</span><i></i><span>بقيمة أعمق</span><i></i><span>بُعد</span><i></i><span>BUAD</span><i></i><span>مستقبل أبعد</span><i></i><span>بقيمة أعمق</span><i></i></div>
+  <div class="band__row band__row--ghost" data-band="-1"><span>الاستثمار</span><i></i><span>العقود</span><i></i><span>التطوير</span><i></i><span>الأصول</span><i></i><span>الإمداد</span><i></i><span>الحلول الذكية</span><i></i><span>الاستثمار</span><i></i><span>العقود</span><i></i><span>التطوير</span><i></i><span>الأصول</span><i></i></div>
+</div>
+
 <section class="about" id="about">
   <div class="wrap about__grid">
-    <div class="about__media reveal">
+    <div class="about__media reveal reveal-img">
       <div class="parallax"><img src="assets/img/buad-hq.webp" alt="" loading="lazy" decoding="async"></div>
       <div class="about__badge">
         <img src="assets/img/logo-mark-sand.png" alt="">
@@ -135,6 +145,7 @@
 </section>
 
 <section class="values">
+  <span class="deco deco--lg" style="top:-60px;inset-inline-end:4%" data-speed=".16" data-x="-30"></span>
   <div class="wrap">
     <div class="head reveal">
       <p class="eyebrow" data-i18n="val.eyebrow">قيمنا</p>
@@ -297,6 +308,7 @@
 
 <!-- ============================================================ projects -->
 <section class="projects" id="projects">
+  <span class="deco" style="top:90px;inset-inline-start:7%" data-speed="-.2" data-x="40"></span><span class="deco deco--sm deco--fill" style="bottom:12%;inset-inline-end:5%" data-speed=".25"></span>
   <div class="wrap">
     <div class="head reveal">
       <p class="eyebrow" data-i18n="p.eyebrow">تجارب فعلية</p>
@@ -304,19 +316,19 @@
     </div>
     <div class="projects__grid projects__grid--bento">
       <article class="project project--feature reveal">
-        <div class="project__img"><img src="assets/img/proj-diriyah.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="project__img reveal-img"><img src="assets/img/proj-diriyah.webp" alt="" loading="lazy" decoding="async"></div>
         <p class="project__dim" data-i18n="p1.dim">بُعد الإمداد والخدمات اللوجستية</p>
         <h3 data-i18n="p1.t">الدرعية – الرياض</h3>
         <p data-i18n="p1.d">حققنا تحالفات متعددة مع مصانع البيوت الجاهزة وقواطع CLL، جمعت بين السرعة والجودة والاستدامة: سلاسل الإمداد، والكوادر الفنية المتخصصة، والخدمات اللوجستية المتكاملة، وحلول المباني الجاهزة.</p>
       </article>
       <article class="project project--row reveal">
-        <div class="project__img"><img src="assets/img/proj-usfan.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="project__img reveal-img"><img src="assets/img/proj-usfan.webp" alt="" loading="lazy" decoding="async"></div>
         <p class="project__dim" data-i18n="p2.dim">بُعد التطوير وإدارة المشاريع</p>
         <h3 data-i18n="p2.t">عسفان – طريق مكة المدينة</h3>
         <p data-i18n="p2.d">تطوير البنية التحتية وتنفيذ تمديد شبكة ألياف بصرية حديثة بطول يقارب 150 كيلومترًا لصالح شركة الاتصالات السعودية (stc)، بما يعزز التحول الرقمي.</p>
       </article>
       <article class="project project--row reveal">
-        <div class="project__img"><img src="assets/img/proj-industrial.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="project__img reveal-img"><img src="assets/img/proj-industrial.webp" alt="" loading="lazy" decoding="async"></div>
         <p class="project__dim" data-i18n="p3.dim">بُعد الاستثمار والصفقات</p>
         <h3 data-i18n="p3.t">مشروع الصناعية – جدة</h3>
         <p data-i18n="p3.d">مشروع تطوير أراضٍ صناعية في مرحلته الثالثة، على أرض مساحتها مليون متر مربع وبقيمة تقديرية 420 مليون ريال؛ تولينا توفير الفرصة الاستثمارية وإدارة صفقة عقد الاستثمار من التفاوض حتى الإبرام.</p>
@@ -350,8 +362,9 @@
 
 <!-- ============================================================ why buad -->
 <section class="why">
+  <span class="deco deco--lg" style="bottom:6%;inset-inline-start:3%" data-speed=".18" data-x="-36"></span>
   <div class="wrap why__grid">
-    <div class="why__media reveal"><div class="parallax"><img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async"></div></div>
+    <div class="why__media reveal reveal-img"><div class="parallax"><img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async"></div></div>
     <div>
       <div class="head reveal">
         <p class="eyebrow" data-i18n="w.eyebrow">الميزة التنافسية</p>
@@ -370,6 +383,7 @@
 
 <!-- ============================================================ credentials + clients -->
 <section class="creds" id="credentials">
+  <span class="deco deco--sm deco--fill" style="top:120px;inset-inline-start:12%" data-speed="-.22" data-x="24"></span>
   <div class="wrap">
     <div class="head reveal">
       <p class="eyebrow" data-i18n="c.eyebrow">الشهادات والتراخيص</p>
@@ -418,6 +432,7 @@
 
 <!-- ============================================================ contact -->
 <section class="contact" id="contact">
+  <span class="deco" style="top:70px;inset-inline-end:6%" data-speed=".2" data-x="-28"></span>
   <div class="wrap contact__grid">
     <div>
       <p class="eyebrow reveal" data-i18n="ct.eyebrow">تواصل معنا</p>

@@ -142,26 +142,30 @@
   brand.addEventListener('playing', syncFit);
   addEventListener('resize', syncFit);
 
-  /* ------------------------------------------------------------ loader */
-  const bar = $('.loader__line i');
+  /* ------------------------------------------------------------ opening sequence */
+  // first visit in a session: the full intro (~2.7 s); later page views in the same session: a short one
+  let seen = false;
+  try { seen = sessionStorage.getItem('buad-intro') === '1'; sessionStorage.setItem('buad-intro', '1'); } catch (e) { /* private mode */ }
+  if (seen) document.documentElement.classList.add('intro-seen');
+  const introMin = reduce ? 300 : (seen ? 700 : 2700);
+  const t0intro = performance.now();
   (async () => {
     brand.src = brandSrc();
-    bar.style.width = '35%';
     const ready = new Promise(res => {
       brand.addEventListener('loadeddata', res, { once: true });
       brand.addEventListener('error', res, { once: true });
     });
-    await Promise.race([ready, new Promise(r => setTimeout(r, 4500))]);
-    bar.style.width = '100%';
+    await Promise.race([ready, new Promise(r => setTimeout(r, 5000))]);
     brand.classList.add('is-on');
     if (!reduce) brand.play().catch(() => {});
+    const wait = Math.max(0, introMin - (performance.now() - t0intro));
     setTimeout(() => {
       $('#loader').classList.add('is-done');
       document.body.classList.remove('is-loading');
-      document.body.classList.add('is-ready');
+      setTimeout(() => document.body.classList.add('is-ready'), 250);
       showTime(0);
       requestAnimationFrame(frame);
-    }, 450);
+    }, wait);
   })();
   new IntersectionObserver(([e]) => {
     if (e.isIntersecting) { if (!reduce) brand.play().catch(() => {}); } else brand.pause();
@@ -266,6 +270,68 @@
   /* ------------------------------------------------------------ marquee: duplicate row for a seamless loop */
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
+
+  /* ------------------------------------------------------------ scroll-linked motion */
+  const progressBar = $('#progressBar');
+  const decos = $$('[data-speed], [data-x]');
+  const bandRows = $$('[data-band]');
+  const heroBrand = $('#heroBrand');
+  let mTick = false;
+  function motionFrame() {
+    mTick = false;
+    const vh = innerHeight, y = scrollY;
+    const max = document.documentElement.scrollHeight - vh;
+    progressBar.style.transform = `scaleX(${max > 0 ? (y / max).toFixed(4) : 0})`;
+    if (reduce) return;
+    decos.forEach(el => {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      const k = (r.top + r.height / 2 - vh / 2) / vh;        // -1 .. 1 while the section crosses the screen
+      const ty = (+el.dataset.speed || 0) * k * 260;
+      const tx = (+el.dataset.x || 0) * k * 2.4;
+      const rot = 45 + k * 22;
+      el.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
+    });
+    bandRows.forEach(row => {
+      const r = row.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const k = (vh - r.top) / (vh + r.height);              // 0 .. 1 while the band crosses the screen
+      const dir = +row.dataset.band;
+      const span = row.scrollWidth - row.parentElement.clientWidth;
+      const tx = dir > 0 ? -span * (.15 + k * .55) : -span * (.7 - k * .55);
+      row.style.transform = `translate3d(${tx.toFixed(1)}px, 0, 0)`;
+    });
+    if (heroBrand && y < vh * 1.2) {
+      const k = Math.min(y / vh, 1);
+      heroBrand.style.transform = `translate3d(0, ${(-k * 90).toFixed(1)}px, 0)`;
+      heroBrand.style.opacity = (1 - k * 1.4).toFixed(3);
+    }
+  }
+  addEventListener('scroll', () => { if (!mTick) { mTick = true; requestAnimationFrame(motionFrame); } }, { passive: true });
+  addEventListener('resize', motionFrame);
+  motionFrame();
+
+  /* ------------------------------------------------------------ tactile hovers (fine pointers only) */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduce) {
+    // a warm light follows the cursor across cards
+    $$('.value, .cred, .project, .model, .cta__grid article, .phases__list li').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+      });
+    });
+    // buttons lean gently towards the cursor
+    $$('.btn, .lang, .gbtn').forEach(btn => {
+      btn.addEventListener('pointermove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / r.width, dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        btn.style.setProperty('--tx', `${(dx * 8).toFixed(1)}px`);
+        btn.style.setProperty('--ty', `${(dy * 6).toFixed(1)}px`);
+      });
+      btn.addEventListener('pointerleave', () => { btn.style.setProperty('--tx', '0px'); btn.style.setProperty('--ty', '0px'); });
+    });
+  }
 
   /* ------------------------------------------------------------ language */
   const EN = window.BUAD_EN || {};
