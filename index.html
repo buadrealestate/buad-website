@@ -162,65 +162,85 @@
   </div>
 </section>
 
-<!-- ============================================================ six dimensions -->
-<section class="dims" id="dimensions">
-  <div class="wrap">
-    <div class="head head--light reveal">
-      <p class="eyebrow" data-i18n="dims.eyebrow">منظومة بُعد</p>
+<!-- ============================================================ six dimensions: the logo opens into its six bars -->
+<section class="dims dimx" id="dimensions">
+  <div class="dimx__pin">
+    <div class="dimx__glow" aria-hidden="true"></div>
+    <div class="dimx__logo" id="dxLogo" aria-hidden="true">
+      <svg class="dimx__svg" viewBox="0 0 135.14 135.05" overflow="visible">
+        <g id="dxBody"><path d="M15.97 55.46L18.61 58.10L4.66 72.05L7.01 74.39L20.95 60.44L23.60 63.08L9.65 77.03L11.99 79.37L25.94 65.42L27.90 67.39L67.39 27.90L107.19 67.70L94.96 79.92L67.39 52.36L52.00 67.75L93.55 109.25L95.94 106.86C108.20 94.61 120.48 82.38 132.74 70.14L135.14 67.74L67.39 0.00L0.00 67.39L2.02 69.41L15.97 55.46" fill-rule="evenodd"/><path d="M53.74 121.09L67.71 135.05L81.67 121.09L67.71 107.13L53.74 121.09"/></g>
+        <g id="dxBars"><path class="lgbar" d="M16.37 83.71L16.99 84.33L30.93 70.39L28.59 68.05L14.65 81.99L16.37 83.71"/><path class="lgbar" d="M21.98 89.31L35.92 75.37L33.58 73.03L19.64 86.97L21.98 89.31"/><path class="lgbar" d="M26.96 94.30L40.91 80.35L40.16 79.59L40.15 79.60L38.56 78.02L24.62 91.96L26.96 94.30"/><path class="lgbar" d="M30.82 98.16L30.85 98.13L31.97 99.25L45.90 85.33L43.56 82.99L29.60 96.94L30.82 98.16"/><path class="lgbar" d="M36.96 104.23L50.88 90.31L48.54 87.97L34.62 101.89L36.96 104.23"/><path class="lgbar" d="M41.61 108.88L55.55 94.96L53.53 92.95L39.60 106.88L41.61 108.88"/></g>
+      </svg>
+    </div>
+    <div class="dimx__head" id="dxHead"><p class="eyebrow" data-i18n="dims.eyebrow">منظومة بُعد</p>
       <h2 class="h2" data-i18n="dims.title">ستة أبعاد لأعمالك</h2>
       <p class="lead" data-i18n="dims.lead">منظومة واحدة تغطي دورة حياة مشروعك ومنشأتك كاملة: من اقتناص الفرصة إلى إبرام الصفقة، إلى إدارة العقد، إلى التطوير، وحتى التشغيل والنمو.</p>
+      <p class="dimx__hint" data-i18n="dx.hint">مرّر لاكتشاف الأبعاد</p>
     </div>
-
-    <div class="dims__grid">
-      <ol class="dims__list" id="dimsList">
-        <li class="is-active" data-dim="0"><span>01</span><b data-i18n="d1.t">الاستثمار والصفقات</b></li>
-        <li data-dim="1"><span>02</span><b data-i18n="d2.t">العقود والمناقصات</b></li>
-        <li data-dim="2"><span>03</span><b data-i18n="d3.t">التطوير وإدارة المشاريع</b></li>
-        <li data-dim="3"><span>04</span><b data-i18n="d4.t">الأصول والتشغيل</b></li>
-        <li data-dim="4"><span>05</span><b data-i18n="d5.t">الإمداد والخدمات اللوجستية</b></li>
-        <li data-dim="5"><span>06</span><b data-i18n="d6.t">تطوير الأعمال والحلول الذكية</b></li>
-      </ol>
-
-      <div class="dims__panels">
-        <article class="dim is-active">
+    <div class="dimx__cards">
+      <article class="dcard" data-k="0">
+        <div class="dcard__in">
+          <div class="dcard__top"><span class="dcard__no">01</span><span class="dcard__of">/ 06</span></div>
+          <h3 class="dcard__title" data-i18n="d1.t">الاستثمار والصفقات</h3>
           <p class="dim__tag" data-i18n="d1.tag">نكتشف الفرصة ونُدير الصفقة حتى الإغلاق</p>
           <p class="dim__desc" data-i18n="d1.d">نرافق المستثمرين والمنشآت من لحظة اكتشاف الفرصة حتى إغلاق الصفقة، بدراسة دقيقة وتفاوض محترف وهيكلة تحمي المصالح وتعظّم العائد.</p>
           <ul class="dim__svc" data-i18n="d1.s"><li>إدارة الفرص الاستثمارية</li><li>إدارة الصفقات</li><li>الاستشارات الاستثمارية والعقارية</li><li>دراسات الجدوى والتقييم المالي</li><li>التسويق العقاري والبيع على الخارطة</li><li>هيكلة الشراكات والتمويل</li></ul>
           <p class="dim__for" data-i18n="d1.f"><b>لمن:</b> المستثمرون، والصناديق العقارية، وملاك الأراضي، والمجموعات الاستثمارية.</p>
-        </article>
-        <article class="dim">
+        </div>
+      </article>
+      <article class="dcard" data-k="1">
+        <div class="dcard__in">
+          <div class="dcard__top"><span class="dcard__no">02</span><span class="dcard__of">/ 06</span></div>
+          <h3 class="dcard__title" data-i18n="d2.t">العقود والمناقصات</h3>
           <p class="dim__tag" data-i18n="d2.tag">نفوز بالمنافسات ونحفظ الحقوق طوال مدة العقد</p>
           <p class="dim__desc" data-i18n="d2.d">نساعد الشركات على المنافسة بقوة في المنافسات الحكومية والخاصة، ونساعد الجهات المالكة على طرح منافساتها باحتراف، ثم ندير العقد طوال مدة تنفيذه لضمان الالتزام وحفظ الحقوق.</p>
           <ul class="dim__svc" data-i18n="d2.s"><li>رصد الفرص وإعداد العروض</li><li>كراسات الشروط وتقييم العروض</li><li>صياغة العقود ومراجعتها</li><li>إدارة دورة حياة العقد</li><li>الشؤون القانونية للمشاريع</li><li>العلاقات الحكومية</li></ul>
           <p class="dim__for" data-i18n="d2.f"><b>لمن:</b> المقاولون، والموردون، والمطورون، والجهات المالكة للمشاريع، والشركات الجديدة على المنافسات الحكومية.</p>
-        </article>
-        <article class="dim">
+        </div>
+      </article>
+      <article class="dcard" data-k="2">
+        <div class="dcard__in">
+          <div class="dcard__top"><span class="dcard__no">03</span><span class="dcard__of">/ 06</span></div>
+          <h3 class="dcard__title" data-i18n="d3.t">التطوير وإدارة المشاريع</h3>
           <p class="dim__tag" data-i18n="d3.tag">نطوّر الأصول ونُدير المشاريع نيابة عن مالكها</p>
           <p class="dim__desc" data-i18n="d3.d">نحوّل الأراضي والأفكار إلى مشاريع قائمة، وندير التطوير نيابة عن المالك بمنهجية احترافية تضمن الجودة والوقت والتكلفة.</p>
           <ul class="dim__svc" data-i18n="d3.s"><li>إدارة التطوير لملاك الأراضي</li><li>مكتب إدارة المشاريع (PMO)</li><li>الإشراف على التنفيذ والجودة</li><li>التراخيص والتصاريح</li></ul>
           <p class="dim__for" data-i18n="d3.f"><b>لمن:</b> ملاك الأراضي والعقارات، والمطورون، والشركات العائلية، والجهات الحكومية وشبه الحكومية.</p>
-        </article>
-        <article class="dim">
+        </div>
+      </article>
+      <article class="dcard" data-k="3">
+        <div class="dcard__in">
+          <div class="dcard__top"><span class="dcard__no">04</span><span class="dcard__of">/ 06</span></div>
+          <h3 class="dcard__title" data-i18n="d4.t">الأصول والتشغيل</h3>
           <p class="dim__tag" data-i18n="d4.tag">نُشغّل المواقع والأصول بكفاءة واستمرارية</p>
           <p class="dim__desc" data-i18n="d4.d">نُشغّل المواقع والمشاريع والأصول باحترافية تحافظ على قيمتها وترفع عائدها، بعقود تشغيل مرنة تناسب حجم كل عميل.</p>
           <ul class="dim__svc" data-i18n="d4.s"><li>إدارة الأصول والمحافظ العقارية</li><li>إدارة الأملاك</li><li>إدارة المرافق (FM)</li><li>تشغيل المواقع والمخيمات والمشاريع</li><li>التشغيل الموسمي</li></ul>
           <p class="dim__for" data-i18n="d4.f"><b>لمن:</b> ملاك العقارات والمحافظ، وشركات المقاولات الكبرى، والمشاريع الوطنية، وشركات خدمة ضيوف الرحمن.</p>
-        </article>
-        <article class="dim">
+        </div>
+      </article>
+      <article class="dcard" data-k="4">
+        <div class="dcard__in">
+          <div class="dcard__top"><span class="dcard__no">05</span><span class="dcard__of">/ 06</span></div>
+          <h3 class="dcard__title" data-i18n="d5.t">الإمداد والخدمات اللوجستية</h3>
           <p class="dim__tag" data-i18n="d5.tag">نؤمّن ما يحتاجه المشروع في وقته</p>
           <p class="dim__desc" data-i18n="d5.d">نؤمّن للمشاريع ما تحتاجه من مواد وكوادر وخدمات في وقتها وبالجودة المطلوبة، لتستمر الأعمال دون توقف.</p>
           <ul class="dim__svc" data-i18n="d5.s"><li>المشتريات والتوريد</li><li>إدارة سلاسل الإمداد</li><li>الخدمات اللوجستية</li><li>توفير الكوادر الفنية المتخصصة</li><li>المباني الجاهزة</li></ul>
           <p class="dim__for" data-i18n="d5.f"><b>لمن:</b> المقاولون، والمشاريع الكبرى، والمصانع، والجهات ذات المواقع المتعددة.</p>
-        </article>
-        <article class="dim">
+        </div>
+      </article>
+      <article class="dcard" data-k="5">
+        <div class="dcard__in">
+          <div class="dcard__top"><span class="dcard__no">06</span><span class="dcard__of">/ 06</span></div>
+          <h3 class="dcard__title" data-i18n="d6.t">تطوير الأعمال والحلول الذكية</h3>
           <p class="dim__tag" data-i18n="d6.tag">نُنمّي المنشآت ونحدّث أدواتها</p>
           <p class="dim__desc" data-i18n="d6.d">نُنمّي المنشآت ونحدّث أدواتها باستراتيجيات قابلة للتنفيذ، وأنظمة حوكمة متينة، وحلول رقمية ترفع الكفاءة وتقيس الأداء.</p>
           <ul class="dim__svc" data-i18n="d6.s"><li>تطوير الأعمال والنمو</li><li>الاستشارات الإدارية</li><li>الحوكمة والامتثال</li><li>التحول الرقمي للأصول والمواقع</li><li>أنظمة إدارة المرافق ولوحات الأداء</li><li>المباني الذكية ونمذجة معلومات البناء (BIM)</li></ul>
           <p class="dim__for" data-i18n="d6.f"><b>لمن:</b> الشركات العائلية، والمنشآت الصغيرة والمتوسطة، وشركات التطوير العقاري، والجهات غير الربحية.</p>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
-    <p class="dims__motto reveal" data-i18n="dims.motto">عقد واحد.. نقطة تواصل واحدة.. ستة أبعاد من الخبرة</p>
+    <nav class="dimx__nav" id="dxNav" aria-label="Dimensions"><button type="button" data-k="0" aria-label="01">01</button><button type="button" data-k="1" aria-label="02">02</button><button type="button" data-k="2" aria-label="03">03</button><button type="button" data-k="3" aria-label="04">04</button><button type="button" data-k="4" aria-label="05">05</button><button type="button" data-k="5" aria-label="06">06</button></nav>
+    <p class="dimx__motto" id="dxMotto" data-i18n="dims.motto">عقد واحد.. نقطة تواصل واحدة.. ستة أبعاد من الخبرة</p>
   </div>
 </section>
 

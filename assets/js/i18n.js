@@ -178,6 +178,8 @@ window.BUAD_EN = {
   'jp.inv.eyebrow': 'Investment Opportunities', 'jp.inv.title': 'Become a partner in Al Jumum Interface',
   'jp.inv.lead': 'We welcome investors, operators and brands interested in partnering or leasing within the project’s phases.',
 
+  'dx.hint': 'Scroll to explore the dimensions',
+
   /* Projects page */
   'pp.meta.title': 'Our Projects | BUAD', 'pp.title': 'Our Projects',
   'pp.list.eyebrow': 'Delivered Work', 'pp.list.title': 'Field experience in every dimension',

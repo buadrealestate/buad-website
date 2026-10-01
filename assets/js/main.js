@@ -232,22 +232,105 @@
     parallax();
   }
 
-  /* ------------------------------------------------------------ six dimensions */
-  const dimItems = $$('#dimsList li'), dimPanels = $$('.dim');
-  let dimTimer = null, dimIdx = 0;
-  function showDim(k) {
-    dimIdx = k;
-    dimItems.forEach((li, j) => li.classList.toggle('is-active', j === k));
-    dimPanels.forEach((d, j) => d.classList.toggle('is-active', j === k));
-  }
-  dimItems.forEach((li, k) => {
-    li.addEventListener('click', () => { showDim(k); clearInterval(dimTimer); });
-    li.addEventListener('mouseenter', () => { if (matchMedia('(hover:hover)').matches) { showDim(k); clearInterval(dimTimer); } });
-  });
-  new IntersectionObserver(([e]) => {
-    clearInterval(dimTimer);
-    if (e.isIntersecting && !reduce) dimTimer = setInterval(() => showDim((dimIdx + 1) % dimItems.length), 5200);
-  }, { threshold: .4 }).observe($('.dims__grid'));
+  /* ------------------------------------------------------------ six dimensions: the logo opens into its six bars */
+  // Scroll drives one timeline p = 0..1 through the tall section:
+  //   0 – .12   the mark turns into place, title below it
+  //   .12 – .22 the camera moves onto the six bars, which step apart
+  //   .22 – .88 each bar in turn unfolds into the card of one dimension, then folds back
+  //   .88 – 1   the bars close up, the mark returns to the centre and the motto appears
+  const dimx = (() => {
+    const sec = $('#dimensions');
+    if (!sec) return null;
+    if (reduce) { sec.classList.add('dimx--static'); return null; }
+    const logo = $('#dxLogo'), body = $('#dxBody'), bars = $$('.lgbar'), cards = $$('.dcard');
+    const head = $('#dxHead'), motto = $('#dxMotto'), navEl = $('#dxNav'), navBtns = $$('#dxNav button'), pin = $('.dimx__pin');
+    const U = 135;                                     // logo box in SVG units (viewBox ≈ 135 × 135)
+    const BAR_C = [[22.79, 76.19], [27.78, 81.17], [32.77, 86.16], [37.75, 91.12], [42.75, 96.1], [47.57, 100.92]];
+    const BAR_LEN = 19.7, BAR_T = 3.3;                 // bar size in SVG units; bars run at -45°
+    const FOCUS = [35.2, 88.6];                        // middle of the six bars
+    const T0 = .22, SLOT = .11;
+    const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const mix = (c1, c2, t) => `rgb(${c1.map((v, i) => Math.round(lerp(v, c2[i], t))).join(',')})`;
+    const TAN = [185, 153, 121], CREAM = [246, 238, 226];
+    let sizes = [];
+    function measure() {
+      const vw = innerWidth, mob = vw < 900;
+      const cw = mob ? vw - 32 : Math.min(580, vw * .42);
+      cards.forEach(c => c.style.setProperty('--cw', `${cw}px`));
+      sizes = cards.map(c => [c.offsetWidth, c.offsetHeight]);
+    }
+    navBtns.forEach(b => b.addEventListener('click', () => {
+      const k = +b.dataset.k, r = sec.getBoundingClientRect();
+      const total = sec.offsetHeight - innerHeight;
+      scrollTo({ top: scrollY + r.top + total * (T0 + SLOT * (k + .5)), behavior: 'smooth' });
+    }));
+
+    function frame() {
+      const vw = innerWidth, vh = innerHeight, mob = vw < 900, rtl = document.documentElement.dir === 'rtl';
+      const r = sec.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const p = clamp(-r.top / (sec.offsetHeight - vh));
+
+      // camera: the whole mark in the centre (intro / outro) <-> close on the bars at one side (the six acts)
+      const big = Math.min(vw, vh) * .5 / U;
+      const side = mob ? { x: vw * .5, y: vh * .19, s: Math.min(vw * .85, vh * .32) / 62 }
+                       : { x: rtl ? vw * .25 : vw * .75, y: vh * .5, s: Math.min(vw * .4, vh * .8) / 62 };
+      const a = ease(clamp(p / .12)), z = ease(clamp((p - .12) / .1)), o = ease(clamp((p - .88) / .1));
+      const k = z * (1 - o);                           // 0 = whole mark centred, 1 = close on the bars
+      const rot = lerp(-150, 0, a) + o * 360;          // turns into place, then one full turn as it closes
+      const fx = lerp(U / 2, FOCUS[0], k), fy = lerp(U / 2, FOCUS[1], k);
+      const sx = lerp(vw / 2, side.x, k), sy = lerp(vh * (mob ? .38 : .4), side.y, k);
+      const s = lerp(big * lerp(.7, 1, a) * (1 - o * .25), side.s, k);
+      const rr = rot * Math.PI / 180;                  // rotation about the focus point (the centre at the outro)
+      const cr = Math.cos(rr), sr = Math.sin(rr);
+      const tx = sx - s * (fx * cr - fy * sr), ty = sy - s * (fx * sr + fy * cr);
+      logo.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg) scale(${s.toFixed(4)})`;
+      body.style.opacity = (1 - k * .72).toFixed(3);
+      pin.style.setProperty('--gx', `${(sx / vw * 100).toFixed(1)}%`);
+      pin.style.setProperty('--gy', `${(sy / vh * 100).toFixed(1)}%`);
+
+      // the bars step apart along their stack and out from the mark; each one unfolds into its card
+      let active = -1;
+      bars.forEach((bar, i) => {
+        const st = T0 + i * SLOT;
+        const m = ease(clamp((p - st) / (SLOT * .38))) * (1 - ease(clamp((p - (st + SLOT * .82)) / (SLOT * .18))));
+        if (p >= st && p < st + SLOT) active = i;
+        const d = (i - 2.5) * 2.6 * k, out = 5 * k + m * 3;
+        const dx = (d - out) * .7071, dy = (d + out) * .7071;
+        bar.style.transform = `translate(${dx.toFixed(2)}px, ${dy.toFixed(2)}px)`;
+        bar.style.opacity = (1 - m * .75).toFixed(3);
+        bar.classList.toggle('is-on', i === active && k > .5);
+
+        const card = cards[i];
+        if (m <= .001) { card.classList.remove('is-live'); return; }
+        card.classList.add('is-live');
+        const [W, H] = sizes[i];
+        const bx = BAR_C[i][0] + dx, by = BAR_C[i][1] + dy;           // bar centre in SVG units
+        const bsx = tx + s * (bx * cr - by * sr), bsy = ty + s * (bx * sr + by * cr);
+        const cx = mob ? vw / 2 : (rtl ? vw * .7 : vw * .3);
+        const cy = mob ? Math.min(vh - 64 - H / 2, Math.max(vh * .36 + H / 2, vh * .62)) : vh / 2;
+        const X = lerp(bsx, cx, m), Y = lerp(bsy, cy, m);
+        const w = lerp(BAR_LEN * s, W, m), h = lerp(BAR_T * s, H, m);
+        const ang = lerp(-45 + rot, 0, m);
+        card.style.transform = `translate3d(${(X - W / 2).toFixed(1)}px, ${(Y - H / 2).toFixed(1)}px, 0) rotate(${ang.toFixed(2)}deg) scale(${(w / W).toFixed(4)}, ${(h / H).toFixed(4)})`;
+        card.style.background = mix(TAN, CREAM, clamp(m * 1.4));
+        card.firstElementChild.style.opacity = clamp((m - .6) / .4).toFixed(3);
+      });
+      navBtns.forEach((b, i) => b.classList.toggle('is-active', i === active));
+      navEl.classList.toggle('is-on', p > T0 - .02 && p < .9);
+      const h0 = clamp((p - .06) / .07);
+      head.style.opacity = (1 - h0).toFixed(3);
+      head.style.transform = `translate3d(0, ${(-h0 * 40).toFixed(1)}px, 0)`;
+      head.style.visibility = p > .14 ? 'hidden' : 'visible';
+      motto.style.opacity = clamp((p - .93) / .05).toFixed(3);
+    }
+    measure();
+    addEventListener('resize', () => { measure(); frame(); });
+    addEventListener('load', () => { measure(); frame(); });
+    return { frame, measure };
+  })();
 
   /* ------------------------------------------------------------ gallery: buttons + drag */
   const gTrack = $('#gallery');
@@ -283,6 +366,7 @@
     const max = document.documentElement.scrollHeight - vh;
     progressBar.style.transform = `scaleX(${max > 0 ? (y / max).toFixed(4) : 0})`;
     if (reduce) return;
+    if (dimx) dimx.frame();
     decos.forEach(el => {
       const r = el.parentElement.getBoundingClientRect();
       if (r.bottom < -200 || r.top > vh + 200) return;
@@ -358,6 +442,7 @@
     document.title = en ? EN['meta.title'] : arTitle;
     $('#langBtn').textContent = en ? 'ع' : 'EN';
     lastPhase = ''; showTime(T);
+    if (dimx) { dimx.measure(); dimx.frame(); }
     store.set('buad-lang', lang);
   }
   $('#langBtn').addEventListener('click', () => setLang(html.lang === 'en' ? 'ar' : 'en'));

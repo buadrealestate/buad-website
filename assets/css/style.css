@@ -756,3 +756,75 @@ html[dir="rtl"] .dl__btn small { text-align: right; }
 .stat b { justify-self: start; }
 .jumum__more { margin-top: 30px; }
 .dl--light { margin-top: 40px; }
+
+/* ---------------------------------------------------------------- six dimensions: the logo opens into its six bars
+   The section is tall; .dimx__pin sticks to the screen while main.js drives the scene from the scroll position:
+   the mark turns, the camera moves onto its six bars, and each bar unfolds into the card of one dimension. */
+.dimx { padding: 0; height: 760vh; overflow: visible; }
+.dimx::before { display: none; }
+.dimx__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.dimx__glow { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 55% at var(--gx, 50%) var(--gy, 50%), rgba(185, 153, 121, .16), transparent 70%); }
+.dimx__logo { position: absolute; left: 0; top: 0; width: 135px; height: 135px; transform-origin: 0 0; will-change: transform; }
+.dimx__svg { display: block; width: 100%; height: 100%; overflow: visible; }
+#dxBody { fill: var(--sand); transition: fill .6s; }
+.lgbar { fill: var(--tan); transform-box: fill-box; transform-origin: center; }
+.lgbar.is-on { fill: #fff3df; filter: drop-shadow(0 0 2px rgba(255, 236, 205, .9)); }
+
+.dimx__head { position: absolute; z-index: 2; inset-inline: 0; bottom: clamp(40px, 8vh, 90px); text-align: center; padding-inline: 20px; will-change: opacity, transform; }
+.dimx__head .eyebrow { justify-content: center; }
+.dimx__head .h2 { color: var(--cream); }
+.dimx__head .lead { color: rgba(246, 238, 226, .66); max-width: 720px; margin: 14px auto 0; }
+.dimx__hint { margin-top: 22px; font-size: 13px; letter-spacing: .08em; color: var(--tan); display: inline-flex; align-items: center; gap: 10px; }
+.dimx__hint::after { content: ""; width: 1px; height: 26px; background: linear-gradient(var(--tan), transparent); animation: hintDrop 1.8s var(--ease) infinite; }
+@keyframes hintDrop { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+html[lang="en"] .dimx__hint { letter-spacing: .2em; text-transform: uppercase; font-size: 11px; }
+
+.dimx__cards { position: absolute; inset: 0; pointer-events: none; }
+.dcard { position: absolute; left: 0; top: 0; width: var(--cw, 560px); border-radius: 26px; background: var(--cream); color: var(--ink);
+  transform-origin: 50% 50%; will-change: transform; visibility: hidden; box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .7); }
+.dcard.is-live { visibility: visible; pointer-events: auto; }
+.dcard__in { padding: clamp(26px, 3vw, 40px); opacity: 0; }
+.dcard__top { display: flex; align-items: baseline; gap: 10px; }
+.dcard__no { font-size: clamp(54px, 5.4vw, 80px); font-weight: 200; line-height: .9; color: transparent; -webkit-text-stroke: 1px var(--tan); }
+.dcard__of { font-size: 14px; color: var(--muted); }
+.dcard__title { margin-top: 14px; font-size: clamp(24px, 2.3vw, 32px); font-weight: 500; color: var(--brown); line-height: 1.3; }
+.dcard .dim__tag { margin-top: 6px; font-size: clamp(17px, 1.5vw, 20px); color: var(--mocha); }
+.dcard .dim__desc { margin-top: 12px; font-size: 15.5px; color: var(--muted); }
+.dcard .dim__svc { margin-top: 18px; gap: 8px 20px; }
+.dcard .dim__svc li { font-size: 14.5px; color: var(--ink); }
+.dcard .dim__for { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+.dcard .dim__for b { color: var(--mocha); }
+
+.dimx__nav { position: absolute; z-index: 3; bottom: clamp(18px, 4vh, 36px); left: 50%; transform: translateX(-50%); display: flex; gap: 6px;
+  direction: ltr; opacity: 0; transition: opacity .5s; }
+.dimx__nav.is-on { opacity: 1; }
+.dimx__nav button { width: 44px; height: 30px; border: 0; border-radius: 999px; background: none; color: rgba(246, 238, 226, .45); font: inherit; font-size: 12.5px; cursor: pointer;
+  transition: color .3s, background .4s var(--spring); }
+.dimx__nav button:hover { color: var(--cream); }
+.dimx__nav button.is-active { background: rgba(237, 216, 186, .14); color: var(--sand); }
+.dimx__motto { position: absolute; z-index: 2; inset-inline: 0; bottom: clamp(60px, 12vh, 120px); text-align: center; padding-inline: 20px;
+  font-size: clamp(20px, 2.2vw, 30px); font-weight: 300; color: var(--sand); opacity: 0; }
+
+/* no animation: a plain list of the six cards */
+.dimx--static { height: auto; padding-block: clamp(90px, 12vw, 150px); }
+.dimx--static .dimx__pin { position: relative; height: auto; overflow: visible; display: grid; gap: 18px; width: var(--wrap); margin-inline: auto; }
+.dimx--static .dimx__logo, .dimx--static .dimx__nav, .dimx--static .dimx__glow, .dimx--static .dimx__hint { display: none; }
+.dimx--static .dimx__head, .dimx--static .dimx__motto, .dimx--static .dimx__cards { position: relative; inset: auto; opacity: 1; }
+.dimx--static .dimx__cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.dimx--static .dcard { position: relative; width: auto; visibility: visible; transform: none !important; }
+.dimx--static .dcard__in { opacity: 1 !important; }
+
+@media (max-width: 900px) {
+  .dimx { height: 720vh; }
+  .dcard__in { padding: 22px 20px; }
+  .dcard__no { font-size: 44px; }
+  .dcard__title { font-size: 22px; margin-top: 8px; }
+  .dcard .dim__tag { font-size: 16px; }
+  .dcard .dim__desc { display: none; }
+  .dcard .dim__svc { grid-template-columns: 1fr 1fr; gap: 6px 14px; margin-top: 14px; }
+  .dcard .dim__svc li { font-size: 13px; padding-inline-start: 14px; }
+  .dcard .dim__svc li::before { width: 5px; height: 5px; }
+  .dcard .dim__for { display: none; }
+  .dimx__nav button { width: 38px; }
+}
