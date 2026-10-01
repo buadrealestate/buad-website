@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Projects page (builds on style.css + jumum.css)
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- hero */
+.ph { position: relative; height: 78svh; min-height: 560px; overflow: hidden; background: var(--espresso); color: var(--cream); isolation: isolate; }
+.ph__media { position: absolute; inset: -4% 0; will-change: transform; }
+.ph__media img { width: 100%; height: 100%; object-fit: cover; animation: jhIn 2.4s var(--spring) both; }
+.ph__shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(18, 12, 9, .92), rgba(18, 12, 9, .55) 55%, rgba(18, 12, 9, .7)); }
+.ph .deco { z-index: 1; border-color: rgba(237, 216, 186, .25); }
+main > section.ph > .ph__content { position: absolute; z-index: 2; inset-inline: 0; bottom: clamp(70px, 11vh, 120px); will-change: transform, opacity; }
+.ph__title { font-size: clamp(56px, 9vw, 140px); font-weight: 200; line-height: 1.05; letter-spacing: -.02em; }
+.ph__sub { margin-top: 12px; font-size: clamp(18px, 1.9vw, 25px); font-weight: 300; color: rgba(246, 238, 226, .8); }
+.is-ready .ph__content .reveal-hero:nth-child(2) { transition-delay: .1s; }
+.is-ready .ph__content .reveal-hero:nth-child(3) { transition-delay: .2s; }
+.is-ready .ph__content .reveal-hero:nth-child(4) { transition-delay: .32s; }
+
+/* ---------------------------------------------------------------- featured project */
+.pfeat { padding-top: clamp(70px, 9vw, 120px); background: var(--ivory); }
+.pfeat__card { position: relative; display: grid; min-height: clamp(520px, 62vw, 680px); border-radius: 28px; overflow: hidden; color: var(--cream);
+  isolation: isolate; box-shadow: 0 40px 80px -40px rgba(43, 31, 25, .55); }
+.pfeat__img { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.pfeat__img img { width: 100%; height: 120%; object-fit: cover; transition: scale 1.4s var(--spring); }
+.pfeat__card:hover .pfeat__img img { scale: 1.04; }
+.pfeat__card::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to top, rgba(18, 12, 9, .92), rgba(18, 12, 9, .15) 60%); }
+.pfeat__body { align-self: end; padding: clamp(28px, 4vw, 56px); display: grid; justify-items: start; }
+.pfeat__tag { font-size: 13px; letter-spacing: .08em; color: var(--sand); padding: 6px 14px; border-radius: 999px;
+  background: rgba(43, 31, 25, .5); backdrop-filter: blur(10px); border: 1px solid var(--line-light); }
+html[lang="en"] .pfeat__tag { letter-spacing: .18em; text-transform: uppercase; font-size: 11.5px; }
+.pfeat__title { margin-top: 18px; font-size: clamp(36px, 5.4vw, 76px); font-weight: 200; line-height: 1.1; }
+.pfeat__sub { margin-top: 8px; font-size: clamp(16px, 1.5vw, 20px); font-weight: 300; color: rgba(246, 238, 226, .8); }
+.pfeat__nums { margin: 30px 0 32px; display: flex; flex-wrap: wrap; gap: 14px clamp(24px, 4vw, 56px); }
+.pfeat__nums dt { font-size: 13.5px; color: rgba(246, 238, 226, .62); }
+.pfeat__nums dd { color: var(--sand); }
+.pfeat__nums b { font-size: clamp(28px, 3vw, 42px); font-weight: 200; font-variant-numeric: tabular-nums; }
+.pfeat__nums small { font-size: 14px; color: var(--tan); }
+
+/* ---------------------------------------------------------------- project rows */
+.plist { padding-block: clamp(100px, 12vw, 160px); background: var(--ivory); overflow: hidden; }
+.prow { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(36px, 6vw, 90px); align-items: center;
+  background: none; border: 0; padding: 0; overflow: visible; }
+.prow + .prow { margin-top: clamp(80px, 10vw, 140px); }
+.prow:hover { transform: none; box-shadow: none; }
+.prow:nth-of-type(even) .prow__img { order: 2; }
+.prow__img { aspect-ratio: 16 / 11; border-radius: 24px; overflow: hidden; }
+.prow__img img { width: 100%; height: 100%; object-fit: cover; }
+.prow:hover .prow__img img { transform: scale(1.04); transition: transform 1.4s var(--spring); }
+.prow__no { display: block; font-size: clamp(64px, 8vw, 116px); font-weight: 200; line-height: .9; color: transparent; -webkit-text-stroke: 1px var(--tan); }
+.prow .project__dim { margin: 18px 0 0; }
+.prow h3 { margin: 8px 0 14px; font-size: clamp(26px, 2.6vw, 36px); font-weight: 400; color: var(--brown); }
+.prow p:not(.project__dim):not(.prow__fig) { margin: 0; font-size: 16.5px; color: var(--muted); }
+.prow__fig { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; align-items: baseline; gap: 10px; }
+.prow__fig b { font-size: clamp(40px, 4vw, 56px); font-weight: 200; line-height: 1; color: var(--brown); font-variant-numeric: tabular-nums; }
+.prow__fig small { font-size: 15px; color: var(--tan); }
+.prow::before { display: none; }
+
+@media (max-width: 900px) {
+  .prow { grid-template-columns: 1fr; gap: 26px; }
+  .prow:nth-of-type(even) .prow__img { order: 0; }
+  .ph { height: 70svh; }
+}
+.prow .prow__fig { margin-inline: 0; }
+.prow, .prow:hover { box-shadow: none; border: 0; border-radius: 0; background: none; }
+@media (max-width: 900px) {
+  .pfeat__card::after { background: linear-gradient(to top, rgba(18, 12, 9, .95), rgba(18, 12, 9, .7) 55%, rgba(18, 12, 9, .25)); }
+}

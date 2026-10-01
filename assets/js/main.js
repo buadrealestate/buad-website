@@ -300,6 +300,13 @@
       const span = row.scrollWidth - row.parentElement.clientWidth;
       const tx = dir > 0 ? -span * (.15 + k * .55) : -span * (.7 - k * .55);
       row.style.transform = `translate3d(${tx.toFixed(1)}px, 0, 0)`;
+      // words are brightest at the centre of the screen and fade towards the edges
+      const cx = innerWidth / 2;
+      row.querySelectorAll('span').forEach(sp => {
+        const b = sp.getBoundingClientRect();
+        const d = Math.min(1, Math.abs(b.left + b.width / 2 - cx) / (innerWidth * .5));
+        sp.style.setProperty('--o', (1 - d * .78).toFixed(3));
+      });
     });
     if (heroBrand && y < vh * 1.2) {
       const k = Math.min(y / vh, 1);

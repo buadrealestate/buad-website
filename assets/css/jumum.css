@@ -13,10 +13,15 @@
 /* ---------------------------------------------------------------- hero */
 .jh { position: relative; height: 100svh; min-height: 640px; overflow: hidden; background: var(--espresso); color: var(--cream); isolation: isolate; }
 .jh__media { position: absolute; inset: -4% 0; will-change: transform; }
-.jh__media img { width: 100%; height: 100%; object-fit: cover; animation: jhIn 2.6s var(--spring) both; }
+.jh__media .hero__poster { animation: jhIn 2.6s var(--spring) both; }
+.jh__shade { pointer-events: none; }
+.jh .daybar { z-index: 3; }
 @keyframes jhIn { from { transform: scale(1.12); filter: brightness(.6); } to { transform: scale(1); filter: none; } }
 .jh__shade { position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to top, rgba(18, 12, 9, .9), rgba(18, 12, 9, .25) 50%, rgba(18, 12, 9, .5)); }
+  background: linear-gradient(to top, rgba(18, 12, 9, .8), rgba(18, 12, 9, .05) 55%, rgba(18, 12, 9, .35)),
+    linear-gradient(to left, rgba(18, 12, 9, .45), rgba(18, 12, 9, 0) 55%); }
+html[dir="ltr"] .jh__shade { background: linear-gradient(to top, rgba(18, 12, 9, .8), rgba(18, 12, 9, .05) 55%, rgba(18, 12, 9, .35)),
+    linear-gradient(to right, rgba(18, 12, 9, .45), rgba(18, 12, 9, 0) 55%); }
 main > section.jh > .jh__content { position: absolute; z-index: 2; inset-inline: 0; bottom: clamp(90px, 14vh, 150px); will-change: transform, opacity; }
 .jh__back { display: flex; width: max-content; align-items: center; gap: 10px; font-size: 14px; color: rgba(246, 238, 226, .75); margin-bottom: 26px; transition: color .3s; }
 .jh__back:hover { color: var(--sand); }
@@ -192,6 +197,9 @@ html[lang="en"] .jstrip figcaption { direction: ltr; text-align: left; }
   .jnum:last-child { grid-column: 1 / -1; }
   .jh__actions .btn { flex: 1; padding-inline: 18px; }
   .jh__actions .btn__ico { display: none; }
+  main > section.jh > .jh__content { bottom: 172px; }
+  .jh__shade { background: linear-gradient(to top, rgba(18, 12, 9, .9), rgba(18, 12, 9, .55) 45%, rgba(18, 12, 9, .15) 75%, rgba(18, 12, 9, .45)); }
+  .jh__back { display: none; }
   .plan { padding: 44px 6px 14px; border-radius: 20px; }
   .plan__road { left: 4%; right: 14%; top: 12px; }
   .plan__compass { top: 10px; right: 10px; }
