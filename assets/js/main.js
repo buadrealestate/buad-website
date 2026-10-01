@@ -11,9 +11,10 @@
   document.body.classList.add('is-loading');
   $('#year').textContent = new Date().getFullYear();
 
-  /* ------------------------------------------------------------ hero: day -> night film, driven by the time slider */
+  /* ------------------------------------------------------------ Al Jumum section: day -> night film + time slider */
   // hero.mp4 = the Higgsfield time-lapse (day -> night), played forward; at the end the night view holds, then
   // dissolves back into the day poster and the film starts again. The slider scrubs the whole film.
+  // It lives in the Al Jumum section and only loads when the section comes near.
   const mobile = innerWidth < 900;
   // portrait phones get the portrait cut; everything else the full 16:9 film (re-checked on resize)
   const isPortrait = () => innerHeight > innerWidth * 1.15 && innerWidth < 820;
@@ -88,6 +89,8 @@
   addEventListener('resize', () => {
     clearTimeout(resizeT);
     resizeT = setTimeout(() => {
+      const bw = brandSrc();
+      if (brand.currentSrc && !brand.currentSrc.endsWith(bw)) { brand.src = bw; if (!reduce) brand.play().catch(() => {}); }
       const want = filmSrc();
       if (!video.currentSrc || video.currentSrc.endsWith(want)) return;
       const t = video.currentTime, playing = !video.paused;
@@ -99,13 +102,24 @@
     }, 250);
   });
 
-  let heroVisible = true;
+  let filmVisible = false, filmLoaded = false;
+  function loadFilm() {
+    if (filmLoaded) return; filmLoaded = true;
+    video.preload = 'auto'; video.src = filmSrc();
+    video.addEventListener('loadedmetadata', () => {
+      dur = video.duration || 0;
+      video.classList.add('is-on');
+      if (auto && filmVisible) video.play().catch(() => {});
+    }, { once: true });
+  }
+  const filmBox = $('#jumumFilm');
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) loadFilm(); }, { rootMargin: '900px 0px' }).observe(filmBox);
   new IntersectionObserver(([e]) => {
-    heroVisible = e.isIntersecting;
-    if (!heroVisible) video.pause(); else if (auto) video.play().catch(() => {});
-  }).observe($('#hero'));
+    filmVisible = e.isIntersecting;
+    if (!filmVisible) video.pause(); else if (auto && dur) video.play().catch(() => {});
+  }, { threshold: .25 }).observe(filmBox);
   function frame(now) {
-    if (heroVisible && dur) {
+    if (filmVisible && dur) {
       if (!auto && !dragging && now - userAt > 6000 && !reduce) {
         auto = true;
         if (video.currentTime >= dur - .05) restart(); else video.play().catch(() => {});
@@ -115,24 +129,32 @@
     requestAnimationFrame(frame);
   }
 
+  /* ------------------------------------------------------------ hero: looping brand film */
+  const brand = $('#brandVideo');
+  const brandSrc = () => 'assets/video/brand.mp4';         // one 16:9 film; portrait phones show it fitted (CSS)
+  const brandFit = $('#brandVideoFit');
+  function syncFit() {                                   // the fitted copy on portrait phones follows the main film
+    if (!isPortrait()) { brandFit.pause(); return; }
+    if (!brandFit.src) { brandFit.src = brand.currentSrc || brandSrc(); }
+    if (Math.abs(brandFit.currentTime - brand.currentTime) > .2) brandFit.currentTime = brand.currentTime;
+    if (!reduce) brandFit.play().catch(() => {});
+  }
+  brand.addEventListener('playing', syncFit);
+  addEventListener('resize', syncFit);
+
   /* ------------------------------------------------------------ loader */
   const bar = $('.loader__line i');
-  const poster = $('#heroPoster');
   (async () => {
-    video.src = filmSrc();
+    brand.src = brandSrc();
     bar.style.width = '35%';
     const ready = new Promise(res => {
-      video.addEventListener('loadeddata', res, { once: true });
-      video.addEventListener('error', res, { once: true });
+      brand.addEventListener('loadeddata', res, { once: true });
+      brand.addEventListener('error', res, { once: true });
     });
-    await Promise.race([ready, new Promise(r => setTimeout(r, 5000))]);
+    await Promise.race([ready, new Promise(r => setTimeout(r, 4500))]);
     bar.style.width = '100%';
-    const start = () => {
-      dur = video.duration || 0;
-      video.classList.add('is-on');
-      if (auto) video.play().catch(() => {});
-    };
-    if (video.readyState >= 1) start(); else video.addEventListener('loadedmetadata', start, { once: true });
+    brand.classList.add('is-on');
+    if (!reduce) brand.play().catch(() => {});
     setTimeout(() => {
       $('#loader').classList.add('is-done');
       document.body.classList.remove('is-loading');
@@ -141,6 +163,9 @@
       requestAnimationFrame(frame);
     }, 450);
   })();
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { if (!reduce) brand.play().catch(() => {}); } else brand.pause();
+  }).observe($('#hero'));
 
   /* ------------------------------------------------------------ header */
   const nav = $('#nav');

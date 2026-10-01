@@ -493,3 +493,45 @@ html[dir="rtl"] .gbtn[data-dir="-1"]::before { transform: translate(-65%, -50%) 
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------------------------------------------------------------- brand hero (looping logo film) */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero--brand .hero__poster, .hero--brand .hero__video { object-position: 50% 50%; }
+.hero__shade--brand { background: linear-gradient(to top, rgba(18, 12, 9, .78), rgba(18, 12, 9, 0) 38%),
+                                  linear-gradient(to bottom, rgba(18, 12, 9, .45), rgba(18, 12, 9, 0) 22%); }
+.hero__shade--brand::after { display: none; }
+.hero__brand { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(70px, 11vh, 120px); text-align: center; padding-inline: 20px; }
+.hero__tagline { font-size: clamp(24px, 3vw, 40px); font-weight: 300; color: var(--sand); letter-spacing: .01em; }
+.hero__sub { margin-top: 6px; font-size: clamp(14px, 1.3vw, 17px); color: rgba(246, 238, 226, .72); letter-spacing: .04em; }
+html[lang="en"] .hero__sub { letter-spacing: .14em; text-transform: uppercase; font-size: 12.5px; }
+.hero__brand .hero__actions { justify-content: center; margin-top: 26px; }
+.is-ready .hero__brand .reveal-hero:nth-child(2) { transition-delay: .15s; }
+.is-ready .hero__brand .reveal-hero:nth-child(3) { transition-delay: .3s; }
+
+/* ---------------------------------------------------------------- al jumum film (moved from the hero) */
+.jumum__film { background: var(--espresso); }
+.jumum__film .hero__stage { position: absolute; inset: 0; overflow: hidden; }
+.jumum__film::after { background: linear-gradient(to top, rgba(28, 20, 15, .82), rgba(28, 20, 15, 0) 55%),
+                                  linear-gradient(to left, rgba(28, 20, 15, .45), rgba(28, 20, 15, 0) 55%); z-index: 1; pointer-events: none; }
+html[dir="ltr"] .jumum__film::after { background: linear-gradient(to top, rgba(28, 20, 15, .82), rgba(28, 20, 15, 0) 55%),
+                                  linear-gradient(to right, rgba(28, 20, 15, .45), rgba(28, 20, 15, 0) 55%); }
+.jumum__film .jumum__hero-text { z-index: 2; }
+.jumum__film .daybar { z-index: 3; }
+@media (max-width: 900px) {
+  .jumum__film { align-items: flex-start; }
+  .jumum__film .jumum__hero-text { padding-top: 110px; }
+}
+
+/* portrait phones: the full logo film is shown at its own width in the middle; the cover layer behind it
+   (same film, blurred) fills the screen so the wall continues seamlessly */
+.hero__fit { display: none; }
+@media (orientation: portrait) and (max-width: 820px) {
+  .hero--brand .hero__video { filter: blur(14px) brightness(.8); transform: scale(1.15); }
+  .hero__fit { display: block; position: absolute; left: 50%; top: 42%; width: 158vw; transform: translate(-50%, -50%);
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%);
+            mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
+  .hero__fit video { display: block; width: 100%; height: auto; }
+  .hero--brand .hero__poster { filter: blur(14px) brightness(.8); }
+  .jumum__film::before { content: ""; position: absolute; inset: 0 0 auto; height: 45%; z-index: 1; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(28, 20, 15, .8), rgba(28, 20, 15, 0)); }
+}

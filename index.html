@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero/h1-day-m.webp">
+<link rel="preload" as="image" href="assets/img/brand/poster.webp">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -47,43 +47,23 @@
 
 <main id="top">
 
-<!-- ============================================================ hero: day to night -->
-<section class="hero" id="hero">
-  <div class="hero__stage" id="stage">
-    <div class="hero__kb">
-      <img class="hero__poster" id="heroPoster" src="assets/img/hero/h1-day.webp" srcset="assets/img/hero/h1-day-m.webp 1280w, assets/img/hero/h1-day.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
-      <video class="hero__video" id="heroVideo" muted playsinline preload="auto" disablepictureinpicture></video>
-    </div>
+<!-- ============================================================ hero: brand film (looping) -->
+<section class="hero hero--brand" id="hero">
+  <div class="hero__stage">
+    <img class="hero__poster" src="assets/img/brand/poster.webp" srcset="assets/img/brand/poster-m.webp 1280w, assets/img/brand/poster.webp 1920w" sizes="100vw" alt="BUAD بُعد" fetchpriority="high">
+    <video class="hero__video" id="brandVideo" muted playsinline loop preload="auto" disablepictureinpicture></video>
+    <div class="hero__fit" aria-hidden="true"><video id="brandVideoFit" muted playsinline loop preload="none" disablepictureinpicture></video></div>
   </div>
-  <div class="hero__shade"></div>
-  <div class="hero__grain"></div>
-
-  <div class="hero__content">
-    <p class="hero__kicker reveal-hero" data-i18n="hero.kicker">مشروع تنموي ريادي وحضاري · مدخل مكة المكرمة الشمالي</p>
-    <h1 class="hero__title">
-      <span class="reveal-hero" data-i18n="hero.title1">واجهة</span>
-      <span class="reveal-hero accent" data-i18n="hero.title2">الجموم</span>
-    </h1>
-    <p class="hero__en reveal-hero">AL JUMUM INTERFACE</p>
+  <div class="hero__shade hero__shade--brand"></div>
+  <h1 class="sr-only">بُعد | BUAD</h1>
+  <div class="hero__brand">
+    <p class="hero__tagline reveal-hero" data-i18n="hero.tagline">مستقبل أبعد... بقيمة أعمق</p>
+    <p class="hero__sub reveal-hero" data-i18n="hero.sub">منظومة متكاملة للإدارة والتطوير والتشغيل</p>
     <div class="hero__actions reveal-hero">
-      <a href="#jumum" class="btn btn--light" data-i18n="hero.cta1">اكتشف المشروع</a>
-      <a href="#about" class="btn btn--ghost" data-i18n="hero.cta2">تعرّف على بُعد</a>
+      <a href="#about" class="btn btn--light" data-i18n="hero.cta2">تعرّف على بُعد</a>
+      <a href="#jumum" class="btn btn--ghost" data-i18n="hero.cta3">مشاريعنا</a>
     </div>
   </div>
-
-  <div class="daybar reveal-hero">
-    <p class="daybar__hint" data-i18n="hero.hint">اسحب لتغيير الوقت</p>
-    <div class="daybar__row">
-      <span class="daybar__icon sun" aria-hidden="true"></span>
-      <div class="daybar__track" id="dayTrack" role="slider" tabindex="0" aria-label="Time of day" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <i class="daybar__fill" id="dayFill"></i>
-        <i class="daybar__dot" id="dayDot"></i>
-      </div>
-      <span class="daybar__icon moon" aria-hidden="true"></span>
-      <span class="daybar__clock"><b id="dayClock">09:00</b> <em id="dayPhase">النهار</em></span>
-    </div>
-  </div>
-
   <a href="#intro" class="hero__scroll" aria-label="scroll"><span></span></a>
 </section>
 
@@ -233,12 +213,27 @@
 
 <!-- ============================================================ al jumum interface -->
 <section class="jumum" id="jumum">
-  <div class="jumum__hero">
-    <div class="parallax"><img src="assets/img/jumum-aerial.webp" alt="" loading="lazy" decoding="async"></div>
+  <div class="jumum__hero jumum__film" id="jumumFilm">
+    <div class="hero__stage">
+      <img class="hero__poster" src="assets/img/hero/h1-day.webp" srcset="assets/img/hero/h1-day-m.webp 1280w, assets/img/hero/h1-day.webp 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">
+      <video class="hero__video" id="heroVideo" muted playsinline preload="none" disablepictureinpicture></video>
+    </div>
     <div class="jumum__hero-text wrap">
       <p class="eyebrow reveal" data-i18n="j.eyebrow">مشروعنا الرائد</p>
       <h2 class="display reveal" data-i18n="j.title">مشروع واجهة الجموم</h2>
       <p class="reveal" data-i18n="j.sub">مشروع تنموي ريادي وحضاري متعدد الأنشطة</p>
+    </div>
+    <div class="daybar">
+      <p class="daybar__hint" data-i18n="hero.hint">اسحب لتغيير الوقت</p>
+      <div class="daybar__row">
+        <span class="daybar__icon sun" aria-hidden="true"></span>
+        <div class="daybar__track" id="dayTrack" role="slider" tabindex="0" aria-label="Time of day" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <i class="daybar__fill" id="dayFill"></i>
+          <i class="daybar__dot" id="dayDot"></i>
+        </div>
+        <span class="daybar__icon moon" aria-hidden="true"></span>
+        <span class="daybar__clock"><b id="dayClock">11:00</b> <em id="dayPhase">النهار</em></span>
+      </div>
     </div>
   </div>
 
