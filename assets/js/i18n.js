@@ -151,5 +151,32 @@ window.BUAD_EN = {
   'f.name': 'Name', 'f.org': 'Organization', 'f.phone': 'Phone number', 'f.need': 'Dimension of interest',
   'f.jumum': 'Investing in Al Jumum Interface', 'f.msg': 'Your message', 'f.send': 'Send',
 
+  /* profile downloads (home + Al Jumum page) */
+  'dl.title': 'Download the company profile', 'dl.ar': 'Arabic profile', 'j.more': 'Explore the project',
+
+  /* Al Jumum page */
+  'jp.meta.title': 'Al Jumum Interface | BUAD',
+  'jp.nav.home': 'Home', 'jp.nav.plan': 'Masterplan', 'jp.nav.phases': 'Phases', 'jp.nav.loc': 'Location', 'jp.nav.invest': 'Investment',
+  'jp.back': 'BUAD Real Estate',
+  'jp.hero.sub': 'An integrated destination at the northern entrance to Makkah', 'jp.hero.cta': 'Explore the Masterplan',
+  'jp.story.eyebrow': 'About the Project',
+  'jp.story.title': 'More than twenty activities in one destination, along the Makkah – Madinah Highway.',
+  'jp.n.built': 'Ground-floor built area', 'jp.n.lease': 'Investment term', 'jp.n.years': 'years',
+  'jp.plan.eyebrow': 'The Adopted Masterplan', 'jp.plan.title': 'Explore Al Jumum Interface',
+  'jp.plan.lead': 'Hover over or tap any zone to see its use, area and development phase.',
+  'jp.plan.road': 'Madinah Highway',
+  'jp.ph.all': 'All', 'jp.ph.1': 'Phase One', 'jp.ph.2': 'Phase Two', 'jp.ph.3': 'Phase Three', 'jp.ph.4': 'Phase Four',
+  'jp.z.kicker': 'Land allocation', 'jp.z.act': 'Activities &amp; uses', 'jp.z.plan': 'Roads &amp; planning areas',
+  'jp.z.hint': 'Select a zone on the plan', 'jp.z.note': 'Approximate area per the adopted masterplan',
+  'jp.phases.title': 'Four phases that build the destination step by step',
+  'jp.t.fuel': 'Fuel station &amp; service centres', 'jp.t.farms': 'Rural farms', 'jp.t.walk': '2 km Interface Walkway', 'jp.t.diw': 'Diwaniya &amp; administration',
+  'jp.t.hall': 'Business hall', 'jp.t.comm': 'Commercial markets', 'jp.t.pop': 'Popular markets', 'jp.t.mall': 'Open-air mall',
+  'jp.t.modern': 'Modern markets', 'jp.t.log': 'Logistics services', 'jp.t.hang': 'Hanging popular restaurants', 'jp.t.visit': 'Visitor &amp; Umrah centre', 'jp.t.ent': 'Entertainment zone',
+  'jp.t.chal': 'Chalets', 'jp.t.res': 'Resorts', 'jp.t.mot': 'Motels', 'jp.t.villa': 'Villa compound',
+  'jp.loc.eyebrow': 'Location', 'jp.loc.title': 'At the northern gateway to Makkah',
+  'jp.loc.lead': 'In Al Jumum Governorate, on the Madinah Highway beside King Faisal Road; a hub for eight administrative centres with a population of more than 110,000.',
+  'jp.inv.eyebrow': 'Investment Opportunities', 'jp.inv.title': 'Become a partner in Al Jumum Interface',
+  'jp.inv.lead': 'We welcome investors, operators and brands interested in partnering or leasing within the project’s phases.',
+
   'ft.motto': 'Buad — Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad'
 };

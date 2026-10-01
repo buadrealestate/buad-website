@@ -718,3 +718,37 @@ main > section > .wrap, main > section > .head { position: relative; z-index: 1;
   .deco--lg { width: 130px; height: 130px; }
   .deco { opacity: .7; }
 }
+
+/* ---- profile downloads (home contact section + Al Jumum page) */
+/* download buttons (shared with the home page) */
+.dl { margin-top: clamp(50px, 6vw, 80px); }
+.dl__label { font-size: 14px; letter-spacing: .06em; color: var(--tan); }
+.dl__row { margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.dl__btn { display: inline-flex; align-items: center; gap: 14px; padding: 12px 22px 12px 14px; border-radius: 18px; text-align: start;
+  border: 1px solid var(--line-light); background: rgba(246, 238, 226, .05); transition: background .4s var(--spring), border-color .4s, transform .5s var(--spring); }
+html[dir="rtl"] .dl__btn { padding: 12px 14px 12px 22px; }
+.dl__btn:hover { background: rgba(246, 238, 226, .1); border-color: rgba(237, 216, 186, .45); transform: translateY(-3px); }
+.dl__btn b { display: block; font-size: 15.5px; font-weight: 500; color: var(--cream); }
+.dl__btn small { display: block; font-size: 12.5px; color: rgba(246, 238, 226, .55); direction: ltr; text-align: inherit; }
+html[dir="rtl"] .dl__btn small { text-align: right; }
+.dl__ico { position: relative; width: 44px; height: 44px; border-radius: 12px; background: var(--sand); flex: none; }
+.dl__ico::before { content: ""; position: absolute; left: 50%; top: 11px; width: 1.6px; height: 15px; margin-left: -.8px; background: var(--brown); }
+.dl__ico::after { content: ""; position: absolute; left: 50%; top: 18px; width: 8px; height: 8px; margin-left: -4px;
+  border-right: 1.6px solid var(--brown); border-bottom: 1.6px solid var(--brown); transform: rotate(45deg); transition: transform .4s var(--spring); }
+.dl__btn:hover .dl__ico::after { transform: translateY(3px) rotate(45deg); }
+/* light-background variant (home page contact section) */
+.dl--light .dl__btn { border-color: var(--line); background: var(--cream); }
+.dl--light .dl__btn:hover { background: #fff; border-color: var(--tan); }
+.dl--light .dl__btn b { color: var(--brown); }
+.dl--light .dl__btn small { color: var(--muted); }
+.dl--light .dl__ico { background: var(--brown); }
+.dl--light .dl__ico::before { background: var(--sand); }
+.dl--light .dl__ico::after { border-color: var(--sand); }
+.dl--light .dl__row { justify-content: flex-start; }
+
+@media (max-width: 560px) { .dl__btn { width: 100%; } }
+
+/* ---- signed numbers (+30, 20+) keep the column alignment */
+.stat b { justify-self: start; }
+.jumum__more { margin-top: 30px; }
+.dl--light { margin-top: 40px; }
