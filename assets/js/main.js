@@ -267,7 +267,14 @@
       scrollTo({ top: scrollY + r.top + total * (T0 + SLOT * (k + .5)), behavior: 'smooth' });
     }));
 
+    let off = false;                                   // set when the 3D scene (dims3d.js) takes over
+    function disable() {
+      off = true;
+      [logo, head, motto, ...cards, ...bars, ...cards.map(c => c.firstElementChild)].forEach(el => el.removeAttribute('style'));
+      cards.forEach(c => c.classList.remove('is-live'));
+    }
     function frame() {
+      if (off) return;
       const vw = innerWidth, vh = innerHeight, mob = vw < 900, rtl = document.documentElement.dir === 'rtl';
       const r = sec.getBoundingClientRect();
       if (r.bottom < 0 || r.top > vh) return;
@@ -328,8 +335,9 @@
     }
     measure();
     addEventListener('resize', () => { measure(); frame(); });
-    addEventListener('load', () => { measure(); frame(); });
-    return { frame, measure };
+    addEventListener('load', () => { if (!off) { measure(); frame(); } });
+    window.buadDimx = { disable };
+    return { frame, measure: () => { if (!off) measure(); } };
   })();
 
   /* ------------------------------------------------------------ gallery: buttons + drag */

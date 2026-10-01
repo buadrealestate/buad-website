@@ -828,3 +828,24 @@ html[lang="en"] .dimx__hint { letter-spacing: .2em; text-transform: uppercase; f
   .dcard .dim__for { display: none; }
   .dimx__nav button { width: 38px; }
 }
+
+/* ---- 3D version (dims3d.js): the extruded mark is drawn on a canvas; cards fade in at a fixed place */
+.dimx--3d { height: 580vh; }
+.dimx--3d .dimx__logo { display: none; }
+.dimx__gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.dimx--3d .dcard { visibility: visible; top: 50%; left: auto; inset-inline-start: max(5vw, calc((100% - 1240px) / 2)); opacity: 0;
+  transform: translate3d(0, calc(-50% + 30px), 0) scale(.97); transition: opacity .55s var(--spring), transform .9s var(--spring); pointer-events: none; }
+.dimx--3d .dcard.is-show { opacity: 1; transform: translate3d(0, -50%, 0); pointer-events: auto; }
+.dimx--3d .dcard__in { opacity: 1; }
+.dimx--3d .dcard .dcard__in > * { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--spring), transform .8s var(--spring); }
+.dimx--3d .dcard.is-show .dcard__in > * { opacity: 1; transform: none; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(2) { transition-delay: .06s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(3) { transition-delay: .12s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(4) { transition-delay: .18s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(5) { transition-delay: .24s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(6) { transition-delay: .3s; }
+@media (max-width: 900px) {
+  .dimx--3d { height: 560vh; }
+  .dimx--3d .dcard { top: auto; bottom: 64px; inset-inline-start: 16px; transform: translate3d(0, 30px, 0) scale(.97); }
+  .dimx--3d .dcard.is-show { transform: none; }
+}
