@@ -829,23 +829,60 @@ html[lang="en"] .dimx__hint { letter-spacing: .2em; text-transform: uppercase; f
   .dimx__nav button { width: 38px; }
 }
 
-/* ---- 3D version (dims3d.js): the extruded mark is drawn on a canvas; cards fade in at a fixed place */
-.dimx--3d { height: 580vh; }
-.dimx--3d .dimx__logo { display: none; }
+/* ---- 3D version (dims3d.js): a lit bronze mark on a dark stage; each bar grows into the backdrop of its dimension */
+.dimx--3d { height: 860vh; background: #140e0b; }
+.dimx--3d .dimx__logo, .dimx--3d .dimx__glow { display: none; }
 .dimx__gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.dimx--3d .dcard { visibility: visible; top: 50%; left: auto; inset-inline-start: max(5vw, calc((100% - 1240px) / 2)); opacity: 0;
-  transform: translate3d(0, calc(-50% + 30px), 0) scale(.97); transition: opacity .55s var(--spring), transform .9s var(--spring); pointer-events: none; }
-.dimx--3d .dcard.is-show { opacity: 1; transform: translate3d(0, -50%, 0); pointer-events: auto; }
-.dimx--3d .dcard__in { opacity: 1; }
-.dimx--3d .dcard .dcard__in > * { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--spring), transform .8s var(--spring); }
-.dimx--3d .dcard.is-show .dcard__in > * { opacity: 1; transform: none; }
-.dimx--3d .dcard.is-show .dcard__in > :nth-child(2) { transition-delay: .06s; }
+.dimx__veil { position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(to left, rgba(16, 11, 8, .78) 0%, rgba(16, 11, 8, .5) 42%, rgba(16, 11, 8, .08) 78%),
+              radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(10, 7, 5, .55)); }
+html[dir="ltr"] .dimx__veil { background: linear-gradient(to right, rgba(16, 11, 8, .78) 0%, rgba(16, 11, 8, .5) 42%, rgba(16, 11, 8, .08) 78%),
+              radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(10, 7, 5, .55)); }
+.dimx--3d .dimx__head .h2 { font-weight: 200; letter-spacing: -.01em; }
+
+/* each dimension: full-screen type over its panel */
+.dimx--3d .dcard { position: absolute; inset: 0; width: auto; border-radius: 0; background: none !important; box-shadow: none; color: var(--cream);
+  display: flex; align-items: center; padding-inline: max(6vw, calc((100% - 1240px) / 2)); visibility: hidden; transform: none !important; }
+.dimx--3d .dcard.is-show { visibility: visible; }
+.dimx--3d .dcard__in { position: relative; max-width: 640px; padding: 0; opacity: 1 !important; }
+.dimx--3d .dcard__top { position: absolute; inset-inline-start: calc(100% + 6vw); top: 50%; transform: translateY(-50%); }
+.dimx--3d .dcard__no { display: block; font-size: clamp(160px, 22vw, 360px); font-weight: 100; line-height: .8; color: rgba(255, 236, 205, .06); -webkit-text-stroke: 1.2px rgba(255, 236, 205, .55); }
+.dimx--3d .dcard__of { display: none; }
+.dimx--3d .dcard__title { margin: 0; font-size: clamp(40px, 5.2vw, 84px); font-weight: 200; line-height: 1.12; color: #fff6ea; letter-spacing: -.01em;
+  text-shadow: 0 2px 30px rgba(10, 6, 4, .35); }
+.dimx--3d .dcard .dim__tag { margin-top: 18px; font-size: clamp(18px, 1.6vw, 23px); font-weight: 400; color: var(--sand); }
+.dimx--3d .dcard .dim__desc { margin-top: 16px; font-size: 16.5px; color: rgba(255, 246, 234, .82); line-height: 1.85; }
+.dimx--3d .dcard .dim__svc { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+.dimx--3d .dcard .dim__svc li { padding: 7px 15px; border-radius: 999px; border: 1px solid rgba(255, 236, 205, .28); font-size: 13.5px;
+  color: rgba(255, 246, 234, .9); background: rgba(20, 14, 10, .25); backdrop-filter: blur(6px); }
+.dimx--3d .dcard .dim__svc li::before { display: none; }
+.dimx--3d .dcard .dim__for { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255, 236, 205, .2); font-size: 14px; color: rgba(255, 246, 234, .66); }
+.dimx--3d .dcard .dim__for b { color: var(--sand); }
+/* staggered entrance: lines rise out of a soft blur */
+.dimx--3d .dcard .dcard__in > *, .dimx--3d .dcard .dim__svc li { opacity: 0; transform: translateY(26px); filter: blur(8px);
+  transition: opacity .7s var(--spring), transform 1s var(--spring), filter .8s var(--spring); }
+.dimx--3d .dcard.is-show .dcard__in > *, .dimx--3d .dcard.is-show .dim__svc li { opacity: 1; transform: none; filter: none; }
+.dimx--3d .dcard.is-show .dcard__top { transform: translateY(-50%); transition-duration: 1.4s; }
+.dimx--3d .dcard .dcard__top { transform: translateY(-40%); }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(2) { transition-delay: .05s; }
 .dimx--3d .dcard.is-show .dcard__in > :nth-child(3) { transition-delay: .12s; }
-.dimx--3d .dcard.is-show .dcard__in > :nth-child(4) { transition-delay: .18s; }
-.dimx--3d .dcard.is-show .dcard__in > :nth-child(5) { transition-delay: .24s; }
-.dimx--3d .dcard.is-show .dcard__in > :nth-child(6) { transition-delay: .3s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(4) { transition-delay: .19s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(5) { transition-delay: .26s; }
+.dimx--3d .dcard.is-show .dcard__in > :nth-child(6) { transition-delay: .4s; }
+.dimx--3d .dcard.is-show .dim__svc li:nth-child(n) { transition-delay: calc(.3s + var(--i, 0) * .05s); }
+.dimx--3d .dcard .dim__svc li:nth-child(2) { --i: 1; } .dimx--3d .dcard .dim__svc li:nth-child(3) { --i: 2; }
+.dimx--3d .dcard .dim__svc li:nth-child(4) { --i: 3; } .dimx--3d .dcard .dim__svc li:nth-child(5) { --i: 4; }
+.dimx--3d .dcard .dim__svc li:nth-child(6) { --i: 5; } .dimx--3d .dcard .dim__svc li:nth-child(7) { --i: 6; }
+.dimx--3d .dimx__nav button { color: rgba(255, 236, 205, .4); }
+.dimx--3d .dimx__nav button.is-active { background: rgba(255, 236, 205, .12); color: #fff3df; }
 @media (max-width: 900px) {
-  .dimx--3d { height: 560vh; }
-  .dimx--3d .dcard { top: auto; bottom: 64px; inset-inline-start: 16px; transform: translate3d(0, 30px, 0) scale(.97); }
-  .dimx--3d .dcard.is-show { transform: none; }
+  .dimx--3d { height: 800vh; }
+  .dimx--3d .dcard { align-items: flex-end; padding: 0 20px 96px; }
+  .dimx--3d .dcard__top { inset-inline-start: auto; inset-inline-end: 0; top: auto; bottom: calc(100% + 10px); transform: none; }
+  .dimx--3d .dcard.is-show .dcard__top, .dimx--3d .dcard .dcard__top { transform: none; }
+  .dimx--3d .dcard__no { font-size: 120px; }
+  .dimx--3d .dcard .dim__desc, .dimx--3d .dcard .dim__for { display: block; }
+  .dimx--3d .dcard .dim__desc { font-size: 14.5px; }
+  .dimx--3d .dcard .dim__svc li { font-size: 12.5px; padding: 5px 11px; }
+  .dimx__veil, html[dir="ltr"] .dimx__veil { background: linear-gradient(to top, rgba(16, 11, 8, .88) 0%, rgba(16, 11, 8, .6) 50%, rgba(16, 11, 8, .15) 85%); }
 }
