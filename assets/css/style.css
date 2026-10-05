@@ -674,19 +674,6 @@ main > section { overflow-x: clip; }
 .dims .deco, .how .deco { border-color: rgba(237, 216, 186, .15); }
 main > section > .wrap, main > section > .head { position: relative; z-index: 1; }
 
-/* ---- moving word band: two rows drift in opposite directions; words light up as they pass the centre */
-.band { position: relative; overflow: hidden; padding-block: clamp(40px, 5.5vw, 76px); background: var(--ivory); direction: ltr;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); }
-.band__row { display: flex; align-items: center; gap: clamp(28px, 3.4vw, 54px); width: max-content; white-space: nowrap;
-  font-size: clamp(44px, 6.6vw, 100px); font-weight: 200; line-height: 1.15; color: var(--brown); will-change: transform; }
-.band__row + .band__row { margin-top: clamp(4px, 1vw, 14px); }
-.band__row span { transition: color .5s var(--spring); opacity: var(--o, 1); }
-.band__row--soft { font-size: clamp(30px, 4.2vw, 64px); font-weight: 300; color: var(--tan); }
-.band__row i { width: 14px; height: 14px; flex: none; background: var(--tan); transform: rotate(45deg); border-radius: 3px; opacity: .7; }
-.band__row--soft i { width: 9px; height: 9px; background: none; border: 1px solid var(--tan); }
-.band__row span.is-en { font-weight: 300; letter-spacing: .08em; font-size: .8em; }
-
 /* ---- images uncover with a soft mask, then settle */
 .reveal-img { clip-path: inset(10% 8% 10% 8% round 18px); transition: clip-path 1.4s var(--spring); }
 .reveal-img img { transform: scale(1.18); transition: transform 1.8s var(--spring); }
@@ -714,8 +701,7 @@ main > section > .wrap, main > section > .head { position: relative; z-index: 1;
 #heroBrand { will-change: transform, opacity; }
 
 @media (prefers-reduced-motion: reduce) {
-  .deco, .band__row { transform: none !important; }
-  .band__row span { opacity: 1 !important; }
+  .deco { transform: none !important; }
   .reveal-img, .reveal-img img { clip-path: none !important; transform: none !important; }
 }
 @media (max-width: 900px) {

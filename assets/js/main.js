@@ -383,7 +383,6 @@
   /* ------------------------------------------------------------ scroll-linked motion */
   const progressBar = $('#progressBar');
   const decos = $$('[data-speed], [data-x]');
-  const bandRows = $$('[data-band]');
   const heroBrand = $('#heroBrand');
   let mTick = false;
   function motionFrame() {
@@ -401,22 +400,6 @@
       const tx = (+el.dataset.x || 0) * k * 2.4;
       const rot = 45 + k * 22;
       el.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
-    });
-    bandRows.forEach(row => {
-      const r = row.parentElement.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      const k = (vh - r.top) / (vh + r.height);              // 0 .. 1 while the band crosses the screen
-      const dir = +row.dataset.band;
-      const span = row.scrollWidth - row.parentElement.clientWidth;
-      const tx = dir > 0 ? -span * (.15 + k * .55) : -span * (.7 - k * .55);
-      row.style.transform = `translate3d(${tx.toFixed(1)}px, 0, 0)`;
-      // words are brightest at the centre of the screen and fade towards the edges
-      const cx = innerWidth / 2;
-      row.querySelectorAll('span').forEach(sp => {
-        const b = sp.getBoundingClientRect();
-        const d = Math.min(1, Math.abs(b.left + b.width / 2 - cx) / (innerWidth * .5));
-        sp.style.setProperty('--o', (1 - d * .78).toFixed(3));
-      });
     });
     if (heroBrand && y < vh * 1.2) {
       const k = Math.min(y / vh, 1);
