@@ -232,130 +232,41 @@
     parallax();
   }
 
-  /* ------------------------------------------------------------ six dimensions: a camera journey into the mark */
-  // One scroll timeline p = 0..1 through the tall section (eased, so the camera moves with weight):
-  //   0 – .12    the whole mark turns into place above the title
-  //   .12 – .22  the camera dives in: the mark turns 45° and grows until its six bars stand like pillars
-  //   .22 – .88  six stops, one per bar; between stops the camera glides to the next pillar and the colour moves on
-  //   .88 – 1    the camera pulls back to the whole mark, now dark on sand, and the motto appears
+  /* ------------------------------------------------------------ six dimensions: six vertical strips, one opens at a time */
+  // The strips rise in when the section arrives; scrolling through the tall section opens them one after another.
+  // A click (or Enter) on a closed strip scrolls to it.
   const dimx = (() => {
     const sec = $('#dimensions');
     if (!sec) return null;
-    if (reduce) { sec.classList.add('dimx--static'); return null; }
-    const logo = $('#dxLogo'), bars = $$('.lgbar'), cards = $$('.dcard'), num = $('#dxNum');
-    const head = $('#dxHead'), motto = $('#dxMotto'), navEl = $('#dxNav'), navBtns = $$('#dxNav button');
-    const BAR_C = [[22.79, 76.19], [27.78, 81.17], [32.77, 86.16], [37.75, 91.12], [42.75, 96.1], [47.57, 100.92]];
-    const BAR_LEN = 19.7;                             // length of a bar in SVG units
-    const A0 = .12, S0 = .22, SLOT = .11, OUT = S0 + 6 * SLOT;
+    const strips = $$('.strip', sec);
+    strips.forEach(s => {                                  // the open state shows the title large, a ghost number and a progress line
+      const t = $('.strip__title', s), big = t.cloneNode(true);
+      big.className = 'strip__big'; $('.strip__body', s).prepend(big);
+      s.insertAdjacentHTML('beforeend', `<span class="strip__ghost" aria-hidden="true">${$('.strip__no', s).textContent}</span><i class="strip__bar" aria-hidden="true"></i>`);
+    });
+    const bars = strips.map(s => $('.strip__bar', s));
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) sec.classList.add('is-in'); }, { threshold: .15 }).observe(sec);
+    if (reduce) { strips.forEach(s => s.classList.add('is-active')); return null; }
+    const START = .06, SPAN = (1 - START - .06) / 6;      // a short lead-in, six equal stops, a short tail
     const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    const easeOut = t => 1 - Math.pow(1 - t, 3);
-    const lerp = (a, b, t) => a + (b - a) * t;
-
-    // the colour of each moment: background · ink · mark body · bars · lit bar  (dark espresso → light sand)
-    const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
-    const STOPS = [
-      ['#221813', '#f6eee2', '#b99979', '#b99979', '#f6dcb4'],   // intro: sand mark on espresso
-      ['#2b1f19', '#f6eee2', '#3a2b23', '#8f7058', '#f6dcb4'],   // 01
-      ['#41302a', '#f6eee2', '#4d3a31', '#a08066', '#f8e2bf'],   // 02
-      ['#6e5342', '#f6eee2', '#7a5f4d', '#b39377', '#fbe9cf'],   // 03
-      ['#a3846a', '#2b1f19', '#ad8f76', '#755946', '#2b1f19'],   // 04
-      ['#c8ad8d', '#2b1f19', '#d1b898', '#957659', '#2b1f19'],   // 05
-      ['#e6d0b1', '#2b1f19', '#ddc4a2', '#ad8d70', '#2b1f19'],   // 06
-      ['#edd8ba', '#2b1f19', '#3d2d24', '#3d2d24', '#3d2d24']    // outro: espresso mark on sand
-    ].map(s => s.map(rgb));
-    const KEYS = ['--dx-bg', '--dx-ink', '--dx-body', '--dx-bar', '--dx-hi'];
-    function colours(a, b, t) {
-      const m = STOPS[a].map((c, j) => c.map((v, q) => Math.round(lerp(v, STOPS[b][j][q], t))));
-      KEYS.forEach((k, j) => sec.style.setProperty(k, `rgb(${m[j].join(',')})`));
-      sec.style.setProperty('--dx-line', `rgba(${m[1].join(',')}, .2)`);
-      const L = (m[1][0] * .3 + m[1][1] * .59 + m[1][2] * .11) / 255;   // ink brightness: light ink = dark stage
-      sec.style.setProperty('--dx-glow', `rgba(255, 242, 222, ${lerp(.6, .16, L).toFixed(3)})`);
-      sec.style.setProperty('--dx-halo', `rgba(${m[4].join(',')}, ${clamp((L - .4) / .4).toFixed(3)})`);   // glow only on dark stages
+    let current = -1;
+    const progress = () => { const r = sec.getBoundingClientRect(); return clamp(-r.top / (sec.offsetHeight - innerHeight)); };
+    function frame() {
+      const f = (progress() - START) / SPAN;
+      const k = clamp(Math.floor(f), 0, 5);
+      if (k !== current) { strips.forEach((s, i) => s.classList.toggle('is-active', i === k)); current = k; }
+      bars.forEach((b, i) => { b.style.transform = `scaleX(${i === k ? clamp(f - k).toFixed(3) : 0})`; });
     }
-
-    // camera poses: which logo point sits where on screen, at what scale and turn
-    const whole = (vw, vh, mob) => ({ f: [67.5, 67.5], x: vw / 2, y: vh * (mob ? .36 : .4), s: Math.min(vw * .78, vh * .5) / 135, r: 0 });
-    const close = (i, vw, vh, mob, rtl) => ({ f: BAR_C[i], x: mob ? vw * .5 : vw * (rtl ? .27 : .73), y: vh * (mob ? .27 : .5),
-      s: (mob ? Math.min(vh * .34, vw * .9) : vh * .66) / BAR_LEN, r: -45 });
-    const mix = (a, b, t) => ({ f: [lerp(a.f[0], b.f[0], t), lerp(a.f[1], b.f[1], t)], x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t),
-      s: a.s * Math.pow(b.s / a.s, t), r: lerp(a.r, b.r, t) });
-    let proj = () => [0, 0];
-    function place(c) {
-      const rr = c.r * Math.PI / 180, co = Math.cos(rr), si = Math.sin(rr);
-      const tx = c.x - c.s * (c.f[0] * co - c.f[1] * si), ty = c.y - c.s * (c.f[0] * si + c.f[1] * co);
-      logo.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) rotate(${c.r.toFixed(3)}deg) scale(${c.s.toFixed(4)})`;
-      proj = q => [tx + c.s * (q[0] * co - q[1] * si), ty + c.s * (q[0] * si + q[1] * co)];
-    }
-
-    navBtns.forEach(b => b.addEventListener('click', () => {
+    const go = k => {
       const r = sec.getBoundingClientRect();
-      scrollTo({ top: scrollY + r.top + (sec.offsetHeight - innerHeight) * (S0 + SLOT * (+b.dataset.k + .35)), behavior: 'smooth' });
-    }));
-
-    let P = -1, shown = -1, last = 0, running = false;
-    function render(p) {
-      const vw = innerWidth, vh = innerHeight, mob = vw < 900, rtl = document.documentElement.dir === 'rtl';
-      let cam, active = -1, settle = 0, k = 0, drift = 0;
-      if (p < A0) {                                            // the mark turns into place
-        const a = easeOut(clamp(p / A0)), w = whole(vw, vh, mob);
-        w.s *= lerp(.82, 1, a); w.r = lerp(-28, 0, a);
-        cam = w; colours(0, 0, 0);
-      } else if (p < S0) {                                     // dive in
-        const a = ease((p - A0) / (S0 - A0));
-        cam = mix(whole(vw, vh, mob), close(0, vw, vh, mob, rtl), a); colours(0, 1, a); k = a;
-      } else if (p < OUT) {                                    // six stops
-        const f = (p - S0) / SLOT, i = Math.min(5, Math.floor(f)), sl = f - i;
-        k = 1;
-        if (sl < .7 || i === 5) {
-          cam = close(i, vw, vh, mob, rtl); active = i; drift = sl;
-          settle = clamp(sl / .1) * (i === 5 ? 1 : 1 - clamp((sl - .62) / .08));
-          cam.f = [cam.f[0] + (sl - .35) * 1.2, cam.f[1] + (sl - .35) * 1.2];   // the slow push along the pillars
-          colours(i + 1, i + 1, 0);
-        } else {
-          const a = ease((sl - .7) / .3);
-          cam = mix(close(i, vw, vh, mob, rtl), close(i + 1, vw, vh, mob, rtl), a);
-          cam.f = [cam.f[0] + lerp(.42, -.42, a), cam.f[1] + lerp(.42, -.42, a)];
-          colours(i + 1, i + 2, a);
-        }
-      } else {                                                 // pull back to the whole mark
-        const a = ease(clamp((p - OUT) / (1 - OUT)));
-        cam = mix(close(5, vw, vh, mob, rtl), whole(vw, vh, mob), a); colours(6, 7, a); k = 1 - a;
-      }
-      place(cam);
-
-      bars.forEach((b, i) => b.classList.toggle('is-on', i === active && settle > .25));
-      sec.classList.toggle('is-close', k > .5);
-      const g = active >= 0 ? proj(BAR_C[active]) : proj([67.5, 67.5]);
-      sec.style.setProperty('--gx', `${(g[0] / vw * 100).toFixed(1)}%`);
-      sec.style.setProperty('--gy', `${(g[1] / vh * 100).toFixed(1)}%`);
-      if (active >= 0) num.textContent = `0${active + 1}`;
-      num.style.opacity = (settle * .9).toFixed(3);
-      num.style.transform = `translate3d(${((drift - .35) * (rtl ? 70 : -70)).toFixed(1)}px, -50%, 0)`;
-
-      const want = active >= 0 && settle > .8 ? active : -1;
-      if (want !== shown) { cards.forEach((c, i) => c.classList.toggle('is-show', i === want)); shown = want; }
-      navBtns.forEach((b, i) => b.classList.toggle('is-active', i === active));
-      navEl.classList.toggle('is-on', p > S0 - .02 && p < OUT + .02);
-      const h0 = clamp((p - .06) / .06);
-      head.style.opacity = (1 - h0).toFixed(3);
-      head.style.transform = `translate3d(0, ${(-h0 * 30).toFixed(1)}px, 0)`;
-      head.style.visibility = p > .13 ? 'hidden' : 'visible';
-      motto.style.opacity = clamp((p - (OUT + .07)) / .04).toFixed(3);
-    }
-    const target = () => { const r = sec.getBoundingClientRect(); return clamp(-r.top / (sec.offsetHeight - innerHeight)); };
-    // a soft follow: the scene eases towards the scroll position, frame-rate independent
-    function loop(now) {
-      const t = target(), dt = Math.min(.05, (now - last) / 1000 || .016); last = now;
-      P = P < 0 ? t : lerp(P, t, 1 - Math.pow(.002, dt));
-      render(P);
-      if (Math.abs(P - t) > .0002) requestAnimationFrame(loop); else running = false;
-    }
-    function frame() { if (!running) { running = true; last = performance.now(); requestAnimationFrame(loop); } }
-    function measure() { P = -1; frame(); }
-    addEventListener('resize', measure);
-    measure();
-    return { frame, measure };
+      scrollTo({ top: scrollY + r.top + (sec.offsetHeight - innerHeight) * (START + SPAN * (k + .3)), behavior: 'smooth' });
+    };
+    strips.forEach((s, i) => {
+      s.addEventListener('click', () => { if (i !== current) go(i); });
+      s.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && i !== current) { e.preventDefault(); go(i); } });
+    });
+    frame();
+    return { frame, measure: frame };
   })();
 
   /* ------------------------------------------------------------ gallery: buttons + drag */
