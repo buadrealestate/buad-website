@@ -238,7 +238,7 @@
   // Built from the strips' own markup, so the copy (and its translation) lives in one place.
   (() => {
     const sec = $('#dimensions');
-    if (!sec || new URLSearchParams(location.search).get('dims') !== 'orbit') return;
+    if (!sec || (new URLSearchParams(location.search).get('dims') !== 'orbit' && document.documentElement.dataset.dims !== 'orbit')) return;
     sec.classList.add('dorbit');
     const src = $$('.strip', sec).map(s => ({
       no: $('.strip__no', s).textContent,
