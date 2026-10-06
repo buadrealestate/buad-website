@@ -745,15 +745,14 @@ html[dir="rtl"] .dl__btn small { text-align: right; }
 
 /* ---------------------------------------------------------------- six dimensions: six vertical strips, one opens at a time
    The section is tall; the row of strips stays on screen while scrolling opens one strip after another (main.js). */
-.dstrips { height: 520vh; padding: 0; background: var(--ivory); color: var(--ink); overflow: visible; }
+.dstrips { padding-block: clamp(90px, 11vw, 140px); height: auto; background: var(--ivory); color: var(--ink); overflow: visible; }
 .dstrips::before { display: none; }
-.dstrips__pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center;
-  gap: clamp(18px, 3vh, 34px); padding-block: 96px 34px; }
+.dstrips__pin { display: flex; flex-direction: column; gap: clamp(22px, 3vw, 40px); }
 .dstrips__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 60px; flex-wrap: wrap; }
 .dstrips__head .eyebrow { margin-bottom: 10px; }
 .dstrips__head .h2 { font-size: clamp(28px, 3.4vw, 46px); color: var(--brown); }
 .dstrips__head .lead { max-width: 500px; font-size: 16px; margin: 0; }
-.dstrips__row { display: flex; gap: 10px; height: min(60vh, 560px); }
+.dstrips__row { display: flex; gap: 10px; height: clamp(480px, 62vh, 580px); }
 .dstrips__motto { text-align: center; font-size: clamp(16px, 1.5vw, 20px); font-weight: 300; color: var(--mocha); }
 
 .strip { --c: #2b1f19; --t: #f6eee2; position: relative; flex: 1 1 0; min-width: 0; border-radius: 22px; overflow: hidden; cursor: pointer;
@@ -804,13 +803,14 @@ html[dir="rtl"] .strip__title { align-self: flex-end; }
 .strip.is-active .strip__no { opacity: 0; }
 .strip__bar { position: absolute; inset-inline: 0; bottom: 0; height: 3px; background: color-mix(in srgb, var(--t) 45%, transparent);
   transform-origin: 100% 50%; transform: scaleX(0); }
+.strip.is-active.is-timing .strip__bar { transform: scaleX(1); transition: transform var(--dur, 6s) linear; }
+.dstrips.is-paused .strip__bar { transition: none !important; }
 html[dir="ltr"] .strip__bar { transform-origin: 0 50%; }
 
 @media (max-width: 900px) {
-  .dstrips { height: 480vh; }
-  .dstrips__pin { padding-block: 80px 24px; gap: 14px; }
+  .dstrips__pin { gap: 16px; }
   .dstrips__head .lead { display: none; }
-  .dstrips__row { flex-direction: column; height: 72vh; gap: 6px; }
+  .dstrips__row { flex-direction: column; height: 600px; gap: 6px; }
   .strip { padding: 12px 16px; flex-direction: row; align-items: center; gap: 12px; border-radius: 16px; }
   .strip.is-active { flex-grow: 9; }
   .strip:not(.is-active):hover { flex-grow: 1; }

@@ -233,8 +233,7 @@
   }
 
   /* ------------------------------------------------------------ six dimensions: six vertical strips, one opens at a time */
-  // The strips rise in when the section arrives; scrolling through the tall section opens them one after another.
-  // A click (or Enter) on a closed strip scrolls to it.
+  // The strips rise in when the section arrives, then open one after another on a timer.
   const dimx = (() => {
     const sec = $('#dimensions');
     if (!sec) return null;
@@ -244,29 +243,38 @@
       big.className = 'strip__big'; $('.strip__body', s).prepend(big);
       s.insertAdjacentHTML('beforeend', `<span class="strip__ghost" aria-hidden="true">${$('.strip__no', s).textContent}</span><i class="strip__bar" aria-hidden="true"></i>`);
     });
-    const bars = strips.map(s => $('.strip__bar', s));
     new IntersectionObserver(([e]) => { if (e.isIntersecting) sec.classList.add('is-in'); }, { threshold: .15 }).observe(sec);
-    if (reduce) { strips.forEach(s => s.classList.add('is-active')); return null; }
-    const START = .06, SPAN = (1 - START - .06) / 6;      // a short lead-in, six equal stops, a short tail
-    const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-    let current = -1;
-    const progress = () => { const r = sec.getBoundingClientRect(); return clamp(-r.top / (sec.offsetHeight - innerHeight)); };
-    function frame() {
-      const f = (progress() - START) / SPAN;
-      const k = clamp(Math.floor(f), 0, 5);
-      if (k !== current) { strips.forEach((s, i) => s.classList.toggle('is-active', i === k)); current = k; }
-      bars.forEach((b, i) => { b.style.transform = `scaleX(${i === k ? clamp(f - k).toFixed(3) : 0})`; });
+    // the strips play on their own while the section is on screen (no scroll needed);
+    // hovering, tapping or focusing a strip opens it and pauses the play until the pointer leaves
+    const DUR = 6000;
+    let current = -1, timer = 0, visible = false, held = false;
+    function open(k, timed) {
+      current = k;
+      strips.forEach((s, i) => { s.classList.toggle('is-active', i === k); s.classList.remove('is-timing'); });
+      clearTimeout(timer);
+      if (timed && !reduce) {
+        requestAnimationFrame(() => requestAnimationFrame(() => strips[k].classList.add('is-timing')));
+        timer = setTimeout(() => open((k + 1) % strips.length, true), DUR);
+      }
     }
-    const go = k => {
-      const r = sec.getBoundingClientRect();
-      scrollTo({ top: scrollY + r.top + (sec.offsetHeight - innerHeight) * (START + SPAN * (k + .3)), behavior: 'smooth' });
-    };
+    const play = () => { if (visible && !held) open(current < 0 ? 0 : current, true); };
+    const hold = k => { held = true; sec.classList.add('is-paused'); if (k !== current) open(k, false); else { clearTimeout(timer); strips[k].classList.remove('is-timing'); } };
+    const release = () => { held = false; sec.classList.remove('is-paused'); play(); };
+    sec.style.setProperty('--dur', `${DUR / 1000}s`);
     strips.forEach((s, i) => {
-      s.addEventListener('click', () => { if (i !== current) go(i); });
-      s.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && i !== current) { e.preventDefault(); go(i); } });
+      s.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hold(i); });
+      s.addEventListener('click', () => hold(i));
+      s.addEventListener('focus', () => hold(i));
+      s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hold(i); } });
     });
-    frame();
-    return { frame, measure: frame };
+    $('#strips').addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') release(); });
+    $('#strips').addEventListener('focusout', e => { if (!e.relatedTarget || !sec.contains(e.relatedTarget)) release(); });
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible) { if (current < 0) open(0, false); play(); } else { clearTimeout(timer); }
+    }, { threshold: .35 }).observe(sec);
+    if (reduce) strips.forEach(s => s.classList.add('is-active'));
+    return null;
   })();
 
   /* ------------------------------------------------------------ gallery: buttons + drag */
