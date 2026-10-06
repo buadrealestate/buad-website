@@ -833,3 +833,82 @@ html[dir="ltr"] .strip__bar { transform-origin: 0 50%; }
   .strip__body { position: relative; inset: auto; width: auto; opacity: 1; transform: none; }
   .strip__ghost, .strip__bar { display: none; }
 }
+
+/* ---------------------------------------------------------------- six dimensions, variant: an orbit (?dims=orbit) */
+.dorbit { background: var(--espresso); color: var(--cream); overflow: hidden; }
+.dorbit .dstrips__row { display: none; }
+.dorbit .dstrips__head { flex-direction: column; align-items: center; text-align: center; gap: 0; }
+.dorbit .dstrips__head .eyebrow { justify-content: center; }
+.dorbit .dstrips__head .h2 { color: var(--cream); font-weight: 200; font-size: clamp(32px, 4vw, 54px); }
+.dorbit .dstrips__head .lead { color: rgba(246, 238, 226, .62); max-width: 640px; margin-top: 14px; }
+.dorbit .dstrips__motto { color: var(--sand); }
+
+.orb { --D: min(540px, 60vh); display: grid; justify-items: center; gap: clamp(22px, 3vw, 34px); padding-top: 76px; }
+.orb__stage { --R: calc(var(--D) / 2); position: relative; width: var(--D); height: var(--D);
+  opacity: 0; transform: scale(.92) rotate(-12deg); transition: opacity 1.2s var(--spring), transform 1.6s var(--spring); }
+.dorbit.is-in .orb__stage { opacity: 1; transform: none; }
+.orb__track { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.orb__track circle { fill: none; stroke: rgba(237, 216, 186, .22); stroke-width: .18; stroke-dasharray: .6 1.2; vector-effect: non-scaling-stroke; }
+.orb__track circle:first-child { stroke-dasharray: none; stroke: rgba(237, 216, 186, .16); }
+.orb__track .orb__inner { fill: rgba(246, 238, 226, .025); stroke: rgba(237, 216, 186, .12); stroke-dasharray: none; }
+/* a hairline from the centre to the lit dimension */
+.orb__arm { position: absolute; left: 50%; top: 50%; width: 1px; height: var(--R); margin-left: -.5px; transform-origin: 50% 0;
+  translate: 0 0; background: linear-gradient(to bottom, transparent 73%, rgba(237, 216, 186, .55)); opacity: 0; transition: opacity .6s;
+  rotate: 180deg; }
+.orb.has-active .orb__arm { opacity: 1; }
+
+/* the nodes ride the ring; their labels stay upright */
+.orb__node { position: absolute; left: 50%; top: 50%; width: 0; height: 0; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer;
+  transform: rotate(calc(var(--a) + var(--spin, 0deg))) translateY(calc(-1 * var(--R))) rotate(calc(-1 * (var(--a) + var(--spin, 0deg)))); }
+.orb__dot { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 3px; transform: rotate(45deg);
+  background: var(--espresso); border: 1px solid rgba(237, 216, 186, .6); transition: transform .6s var(--spring), background .5s, box-shadow .6s; }
+.orb__node:hover .orb__dot { background: rgba(237, 216, 186, .3); }
+.orb__node.is-active .orb__dot { background: var(--sand); border-color: var(--sand); transform: rotate(45deg) scale(1.45);
+  box-shadow: 0 0 0 7px rgba(237, 216, 186, .12), 0 0 26px rgba(246, 220, 180, .55); }
+.orb__label { position: absolute; left: 50%; top: 18px; transform: translateX(-50%); width: 168px; text-align: center; display: grid; gap: 2px;
+  color: rgba(246, 238, 226, .62); transition: color .5s; }
+.orb__node.is-top .orb__label { top: auto; bottom: 18px; }
+.orb__node.is-top .orb__label b { order: 2; }
+.orb__label b { font-size: 12px; font-weight: 500; letter-spacing: .14em; color: var(--tan); }
+.orb__name { font-size: 15px; line-height: 1.35; }
+.orb__node:hover .orb__label, .orb__node.is-active .orb__label { color: var(--cream); }
+.orb__node.is-active .orb__name { font-weight: 500; }
+.orb__node:focus-visible { outline: none; }
+.orb__node:focus-visible .orb__dot { box-shadow: 0 0 0 4px var(--tan); }
+
+/* the centre: the mark, or the lit dimension */
+.orb__core { position: absolute; left: 50%; top: 50%; width: calc(var(--D) * .62); height: calc(var(--D) * .62); transform: translate(-50%, -50%);
+  display: grid; place-items: center; text-align: center; }
+.orb__panel { grid-area: 1 / 1; display: grid; justify-items: center; gap: 8px; max-width: 86%; opacity: 0; transform: translateY(14px); filter: blur(6px);
+  transition: opacity .45s var(--spring), transform .7s var(--spring), filter .5s; pointer-events: none; }
+.orb__panel.is-on { opacity: 1; transform: none; filter: none; transition-delay: .12s; pointer-events: auto; }
+.orb__panel--mark img { width: calc(var(--D) * .2); opacity: .9; }
+.orb__no { font-size: 13px; letter-spacing: .16em; color: var(--tan); }
+.orb__title { font-size: clamp(24px, 2.6vw, 34px); font-weight: 300; line-height: 1.2; color: var(--cream); }
+.orb__panel .dim__tag { font-size: 16px; color: var(--sand); }
+.orb__panel .dim__desc { font-size: 14px; line-height: 1.75; color: rgba(246, 238, 226, .66); }
+
+/* services under the ring */
+.orb__more { display: grid; width: min(820px, 100%); min-height: 96px; margin-top: 56px; }
+.orb__extra { grid-area: 1 / 1; display: grid; justify-items: center; gap: 12px; opacity: 0; transform: translateY(10px);
+  transition: opacity .4s var(--spring), transform .6s var(--spring); pointer-events: none; }
+.orb__extra.is-on { opacity: 1; transform: none; transition-delay: .2s; pointer-events: auto; }
+.orb__extra .dim__svc { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.orb__extra .dim__svc li { padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(237, 216, 186, .22); font-size: 13.5px; color: rgba(246, 238, 226, .82); }
+.orb__extra .dim__svc li::before { display: none; }
+.orb__extra .dim__for { font-size: 13.5px; color: rgba(246, 238, 226, .55); text-align: center; border: 0; padding: 0; margin: 0; }
+.orb__extra .dim__for b { color: var(--sand); }
+
+@media (max-width: 900px) {
+  .orb { --D: min(86vw, 360px); }
+  .orb__label { width: 40px; top: 14px; }
+  .orb__name { display: none; }
+  .orb__panel .dim__desc { display: none; }
+  .orb__title { font-size: 22px; }
+  .orb__panel .dim__tag { font-size: 13.5px; }
+  .orb__panel--mark img { width: 70px; }
+  .orb__extra .dim__svc li { font-size: 12.5px; padding: 5px 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orb__stage { opacity: 1; transform: none; }
+}

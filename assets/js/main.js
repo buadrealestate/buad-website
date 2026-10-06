@@ -232,11 +232,81 @@
     parallax();
   }
 
+  /* ------------------------------------------------------------ six dimensions, variant: an orbit (index.html?dims=orbit) */
+  // The six dimensions sit on a slowly turning ring around the BUAD mark. One is lit at a time (every 6 s, or on
+  // hover / tap); its text takes the place of the mark in the centre, its services appear under the ring.
+  // Built from the strips' own markup, so the copy (and its translation) lives in one place.
+  (() => {
+    const sec = $('#dimensions');
+    if (!sec || new URLSearchParams(location.search).get('dims') !== 'orbit') return;
+    sec.classList.add('dorbit');
+    const src = $$('.strip', sec).map(s => ({
+      no: $('.strip__no', s).textContent,
+      title: $('.strip__title', s).outerHTML.replace('strip__title', 'orb__title'),
+      tag: ($('.dim__tag', s) || {}).outerHTML || '', desc: ($('.dim__desc', s) || {}).outerHTML || '',
+      svc: ($('.dim__svc', s) || {}).outerHTML || '', who: ($('.dim__for', s) || {}).outerHTML || ''
+    }));
+    const n = src.length;
+    const wrap = document.createElement('div');
+    wrap.className = 'orb';
+    wrap.innerHTML = `
+      <div class="orb__stage">
+        <svg class="orb__track" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49.6"/><circle class="orb__inner" cx="50" cy="50" r="36"/></svg>
+        <i class="orb__arm" aria-hidden="true"></i>
+        <div class="orb__core">
+          <div class="orb__panel orb__panel--mark is-on"><img src="assets/img/logo-mark-sand.png" alt=""></div>
+          ${src.map((d, i) => `<div class="orb__panel" data-k="${i}"><span class="orb__no">${d.no}</span>${d.title}${d.tag}${d.desc}</div>`).join('')}
+        </div>
+        ${src.map((d, i) => `<button type="button" class="orb__node" data-k="${i}" style="--a:${(360 / n) * i}deg"><i class="orb__dot"></i><span class="orb__label"><b>${d.no}</b>${d.title.replace(/<h3([^>]*)class="orb__title"/, '<span$1class="orb__name"').replace('</h3>', '</span>')}</span></button>`).join('')}
+      </div>
+      <div class="orb__more">${src.map((d, i) => `<div class="orb__extra" data-k="${i}">${d.svc}${d.who}</div>`).join('')}</div>`;
+    $('.dstrips__row', sec).after(wrap);
+    const nodes = $$('.orb__node', wrap), panels = $$('.orb__panel[data-k]', wrap), extras = $$('.orb__extra', wrap);
+    const mark = $('.orb__panel--mark', wrap), arm = $('.orb__arm', wrap), stage = $('.orb__stage', wrap);
+
+    let spin = 0, active = -1, timer = 0, held = false, visible = false, last = performance.now();
+    function select(k) {
+      active = k;
+      nodes.forEach((b, i) => b.classList.toggle('is-active', i === k));
+      panels.forEach((p, i) => p.classList.toggle('is-on', i === k));
+      extras.forEach((p, i) => p.classList.toggle('is-on', i === k));
+      mark.classList.toggle('is-on', k < 0);
+      wrap.classList.toggle('has-active', k >= 0);
+    }
+    const next = () => { clearTimeout(timer); if (!held && visible) timer = setTimeout(() => { select((active + 1) % n); next(); }, 6000); };
+    nodes.forEach((b, i) => {
+      b.addEventListener('click', () => { select(i); next(); });
+      b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); select(i); } });
+      b.addEventListener('focus', () => { held = true; clearTimeout(timer); select(i); });
+    });
+    stage.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; next(); } });
+    stage.addEventListener('focusout', e => { if (!stage.contains(e.relatedTarget)) { held = false; next(); } });
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible) { sec.classList.add('is-in'); if (active < 0) setTimeout(() => { if (active < 0) select(0); next(); }, 1400); else next(); }
+      else clearTimeout(timer);
+    }, { threshold: .3 }).observe(wrap);
+    // the ring turns slowly; it eases to a stop while a dimension is held, so the lit node is easy to read
+    let speed = reduce ? 0 : 1;
+    (function turn(now) {
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      speed += ((held || reduce ? 0 : 1) - speed) * Math.min(1, dt * 3);
+      if (visible) spin = (spin + dt * 6 * speed) % 360;                 // 6° per second: a full turn a minute
+      stage.style.setProperty('--spin', `${spin.toFixed(2)}deg`);
+      nodes.forEach((b, i) => {                                         // labels sit on the outer side of the ring
+        const up = Math.cos(((360 / n) * i + spin) * Math.PI / 180) > .2;
+        if (b.classList.contains('is-top') !== up) b.classList.toggle('is-top', up);
+      });
+      if (active >= 0) arm.style.transform = `rotate(${((360 / n) * active + spin).toFixed(2)}deg)`;
+      requestAnimationFrame(turn);
+    })(last);
+  })();
+
   /* ------------------------------------------------------------ six dimensions: six vertical strips, one opens at a time */
   // The strips rise in when the section arrives, then open one after another on a timer.
   const dimx = (() => {
     const sec = $('#dimensions');
-    if (!sec) return null;
+    if (!sec || sec.classList.contains('dorbit')) return null;
     const strips = $$('.strip', sec);
     strips.forEach(s => {                                  // the open state shows the title large, a ghost number and a progress line
       const t = $('.strip__title', s), big = t.cloneNode(true);
