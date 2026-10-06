@@ -232,13 +232,13 @@
     parallax();
   }
 
-  /* ------------------------------------------------------------ six dimensions, variant: an orbit (index.html?dims=orbit) */
+  /* ------------------------------------------------------------ six dimensions: an orbit (the strips below stay as ?dims=strips) */
   // The six dimensions sit on a slowly turning ring around the BUAD mark. One is lit at a time (every 6 s, or on
   // hover / tap); its text takes the place of the mark in the centre, its services appear under the ring.
   // Built from the strips' own markup, so the copy (and its translation) lives in one place.
   (() => {
     const sec = $('#dimensions');
-    if (!sec || (new URLSearchParams(location.search).get('dims') !== 'orbit' && document.documentElement.dataset.dims !== 'orbit')) return;
+    if (!sec || new URLSearchParams(location.search).get('dims') === 'strips') return;      // ?dims=strips shows the earlier strips design
     sec.classList.add('dorbit');
     const src = $$('.strip', sec).map(s => ({
       no: $('.strip__no', s).textContent,

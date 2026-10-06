@@ -834,7 +834,7 @@ html[dir="ltr"] .strip__bar { transform-origin: 0 50%; }
   .strip__ghost, .strip__bar { display: none; }
 }
 
-/* ---------------------------------------------------------------- six dimensions, variant: an orbit (?dims=orbit) */
+/* ---------------------------------------------------------------- six dimensions: an orbit (default; strips via ?dims=strips) */
 .dorbit { background: var(--espresso); color: var(--cream); overflow: hidden; }
 .dorbit .dstrips__row { display: none; }
 .dorbit .dstrips__head { flex-direction: column; align-items: center; text-align: center; gap: 0; }
