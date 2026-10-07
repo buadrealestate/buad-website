@@ -61,10 +61,10 @@ window.BUAD_EN = {
   'd3.tag': 'We develop assets and manage projects on behalf of their owners',
   'd3.d': 'We turn land and ideas into tangible, built projects, and manage development on behalf of owners with a professional methodology that safeguards quality, time and cost.',
   'd3.s': '<li>Development Management for Landowners</li><li>Project Management Office (PMO)</li><li>Construction &amp; Quality Supervision</li><li>Licenses &amp; Permits</li>',
-  'd3.f': '<b>For:</b> Land and property owners, developers, family businesses, and government and semi-government entities.',
+  'd3.f': '<b>For:</b> Land and property owners, developers, family businesses, government entities, and the private sector.',
 
   'd4.t': 'Assets & Operations',
-  'd4.tag': 'We operate sites and assets efficiently and continuously',
+  'd4.tag': 'We operate sites, assets and projects efficiently and continuously',
   'd4.d': 'We operate sites, projects and assets professionally, preserving their value and raising their returns, through flexible operating contracts tailored to the size of every client.',
   'd4.s': '<li>Asset &amp; Real Estate Portfolio Management</li><li>Property Management</li><li>Facility Management (FM)</li><li>Site, Camp &amp; Project Operations</li><li>Seasonal Operations</li>',
   'd4.f': '<b>For:</b> Property and portfolio owners, major contractors, national projects and Hajj &amp; Umrah service companies.',
@@ -83,7 +83,7 @@ window.BUAD_EN = {
 
   'j.eyebrow': 'Our flagship project', 'j.title': 'Al Jumum Interface',
   'j.sub': 'A pioneering, multi-use urban development project',
-  'j.desc': 'Developing, executing and operating an integrated destination that brings together living, entertainment, retail and logistics services, featuring a modern fuel station, a contemporary boulevard, residential compounds, resorts, chalets, restaurants and cafés, markets, administrative offices, commercial showrooms and a conference center, together with healthcare and educational facilities, green spaces, smart mobility solutions and renewable energy, delivering an integrated urban model that reflects a sustainable development vision.',
+  'j.desc': 'Developing, managing and operating an integrated destination that brings together living, entertainment, retail and logistics services, featuring a modern fuel station, a contemporary boulevard, residential compounds, resorts, chalets, restaurants and cafés, markets, administrative offices, commercial showrooms and a conference center, together with healthcare and educational facilities, green spaces, smart mobility solutions and renewable energy, delivering an integrated urban model that reflects a sustainable development vision.',
   'j.tag1': 'Development & Project Management Dimension', 'j.tag2': 'Assets & Operations Dimension',
   'j.f1': 'Site area', 'j.f2': 'Parking spaces', 'j.f3': 'Activities & uses', 'j.f4': 'Development phases',
   'unit.m2': 'm²', 'unit.spaces': 'spaces', 'unit.uses': 'uses', 'unit.phases': 'phases',
