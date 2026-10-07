@@ -369,6 +369,35 @@
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
+  /* ------------------------------------------------------------ vision & mission: words light up as the vision scrolls past */
+  const mv = (() => {
+    const sec = $('#vision');
+    if (!sec) return null;
+    const vision = $('#mvVision');
+    const KEY = /المنظومة|المتكاملة|الأولى|first|integrated|ecosystem/i;     // the words that turn gold
+    let words = [];
+    function splitWords() {
+      vision.innerHTML = vision.textContent.trim().split(/\s+/)
+        .map(w => `<span class="w${KEY.test(w) ? ' key' : ''}">${w}</span>`).join(' ');
+      words = $$('.w', vision);
+      frame();
+    }
+    function frame() {
+      const vh = innerHeight, r = vision.getBoundingClientRect();
+      const k = reduce ? 1 : Math.min(1, Math.max(0, (vh * .86 - r.top) / (r.height + vh * .38)));
+      const lit = Math.round(k * words.length);
+      words.forEach((w, i) => w.classList.toggle('on', i < lit));
+      const s = sec.getBoundingClientRect();
+      const rule = $('.mv2__rule', sec).getBoundingClientRect();
+      sec.style.setProperty('--mvl', reduce ? 1 : Math.min(1, Math.max(0, (vh * .9 - rule.top) / (vh * .45))).toFixed(3));
+      sec.style.setProperty('--mvr', `${((vh - s.top) / (vh + s.height) * 40).toFixed(2)}deg`);
+    }
+    splitWords();
+    addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
+    addEventListener('resize', frame);
+    return { splitWords };
+  })();
+
   /* ------------------------------------------------------------ scroll-linked motion */
   const progressBar = $('#progressBar');
   const decos = $$('[data-speed], [data-x]');
@@ -441,6 +470,7 @@
     $('#langBtn').textContent = en ? 'ع' : 'EN';
     lastPhase = ''; showTime(T);
     if (dimx) { dimx.measure(); dimx.frame(); }
+    if (mv) mv.splitWords();
     store.set('buad-lang', lang);
   }
   $('#langBtn').addEventListener('click', () => setLang(html.lang === 'en' ? 'ar' : 'en'));

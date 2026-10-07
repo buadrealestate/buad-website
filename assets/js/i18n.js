@@ -31,7 +31,7 @@ window.BUAD_EN = {
 
   'mv.m': 'Our Mission',
   'mv.mt': 'We add a new dimension of professionalism to every project through an integrated ecosystem of management, development and operations services, allowing our clients to focus on their core business while we handle the rest.',
-  'mv.v': 'Our Vision',
+  'mv.v': 'Our Vision', 'mv.p1': 'Management', 'mv.p2': 'Development', 'mv.p3': 'Operations',
   'mv.vt': 'For Buad to be the first integrated ecosystem that organizations across the Kingdom rely on to manage, develop and operate their businesses.',
 
   'val.eyebrow': 'Our Values', 'val.title': 'What we believe in, on every project',
