@@ -397,35 +397,23 @@
     return { splitWords };
   })();
 
-  /* ------------------------------------------------------------ values: one facet of the diamond lights per value (auto-advances, pauses on hover) */
+  /* ------------------------------------------------------------ values: a light passes from arch to arch; hovering or tapping one holds it */
   (() => {
-    const list = $('#valList'), gem = $('#valGem');
+    const list = $('#valArches');
     if (!list) return;
-    const rows = $$('.val', list), facets = $$('polygon', gem), no = $('#valNo');
-    const DUR = 5000;
-    let k = 0, timer = 0, visible = false, manual = false;
-    list.style.setProperty('--valt', `${DUR}ms`);
-    function show(i) {
-      k = i;
-      rows.forEach((r, j) => { r.classList.toggle('is-on', j === i); r.setAttribute('aria-expanded', j === i); });
-      facets.forEach(f => f.classList.toggle('is-on', +f.dataset.k === i));
-      gem.classList.toggle('c0', i === 0);
-      no.textContent = String(i + 1).padStart(2, '0');
-      // restart the timing bar
-      const bar = $('.val__bar', rows[i]); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
-    }
-    const tick = () => { clearTimeout(timer); if (visible && !manual && !reduce) timer = setTimeout(() => { show((k + 1) % rows.length); tick(); }, DUR); };
-    rows.forEach((r, i) => {
-      const pick = () => { manual = true; list.classList.add('is-manual'); clearTimeout(timer); show(i); };
-      r.addEventListener('click', pick);
-      r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
-      r.addEventListener('focus', () => { if (!r.classList.contains('is-on')) pick(); });
+    const arches = $$('.arch', list);
+    let k = 0, timer = 0, visible = false, held = false;
+    const light = i => { k = i; arches.forEach((a, j) => a.classList.toggle('is-lit', j === i)); };
+    const run = () => { clearTimeout(timer); if (visible && !held && !reduce) timer = setTimeout(() => { light((k + 1) % arches.length); run(); }, 3200); };
+    arches.forEach((a, i) => {
+      a.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); light(i); } });
+      a.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; run(); } });
+      a.addEventListener('click', () => { light(i); run(); });
+      a.addEventListener('focus', () => { held = true; clearTimeout(timer); light(i); });
+      a.addEventListener('blur', () => { held = false; run(); });
     });
-    list.addEventListener('pointerenter', () => { list.classList.add('is-held'); clearTimeout(timer); });
-    list.addEventListener('pointerleave', () => { list.classList.remove('is-held'); if (!manual) { show(k); tick(); } });
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) { show(k); tick(); } else clearTimeout(timer); }, { threshold: .35 }).observe(list);
-    if (reduce) list.classList.add('is-manual');
-    show(0);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) run(); else clearTimeout(timer); }, { threshold: .4 }).observe(list);
+    light(0);
   })();
 
   /* ------------------------------------------------------------ Al Jumum phases: the road fills with the scroll and lights each phase it reaches */
