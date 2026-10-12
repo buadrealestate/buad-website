@@ -112,7 +112,7 @@
       if (auto && filmVisible) video.play().catch(() => {});
     }, { once: true });
   }
-  const filmBox = $('#jumumFilm');
+  const filmBox = $('[data-film]') || $('#jumumFilm');
   new IntersectionObserver(([e]) => { if (e.isIntersecting) loadFilm(); }, { rootMargin: '900px 0px' }).observe(filmBox);
   new IntersectionObserver(([e]) => {
     filmVisible = e.isIntersecting;
@@ -207,7 +207,7 @@
     io.unobserve(el);
   }), { threshold: .14, rootMargin: '0px 0px -6% 0px' });
   // stagger siblings
-  $$('.reveal, .split').forEach(el => {
+  $$('.reveal, .split, .reveal-img').forEach(el => {
     const sib = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
     const k = sib.indexOf(el);
     if (k > 0 && !el.style.transitionDelay) el.style.transitionDelay = `${Math.min(k, 6) * 90}ms`;
@@ -347,40 +347,26 @@
     return null;
   })();
 
-  /* ------------------------------------------------------------ gallery: buttons + drag */
-  const gTrack = $('#gallery');
-  $$('.gbtn').forEach(b => b.addEventListener('click', () => {
-    const rtl = document.documentElement.dir === 'rtl';
-    const d = +b.dataset.dir * (rtl ? -1 : 1);
-    gTrack.scrollBy({ left: d * gTrack.clientWidth * .6, behavior: 'smooth' });
-  }));
-  let down = false, sx = 0, sl = 0, moved = false;
-  gTrack.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = false; sx = e.clientX; sl = gTrack.scrollLeft; });
-  addEventListener('pointermove', e => {
-    if (!down) return;
-    const dx = e.clientX - sx;
-    if (Math.abs(dx) > 4) { moved = true; gTrack.classList.add('is-drag'); }
-    gTrack.scrollLeft = sl - dx;
-  });
-  addEventListener('pointerup', () => { down = false; gTrack.classList.remove('is-drag'); });
-  gTrack.addEventListener('click', e => { if (moved) e.preventDefault(); }, true);
-
   /* ------------------------------------------------------------ marquee: duplicate row for a seamless loop */
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
-  /* ------------------------------------------------------------ about: the ghost mark turns and the photo inside the mark drifts with the scroll */
+  /* ------------------------------------------------------------ about: the chapter line fills with the scroll; the outline of the mark turns */
   (() => {
-    const em = $('#aboutEmblem');
-    if (!em || reduce) return;
+    const story = $('#aboutStory');
+    if (!story) return;
+    const list = $('.chapters', story), items = $$('.chapter', story);
     const frame = () => {
-      const vh = innerHeight, r = em.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      const k = (r.top + r.height / 2 - vh / 2) / (vh + r.height);          // -0.5 .. 0.5
-      em.style.setProperty('--abr', `${(k * 30).toFixed(2)}deg`);
-      em.style.setProperty('--abp', `${(k * 26).toFixed(2)}px`);
+      const vh = innerHeight, r = list.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const vertical = innerWidth <= 900;
+      const k = reduce ? 1 : Math.min(1, Math.max(0, vertical ? (vh * .7 - r.top) / r.height : (vh * .82 - r.top) / (vh * .45)));
+      list.style.setProperty('--ch', k.toFixed(3));
+      items.forEach((it, i) => it.classList.toggle('is-on', k >= (vertical ? i / items.length : i / (items.length - 1) * .98)));
+      if (!reduce) story.style.setProperty('--abr', `${((r.top / vh) * -24).toFixed(2)}deg`);
     };
     addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
+    addEventListener('resize', frame);
     frame();
   })();
 
@@ -429,25 +415,6 @@
     });
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) run(); else clearTimeout(timer); }, { threshold: .4 }).observe(list);
     light(0);
-  })();
-
-  /* ------------------------------------------------------------ Al Jumum phases: the road fills with the scroll and lights each phase it reaches */
-  const jph = (() => {
-    const road = $('.jph__road');
-    if (!road) return null;
-    const items = $$('.jph__item', road);
-    function frame() {
-      const vh = innerHeight, r = road.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const vertical = matchMedia('(max-width: 600px)').matches;
-      const k = reduce ? 1 : Math.min(1, Math.max(0, vertical ? (vh * .7 - r.top) / r.height : (vh * .85 - r.top) / (vh * .55)));
-      road.style.setProperty('--jp', k.toFixed(3));
-      items.forEach((it, i) => it.classList.toggle('is-lit', k >= (vertical ? i / items.length : i / (items.length - 1) * .96)));
-    }
-    addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
-    addEventListener('resize', frame);
-    frame();
-    return { frame };
   })();
 
   /* ------------------------------------------------------------ why buad: "many parties" vs "one party" diagram */
@@ -541,6 +508,7 @@
     if (dimx) { dimx.measure(); dimx.frame(); }
     if (mv) mv.splitWords();
     store.set('buad-lang', lang);
+    document.dispatchEvent(new CustomEvent('buad:lang'));
   }
   $('#langBtn').addEventListener('click', () => setLang(html.lang === 'en' ? 'ar' : 'en'));
   const saved = store.get('buad-lang') || (new URLSearchParams(location.search).get('lang'));
