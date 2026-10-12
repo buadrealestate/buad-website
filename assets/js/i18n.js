@@ -186,5 +186,17 @@ window.BUAD_EN = {
   'pp.km': 'km of fiber-optic network', 'pp.sar': 'SAR million estimated value',
   'pp.cta.eyebrow': 'Your Next Project',
 
-  'ft.motto': 'Buad — Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad'
+  'ft.motto': 'Buad — Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad',
+  // sections redesign (Oct 2026)
+  'ph.l1': 'Phase One', 'ph.l2': 'Phase Two', 'ph.l3': 'Phase Three', 'ph.l4': 'Phase Four',
+  'ph.1a': 'Fuel station &amp; service centers', 'ph.1b': 'Rural farms', 'ph.1c': 'A 2 km walkway', 'ph.1d': 'Diwaniya &amp; administration',
+  'ph.2a': 'Business hall', 'ph.2b': 'Commercial markets', 'ph.2c': 'Traditional souqs', 'ph.2d': 'Open-air mall',
+  'ph.3a': 'Modern markets', 'ph.3b': 'Logistics services', 'ph.3c': 'Elevated traditional restaurants', 'ph.3d': 'Visitors &amp; pilgrims center', 'ph.3e': 'Entertainment zone',
+  'ph.4a': 'Chalets', 'ph.4b': 'Resorts', 'ph.4c': 'Motels', 'ph.4d': 'Villa compound',
+  'w.lead': 'Five reasons organizations choose Buad as the one partner for their business and projects.',
+  'w.off': 'Without Buad', 'w.on': 'With Buad', 'w.you': 'Your organization', 'w.vendors': 'Suppliers, consultants &amp; contractors',
+  'c.count': 'licenses, certificates &amp; accreditations', 'c.iso': 'International ISO certifications',
+  'c.t1': 'License', 'c.t2': 'Qualification', 'c.t3': 'Membership', 'c.t4': 'Certificate', 'c.t5': 'Accreditation',
+  'ct.lead': 'Choose the way that suits you best, or leave us a message and we will get back to you.',
+  'f.title': 'Send us a message',
 };

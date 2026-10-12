@@ -369,13 +369,14 @@
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
-  /* ------------------------------------------------------------ vision & mission: words light up as the vision scrolls past */
+  /* ------------------------------------------------------------ vision & mission: the diamond window opens, the vision lights up word by word */
   const mv = (() => {
     const sec = $('#vision');
     if (!sec) return null;
-    const vision = $('#mvVision');
+    const vision = $('#mvVision'), gem = $('#vmGem');
     const KEY = /المنظومة|المتكاملة|الأولى|first|integrated|ecosystem/i;     // the words that turn gold
     let words = [];
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting) { gem.classList.add('in'); o.disconnect(); } }, { threshold: .3 }).observe(gem);
     function splitWords() {
       vision.innerHTML = vision.textContent.trim().split(/\s+/)
         .map(w => `<span class="w${KEY.test(w) ? ' key' : ''}">${w}</span>`).join(' ');
@@ -383,19 +384,84 @@
       frame();
     }
     function frame() {
-      const vh = innerHeight, r = vision.getBoundingClientRect();
-      const k = reduce ? 1 : Math.min(1, Math.max(0, (vh * .86 - r.top) / (r.height + vh * .38)));
+      const vh = innerHeight, r = vision.getBoundingClientRect(), s = sec.getBoundingClientRect();
+      if (s.bottom < 0 || s.top > vh) return;
+      const k = reduce ? 1 : Math.min(1, Math.max(0, (vh * .88 - r.top) / (r.height + vh * .3)));
       const lit = Math.round(k * words.length);
       words.forEach((w, i) => w.classList.toggle('on', i < lit));
-      const s = sec.getBoundingClientRect();
-      const rule = $('.mv2__rule', sec).getBoundingClientRect();
-      sec.style.setProperty('--mvl', reduce ? 1 : Math.min(1, Math.max(0, (vh * .9 - rule.top) / (vh * .45))).toFixed(3));
-      sec.style.setProperty('--mvr', `${((vh - s.top) / (vh + s.height) * 40).toFixed(2)}deg`);
+      if (!reduce) sec.style.setProperty('--vmr', `${((vh - s.top) / (vh + s.height) * 50 - 25).toFixed(2)}deg`);
     }
     splitWords();
     addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
     addEventListener('resize', frame);
     return { splitWords };
+  })();
+
+  /* ------------------------------------------------------------ values: one facet of the diamond lights per value (auto-advances, pauses on hover) */
+  (() => {
+    const list = $('#valList'), gem = $('#valGem');
+    if (!list) return;
+    const rows = $$('.val', list), facets = $$('polygon', gem), no = $('#valNo');
+    const DUR = 5000;
+    let k = 0, timer = 0, visible = false, manual = false;
+    list.style.setProperty('--valt', `${DUR}ms`);
+    function show(i) {
+      k = i;
+      rows.forEach((r, j) => { r.classList.toggle('is-on', j === i); r.setAttribute('aria-expanded', j === i); });
+      facets.forEach(f => f.classList.toggle('is-on', +f.dataset.k === i));
+      gem.classList.toggle('c0', i === 0);
+      no.textContent = String(i + 1).padStart(2, '0');
+      // restart the timing bar
+      const bar = $('.val__bar', rows[i]); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
+    }
+    const tick = () => { clearTimeout(timer); if (visible && !manual && !reduce) timer = setTimeout(() => { show((k + 1) % rows.length); tick(); }, DUR); };
+    rows.forEach((r, i) => {
+      const pick = () => { manual = true; list.classList.add('is-manual'); clearTimeout(timer); show(i); };
+      r.addEventListener('click', pick);
+      r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      r.addEventListener('focus', () => { if (!r.classList.contains('is-on')) pick(); });
+    });
+    list.addEventListener('pointerenter', () => { list.classList.add('is-held'); clearTimeout(timer); });
+    list.addEventListener('pointerleave', () => { list.classList.remove('is-held'); if (!manual) { show(k); tick(); } });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) { show(k); tick(); } else clearTimeout(timer); }, { threshold: .35 }).observe(list);
+    if (reduce) list.classList.add('is-manual');
+    show(0);
+  })();
+
+  /* ------------------------------------------------------------ Al Jumum phases: the road fills with the scroll and lights each phase it reaches */
+  const jph = (() => {
+    const road = $('.jph__road');
+    if (!road) return null;
+    const items = $$('.jph__item', road);
+    function frame() {
+      const vh = innerHeight, r = road.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const vertical = matchMedia('(max-width: 600px)').matches;
+      const k = reduce ? 1 : Math.min(1, Math.max(0, vertical ? (vh * .7 - r.top) / r.height : (vh * .85 - r.top) / (vh * .55)));
+      road.style.setProperty('--jp', k.toFixed(3));
+      items.forEach((it, i) => it.classList.toggle('is-lit', k >= (vertical ? i / items.length : i / (items.length - 1) * .96)));
+    }
+    addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
+    addEventListener('resize', frame);
+    frame();
+    return { frame };
+  })();
+
+  /* ------------------------------------------------------------ why buad: "many parties" vs "one party" diagram */
+  (() => {
+    const card = $('#whyHub');
+    if (!card) return;
+    const btns = $$('.hub__switch button', card);
+    const set = one => { card.classList.toggle('is-one', one); btns.forEach(b => { b.classList.toggle('is-on', +b.dataset.hub === +one); b.setAttribute('aria-pressed', +b.dataset.hub === +one); }); };
+    let touched = false;
+    btns.forEach(b => b.addEventListener('click', () => { touched = true; set(b.dataset.hub === '1'); }));
+    if (reduce) return set(true);
+    set(false);                                   // start tangled, then untangle once the card is in view
+    new IntersectionObserver(([e], o) => {
+      if (!e.isIntersecting) return;
+      o.disconnect();
+      setTimeout(() => { if (!touched) set(true); }, 1300);
+    }, { threshold: .5 }).observe(card);
   })();
 
   /* ------------------------------------------------------------ scroll-linked motion */
@@ -496,7 +562,7 @@
       `${en ? 'Name' : 'الاسم'}: ${name}`,
       `${en ? 'Organization' : 'الجهة'}: ${f.get('org') || ''}`,
       `${en ? 'Phone' : 'رقم التواصل'}: ${phone}`,
-      `${en ? 'Interest' : 'البُعد المطلوب'}: ${f.get('need') || ''}`,
+      `${en ? 'Interest' : 'البُعد المطلوب'}: ${(form.querySelector('[name=need]:checked + span') || {}).textContent || ''}`,
       '', text
     ];
     msg.textContent = en ? EN['f.ok'] : 'جارٍ فتح البريد الإلكتروني لإرسال رسالتك…';

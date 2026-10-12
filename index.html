@@ -126,63 +126,57 @@
   </div>
 </section>
 
-<!-- ============================================================ mission / vision / values -->
-<section class="mv3" aria-label="رؤيتنا ورسالتنا">
-  <div class="wrap mv3__grid">
-    <article class="mv3__card mv3__card--dark reveal">
-      <span class="mv3__no" aria-hidden="true">01</span>
-      <p class="mv3__label" data-i18n="mv.v">رؤيتنا</p>
-      <p class="mv3__text" data-i18n="mv.vt">أن تكون بُعد المنظومة المتكاملة الأولى التي تعتمد عليها المنشآت في إدارة أعمالها وتطويرها وتشغيلها في المملكة.</p>
+<!-- ============================================================ vision & mission: a diamond window between the two statements -->
+<section class="vm" id="vision" aria-label="رؤيتنا ورسالتنا">
+  <div class="wrap vm__grid">
+    <article class="vm__col vm__col--v">
+      <p class="vm__label reveal"><b>01</b><span data-i18n="mv.v">رؤيتنا</span></p>
+      <p class="vm__vision" id="mvVision" data-i18n="mv.vt">أن تكون بُعد المنظومة المتكاملة الأولى التي تعتمد عليها المنشآت في إدارة أعمالها وتطويرها وتشغيلها في المملكة.</p>
     </article>
-    <i class="mv3__seal" aria-hidden="true"><img src="assets/img/logo-mark-sand.png" alt=""></i>
-    <article class="mv3__card mv3__card--light reveal">
-      <span class="mv3__no" aria-hidden="true">02</span>
-      <p class="mv3__label" data-i18n="mv.m">رسالتنا</p>
-      <p class="mv3__text" data-i18n="mv.mt">نضيف لكل مشروع بُعدًا جديدًا من الاحتراف، عبر منظومة خدمات متكاملة في الإدارة والتطوير والتشغيل، تتيح لعملائنا التركيز على أعمالهم الأساسية، ونتولى نحن الباقي.</p>
-      <ul class="mv3__pillars"><li data-i18n="mv.p1">الإدارة</li><li data-i18n="mv.p2">التطوير</li><li data-i18n="mv.p3">التشغيل</li></ul>
+    <figure class="vm__gem" id="vmGem" aria-hidden="true">
+      <span class="vm__ring vm__ring--a"></span><span class="vm__ring vm__ring--b"></span>
+      <span class="vm__window"><img src="assets/img/arch-vision.webp" alt="" loading="lazy" decoding="async"></span>
+      <span class="vm__seal"><img src="assets/img/logo-mark-sand.png" alt=""></span>
+    </figure>
+    <article class="vm__col vm__col--m">
+      <p class="vm__label reveal"><b>02</b><span data-i18n="mv.m">رسالتنا</span></p>
+      <p class="vm__mission reveal" data-i18n="mv.mt">نضيف لكل مشروع بُعدًا جديدًا من الاحتراف، عبر منظومة خدمات متكاملة في الإدارة والتطوير والتشغيل، تتيح لعملائنا التركيز على أعمالهم الأساسية، ونتولى نحن الباقي.</p>
+      <ul class="vm__pillars reveal">
+        <li><i></i><span data-i18n="mv.p1">الإدارة</span></li>
+        <li><i></i><span data-i18n="mv.p2">التطوير</span></li>
+        <li><i></i><span data-i18n="mv.p3">التشغيل</span></li>
+      </ul>
     </article>
   </div>
 </section>
-<section class="mv2" id="vision">
-  <i class="mv2__mark" aria-hidden="true"></i>
-  <div class="wrap">
-    <div class="mv2__label reveal"><span class="mv2__no">01</span><p class="eyebrow" data-i18n="mv.v">رؤيتنا</p></div>
-    <p class="mv2__vision" id="mvVision" data-i18n="mv.vt">أن تكون بُعد المنظومة المتكاملة الأولى التي تعتمد عليها المنشآت في إدارة أعمالها وتطويرها وتشغيلها في المملكة.</p>
 
-    <div class="mv2__rule" aria-hidden="true"><i></i><b></b><i></i></div>
-
-    <div class="mv2__mission">
-      <figure class="mv2__fig reveal">
-        <div class="mv2__photo"><img src="assets/img/arch-future.webp" alt="" loading="lazy" decoding="async"></div>
-        <span class="mv2__corner mv2__corner--a"></span><span class="mv2__corner mv2__corner--b"></span>
-      </figure>
-      <div class="mv2__text">
-        <div class="mv2__label reveal"><span class="mv2__no">02</span><p class="eyebrow" data-i18n="mv.m">رسالتنا</p></div>
-        <p class="mv2__statement reveal" data-i18n="mv.mt">نضيف لكل مشروع بُعدًا جديدًا من الاحتراف، عبر منظومة خدمات متكاملة في الإدارة والتطوير والتشغيل، تتيح لعملائنا التركيز على أعمالهم الأساسية، ونتولى نحن الباقي.</p>
-        <ul class="mv2__pillars reveal">
-          <li><b>01</b><span data-i18n="mv.p1">الإدارة</span></li>
-          <li><b>02</b><span data-i18n="mv.p2">التطوير</span></li>
-          <li><b>03</b><span data-i18n="mv.p3">التشغيل</span></li>
-        </ul>
+<!-- ============================================================ values: five facets of one diamond -->
+<section class="vals" id="values">
+  <div class="wrap vals__grid">
+    <div class="vals__aside">
+      <div class="head reveal">
+        <p class="eyebrow" data-i18n="val.eyebrow">قيمنا</p>
+        <h2 class="h2" data-i18n="val.title">ما نؤمن به في كل مشروع</h2>
       </div>
+      <svg class="facet reveal" id="valGem" viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+          <linearGradient id="facetLit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3dfbd"/><stop offset=".55" stop-color="#d2ad7c"/><stop offset="1" stop-color="#9c7148"/></linearGradient>
+        </defs>
+        <polygon data-k="1" points="120,6 234,120 178,120 120,62"/>
+        <polygon data-k="2" points="234,120 120,234 120,178 178,120"/>
+        <polygon data-k="3" points="120,234 6,120 62,120 120,178"/>
+        <polygon data-k="4" points="6,120 120,6 120,62 62,120"/>
+        <polygon data-k="0" points="120,62 178,120 120,178 62,120"/>
+        <text class="facet__no" x="120" y="120" id="valNo">01</text>
+      </svg>
     </div>
-  </div>
-</section>
-
-<section class="values">
-  <span class="deco deco--lg" style="top:-60px;inset-inline-end:4%" data-speed=".16" data-x="-30"></span>
-  <div class="wrap">
-    <div class="head reveal">
-      <p class="eyebrow" data-i18n="val.eyebrow">قيمنا</p>
-      <h2 class="h2" data-i18n="val.title">ما نؤمن به في كل مشروع</h2>
-    </div>
-    <div class="values__row">
-      <article class="value reveal"><span>01</span><h3 data-i18n="val.1t">التكامل</h3><p data-i18n="val.1">نرى المشروع كاملًا ونربط أجزاءه في منظومة واحدة.</p></article>
-      <article class="value reveal"><span>02</span><h3 data-i18n="val.2t">الاحترافية</h3><p data-i18n="val.2">منهجيات واضحة ومعايير عمل موثقة في كل خدمة.</p></article>
-      <article class="value reveal"><span>03</span><h3 data-i18n="val.3t">الشراكة الفاعلة</h3><p data-i18n="val.3">نجاح عملائنا هو مقياس نجاحنا.</p></article>
-      <article class="value reveal"><span>04</span><h3 data-i18n="val.4t">الشفافية والمسؤولية</h3><p data-i18n="val.4">نعمل بوضوح ونلتزم بما نعد.</p></article>
-      <article class="value reveal"><span>05</span><h3 data-i18n="val.5t">الابتكار العملي</h3><p data-i18n="val.5">حلول ذكية تختصر الوقت وترفع الكفاءة.</p></article>
-    </div>
+    <ol class="vals__list" id="valList">
+      <li class="val is-on" tabindex="0"><span class="val__no">01</span><div class="val__body"><h3 data-i18n="val.1t">التكامل</h3><div class="val__more"><p data-i18n="val.1">نرى المشروع كاملًا ونربط أجزاءه في منظومة واحدة.</p></div></div><i class="val__bar" aria-hidden="true"></i></li>
+      <li class="val" tabindex="0"><span class="val__no">02</span><div class="val__body"><h3 data-i18n="val.2t">الاحترافية</h3><div class="val__more"><p data-i18n="val.2">منهجيات واضحة ومعايير عمل موثقة في كل خدمة.</p></div></div><i class="val__bar" aria-hidden="true"></i></li>
+      <li class="val" tabindex="0"><span class="val__no">03</span><div class="val__body"><h3 data-i18n="val.3t">الشراكة الفاعلة</h3><div class="val__more"><p data-i18n="val.3">نجاح عملائنا هو مقياس نجاحنا.</p></div></div><i class="val__bar" aria-hidden="true"></i></li>
+      <li class="val" tabindex="0"><span class="val__no">04</span><div class="val__body"><h3 data-i18n="val.4t">الشفافية والمسؤولية</h3><div class="val__more"><p data-i18n="val.4">نعمل بوضوح ونلتزم بما نعد.</p></div></div><i class="val__bar" aria-hidden="true"></i></li>
+      <li class="val" tabindex="0"><span class="val__no">05</span><div class="val__body"><h3 data-i18n="val.5t">الابتكار العملي</h3><div class="val__more"><p data-i18n="val.5">حلول ذكية تختصر الوقت وترفع الكفاءة.</p></div></div><i class="val__bar" aria-hidden="true"></i></li>
+    </ol>
   </div>
 </section>
 
@@ -331,14 +325,40 @@
     </div>
   </div>
 
-  <div class="wrap phases">
-    <h3 class="h3 reveal" data-i18n="j.ph">مراحل التطوير</h3>
-    <ol class="phases__list">
-      <li class="reveal"><span>01</span><p data-i18n="ph.1">محطة الوقود ومراكز الخدمة، المزارع الريفية، ممشى بطول 2 كم، الديوانية والإدارة</p></li>
-      <li class="reveal"><span>02</span><p data-i18n="ph.2">قاعة الأعمال، الأسواق التجارية، الأسواق الشعبية، المول المفتوح</p></li>
-      <li class="reveal"><span>03</span><p data-i18n="ph.3">الأسواق الحديثة، الخدمات اللوجستية، المطاعم الشعبية المعلقة، مركز الزوار والمعتمرين، المنطقة الترفيهية</p></li>
-      <li class="reveal"><span>04</span><p data-i18n="ph.4">الشاليهات، المنتجعات، الموتيلات، مجمع الفلل</p></li>
-    </ol>
+  <div class="wrap jph" id="jphases">
+    <div class="jph__head reveal">
+      <h3 class="h3" data-i18n="j.ph">مراحل التطوير</h3>
+      <p data-i18n="jp.phases.title">أربع مراحل تبني الوجهة خطوة بخطوة</p>
+    </div>
+    <div class="jph__road">
+      <div class="jph__rail" aria-hidden="true"><i id="jphFill"></i></div>
+      <ol class="jph__list">
+      <li class="jph__item">
+        <span class="jph__node" aria-hidden="true"></span>
+        <figure class="jph__img reveal"><img src="assets/img/act-cycle.webp" alt="" loading="lazy" decoding="async"><b class="jph__no" aria-hidden="true">01</b></figure>
+        <h4 class="jph__label reveal" data-i18n="ph.l1">المرحلة الأولى</h4>
+        <ul class="jph__chips reveal"><li data-i18n="ph.1a">محطة الوقود ومراكز الخدمة</li><li data-i18n="ph.1b">المزارع الريفية</li><li data-i18n="ph.1c">ممشى بطول 2 كم</li><li data-i18n="ph.1d">الديوانية والإدارة</li></ul>
+      </li>
+      <li class="jph__item">
+        <span class="jph__node" aria-hidden="true"></span>
+        <figure class="jph__img reveal"><img src="assets/img/act-souq.webp" alt="" loading="lazy" decoding="async"><b class="jph__no" aria-hidden="true">02</b></figure>
+        <h4 class="jph__label reveal" data-i18n="ph.l2">المرحلة الثانية</h4>
+        <ul class="jph__chips reveal"><li data-i18n="ph.2a">قاعة الأعمال</li><li data-i18n="ph.2b">الأسواق التجارية</li><li data-i18n="ph.2c">الأسواق الشعبية</li><li data-i18n="ph.2d">المول المفتوح</li></ul>
+      </li>
+      <li class="jph__item">
+        <span class="jph__node" aria-hidden="true"></span>
+        <figure class="jph__img reveal"><img src="assets/img/act-water.webp" alt="" loading="lazy" decoding="async"><b class="jph__no" aria-hidden="true">03</b></figure>
+        <h4 class="jph__label reveal" data-i18n="ph.l3">المرحلة الثالثة</h4>
+        <ul class="jph__chips reveal"><li data-i18n="ph.3a">الأسواق الحديثة</li><li data-i18n="ph.3b">الخدمات اللوجستية</li><li data-i18n="ph.3c">المطاعم الشعبية المعلقة</li><li data-i18n="ph.3d">مركز الزوار والمعتمرين</li><li data-i18n="ph.3e">المنطقة الترفيهية</li></ul>
+      </li>
+      <li class="jph__item">
+        <span class="jph__node" aria-hidden="true"></span>
+        <figure class="jph__img reveal"><img src="assets/img/act-resorts.webp" alt="" loading="lazy" decoding="async"><b class="jph__no" aria-hidden="true">04</b></figure>
+        <h4 class="jph__label reveal" data-i18n="ph.l4">المرحلة الرابعة</h4>
+        <ul class="jph__chips reveal"><li data-i18n="ph.4a">الشاليهات</li><li data-i18n="ph.4b">المنتجعات</li><li data-i18n="ph.4c">الموتيلات</li><li data-i18n="ph.4d">مجمع الفلل</li></ul>
+      </li>
+      </ol>
+    </div>
   </div>
 </section>
 
@@ -365,23 +385,63 @@
   </div>
 </section>
 
-<!-- ============================================================ why buad -->
-<section class="why">
+<!-- ============================================================ why buad: bento -->
+<section class="why" id="why">
   <span class="deco deco--lg" style="bottom:6%;inset-inline-start:3%" data-speed=".18" data-x="-36"></span>
-  <div class="wrap why__grid">
-    <div class="why__media reveal reveal-img"><div class="parallax"><img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async"></div></div>
-    <div>
+  <div class="wrap">
+    <div class="why__head">
       <div class="head reveal">
         <p class="eyebrow" data-i18n="w.eyebrow">الميزة التنافسية</p>
         <h2 class="h2" data-i18n="w.title">لماذا بُعد؟</h2>
       </div>
-      <ul class="why__list">
-        <li class="reveal"><h3 data-i18n="w.1t">جهة واحدة بدل جهات متعددة</h3><p data-i18n="w.1">عقد واحد ونقطة تواصل واحدة تغنيك عن التنسيق بين عشرات الموردين والمستشارين.</p></li>
-        <li class="reveal"><h3 data-i18n="w.2t">خبرة من الميدان</h3><p data-i18n="w.2">خدماتنا مبنية على تجربة فعلية في تطوير المشاريع وتشغيلها، لا على النظريات.</p></li>
-        <li class="reveal"><h3 data-i18n="w.3t">معرفة عميقة بالسوق المحلي</h3><p data-i18n="w.3">مقرنا مكة المكرمة وأعمالنا تمتد في مناطق المملكة، ونعرف الأنظمة والجهات وطبيعة كل سوق.</p></li>
-        <li class="reveal"><h3 data-i18n="w.4t">شبكة شركاء مرخّصين</h3><p data-i18n="w.4">نعمل مع جهات متخصصة ومرخّصة في كل مجال يتطلب ترخيصًا خاصًا.</p></li>
-        <li class="reveal"><h3 data-i18n="w.5t">مرونة تنظيمية</h3><p data-i18n="w.5">هيكل مرن يستوعب الشراكات المحلية والدولية ويتكيّف مع حجم كل عميل.</p></li>
-      </ul>
+      <p class="lead reveal" data-i18n="w.lead">خمسة أسباب تجعل المنشآت تختار بُعد شريكًا واحدًا لأعمالها ومشاريعها.</p>
+    </div>
+    <div class="why__bento">
+      <article class="wcard wcard--hub is-one reveal" id="whyHub">
+        <div class="hub__switch" role="group" aria-label="مقارنة">
+          <button type="button" data-hub="0" data-i18n="w.off">دون بُعد</button>
+          <button type="button" data-hub="1" class="is-on" data-i18n="w.on">مع بُعد</button>
+        </div>
+        <svg class="hub" viewBox="0 0 560 260" aria-hidden="true">
+          <g class="hub__before"><path d="M70 130 C 170 30 330 210 490 24"/><path d="M70 130 C 210 230 280 40 490 54"/><path d="M70 130 C 250 80 330 250 490 84"/><path d="M70 130 C 170 200 280 70 490 114"/><path d="M70 130 C 210 20 330 160 490 144"/><path d="M70 130 C 250 250 280 110 490 174"/><path d="M70 130 C 170 120 330 20 490 204"/><path d="M70 130 C 210 60 280 240 490 234"/></g>
+          <g class="hub__after"><path class="hub__trunk" d="M70 130 L290 130"/><path d="M290 130 C 390 130 400 24 490 24"/><path d="M290 130 C 390 130 400 54 490 54"/><path d="M290 130 C 390 130 400 84 490 84"/><path d="M290 130 C 390 130 400 114 490 114"/><path d="M290 130 C 390 130 400 144 490 144"/><path d="M290 130 C 390 130 400 174 490 174"/><path d="M290 130 C 390 130 400 204 490 204"/><path d="M290 130 C 390 130 400 234 490 234"/></g>
+          <g class="hub__dots"><circle cx="490" cy="24" r="6"/><circle cx="490" cy="54" r="6"/><circle cx="490" cy="84" r="6"/><circle cx="490" cy="114" r="6"/><circle cx="490" cy="144" r="6"/><circle cx="490" cy="174" r="6"/><circle cx="490" cy="204" r="6"/><circle cx="490" cy="234" r="6"/></g>
+          <rect class="hub__client" x="52" y="112" width="36" height="36" rx="6"/>
+          <g class="hub__core"><rect x="270" y="110" width="40" height="40" rx="5" transform="rotate(45 290 130)"/><rect class="hub__inner" x="281" y="121" width="18" height="18" rx="2" transform="rotate(45 290 130)"/></g>
+        </svg>
+        <div class="hub__legend" aria-hidden="true"><span data-i18n="w.you">منشأتك</span><span data-i18n="w.vendors">الموردون والمستشارون والمقاولون</span></div>
+        <div class="wcard__text">
+          <span class="wcard__no">01</span>
+          <h3 data-i18n="w.1t">جهة واحدة بدل جهات متعددة</h3>
+          <p data-i18n="w.1">عقد واحد ونقطة تواصل واحدة تغنيك عن التنسيق بين عشرات الموردين والمستشارين.</p>
+        </div>
+      </article>
+      <article class="wcard wcard--photo reveal">
+        <div class="wcard__img parallax"><img src="assets/img/office-reception.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="wcard__text">
+          <span class="wcard__no">02</span>
+          <h3 data-i18n="w.3t">معرفة عميقة بالسوق المحلي</h3>
+          <p data-i18n="w.3">مقرنا مكة المكرمة وأعمالنا تمتد في مناطق المملكة، ونعرف الأنظمة والجهات وطبيعة كل سوق.</p>
+        </div>
+      </article>
+      <article class="wcard reveal">
+        <svg class="wico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h16M8 21V3.5l10 4.5-10 4.5"/><path d="M12 21l3-5 3 5"/></svg>
+        <span class="wcard__no">03</span>
+        <h3 data-i18n="w.2t">خبرة من الميدان</h3>
+        <p data-i18n="w.2">خدماتنا مبنية على تجربة فعلية في تطوير المشاريع وتشغيلها، لا على النظريات.</p>
+      </article>
+      <article class="wcard reveal">
+        <svg class="wico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="6.5" r="2.5"/><circle cx="18.5" cy="6.5" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 6.5h8M6.8 8.7l3.9 7M17.2 8.7l-3.9 7"/></svg>
+        <span class="wcard__no">04</span>
+        <h3 data-i18n="w.4t">شبكة شركاء مرخّصين</h3>
+        <p data-i18n="w.4">نعمل مع جهات متخصصة ومرخّصة في كل مجال يتطلب ترخيصًا خاصًا.</p>
+      </article>
+      <article class="wcard reveal">
+        <svg class="wico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9V3.5H9M20.5 15v5.5H15M3.5 3.5l5.5 5.5M20.5 20.5L15 15"/><rect x="9" y="9" width="6" height="6" rx="1.2"/></svg>
+        <span class="wcard__no">05</span>
+        <h3 data-i18n="w.5t">مرونة تنظيمية</h3>
+        <p data-i18n="w.5">هيكل مرن يستوعب الشراكات المحلية والدولية ويتكيّف مع حجم كل عميل.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -390,25 +450,73 @@
 <section class="creds" id="credentials">
   <span class="deco deco--sm deco--fill" style="top:120px;inset-inline-start:12%" data-speed="-.22" data-x="24"></span>
   <div class="wrap">
-    <div class="head reveal">
-      <p class="eyebrow" data-i18n="c.eyebrow">الشهادات والتراخيص</p>
-      <h2 class="h2" data-i18n="c.title">اعتمادات تعزز ثقة شركائنا</h2>
-      <p class="lead" data-i18n="c.lead">نلتزم بأعلى معايير الجودة والامتثال، ومن خلال حصولنا على اعتمادات استراتيجية نعزز ثقة شركائنا والمجتمع.</p>
+    <div class="creds__top">
+      <div class="head reveal">
+        <p class="eyebrow" data-i18n="c.eyebrow">الشهادات والتراخيص</p>
+        <h2 class="h2" data-i18n="c.title">اعتمادات تعزز ثقة شركائنا</h2>
+        <p class="lead" data-i18n="c.lead">نلتزم بأعلى معايير الجودة والامتثال، ومن خلال حصولنا على اعتمادات استراتيجية نعزز ثقة شركائنا والمجتمع.</p>
+      </div>
+      <p class="creds__count reveal"><b data-count="12">0</b><span data-i18n="c.count">ترخيصًا وشهادة واعتمادًا</span></p>
     </div>
-    <div class="creds__grid">
-      <div class="cred reveal"><b data-i18n="cr.1">رخصة تأهيل مطوّر عقاري</b><span data-i18n="cr.1s">شهادة البيع والتأجير على الخارطة – الهيئة العامة للعقار</span></div>
-      <div class="cred reveal"><b data-i18n="cr.2">رخصة فال للوساطة العقارية</b><span data-i18n="cr.2s">الهيئة العامة للعقار</span></div>
-      <div class="cred reveal"><b data-i18n="cr.3">تأهيل المطوّر العقاري</b><span data-i18n="cr.3s">وزارة البلديات والإسكان</span></div>
-      <div class="cred reveal"><b data-i18n="cr.4">تأهيل البلد الأمين</b><span data-i18n="cr.4s">شركة البلد الأمين</span></div>
-      <div class="cred reveal"><b>ISO 9001</b><span data-i18n="cr.5s">أنظمة إدارة الجودة 9001:2015</span></div>
-      <div class="cred reveal"><b>ISO 14001</b><span data-i18n="cr.6s">أنظمة الإدارة البيئية 14001:2015</span></div>
-      <div class="cred reveal"><b>ISO 45001</b><span data-i18n="cr.7s">إدارة الصحة والسلامة المهنية 45001:2018</span></div>
-      <div class="cred reveal"><b>ISO 21500</b><span data-i18n="cr.8s">إدارة المشاريع 21500:2021</span></div>
-      <div class="cred reveal"><b data-i18n="cr.9">عضوية الهيئة السعودية للمقاولين</b><span data-i18n="cr.9s">شهادة عضوية</span></div>
-      <div class="cred reveal"><b data-i18n="cr.10">شهادة منشآت</b><span data-i18n="cr.10s">شهادة تصنيف رسمية – الهيئة العامة للمنشآت الصغيرة والمتوسطة</span></div>
-      <div class="cred reveal"><b data-i18n="cr.11">شهادة البيع على الخارطة</b><span data-i18n="cr.11s">المعهد العقاري السعودي</span></div>
-      <div class="cred reveal"><b data-i18n="cr.12">شهادة اعتماد</b><span data-i18n="cr.12s">استيفاء معايير الجودة والكفاءة الفنية والتشغيلية</span></div>
+    <div class="seals">
+      <p class="seals__title reveal" data-i18n="c.iso">شهادات الأيزو الدولية</p>
+      <div class="seals__row">
+        <figure class="seal reveal">
+          <div class="seal__disc">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="ring9001" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+              <circle class="seal__o" cx="100" cy="100" r="97"/><circle class="seal__i" cx="100" cy="100" r="66"/>
+              <g class="seal__spin"><text><textPath href="#ring9001" textLength="500" lengthAdjust="spacing">QUALITY MANAGEMENT SYSTEMS · ISO 9001:2015 ·</textPath></text></g>
+            </svg>
+            <span class="seal__core"><small>ISO</small><b>9001</b></span>
+          </div>
+          <figcaption data-i18n="cr.5s">أنظمة إدارة الجودة 9001:2015</figcaption>
+        </figure>
+        <figure class="seal reveal">
+          <div class="seal__disc">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="ring14001" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+              <circle class="seal__o" cx="100" cy="100" r="97"/><circle class="seal__i" cx="100" cy="100" r="66"/>
+              <g class="seal__spin"><text><textPath href="#ring14001" textLength="500" lengthAdjust="spacing">ENVIRONMENTAL MANAGEMENT · ISO 14001:2015 ·</textPath></text></g>
+            </svg>
+            <span class="seal__core"><small>ISO</small><b>14001</b></span>
+          </div>
+          <figcaption data-i18n="cr.6s">أنظمة الإدارة البيئية 14001:2015</figcaption>
+        </figure>
+        <figure class="seal reveal">
+          <div class="seal__disc">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="ring45001" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+              <circle class="seal__o" cx="100" cy="100" r="97"/><circle class="seal__i" cx="100" cy="100" r="66"/>
+              <g class="seal__spin"><text><textPath href="#ring45001" textLength="500" lengthAdjust="spacing">OCCUPATIONAL HEALTH &amp; SAFETY · ISO 45001:2018 ·</textPath></text></g>
+            </svg>
+            <span class="seal__core"><small>ISO</small><b>45001</b></span>
+          </div>
+          <figcaption data-i18n="cr.7s">إدارة الصحة والسلامة المهنية 45001:2018</figcaption>
+        </figure>
+        <figure class="seal reveal">
+          <div class="seal__disc">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="ring21500" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+              <circle class="seal__o" cx="100" cy="100" r="97"/><circle class="seal__i" cx="100" cy="100" r="66"/>
+              <g class="seal__spin"><text><textPath href="#ring21500" textLength="500" lengthAdjust="spacing">PROJECT MANAGEMENT · ISO 21500:2021 ·</textPath></text></g>
+            </svg>
+            <span class="seal__core"><small>ISO</small><b>21500</b></span>
+          </div>
+          <figcaption data-i18n="cr.8s">إدارة المشاريع 21500:2021</figcaption>
+        </figure>
+      </div>
     </div>
+    <ul class="lic">
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t1">ترخيص</span><div><b data-i18n="cr.1">رخصة تأهيل مطوّر عقاري</b><span data-i18n="cr.1s">شهادة البيع والتأجير على الخارطة – الهيئة العامة للعقار</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t1">ترخيص</span><div><b data-i18n="cr.2">رخصة فال للوساطة العقارية</b><span data-i18n="cr.2s">الهيئة العامة للعقار</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t2">تأهيل</span><div><b data-i18n="cr.3">تأهيل المطوّر العقاري</b><span data-i18n="cr.3s">وزارة البلديات والإسكان</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t2">تأهيل</span><div><b data-i18n="cr.4">تأهيل البلد الأمين</b><span data-i18n="cr.4s">شركة البلد الأمين</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t3">عضوية</span><div><b data-i18n="cr.9">عضوية الهيئة السعودية للمقاولين</b><span data-i18n="cr.9s">شهادة عضوية</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t4">شهادة</span><div><b data-i18n="cr.10">شهادة منشآت</b><span data-i18n="cr.10s">شهادة تصنيف رسمية – الهيئة العامة للمنشآت الصغيرة والمتوسطة</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t4">شهادة</span><div><b data-i18n="cr.11">شهادة البيع على الخارطة</b><span data-i18n="cr.11s">المعهد العقاري السعودي</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+        <li class="lic__row reveal"><span class="lic__tag" data-i18n="c.t5">اعتماد</span><div><b data-i18n="cr.12">شهادة اعتماد</b><span data-i18n="cr.12s">استيفاء معايير الجودة والكفاءة الفنية والتشغيلية</span></div><i class="lic__mark" aria-hidden="true"></i></li>
+    </ul>
   </div>
 
   <div class="clients">
@@ -437,43 +545,51 @@
 
 <!-- ============================================================ contact -->
 <section class="contact" id="contact">
-  <span class="deco" style="top:70px;inset-inline-end:6%" data-speed=".2" data-x="-28"></span>
-  <div class="wrap contact__grid">
-    <div>
-      <p class="eyebrow reveal" data-i18n="ct.eyebrow">تواصل معنا</p>
-      <h2 class="h2 reveal" data-i18n="ct.title">لنبدأ بُعدًا جديدًا لأعمالك</h2>
-      <ul class="contact__list reveal">
-        <li><span data-i18n="ct.phone">الجوال</span><a href="tel:+966550000126" dir="ltr">+966 55 000 0126</a></li>
-        <li><span data-i18n="ct.mail">البريد الإلكتروني</span><a href="mailto:info@buad-r.sa" dir="ltr">info@buad-r.sa</a></li>
-        <li><span data-i18n="ct.web">الموقع</span><a href="https://www.buad-r.sa" dir="ltr">www.buad-r.sa</a></li>
-        <li><span data-i18n="ct.addr">العنوان</span><b data-i18n="ct.addrv">مكة المكرمة – المملكة العربية السعودية</b></li>
-        <li><span data-i18n="ct.cr">السجل التجاري</span><b dir="ltr">4030560162</b></li>
-      </ul>
-      <a class="btn btn--dark btn--ico reveal" href="https://wa.me/966550000126" target="_blank" rel="noopener"><span data-i18n="ct.wa">تواصل عبر واتساب</span><i class="btn__ico" aria-hidden="true"></i></a>
-      <div class="dl dl--light reveal">
-        <p class="dl__label" data-i18n="dl.title">حمّل ملف تعريف الشركة</p>
-        <div class="dl__row">
-          <a class="dl__btn" href="assets/docs/BUAD-Profile-AR.pdf" download="بروفايل شركة بُعد العقارية.pdf"><i class="dl__ico" aria-hidden="true"></i><span><b data-i18n="dl.ar">البروفايل بالعربية</b><small>PDF · 7.6 MB</small></span></a>
-          <a class="dl__btn" href="assets/docs/BUAD-Profile-EN.pdf" download="BUAD Company Profile.pdf"><i class="dl__ico" aria-hidden="true"></i><span><b>Company Profile</b><small>English · PDF · 12.7 MB</small></span></a>
+  <div class="wrap">
+    <div class="ct">
+      <div class="ct__panel reveal">
+        <i class="ct__mark" aria-hidden="true"></i>
+        <p class="eyebrow" data-i18n="ct.eyebrow">تواصل معنا</p>
+        <h2 class="h2" data-i18n="ct.title">لنبدأ بُعدًا جديدًا لأعمالك</h2>
+        <p class="ct__lead" data-i18n="ct.lead">اختر الطريقة الأنسب لك، أو اترك لنا رسالتك وسنعود إليك.</p>
+        <div class="ct__ways">
+          <a class="way" href="https://wa.me/966550000126" target="_blank" rel="noopener">
+            <svg class="way__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9.2 8.6c.2 2.8 3.4 6 6.2 6.2l1-1.6-2-1-1 .9c-1-.4-2.1-1.5-2.5-2.5l.9-1-1-2z"/></svg>
+            <span><small data-i18n="ct.wa">تواصل عبر واتساب</small><b dir="ltr">+966 55 000 0126</b></span><i class="way__arrow" aria-hidden="true"></i>
+          </a>
+          <a class="way" href="tel:+966550000126">
+            <svg class="way__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            <span><small data-i18n="ct.phone">الجوال</small><b dir="ltr">+966 55 000 0126</b></span><i class="way__arrow" aria-hidden="true"></i>
+          </a>
+          <a class="way" href="mailto:info@buad-r.sa">
+            <svg class="way__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+            <span><small data-i18n="ct.mail">البريد الإلكتروني</small><b dir="ltr">info@buad-r.sa</b></span><i class="way__arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+        <dl class="ct__meta">
+          <div><dt data-i18n="ct.addr">العنوان</dt><dd data-i18n="ct.addrv">مكة المكرمة – المملكة العربية السعودية</dd></div>
+          <div><dt data-i18n="ct.cr">السجل التجاري</dt><dd dir="ltr">4030560162</dd></div>
+          <div><dt data-i18n="ct.web">الموقع</dt><dd><a href="https://www.buad-r.sa" dir="ltr">www.buad-r.sa</a></dd></div>
+        </dl>
+        <div class="dl">
+          <p class="dl__label" data-i18n="dl.title">حمّل ملف تعريف الشركة</p>
+          <div class="dl__row">
+            <a class="dl__btn" href="assets/docs/BUAD-Profile-AR.pdf" download="بروفايل شركة بُعد العقارية.pdf"><i class="dl__ico" aria-hidden="true"></i><span><b data-i18n="dl.ar">البروفايل بالعربية</b><small>PDF · 7.6 MB</small></span></a>
+            <a class="dl__btn" href="assets/docs/BUAD-Profile-EN.pdf" download="BUAD Company Profile.pdf"><i class="dl__ico" aria-hidden="true"></i><span><b>Company Profile</b><small>English · PDF · 12.7 MB</small></span></a>
+          </div>
         </div>
       </div>
+      <form class="form ct__form reveal" id="contactForm" novalidate>
+        <p class="ct__formtitle" data-i18n="f.title">أرسل لنا رسالة</p>
+        <label class="fl"><input name="name" placeholder=" " required autocomplete="name"><span data-i18n="f.name">الاسم</span></label>
+        <label class="fl"><input name="org" placeholder=" " autocomplete="organization"><span data-i18n="f.org">الجهة / المنشأة</span></label>
+        <label class="fl full"><input name="phone" placeholder=" " inputmode="tel" dir="ltr" autocomplete="tel"><span data-i18n="f.phone">رقم التواصل</span></label>
+        <fieldset class="needs full"><legend data-i18n="f.need">البُعد المطلوب</legend><label class="need"><input type="radio" name="need" checked><span data-i18n="d1.t">الإستثمار والصفقات</span></label><label class="need"><input type="radio" name="need"><span data-i18n="d2.t">العقود والمناقصات</span></label><label class="need"><input type="radio" name="need"><span data-i18n="d3.t">التطوير وإدارة المشاريع</span></label><label class="need"><input type="radio" name="need"><span data-i18n="d4.t">الأصول والتشغيل</span></label><label class="need"><input type="radio" name="need"><span data-i18n="d5.t">الإمداد والخدمات اللوجستية</span></label><label class="need"><input type="radio" name="need"><span data-i18n="d6.t">تطوير الأعمال والحلول الذكية</span></label><label class="need"><input type="radio" name="need"><span data-i18n="f.jumum">الإستثمار في واجهة الجموم</span></label></fieldset>
+        <label class="fl full"><textarea name="msg" rows="4" placeholder=" "></textarea><span data-i18n="f.msg">رسالتك</span></label>
+        <p class="form__msg full" id="formMsg" role="status" aria-live="polite"></p>
+        <button class="btn btn--dark btn--ico full" type="submit"><span data-i18n="f.send">إرسال</span><i class="btn__ico" aria-hidden="true"></i></button>
+      </form>
     </div>
-    <form class="form reveal" id="contactForm" novalidate>
-      <label><span data-i18n="f.name">الاسم</span><input name="name" required autocomplete="name"></label>
-      <label><span data-i18n="f.org">الجهة / المنشأة</span><input name="org"></label>
-      <label><span data-i18n="f.phone">رقم التواصل</span><input name="phone" inputmode="tel" dir="ltr" autocomplete="tel"></label>
-      <label><span data-i18n="f.need">البُعد المطلوب</span>
-        <select name="need">
-          <option data-i18n="d1.t">الإستثمار والصفقات</option><option data-i18n="d2.t">العقود والمناقصات</option>
-          <option data-i18n="d3.t">التطوير وإدارة المشاريع</option><option data-i18n="d4.t">الأصول والتشغيل</option>
-          <option data-i18n="d5.t">الإمداد والخدمات اللوجستية</option><option data-i18n="d6.t">تطوير الأعمال والحلول الذكية</option>
-          <option data-i18n="f.jumum">الإستثمار في واجهة الجموم</option>
-        </select>
-      </label>
-      <label class="full"><span data-i18n="f.msg">رسالتك</span><textarea name="msg" rows="4"></textarea></label>
-      <p class="form__msg full" id="formMsg" role="status" aria-live="polite"></p>
-      <button class="btn btn--dark btn--ico full" type="submit"><span data-i18n="f.send">إرسال</span><i class="btn__ico" aria-hidden="true"></i></button>
-    </form>
   </div>
 </section>
 
