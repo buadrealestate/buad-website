@@ -369,6 +369,21 @@
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
+  /* ------------------------------------------------------------ about: the ghost mark turns and the photo inside the mark drifts with the scroll */
+  (() => {
+    const em = $('#aboutEmblem');
+    if (!em || reduce) return;
+    const frame = () => {
+      const vh = innerHeight, r = em.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const k = (r.top + r.height / 2 - vh / 2) / (vh + r.height);          // -0.5 .. 0.5
+      em.style.setProperty('--abr', `${(k * 30).toFixed(2)}deg`);
+      em.style.setProperty('--abp', `${(k * 26).toFixed(2)}px`);
+    };
+    addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
+    frame();
+  })();
+
   /* ------------------------------------------------------------ vision & mission: the diamond window opens, the vision lights up word by word */
   const mv = (() => {
     const sec = $('#vision');

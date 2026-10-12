@@ -1145,3 +1145,90 @@ html[dir="ltr"] .fl > span { transform-origin: 0 0; }
   .vm__ring, .vm__seal { opacity: 1; scale: 1; }
   .seal__spin, .hub__before path { animation: none; }
 }
+
+/* ---------------------------------------------------------------- about: the BUAD mark as a window onto the headquarters */
+.about__emblem { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 5 / 6; border-radius: 30px; display: grid; place-items: center;
+  background: radial-gradient(60% 50% at 50% 42%, rgba(185, 153, 121, .26), transparent 70%), var(--night); }
+.about__emblem.reveal { transform: none; opacity: 1; }
+.about__ghost { position: absolute; z-index: -1; width: 150%; top: -24%; inset-inline-start: -58%; fill: none; stroke: rgba(237, 216, 186, .07); stroke-width: .5;
+  transform: rotate(var(--abr, 0deg)); }
+.about__mark { width: 70%; height: auto; overflow: visible; translate: 0 -7%; filter: drop-shadow(0 34px 50px rgba(0, 0, 0, .5)); }
+.about__photo { opacity: 0; transform: translateY(var(--abp, 0px)) scale(1.12); transform-origin: 124px 121px;
+  transition: opacity 1.4s var(--spring) .7s, scale 1.8s var(--spring) .7s; }
+.about__line { fill: none; stroke: var(--gold); stroke-width: .7; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s var(--spring); }
+.about__emblem.in .about__line { stroke-dashoffset: 0; }
+.about__emblem.in .about__photo { opacity: 1; transform: translateY(var(--abp, 0px)) scale(1); }
+.about__tag { position: absolute; bottom: 92px; inset-inline: 0; text-align: center; font-size: 15px; letter-spacing: .04em; color: rgba(237, 216, 186, .72); }
+.about__sign { position: absolute; bottom: 0; inset-inline: 0; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 22px clamp(22px, 2.6vw, 34px); border-top: 1px solid rgba(237, 216, 186, .1); }
+.about__word { height: 24px; width: auto; opacity: .92; }
+.about__sign .about__badge { position: static; display: inline-flex; align-items: center; gap: 10px; padding: 0; font-size: 13.5px; color: var(--sand);
+  background: none; backdrop-filter: none; border-radius: 0; }
+.about__sign .about__badge i { width: 7px; height: 7px; transform: rotate(45deg); background: var(--gold); }
+/* the story becomes a short path with diamond stops */
+.story { position: relative; margin-top: 38px; padding-inline-start: 36px; gap: 0; }
+.story::before { content: ""; position: absolute; inset-inline-start: 6px; top: 30px; bottom: 34px; width: 1px; background: linear-gradient(var(--tan), rgba(185, 153, 121, .15)); }
+.story__item { display: block; position: relative; padding-block: 18px; border-top: 0; }
+.story__item::before { content: ""; position: absolute; inset-inline-start: -36px; top: 27px; width: 13px; height: 13px; transform: rotate(45deg); border-radius: 2px;
+  background: var(--ivory); border: 1.5px solid var(--tan); transition: background .6s var(--spring) .3s, box-shadow .6s var(--spring) .3s; }
+.story__item.in::before { background: var(--tan); box-shadow: 0 0 0 6px rgba(185, 153, 121, .14); }
+.story__n { display: inline-block; padding: 0; font-size: 12.5px; letter-spacing: .14em; color: var(--tan); }
+.story__item h3 { display: inline; margin-inline-start: 10px; font-size: 21px; }
+.story__item p { margin-top: 6px; }
+
+/* ---------------------------------------------------------------- Al Jumum summary under the film */
+.jsum { padding-top: clamp(70px, 9vw, 120px); }
+.jsum__statement { max-width: 22ch; font-size: clamp(30px, 4vw, 56px); font-weight: 300; line-height: 1.3; color: var(--brown); text-wrap: balance; }
+.jsum__body { margin-top: clamp(26px, 3vw, 40px); display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(30px, 6vw, 100px); align-items: end; }
+.jsum__body .lead { max-width: 64ch; }
+.jsum__side .jumum__tags { margin-top: 0; }
+.jsum__nums { margin-top: clamp(50px, 6vw, 80px); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.jsum__num { padding: 26px clamp(12px, 1.6vw, 24px) 0; }
+.jsum__num:first-child { padding-inline-start: 0; }
+.jsum__num + .jsum__num { border-inline-start: 1px solid var(--line); }
+.jsum__num dt { font-size: 14px; color: var(--muted); }
+.jsum__num dd { margin-top: 8px; display: flex; align-items: baseline; gap: 8px; color: var(--brown); }
+.jsum__num dd b { font-size: clamp(32px, 3.4vw, 50px); font-weight: 200; line-height: 1; font-variant-numeric: tabular-nums; }
+.jsum__num dd small { font-size: 15px; color: var(--tan); }
+
+/* "be a partner": a night view of the project behind the invitation */
+.jinv { margin-top: clamp(80px, 10vw, 130px); }
+.jinv__card { position: relative; isolation: isolate; overflow: hidden; border-radius: 30px; min-height: clamp(380px, 36vw, 480px); display: grid; align-items: center;
+  padding: clamp(36px, 5vw, 80px); color: var(--cream); }
+.jinv__card.reveal { transform: none; }
+.jinv__bg { position: absolute; inset: 0; z-index: -2; }
+.jinv__card::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to left, rgba(24, 17, 13, .92) 0%, rgba(24, 17, 13, .72) 45%, rgba(24, 17, 13, .2) 100%); }
+html[dir="ltr"] .jinv__card::after { background: linear-gradient(to right, rgba(24, 17, 13, .92) 0%, rgba(24, 17, 13, .72) 45%, rgba(24, 17, 13, .2) 100%); }
+.jinv__mark { position: absolute; z-index: -1; width: 300px; height: 300px; inset-inline-end: -90px; top: -90px; border: 1px solid rgba(237, 216, 186, .18);
+  border-radius: 30px; transform: rotate(45deg); }
+.jinv__mark::after { content: ""; position: absolute; inset: 22%; border: 1px solid rgba(237, 216, 186, .12); border-radius: 20px; }
+.jinv__text { max-width: 600px; }
+.jinv__text .eyebrow { color: var(--gold); }
+.jinv__text .h2 { color: var(--cream); }
+.jinv__text .lead { margin-top: 16px; color: rgba(246, 238, 226, .78); }
+.jinv__actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; }
+.jinv__link { display: inline-flex; align-items: center; gap: 10px; margin-inline-start: 8px; font-size: 15.5px; font-weight: 500; color: var(--sand);
+  border-bottom: 1px solid rgba(237, 216, 186, .35); padding-bottom: 3px; transition: color .4s, border-color .4s; }
+.jinv__link:hover { color: #fff; border-color: #fff; }
+.jinv__link i { width: 7px; height: 7px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: rotate(45deg); }
+html[dir="rtl"] .jinv__link i { transform: rotate(-135deg); }
+
+@media (max-width: 900px) {
+  .about__emblem { aspect-ratio: 4 / 5; }
+  .about__mark { width: 66%; translate: 0 -12%; }
+  .about__tag { bottom: 84px; font-size: 14px; }
+  .about__word { height: 20px; }
+  .jsum__body { grid-template-columns: 1fr; }
+  .jsum__nums { grid-template-columns: 1fr 1fr; }
+  .jsum__num, .jsum__num:first-child { padding: 22px 0 18px; border-bottom: 1px solid var(--line); }
+  .jsum__num + .jsum__num { border-inline-start: 0; }
+  .jsum__num:nth-child(even) { padding-inline-start: 18px; border-inline-start: 1px solid var(--line); }
+  .jsum__num:last-child { grid-column: 1 / -1; }
+  .jinv__card::after { background: linear-gradient(to top, rgba(24, 17, 13, .94) 30%, rgba(24, 17, 13, .45)) !important; }
+  .jinv__card { align-items: end; min-height: 520px; }
+  .jinv__link { margin: 6px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about__line { stroke-dashoffset: 0; } .about__photo { opacity: 1; transform: none; }
+}
