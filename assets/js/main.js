@@ -351,19 +351,21 @@
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
-  /* ------------------------------------------------------------ about: the chapter line fills with the scroll; the outline of the mark turns */
+  /* ------------------------------------------------------------ about: story cards stack; the one underneath settles back as the next arrives */
   (() => {
-    const story = $('#aboutStory');
-    if (!story) return;
-    const list = $('.chapters', story), items = $$('.chapter', story);
+    const cards = $$('#stack .stack__card');
+    if (!cards.length || reduce) return;
     const frame = () => {
-      const vh = innerHeight, r = list.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const vertical = innerWidth <= 900;
-      const k = reduce ? 1 : Math.min(1, Math.max(0, vertical ? (vh * .7 - r.top) / r.height : (vh * .82 - r.top) / (vh * .45)));
-      list.style.setProperty('--ch', k.toFixed(3));
-      items.forEach((it, i) => it.classList.toggle('is-on', k >= (vertical ? i / items.length : i / (items.length - 1) * .98)));
-      if (!reduce) story.style.setProperty('--abr', `${((r.top / vh) * -24).toFixed(2)}deg`);
+      if (innerWidth <= 900) { cards.forEach(c => { c.style.transform = ''; c.style.filter = ''; }); return; }
+      const vh = innerHeight;
+      cards.forEach((c, i) => {
+        const next = cards[i + 1];
+        if (!next) return;
+        const top = parseFloat(getComputedStyle(c).top) || 0;
+        const p = Math.min(1, Math.max(0, 1 - (next.getBoundingClientRect().top - top) / (vh - top)));
+        c.style.transform = `scale(${(1 - p * .06).toFixed(4)})`;
+        c.style.filter = `brightness(${(1 - p * .35).toFixed(3)})`;
+      });
     };
     addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
     addEventListener('resize', frame);
@@ -514,8 +516,11 @@
   const saved = store.get('buad-lang') || (new URLSearchParams(location.search).get('lang'));
   if (saved === 'en') setLang('en');
 
-  /* ------------------------------------------------------------ contact form -> e-mail (with inline validation) */
-  const form = $('#contactForm'), msg = $('#formMsg');
+  /* ------------------------------------------------------------ contact form -> WhatsApp or e-mail (with inline validation) */
+  const form = $('#contactForm'), msg = $('#formMsg'), needBox = $('#needBox');
+  const syncTopic = () => { needBox.hidden = (form.querySelector('[name=topic]:checked') || {}).value !== 'services'; };
+  form.addEventListener('change', e => { if (e.target.name === 'topic') syncTopic(); });
+  syncTopic();
   form.addEventListener('input', e => { e.target.classList.remove('is-invalid'); msg.classList.remove('is-err'); msg.textContent = ''; });
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -529,16 +534,25 @@
       msg.textContent = en ? EN['f.err'] : 'فضلاً اكتب الاسم ورقم التواصل أو رسالتك.';
       return;
     }
+    const chip = k => (form.querySelector(`[name=${k}]:checked + span`) || {}).textContent || '';
+    const topic = chip('topic');
     const lines = [
+      `${en ? 'Request' : 'نوع الطلب'}: ${topic}`,
       `${en ? 'Name' : 'الاسم'}: ${name}`,
-      `${en ? 'Organization' : 'الجهة'}: ${f.get('org') || ''}`,
-      `${en ? 'Phone' : 'رقم التواصل'}: ${phone}`,
-      `${en ? 'Interest' : 'البُعد المطلوب'}: ${(form.querySelector('[name=need]:checked + span') || {}).textContent || ''}`,
-      '', text
-    ];
-    msg.textContent = en ? EN['f.ok'] : 'جارٍ فتح البريد الإلكتروني لإرسال رسالتك…';
-    const subject = en ? 'Inquiry from the BUAD website' : 'استفسار من موقع بُعد';
-    location.href = `mailto:info@buad-r.sa?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join(String.fromCharCode(10)))}`;
+      f.get('org') ? `${en ? 'Organization' : 'الجهة'}: ${f.get('org')}` : '',
+      phone ? `${en ? 'Phone' : 'رقم التواصل'}: ${phone}` : '',
+      f.get('email') ? `${en ? 'E-mail' : 'البريد'}: ${f.get('email')}` : '',
+      needBox.hidden ? '' : `${en ? 'Dimension' : 'البُعد المطلوب'}: ${chip('need')}`,
+      text ? '\n' + text : ''
+    ].filter(Boolean).join('\n');
+    const subject = (en ? 'BUAD website — ' : 'موقع بُعد — ') + topic;
+    if ((e.submitter && e.submitter.dataset.send) === 'mail') {
+      msg.textContent = en ? EN['f.ok'] : 'جارٍ فتح البريد الإلكتروني لإرسال رسالتك…';
+      location.href = `mailto:info@buad-r.sa?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines)}`;
+    } else {
+      msg.textContent = en ? 'Opening WhatsApp with your message…' : 'جارٍ فتح واتساب برسالتك…';
+      window.open(`https://wa.me/966550000126?text=${encodeURIComponent(subject + '\n\n' + lines)}`, '_blank', 'noopener');
+    }
   });
 
   /* ------------------------------------------------------------ current section in the navigation */
