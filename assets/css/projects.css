@@ -17,7 +17,7 @@ main > section.ph > .ph__content { position: absolute; z-index: 2; inset-inline:
 .is-ready .ph__content .reveal-hero:nth-child(4) { transition-delay: .32s; }
 
 /* ---------------------------------------------------------------- featured project */
-.pfeat { padding-top: clamp(70px, 9vw, 120px); background: var(--ivory); }
+.pfeat { padding-top: clamp(70px, 9vw, 120px); background: var(--cream); }
 .pfeat__card { position: relative; display: grid; min-height: clamp(520px, 62vw, 680px); border-radius: 28px; overflow: hidden; color: var(--cream);
   isolation: isolate; box-shadow: 0 40px 80px -40px rgba(43, 31, 25, .55); }
 .pfeat__img { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
@@ -38,7 +38,7 @@ html[lang="en"] .pfeat__tag { letter-spacing: .18em; text-transform: uppercase; 
 .pfeat__nums small { font-size: 14px; color: var(--tan); }
 
 /* ---------------------------------------------------------------- project rows */
-.plist { padding-block: clamp(100px, 12vw, 160px); background: var(--ivory); overflow: hidden; }
+.plist { padding-block: clamp(100px, 12vw, 160px); background: var(--cream); overflow: hidden; }
 .prow { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(36px, 6vw, 90px); align-items: center;
   background: none; border: 0; padding: 0; overflow: visible; }
 .prow + .prow { margin-top: clamp(80px, 10vw, 140px); }
