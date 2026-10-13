@@ -1292,73 +1292,74 @@ html[dir="rtl"] .tile:hover .tile__go { transform: translate(3px, -3px); }
   .in .fx-floor, .in .fx-load, .in .fx-ring, .in .fx-route, .in .fx-link, .in .fx-node, .in .fx-block { animation: none !important; }
 }
 
-/* ---------------------------------------------------------------- story, option A: titles + a large crossfading picture */
+/* ---------------------------------------------------------------- story: three dark cards with moving line drawings — chaos → lifecycle → ecosystem */
 .about2__story { position: relative; padding-top: clamp(80px, 10vw, 130px); }
-.trio { display: none; }
-html[data-story="b"] .tale { display: none; }
-html[data-story="b"] .trio { display: block; }
-.tale { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(30px, 5vw, 80px); align-items: stretch; }
 .tale__title { font-size: clamp(30px, 3.6vw, 52px); font-weight: 300; line-height: 1.25; color: var(--brown); text-wrap: balance; }
-.tale__tabs { margin-top: clamp(26px, 3vw, 40px); border-top: 1px solid var(--line); }
-.tale__tab { position: relative; display: grid; grid-template-columns: 58px minmax(0, 1fr); padding-block: clamp(18px, 2vw, 26px); border-bottom: 1px solid var(--line);
-  cursor: pointer; outline: none; }
-.tale__no { padding-top: .9em; font-size: 13px; font-weight: 500; letter-spacing: .14em; color: rgba(185, 153, 121, .7); transition: color .4s; }
-.tale__tab h4 { margin: 0; font-size: clamp(26px, 2.7vw, 40px); font-weight: 300; line-height: 1.25; color: rgba(61, 45, 36, .38); transition: color .6s var(--spring); }
-.tale__tab:hover h4 { color: rgba(61, 45, 36, .7); }
-.tale__tab.is-on h4 { color: var(--brown); }
-.tale__tab.is-on .tale__no { color: var(--tan); }
-.tale__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .8s var(--spring), margin .8s var(--spring); }
-.tale__more > p { overflow: hidden; min-height: 0; font-size: 16.5px; line-height: 1.85; color: var(--muted); opacity: 0; transition: opacity .5s; }
-.tale__tab.is-on .tale__more { grid-template-rows: 1fr; margin-top: 10px; }
-.tale__tab.is-on .tale__more > p { opacity: 1; transition-delay: .2s; }
-.tale__bar { position: absolute; inset-inline: 0; bottom: -1px; height: 1.5px; background: var(--tan); transform: scaleX(0); transform-origin: 100% 50%; }
-html[dir="ltr"] .tale__bar { transform-origin: 0 50%; }
-.tale.is-auto .tale__tab.is-on .tale__bar { animation: valBar 6.5s linear forwards; }
-.tale:not(.is-auto) .tale__tab.is-on .tale__bar { transform: scaleX(1); }
-.tale__tab:focus-visible { outline: 2px solid var(--tan); outline-offset: 4px; border-radius: 4px; }
-.tale__stage { position: relative; isolation: isolate; min-height: clamp(440px, 44vw, 620px); border-radius: 30px; overflow: hidden; background: var(--night);
-  box-shadow: 0 50px 90px -50px rgba(43, 31, 25, .6); }
-.tale__stage.reveal { transform: none; }
-.tale__img { position: absolute; inset: 0; margin: 0; opacity: 0; transform: scale(1.08); transition: opacity 1.1s var(--spring), transform 2.2s var(--spring); }
-.tale__img.is-on { opacity: 1; transform: none; }
-.tale__img img { width: 100%; height: 100%; object-fit: cover; }
-.tale__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24, 17, 13, .82), rgba(24, 17, 13, 0) 55%); }
-.tale__img figcaption { position: absolute; z-index: 1; inset-inline-start: clamp(22px, 3vw, 40px); bottom: clamp(22px, 3vw, 40px); max-width: 80%;
-  font-size: clamp(22px, 2.4vw, 34px); font-weight: 300; line-height: 1.35; color: var(--cream); opacity: 0; transform: translateY(18px);
-  transition: opacity .8s var(--spring) .35s, transform 1s var(--spring) .35s; }
-.tale__img.is-on figcaption { opacity: 1; transform: none; }
-.tale__big { position: absolute; z-index: 2; top: clamp(14px, 2vw, 26px); inset-inline-end: clamp(20px, 3vw, 40px); font-size: clamp(80px, 9vw, 140px); font-weight: 200;
-  line-height: 1; color: transparent; -webkit-text-stroke: 1.2px rgba(246, 238, 226, .85); direction: ltr; transition: opacity .4s; }
-.tale__big.is-swap { opacity: 0; }
-.tale__corner { position: absolute; z-index: 2; width: 54px; height: 54px; border: 1.5px solid #e6c48d; pointer-events: none; }
-.tale__corner--a { top: 18px; inset-inline-start: 18px; border-bottom: 0; border-inline-end: 0; border-start-start-radius: 14px; }
-.tale__corner--b { bottom: 18px; inset-inline-end: 18px; border-top: 0; border-inline-start: 0; border-end-end-radius: 14px; }
+.story3__head { margin-bottom: clamp(30px, 4vw, 54px); }
+.story3 { display: grid; grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr) 44px minmax(0, 1fr); align-items: stretch; }
+.tale3 { display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; isolation: isolate; color: var(--cream);
+  background: radial-gradient(80% 60% at 50% 25%, rgba(185, 153, 121, .2), transparent 65%), var(--night); box-shadow: 0 40px 80px -50px rgba(43, 31, 25, .7);
+  transition: transform .8s var(--spring); }
+.tale3:hover { transform: translateY(-6px); }
+.tale3__art { position: relative; padding: 22px 18px 6px; }
+.tale3__art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tale3__text { padding: 8px clamp(22px, 2.4vw, 32px) clamp(26px, 2.8vw, 36px); }
+.tale3__no { font-size: 12.5px; letter-spacing: .16em; color: #e6c48d; }
+.tale3 h4 { margin: 6px 0 0; font-size: clamp(26px, 2.4vw, 34px); font-weight: 300; color: var(--cream); }
+.tale3 p { margin-top: 10px; font-size: 15.5px; line-height: 1.85; color: rgba(246, 238, 226, .72); }
+.story3__arrow { display: grid; place-items: center; }
+.story3__arrow i { position: relative; width: 34px; height: 34px; border-radius: 50%; background: var(--cream); box-shadow: inset 0 0 0 1px rgba(185, 153, 121, .5); }
+.story3__arrow i::before { content: ""; position: absolute; inset: 0; margin: auto; width: 8px; height: 8px; border-top: 1.6px solid var(--mocha); border-right: 1.6px solid var(--mocha);
+  transform: translateX(-1px) rotate(45deg); }
+html[dir="rtl"] .story3__arrow i::before { transform: translateX(1px) rotate(-135deg); }
 
-/* ---------------------------------------------------------------- story, option B (?story=b): three photos in BUAD diamonds along a gold line */
-.trio__head { margin-bottom: clamp(30px, 4vw, 54px); }
-.trio__wrap { position: relative; }
-.trio__line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.trio__line path { fill: none; stroke: #c9a06b; stroke-width: 1.4; stroke-dasharray: 2 7; stroke-linecap: round; }
-.trio__list { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 60px); }
-.trio__item { margin-top: calc(var(--n) * clamp(50px, 7vw, 110px)); }
-.trio__gem { position: relative; width: 96%; aspect-ratio: 1; margin: 0 auto; }
-.trio__gem::before { content: ""; position: absolute; inset: 9%; border: 1px solid rgba(185, 153, 121, .55); border-radius: 22px; transform: rotate(45deg);
-  transition: transform 1.2s var(--spring); }
-.trio__item:hover .trio__gem::before { transform: rotate(135deg); }
-.trio__win { position: absolute; inset: 15%; overflow: hidden; border-radius: 18px; transform: rotate(45deg); box-shadow: 0 30px 60px -30px rgba(43, 31, 25, .55); }
-.trio__win img { position: absolute; left: -21%; top: -21%; width: 142%; height: 142%; max-width: none; object-fit: cover; transform: rotate(-45deg) scale(1.02);
-  transition: transform 1.6s var(--spring); }
-.trio__item:hover .trio__win img { transform: rotate(-45deg) scale(1.1); }
-.trio__no { display: block; margin-top: 4px; font-size: clamp(56px, 5vw, 80px); font-weight: 200; line-height: 1; color: transparent; -webkit-text-stroke: 1.2px #b99979;
-  direction: ltr; text-align: center; }
-.trio__item h4 { margin: 10px 0 0; text-align: center; font-size: clamp(24px, 2.2vw, 32px); font-weight: 400; color: var(--brown); }
-.trio__item p { margin-top: 10px; text-align: center; font-size: 15.5px; line-height: 1.85; color: var(--muted); }
+/* 01: tangled, restless lines */
+.tl1 path { fill: none; stroke-linecap: round; }
+.tl1__lines path { stroke: rgba(237, 216, 186, .42); stroke-width: 1.1; stroke-dasharray: 3 5; }
+.tl1__cross path { stroke: rgba(237, 216, 186, .18); stroke-width: 1; stroke-dasharray: 2 6; }
+.in .tl1__lines path, .in .tl1__cross path { animation: hubBuzz 1.4s linear infinite; }
+.tl1__dots circle { fill: var(--night); stroke: rgba(237, 216, 186, .7); stroke-width: 1.3; transform-box: fill-box; transform-origin: center; }
+.in .tl1__dots circle { animation: tl1Float 3.2s ease-in-out infinite; animation-delay: calc(var(--k) * -.27s); }
+@keyframes tl1Float { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(2px, -3px); } 50% { transform: translate(-2px, 2px); } 75% { transform: translate(3px, 1px); } }
+.tl1__core { fill: var(--sand); }
+.in .tl1__core { animation: tl1Shake 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes tl1Shake { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-6deg); } 40% { transform: rotate(5deg); } 60% { transform: rotate(-3deg); } }
 
-@media (max-width: 900px) {
-  .tale { grid-template-columns: 1fr; }
-  .tale__stage { min-height: 360px; order: -1; }
-  .trio__list { grid-template-columns: 1fr; gap: 50px; }
-  .trio__item { margin-top: 0; }
-  .trio__gem { width: 80%; }
-  .trio__line { display: none; }
+/* 02: the lifecycle wave, a light runs along it */
+html[dir="rtl"] .tl2 { transform: scaleX(-1); }
+.tl2__track { fill: none; stroke: rgba(237, 216, 186, .14); stroke-width: 6; stroke-linecap: round; }
+.tl2__path { fill: none; stroke: #e6c48d; stroke-width: 1.8; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s var(--spring) .2s; }
+.in .tl2__path { stroke-dashoffset: 0; }
+.tl2__spark { fill: #fff4dc; filter: drop-shadow(0 0 6px rgba(255, 230, 180, .9)); opacity: 0; transition: opacity .6s 1.8s; }
+.in .tl2__spark { opacity: 1; }
+.tl2__nodes rect { fill: var(--night); stroke: #e6c48d; stroke-width: 1.6; opacity: 0; transition: opacity .5s; transition-delay: calc(.4s + var(--k) * .45s); }
+.in .tl2__nodes rect { opacity: 1; }
+.tl2__nodes rect:last-child { fill: #e6c48d; }
+.tl2__labels { display: flex; justify-content: space-between; margin: -2px 2% 0; padding: 0; }
+.tl2__labels li { width: 20%; text-align: center; font-size: 13px; color: rgba(246, 238, 226, .78); }
+.tl2__labels li:last-child { color: #e6c48d; font-weight: 500; }
+html[lang="en"] .tl2__labels li { font-size: 10.5px; letter-spacing: -.01em; }
+
+/* 03: the mark draws itself, the six dimensions turn around it */
+.tl3__orbit { fill: none; stroke: rgba(237, 216, 186, .16); stroke-width: 1; stroke-dasharray: 2 5; }
+.tl3__sats { transform-origin: 150px 100px; }
+.in .tl3__sats { animation: tl3Turn 24s linear infinite; }
+@keyframes tl3Turn { to { transform: rotate(360deg); } }
+.tl3__sats line { stroke: rgba(230, 196, 141, .35); stroke-width: 1; }
+.tl3__sats rect { fill: var(--night); stroke: #e6c48d; stroke-width: 1.4; }
+.tl3__mark { fill: none; stroke: #e6c48d; stroke-width: 4; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.6s var(--spring) .3s; }
+.in .tl3__mark { stroke-dashoffset: 0; }
+.tl3__fill { fill: #e6c48d; fill-rule: evenodd; opacity: 0; transition: opacity 1.2s 2.2s; }
+.in .tl3__fill { opacity: 1; }
+
+@media (max-width: 1100px) {
+  .story3 { grid-template-columns: 1fr; gap: 0; }
+  .story3__arrow { height: 52px; }
+  .story3__arrow i { transform: rotate(90deg); }
+  html[dir="rtl"] .story3__arrow i { transform: rotate(-90deg); }
+  .tale3 { max-width: 560px; width: 100%; margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tl2__path, .tl3__mark { stroke-dashoffset: 0; } .tl3__fill, .tl2__nodes rect, .tl2__spark { opacity: 1; }
+  .in .tl1__lines path, .in .tl1__cross path, .in .tl1__dots circle, .in .tl1__core, .in .tl3__sats { animation: none; }
 }

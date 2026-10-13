@@ -351,54 +351,6 @@
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
-  /* ------------------------------------------------------------ story: option A (default) is an interactive showcase; ?story=b shows the diamonds */
-  if (new URLSearchParams(location.search).get('story') === 'b') document.documentElement.dataset.story = 'b';
-  (() => {
-    const box = $('#tale');
-    if (!box) return;
-    const tabs = $$('.tale__tab', box), imgs = $$('.tale__img', box), big = $('#taleBig');
-    const DUR = 6500;
-    let k = 0, timer = 0, visible = false, held = false, chosen = false;
-    function show(i) {
-      if (i === k && tabs[i].classList.contains('is-on')) return;
-      k = i;
-      tabs.forEach((t, j) => { t.classList.toggle('is-on', j === i); t.setAttribute('aria-selected', j === i); });
-      imgs.forEach((m, j) => m.classList.toggle('is-on', j === i));
-      big.classList.add('is-swap');
-      setTimeout(() => { big.textContent = String(i + 1).padStart(2, '0'); big.classList.remove('is-swap'); }, 260);
-      const bar = $('.tale__bar', tabs[i]); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
-    }
-    function run() {
-      clearTimeout(timer);
-      const auto = visible && !held && !chosen && !reduce;
-      box.classList.toggle('is-auto', auto);
-      if (auto) timer = setTimeout(() => { show((k + 1) % tabs.length); run(); }, DUR);
-    }
-    tabs.forEach((t, i) => {
-      t.addEventListener('click', () => { chosen = true; show(i); run(); });
-      t.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); chosen = true; show(i); run(); } });
-      t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; show(i); run(); } });
-    });
-    $('.tale__tabs', box).addEventListener('pointerleave', () => { held = false; run(); });
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; run(); }, { threshold: .35 }).observe(box);
-  })();
-  (() => {                                   // option B: the dotted gold line runs through the three diamonds
-    const wrap = $('.trio__wrap'), path = $('#trioPath');
-    if (!wrap || document.documentElement.dataset.story !== 'b') return;
-    const svg = $('.trio__line', wrap);
-    const build = () => {
-      const b = wrap.getBoundingClientRect();
-      svg.setAttribute('viewBox', `0 0 ${b.width.toFixed(1)} ${b.height.toFixed(1)}`);
-      path.setAttribute('d', $$('.trio__gem', wrap).map((g, i) => {
-        const r = g.getBoundingClientRect();
-        return `${i ? 'L' : 'M'}${(r.left + r.width / 2 - b.left).toFixed(1)} ${(r.top + r.height / 2 - b.top).toFixed(1)}`;
-      }).join(' '));
-    };
-    addEventListener('resize', build);
-    document.addEventListener('buad:lang', () => setTimeout(build, 50));
-    setTimeout(build, 400);
-  })();
-
   /* ------------------------------------------------------------ how we work: a gold line climbs the staircase with the scroll */
   (() => {
     const box = $('#stairs');
