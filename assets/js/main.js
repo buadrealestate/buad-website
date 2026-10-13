@@ -383,6 +383,13 @@
     setTimeout(build, 300);
   })();
 
+  /* ------------------------------------------------------------ intro: the mark draws itself behind the statement */
+  (() => {
+    const sec = $('#intro');
+    if (!sec) return;
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting) { sec.classList.add('is-in'); o.disconnect(); } }, { threshold: .25 }).observe(sec);
+  })();
+
   /* ------------------------------------------------------------ vision & mission: the diamond window opens, the vision lights up word by word */
   const mv = (() => {
     const sec = $('#vision');
@@ -542,7 +549,7 @@
       if (!name) form.elements.name.classList.add('is-invalid');
       if (!phone && !text) { form.elements.phone.classList.add('is-invalid'); form.elements.msg.classList.add('is-invalid'); }
       msg.classList.add('is-err');
-      msg.textContent = en ? EN['f.err'] : 'فضلاً اكتب الاسم ورقم التواصل أو رسالتك.';
+      msg.textContent = en ? EN['f.err'] : 'فضلاً اكتب الاسم ورقم التواصل أو رسالتك';
       return;
     }
     const chip = k => (form.querySelector(`[name=${k}]:checked + span`) || {}).textContent || '';
@@ -558,10 +565,10 @@
     ].filter(Boolean).join('\n');
     const subject = (en ? 'BUAD website — ' : 'موقع بُعد — ') + topic;
     if ((e.submitter && e.submitter.dataset.send) === 'mail') {
-      msg.textContent = en ? EN['f.ok'] : 'جارٍ فتح البريد الإلكتروني لإرسال رسالتك…';
+      msg.textContent = en ? EN['f.ok'] : 'جارٍ فتح البريد الإلكتروني لإرسال رسالتك ';
       location.href = `mailto:info@buad-r.sa?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines)}`;
     } else {
-      msg.textContent = en ? 'Opening WhatsApp with your message…' : 'جارٍ فتح واتساب برسالتك…';
+      msg.textContent = en ? 'Opening WhatsApp with your message…' : 'جارٍ فتح واتساب برسالتك ';
       window.open(`https://wa.me/966550000126?text=${encodeURIComponent(subject + '\n\n' + lines)}`, '_blank', 'noopener');
     }
   });

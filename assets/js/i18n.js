@@ -12,7 +12,7 @@ window.BUAD_EN = {
   'hero.cta1': 'Discover the Project', 'hero.cta2': 'Meet Buad', 'hero.cta3': 'Our Projects',
   'hero.tagline': 'A farther future… a deeper value', 'hero.sub': 'An Integrated Management, Development &amp; Operations Ecosystem',
 
-  'intro.eyebrow': 'BUAD Real Estate',
+  'intro.eyebrow': 'BUAD',
   'intro.title': 'From here… a new dimension for your business begins',
   'intro.text': 'Every successful project needs more than an idea and capital. It needs disciplined management, inspired development and operations that never stop. At Buad, we have brought these dimensions together in one integrated ecosystem, to be our clients’ partner from the very first opportunity to the very last day of operation.',
   'intro.tag': 'A farther future… a deeper value',
@@ -157,7 +157,7 @@ window.BUAD_EN = {
   /* Al Jumum page */
   'jp.meta.title': 'Al Jumum Interface | BUAD',
   'jp.nav.home': 'Home', 'jp.nav.plan': 'Masterplan', 'jp.nav.phases': 'Phases', 'jp.nav.loc': 'Location', 'jp.nav.invest': 'Investment',
-  'jp.back': 'BUAD Real Estate',
+  'jp.back': 'BUAD',
   'jp.hero.sub': 'An integrated destination at the northern entrance to Makkah', 'jp.hero.cta': 'Explore the Masterplan',
   'jp.story.eyebrow': 'About the Project',
   'jp.story.title': 'More than 45 commercial activities in one destination, along the Makkah – Madinah Highway.',
