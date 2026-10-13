@@ -250,4 +250,7 @@ window.BUAD_EN = {
   'f.sendmail': 'Send by e-mail',
   // how we work (Oct 2026)
   'how.models': 'Ways to work with us',
+  // story showcase (Oct 2026)
+  'story.cap2': 'From opportunity… to operations',
+  'story.cap3': 'One contract · one point of contact',
 };

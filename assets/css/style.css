@@ -1172,28 +1172,6 @@ html[dir="rtl"] .tile:hover .tile__go { transform: translate(3px, -3px); }
   .tile__v { font-size: 16px; }
 }
 
-/* ---------------------------------------------------------------- story: many points → six dimensions → the BUAD mark (canvas, pinned while scrolling) */
-.journey { position: relative; height: 320vh; margin-top: clamp(70px, 9vw, 120px); background: var(--night); }
-.journey__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; color: var(--cream);
-  background: radial-gradient(55% 60% at 30% 52%, rgba(185, 153, 121, .16), transparent 70%), var(--night); }
-html[dir="ltr"] .journey__pin { background: radial-gradient(55% 60% at 70% 52%, rgba(185, 153, 121, .16), transparent 70%), var(--night); }
-.journey__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.journey__ui { position: relative; z-index: 1; height: 100%; display: flex; align-items: center; pointer-events: none; }
-.journey__text { width: min(500px, 46%); pointer-events: auto; }
-.journey__text .eyebrow { color: var(--gold); }
-.journey__steps { position: relative; min-height: 300px; margin-top: 10px; }
-.jstep { position: absolute; inset: 0 0 auto 0; opacity: 0; transform: translateY(30px); filter: blur(6px); pointer-events: none;
-  transition: opacity .7s var(--spring), transform .9s var(--spring), filter .7s var(--spring); }
-.jstep.is-on { opacity: 1; transform: none; filter: none; pointer-events: auto; }
-.jstep.is-past { transform: translateY(-30px); }
-.jstep__no { display: block; font-size: clamp(64px, 7vw, 110px); font-weight: 200; line-height: .9; color: transparent; -webkit-text-stroke: 1.2px #e6c48d; direction: ltr; text-align: right; }
-html[dir="ltr"] .jstep__no { text-align: left; }
-.jstep h3 { margin-top: 18px; font-size: clamp(34px, 3.8vw, 58px); font-weight: 300; line-height: 1.15; }
-.jstep p { margin-top: 16px; font-size: clamp(16.5px, 1.3vw, 19px); line-height: 1.9; color: rgba(246, 238, 226, .74); }
-.journey__bar { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 28px; }
-.journey__bar span { height: 2px; background: rgba(237, 216, 186, .16); border-radius: 2px; }
-.journey__bar i { position: absolute; top: 0; inset-inline-start: 0; height: 2px; width: var(--jb, 0%); background: linear-gradient(90deg, #b98a52, #f3dcb2); border-radius: 2px; }
-
 /* ---------------------------------------------------------------- how we work: a staircase */
 .how2 { position: relative; overflow: hidden; color: var(--cream); padding-block: clamp(100px, 13vw, 170px);
   background: radial-gradient(60% 60% at 0% 100%, rgba(185, 153, 121, .16), transparent 60%), var(--brown); }
@@ -1302,13 +1280,6 @@ html[dir="ltr"] .jstep__no { text-align: left; }
   .wcard--hub .hub { margin-top: 18px; }
 }
 @media (max-width: 900px) {
-  .journey { height: 300vh; }
-  .journey__ui { align-items: flex-end; padding-bottom: 7vh; }
-  .journey__text { width: 100%; }
-  .journey__steps { min-height: 250px; }
-  .jstep h3 { font-size: 32px; }
-  .jstep__no { font-size: 56px; }
-  .jstep p { font-size: 15.5px; }
   .how2__head { grid-template-columns: 1fr; }
   .stairs__list { grid-template-columns: 1fr; }
   .models2__row { grid-template-columns: 1fr; }
@@ -1319,4 +1290,75 @@ html[dir="ltr"] .jstep__no { text-align: left; }
 @media (prefers-reduced-motion: reduce) {
   .fx-floor { opacity: 1; transform: none; }
   .in .fx-floor, .in .fx-load, .in .fx-ring, .in .fx-route, .in .fx-link, .in .fx-node, .in .fx-block { animation: none !important; }
+}
+
+/* ---------------------------------------------------------------- story, option A: titles + a large crossfading picture */
+.about2__story { position: relative; padding-top: clamp(80px, 10vw, 130px); }
+.trio { display: none; }
+html[data-story="b"] .tale { display: none; }
+html[data-story="b"] .trio { display: block; }
+.tale { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(30px, 5vw, 80px); align-items: stretch; }
+.tale__title { font-size: clamp(30px, 3.6vw, 52px); font-weight: 300; line-height: 1.25; color: var(--brown); text-wrap: balance; }
+.tale__tabs { margin-top: clamp(26px, 3vw, 40px); border-top: 1px solid var(--line); }
+.tale__tab { position: relative; display: grid; grid-template-columns: 58px minmax(0, 1fr); padding-block: clamp(18px, 2vw, 26px); border-bottom: 1px solid var(--line);
+  cursor: pointer; outline: none; }
+.tale__no { padding-top: .9em; font-size: 13px; font-weight: 500; letter-spacing: .14em; color: rgba(185, 153, 121, .7); transition: color .4s; }
+.tale__tab h4 { margin: 0; font-size: clamp(26px, 2.7vw, 40px); font-weight: 300; line-height: 1.25; color: rgba(61, 45, 36, .38); transition: color .6s var(--spring); }
+.tale__tab:hover h4 { color: rgba(61, 45, 36, .7); }
+.tale__tab.is-on h4 { color: var(--brown); }
+.tale__tab.is-on .tale__no { color: var(--tan); }
+.tale__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .8s var(--spring), margin .8s var(--spring); }
+.tale__more > p { overflow: hidden; min-height: 0; font-size: 16.5px; line-height: 1.85; color: var(--muted); opacity: 0; transition: opacity .5s; }
+.tale__tab.is-on .tale__more { grid-template-rows: 1fr; margin-top: 10px; }
+.tale__tab.is-on .tale__more > p { opacity: 1; transition-delay: .2s; }
+.tale__bar { position: absolute; inset-inline: 0; bottom: -1px; height: 1.5px; background: var(--tan); transform: scaleX(0); transform-origin: 100% 50%; }
+html[dir="ltr"] .tale__bar { transform-origin: 0 50%; }
+.tale.is-auto .tale__tab.is-on .tale__bar { animation: valBar 6.5s linear forwards; }
+.tale:not(.is-auto) .tale__tab.is-on .tale__bar { transform: scaleX(1); }
+.tale__tab:focus-visible { outline: 2px solid var(--tan); outline-offset: 4px; border-radius: 4px; }
+.tale__stage { position: relative; isolation: isolate; min-height: clamp(440px, 44vw, 620px); border-radius: 30px; overflow: hidden; background: var(--night);
+  box-shadow: 0 50px 90px -50px rgba(43, 31, 25, .6); }
+.tale__stage.reveal { transform: none; }
+.tale__img { position: absolute; inset: 0; margin: 0; opacity: 0; transform: scale(1.08); transition: opacity 1.1s var(--spring), transform 2.2s var(--spring); }
+.tale__img.is-on { opacity: 1; transform: none; }
+.tale__img img { width: 100%; height: 100%; object-fit: cover; }
+.tale__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(24, 17, 13, .82), rgba(24, 17, 13, 0) 55%); }
+.tale__img figcaption { position: absolute; z-index: 1; inset-inline-start: clamp(22px, 3vw, 40px); bottom: clamp(22px, 3vw, 40px); max-width: 80%;
+  font-size: clamp(22px, 2.4vw, 34px); font-weight: 300; line-height: 1.35; color: var(--cream); opacity: 0; transform: translateY(18px);
+  transition: opacity .8s var(--spring) .35s, transform 1s var(--spring) .35s; }
+.tale__img.is-on figcaption { opacity: 1; transform: none; }
+.tale__big { position: absolute; z-index: 2; top: clamp(14px, 2vw, 26px); inset-inline-end: clamp(20px, 3vw, 40px); font-size: clamp(80px, 9vw, 140px); font-weight: 200;
+  line-height: 1; color: transparent; -webkit-text-stroke: 1.2px rgba(246, 238, 226, .85); direction: ltr; transition: opacity .4s; }
+.tale__big.is-swap { opacity: 0; }
+.tale__corner { position: absolute; z-index: 2; width: 54px; height: 54px; border: 1.5px solid #e6c48d; pointer-events: none; }
+.tale__corner--a { top: 18px; inset-inline-start: 18px; border-bottom: 0; border-inline-end: 0; border-start-start-radius: 14px; }
+.tale__corner--b { bottom: 18px; inset-inline-end: 18px; border-top: 0; border-inline-start: 0; border-end-end-radius: 14px; }
+
+/* ---------------------------------------------------------------- story, option B (?story=b): three photos in BUAD diamonds along a gold line */
+.trio__head { margin-bottom: clamp(30px, 4vw, 54px); }
+.trio__wrap { position: relative; }
+.trio__line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.trio__line path { fill: none; stroke: #c9a06b; stroke-width: 1.4; stroke-dasharray: 2 7; stroke-linecap: round; }
+.trio__list { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 60px); }
+.trio__item { margin-top: calc(var(--n) * clamp(50px, 7vw, 110px)); }
+.trio__gem { position: relative; width: 96%; aspect-ratio: 1; margin: 0 auto; }
+.trio__gem::before { content: ""; position: absolute; inset: 9%; border: 1px solid rgba(185, 153, 121, .55); border-radius: 22px; transform: rotate(45deg);
+  transition: transform 1.2s var(--spring); }
+.trio__item:hover .trio__gem::before { transform: rotate(135deg); }
+.trio__win { position: absolute; inset: 15%; overflow: hidden; border-radius: 18px; transform: rotate(45deg); box-shadow: 0 30px 60px -30px rgba(43, 31, 25, .55); }
+.trio__win img { position: absolute; left: -21%; top: -21%; width: 142%; height: 142%; max-width: none; object-fit: cover; transform: rotate(-45deg) scale(1.02);
+  transition: transform 1.6s var(--spring); }
+.trio__item:hover .trio__win img { transform: rotate(-45deg) scale(1.1); }
+.trio__no { display: block; margin-top: 4px; font-size: clamp(56px, 5vw, 80px); font-weight: 200; line-height: 1; color: transparent; -webkit-text-stroke: 1.2px #b99979;
+  direction: ltr; text-align: center; }
+.trio__item h4 { margin: 10px 0 0; text-align: center; font-size: clamp(24px, 2.2vw, 32px); font-weight: 400; color: var(--brown); }
+.trio__item p { margin-top: 10px; text-align: center; font-size: 15.5px; line-height: 1.85; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .tale { grid-template-columns: 1fr; }
+  .tale__stage { min-height: 360px; order: -1; }
+  .trio__list { grid-template-columns: 1fr; gap: 50px; }
+  .trio__item { margin-top: 0; }
+  .trio__gem { width: 80%; }
+  .trio__line { display: none; }
 }

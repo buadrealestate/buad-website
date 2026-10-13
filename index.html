@@ -105,19 +105,37 @@
       </div>
     </div>
   </div>
-  <div class="journey" id="journey">
-    <div class="journey__pin">
-      <canvas class="journey__canvas" id="journeyCanvas" data-mark="M123.8 191.5 L99.8 215.2 L99.8 216.5 L120.5 237.2 L124.5 240.2 L148.5 216.0Z M99.8 166.8 L98.2 166.5 L74.5 190.0 L74.8 191.5 L76.8 193.5 L78.5 193.5 L101.8 170.2 L101.8 168.8Z M91.0 158.0 L89.2 157.5 L65.8 181.2 L66.0 182.8 L68.8 185.5 L70.0 185.2 L93.2 162.0 L93.2 160.2Z M81.8 148.8 L80.8 148.5 L57.0 172.2 L56.8 173.2 L59.8 176.5 L61.0 176.8 L84.8 153.0 L84.5 151.5Z M72.8 140.0 L71.8 140.0 L48.0 163.8 L48.0 164.8 L51.2 167.8 L52.2 167.8 L76.0 144.0 L76.0 143.0Z M63.8 131.0 L39.0 155.0 L42.2 159.0 L43.2 159.0 L67.0 135.2 L67.0 134.2Z M55.2 122.5 L54.0 122.2 L30.2 146.0 L30.8 147.5 L33.5 150.0 L34.5 150.0 L58.2 126.5Z M123.2 1.2 L4.0 120.5 L5.8 122.8 L7.8 123.8 L31.5 100.0 L32.8 100.0 L36.2 103.5 L36.2 104.5 L12.2 128.8 L16.0 132.8 L17.0 132.5 L40.2 109.0 L41.5 108.8 L45.0 112.2 L45.0 113.8 L21.2 137.5 L24.5 141.2 L25.8 141.2 L49.2 117.8 L50.5 117.8 L53.0 120.2 L54.0 120.0 L121.8 52.0 L123.8 51.0 L193.5 120.8 L193.5 121.8 L172.2 142.5 L123.5 94.2 L96.5 121.5 L170.0 194.5 L243.2 121.2Z" aria-hidden="true"></canvas>
-      <div class="wrap journey__ui">
-        <div class="journey__text">
-          <p class="eyebrow" data-i18n="story.eyebrow">قصتنا</p>
-          <ol class="journey__steps">
-          <li class="jstep is-on"><b class="jstep__no" aria-hidden="true">01</b><h3 data-i18n="about.s1t">البداية</h3><p data-i18n="about.s1">من خبرتنا في المشاريع رأينا حاجة متكررة لدى المنشآت: جهات كثيرة لإدارة مشروع واحد، وتنسيق مرهق بينها؛ فقررنا أن نكون نحن الجهة الواحدة.</p></li>
-          <li class="jstep"><b class="jstep__no" aria-hidden="true">02</b><h3 data-i18n="about.s2t">التحوّل</h3><p data-i18n="about.s2">نقدّم اليوم أكثر من 30 خدمة موزعة على ستة أبعاد متكاملة، تغطي دورة حياة المشروع والمنشأة كاملة: من الفرصة إلى الصفقة، إلى العقد، إلى التطوير، إلى التشغيل.</p></li>
-          <li class="jstep"><b class="jstep__no" aria-hidden="true">03</b><h3 data-i18n="about.s3t">المنظومة</h3><p data-i18n="about.s3">نعمل بفريق متعدد التخصصات وشبكة شركاء متخصصين ومرخّصين، تحت عقد واحد ونقطة تواصل واحدة، لنمنح عملاءنا السرعة والوضوح وراحة البال.</p></li>
-          </ol>
-          <div class="journey__bar" aria-hidden="true"><i id="journeyBar"></i><span></span><span></span><span></span></div>
-        </div>
+  <div class="wrap about2__story" id="aboutStory">
+    <div class="tale" id="tale">
+      <div class="tale__nav">
+        <p class="eyebrow reveal" data-i18n="story.eyebrow">قصتنا</p>
+        <h3 class="tale__title reveal" data-i18n="story.title">من فكرة… إلى منظومة متكاملة</h3>
+        <ol class="tale__tabs">
+          <li class="tale__tab is-on" tabindex="0"><span class="tale__no">01</span><div><h4 data-i18n="about.s1t">البداية</h4><div class="tale__more"><p data-i18n="about.s1">من خبرتنا في المشاريع رأينا حاجة متكررة لدى المنشآت: جهات كثيرة لإدارة مشروع واحد، وتنسيق مرهق بينها؛ فقررنا أن نكون نحن الجهة الواحدة.</p></div></div><i class="tale__bar" aria-hidden="true"></i></li>
+          <li class="tale__tab" tabindex="0"><span class="tale__no">02</span><div><h4 data-i18n="about.s2t">التحوّل</h4><div class="tale__more"><p data-i18n="about.s2">نقدّم اليوم أكثر من 30 خدمة موزعة على ستة أبعاد متكاملة، تغطي دورة حياة المشروع والمنشأة كاملة: من الفرصة إلى الصفقة، إلى العقد، إلى التطوير، إلى التشغيل.</p></div></div><i class="tale__bar" aria-hidden="true"></i></li>
+          <li class="tale__tab" tabindex="0"><span class="tale__no">03</span><div><h4 data-i18n="about.s3t">المنظومة</h4><div class="tale__more"><p data-i18n="about.s3">نعمل بفريق متعدد التخصصات وشبكة شركاء متخصصين ومرخّصين، تحت عقد واحد ونقطة تواصل واحدة، لنمنح عملاءنا السرعة والوضوح وراحة البال.</p></div></div><i class="tale__bar" aria-hidden="true"></i></li>
+        </ol>
+      </div>
+      <div class="tale__stage reveal">
+        <figure class="tale__img is-on"><img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async"><figcaption data-i18n="story.q1">جهات كثيرة… لمشروع واحد</figcaption></figure>
+        <figure class="tale__img"><img src="assets/img/office-meeting.webp" alt="" loading="lazy" decoding="async"><figcaption data-i18n="story.cap2">من الفرصة… إلى التشغيل</figcaption></figure>
+        <figure class="tale__img"><img src="assets/img/office-reception.webp" alt="" loading="lazy" decoding="async"><figcaption data-i18n="story.cap3">عقد واحد · نقطة تواصل واحدة</figcaption></figure>
+        <b class="tale__big" id="taleBig" aria-hidden="true">01</b>
+        <span class="tale__corner tale__corner--a" aria-hidden="true"></span><span class="tale__corner tale__corner--b" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="trio" id="trio">
+      <div class="trio__head reveal"><p class="eyebrow" data-i18n="story.eyebrow">قصتنا</p><h3 class="tale__title" data-i18n="story.title">من فكرة… إلى منظومة متكاملة</h3></div>
+      <div class="trio__wrap">
+        <svg class="trio__line" aria-hidden="true"><path id="trioPath"/></svg>
+        <ol class="trio__list">
+        <li class="trio__item reveal" style="--n:0"><figure class="trio__gem"><span class="trio__win"><img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async"></span></figure>
+          <b class="trio__no" aria-hidden="true">01</b><h4 data-i18n="about.s1t">البداية</h4><p data-i18n="about.s1">من خبرتنا في المشاريع رأينا حاجة متكررة لدى المنشآت: جهات كثيرة لإدارة مشروع واحد، وتنسيق مرهق بينها؛ فقررنا أن نكون نحن الجهة الواحدة.</p></li>
+        <li class="trio__item reveal" style="--n:1"><figure class="trio__gem"><span class="trio__win"><img src="assets/img/office-meeting.webp" alt="" loading="lazy" decoding="async"></span></figure>
+          <b class="trio__no" aria-hidden="true">02</b><h4 data-i18n="about.s2t">التحوّل</h4><p data-i18n="about.s2">نقدّم اليوم أكثر من 30 خدمة موزعة على ستة أبعاد متكاملة، تغطي دورة حياة المشروع والمنشأة كاملة: من الفرصة إلى الصفقة، إلى العقد، إلى التطوير، إلى التشغيل.</p></li>
+        <li class="trio__item reveal" style="--n:2"><figure class="trio__gem"><span class="trio__win"><img src="assets/img/office-reception.webp" alt="" loading="lazy" decoding="async"></span></figure>
+          <b class="trio__no" aria-hidden="true">03</b><h4 data-i18n="about.s3t">المنظومة</h4><p data-i18n="about.s3">نعمل بفريق متعدد التخصصات وشبكة شركاء متخصصين ومرخّصين، تحت عقد واحد ونقطة تواصل واحدة، لنمنح عملاءنا السرعة والوضوح وراحة البال.</p></li>
+        </ol>
       </div>
     </div>
   </div>
