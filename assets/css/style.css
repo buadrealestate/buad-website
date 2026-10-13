@@ -63,7 +63,7 @@ html[lang="en"] .eyebrow { letter-spacing: .22em; text-transform: uppercase; fon
 .btn:hover { transform: translateY(-2px); }
 .btn--light { background: var(--sand); color: var(--brown); }
 .btn--light:hover { background: #fff; }
-.btn--ghost { border-color: rgba(246, 238, 226, .45); color: var(--cream); backdrop-filter: blur(6px); }
+.btn--ghost { border-color: rgba(246, 238, 226, .45); color: var(--cream); backdrop-filter: blur(6px); background: transparent; }
 .btn--ghost:hover { background: rgba(246, 238, 226, .12); }
 .btn--dark { background: var(--brown); color: var(--cream); }
 .btn--dark:hover { background: var(--mocha); }

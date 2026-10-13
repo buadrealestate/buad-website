@@ -345,6 +345,7 @@
           <h3 class="zcard__name" id="zName"></h3>
           <p class="zcard__area"><b id="zArea" dir="ltr"></b><small data-i18n="unit.m2">م²</small></p>
           <p class="zcard__note" data-i18n="jp.z.note">مساحة تقريبية وفق المخطط العام المعتمد</p>
+          <button type="button" class="zcard__rq" data-rq="lease" data-rq-zone><span data-i18n="rq.btn.zone">اطلب موقعًا في هذه المنطقة</span><i aria-hidden="true"></i></button>
         </div>
       </aside>
     </div>
@@ -402,6 +403,40 @@
   </div>
 </section>
 
+<!-- ============================================================ project progress: a loading counter + milestones -->
+<section class="jprog" id="progress">
+  <div class="wrap">
+    <div class="jprog__head">
+      <div class="head head--light reveal">
+        <p class="eyebrow" data-i18n="jp.pr.eyebrow">مستجدات المشروع</p>
+        <h2 class="h2" data-i18n="jp.pr.title">أين وصل المشروع اليوم</h2>
+      </div>
+      <p class="jprog__live reveal"><i aria-hidden="true"></i><span data-i18n="jp.pr.updated">آخر تحديث: أكتوبر 2026</span></p>
+    </div>
+    <div class="jprog__meter reveal" id="jprog" data-launch="2027-09-01">
+      <div class="jprog__top">
+        <div class="jprog__pct"><b id="jprogPct" dir="ltr">0</b><span dir="ltr">%</span></div>
+        <div class="jprog__labels">
+          <p class="jprog__label" data-i18n="jp.pr.label">نسبة إنجاز المشروع</p>
+          <p class="jprog__now"><i aria-hidden="true"></i><span data-i18n="jp.pr.now">نعمل الآن على</span> <b data-i18n="jp.ms.4">تجهيز موقع المرحلة الأولى وأعمال تكسير الجبل</b></p>
+        </div>
+        <div class="jprog__count"><b id="jprogDays" dir="ltr">0</b><span data-i18n="jp.pr.days">يومًا على تشغيل محطة الوقود</span></div>
+      </div>
+      <div class="jprog__track" aria-hidden="true"><i class="jprog__fill" id="jprogFill"></i><div class="jprog__ticks"><i class="jprog__tick is-done" aria-hidden="true"></i><i class="jprog__tick is-done" aria-hidden="true"></i><i class="jprog__tick is-done" aria-hidden="true"></i><i class="jprog__tick is-now" aria-hidden="true"></i><i class="jprog__tick is-next" aria-hidden="true"></i><i class="jprog__tick is-next" aria-hidden="true"></i><i class="jprog__tick is-next" aria-hidden="true"></i><i class="jprog__tick is-next" aria-hidden="true"></i></div></div>
+    </div>
+    <ol class="ms-list">
+        <li class="ms is-done reveal"><span class="ms__no" aria-hidden="true">01</span><span class="ms__st" data-i18n="jp.st.done">منجز</span><p class="ms__t" data-i18n="jp.ms.1">توقيع عقد الإستثمار مع أمانة العاصمة المقدسة واستلام الأرض</p><time class="ms__d" data-i18n="jp.ms.1d">2025</time></li>
+        <li class="ms is-done reveal"><span class="ms__no" aria-hidden="true">02</span><span class="ms__st" data-i18n="jp.st.done">منجز</span><p class="ms__t" data-i18n="jp.ms.2">إعداد المخطط العام واعتماد المقترح الثاني</p><time class="ms__d" data-i18n="jp.ms.2d">2026</time></li>
+        <li class="ms is-done reveal"><span class="ms__no" aria-hidden="true">03</span><span class="ms__st" data-i18n="jp.st.done">منجز</span><p class="ms__t" data-i18n="jp.ms.3">دراسات الجدوى والملف الإستثماري للمرحلة الأولى</p><time class="ms__d" data-i18n="jp.ms.3d">2026</time></li>
+        <li class="ms is-now reveal"><span class="ms__no" aria-hidden="true">04</span><span class="ms__st" data-i18n="jp.st.now">جارٍ الآن</span><p class="ms__t" data-i18n="jp.ms.4">تجهيز موقع المرحلة الأولى وأعمال تكسير الجبل</p><time class="ms__d" data-i18n="jp.ms.4d">أكتوبر 2026</time></li>
+        <li class="ms is-next reveal"><span class="ms__no" aria-hidden="true">05</span><span class="ms__st" data-i18n="jp.st.next">قادم</span><p class="ms__t" data-i18n="jp.ms.5">إصدار رخصة البناء لمحطة الوقود</p><time class="ms__d" data-i18n="jp.ms.5d">نوفمبر 2026</time></li>
+        <li class="ms is-next reveal"><span class="ms__no" aria-hidden="true">06</span><span class="ms__st" data-i18n="jp.st.next">قادم</span><p class="ms__t" data-i18n="jp.ms.6">إنشاء محطة الوقود ومرافق الخدمة</p><time class="ms__d" data-i18n="jp.ms.6d">2027</time></li>
+        <li class="ms is-next reveal"><span class="ms__no" aria-hidden="true">07</span><span class="ms__st" data-i18n="jp.st.next">قادم</span><p class="ms__t" data-i18n="jp.ms.7">تشغيل محطة الوقود ومرافق الخدمة</p><time class="ms__d" data-i18n="jp.ms.7d">سبتمبر 2027</time></li>
+        <li class="ms is-next reveal"><span class="ms__no" aria-hidden="true">08</span><span class="ms__st" data-i18n="jp.st.next">قادم</span><p class="ms__t" data-i18n="jp.ms.8">استكمال مراحل التطوير الثانية والثالثة والرابعة</p><time class="ms__d" data-i18n="jp.ms.8d">2028</time></li>
+    </ol>
+  </div>
+</section>
+
 <!-- ============================================================ location -->
 <section class="jloc" id="location">
   <div class="jloc__media parallax"><img src="assets/img/jumum/aerial-day.webp" alt="" loading="lazy" decoding="async"></div>
@@ -428,8 +463,8 @@
     <h2 class="h2 reveal" data-i18n="jp.inv.title">كن شريكًا في واجهة الجموم</h2>
     <p class="lead reveal" data-i18n="jp.inv.lead">نرحب بالمستثمرين والمشغّلين والعلامات التجارية الراغبين في الشراكة أو الاستئجار ضمن مراحل المشروع.</p>
     <div class="jinvest__actions reveal">
-      <a href="#contact" class="btn btn--light btn--ico"><span data-i18n="nav.contact">تواصل معنا</span><i class="btn__ico" aria-hidden="true"></i></a>
-      <a href="https://wa.me/966550000126" target="_blank" rel="noopener" class="btn btn--ghost" data-i18n="ct.wa">تواصل عبر واتساب</a>
+      <button type="button" class="btn btn--light btn--ico" data-rq="invest"><span data-i18n="rq.btn.invest">اطلب الملف الإستثماري</span><i class="btn__ico" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn--ghost" data-rq="lease"><span data-i18n="rq.btn.lease">فرص التأجير للعلامات التجارية</span></button>
     </div>
     <div class="dl reveal">
       <p class="dl__label" data-i18n="dl.title">حمّل ملف تعريف الشركة</p>
@@ -687,5 +722,7 @@
 <script src="assets/js/main.js"></script>
 <script src="assets/js/jumum-sections.js"></script>
 <script src="assets/js/jumum-phases.js"></script>
+<script src="assets/js/jumum-progress.js"></script>
+<script src="assets/js/requests.js"></script>
 </body>
 </html>
