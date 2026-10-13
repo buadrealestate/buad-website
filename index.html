@@ -105,51 +105,21 @@
       </div>
     </div>
   </div>
-  <div class="wrap about2__story" id="aboutStory">
-    <div class="story__head reveal">
-      <p class="eyebrow" data-i18n="story.eyebrow">قصتنا</p>
-      <h3 class="h2" data-i18n="story.title">من فكرة… إلى منظومة متكاملة</h3>
+  <div class="journey" id="journey">
+    <div class="journey__pin">
+      <canvas class="journey__canvas" id="journeyCanvas" data-mark="M123.8 191.5 L99.8 215.2 L99.8 216.5 L120.5 237.2 L124.5 240.2 L148.5 216.0Z M99.8 166.8 L98.2 166.5 L74.5 190.0 L74.8 191.5 L76.8 193.5 L78.5 193.5 L101.8 170.2 L101.8 168.8Z M91.0 158.0 L89.2 157.5 L65.8 181.2 L66.0 182.8 L68.8 185.5 L70.0 185.2 L93.2 162.0 L93.2 160.2Z M81.8 148.8 L80.8 148.5 L57.0 172.2 L56.8 173.2 L59.8 176.5 L61.0 176.8 L84.8 153.0 L84.5 151.5Z M72.8 140.0 L71.8 140.0 L48.0 163.8 L48.0 164.8 L51.2 167.8 L52.2 167.8 L76.0 144.0 L76.0 143.0Z M63.8 131.0 L39.0 155.0 L42.2 159.0 L43.2 159.0 L67.0 135.2 L67.0 134.2Z M55.2 122.5 L54.0 122.2 L30.2 146.0 L30.8 147.5 L33.5 150.0 L34.5 150.0 L58.2 126.5Z M123.2 1.2 L4.0 120.5 L5.8 122.8 L7.8 123.8 L31.5 100.0 L32.8 100.0 L36.2 103.5 L36.2 104.5 L12.2 128.8 L16.0 132.8 L17.0 132.5 L40.2 109.0 L41.5 108.8 L45.0 112.2 L45.0 113.8 L21.2 137.5 L24.5 141.2 L25.8 141.2 L49.2 117.8 L50.5 117.8 L53.0 120.2 L54.0 120.0 L121.8 52.0 L123.8 51.0 L193.5 120.8 L193.5 121.8 L172.2 142.5 L123.5 94.2 L96.5 121.5 L170.0 194.5 L243.2 121.2Z" aria-hidden="true"></canvas>
+      <div class="wrap journey__ui">
+        <div class="journey__text">
+          <p class="eyebrow" data-i18n="story.eyebrow">قصتنا</p>
+          <ol class="journey__steps">
+          <li class="jstep is-on"><b class="jstep__no" aria-hidden="true">01</b><h3 data-i18n="about.s1t">البداية</h3><p data-i18n="about.s1">من خبرتنا في المشاريع رأينا حاجة متكررة لدى المنشآت: جهات كثيرة لإدارة مشروع واحد، وتنسيق مرهق بينها؛ فقررنا أن نكون نحن الجهة الواحدة.</p></li>
+          <li class="jstep"><b class="jstep__no" aria-hidden="true">02</b><h3 data-i18n="about.s2t">التحوّل</h3><p data-i18n="about.s2">نقدّم اليوم أكثر من 30 خدمة موزعة على ستة أبعاد متكاملة، تغطي دورة حياة المشروع والمنشأة كاملة: من الفرصة إلى الصفقة، إلى العقد، إلى التطوير، إلى التشغيل.</p></li>
+          <li class="jstep"><b class="jstep__no" aria-hidden="true">03</b><h3 data-i18n="about.s3t">المنظومة</h3><p data-i18n="about.s3">نعمل بفريق متعدد التخصصات وشبكة شركاء متخصصين ومرخّصين، تحت عقد واحد ونقطة تواصل واحدة، لنمنح عملاءنا السرعة والوضوح وراحة البال.</p></li>
+          </ol>
+          <div class="journey__bar" aria-hidden="true"><i id="journeyBar"></i><span></span><span></span><span></span></div>
+        </div>
+      </div>
     </div>
-    <ol class="stack" id="stack">
-      <li class="stack__card stack__card--a" style="--i:0">
-        <div class="stack__text">
-          <b class="stack__no" aria-hidden="true">01</b>
-          <h3 data-i18n="about.s1t">البداية</h3>
-          <p data-i18n="about.s1">من خبرتنا في المشاريع رأينا حاجة متكررة لدى المنشآت: جهات كثيرة لإدارة مشروع واحد، وتنسيق مرهق بينها؛ فقررنا أن نكون نحن الجهة الواحدة.</p>
-        </div>
-        <figure class="stack__media">
-          <img src="assets/img/office-boardroom.webp" alt="" loading="lazy" decoding="async">
-          <figcaption class="stack__quote"><span data-i18n="story.q1">جهات كثيرة… لمشروع واحد</span><b data-i18n="story.q1b">فقررنا أن نكون الجهة الواحدة</b></figcaption>
-        </figure>
-      </li>
-      <li class="stack__card stack__card--b" style="--i:1">
-        <div class="stack__text">
-          <b class="stack__no" aria-hidden="true">02</b>
-          <h3 data-i18n="about.s2t">التحوّل</h3>
-          <p data-i18n="about.s2">نقدّم اليوم أكثر من 30 خدمة موزعة على ستة أبعاد متكاملة، تغطي دورة حياة المشروع والمنشأة كاملة: من الفرصة إلى الصفقة، إلى العقد، إلى التطوير، إلى التشغيل.</p>
-        </div>
-        <div class="stack__flow" aria-hidden="true">
-          <div class="flowbadge"><b dir="ltr">+30</b><span data-i18n="stat.1">خدمة متخصصة</span><em></em><b>6</b><span data-i18n="stat.2">أبعاد متكاملة</span></div>
-          <ol class="flow"><li><i aria-hidden="true"></i><span data-i18n="fl.1">الفرصة</span></li><li><i aria-hidden="true"></i><span data-i18n="fl.2">الصفقة</span></li><li><i aria-hidden="true"></i><span data-i18n="fl.3">العقد</span></li><li><i aria-hidden="true"></i><span data-i18n="fl.4">التطوير</span></li><li><i aria-hidden="true"></i><span data-i18n="fl.5">التشغيل</span></li></ol>
-        </div>
-      </li>
-      <li class="stack__card stack__card--c" style="--i:2">
-        <div class="stack__text">
-          <b class="stack__no" aria-hidden="true">03</b>
-          <h3 data-i18n="about.s3t">المنظومة</h3>
-          <p data-i18n="about.s3">نعمل بفريق متعدد التخصصات وشبكة شركاء متخصصين ومرخّصين، تحت عقد واحد ونقطة تواصل واحدة، لنمنح عملاءنا السرعة والوضوح وراحة البال.</p>
-        </div>
-        <figure class="stack__media">
-          <img src="assets/img/office-reception.webp" alt="" loading="lazy" decoding="async">
-          <ul class="stack__chips">
-            <li><b>1</b><span data-i18n="stat.3">عقد واحد</span></li>
-            <li><b>1</b><span data-i18n="stat.4">نقطة تواصل واحدة</span></li>
-            <li><i></i><span data-i18n="story.c3">فريق متعدد التخصصات</span></li>
-            <li><i></i><span data-i18n="story.c4">شركاء متخصصون ومرخّصون</span></li>
-          </ul>
-        </figure>
-      </li>
-    </ol>
   </div>
 </section>
 
@@ -514,25 +484,33 @@
   </div>
 </section>
 
-<!-- ============================================================ how we work -->
-<section class="how">
+<!-- ============================================================ how we work: a staircase of five steps + three ways to engage -->
+<section class="how2">
   <div class="wrap">
-    <div class="head head--light reveal">
-      <p class="eyebrow" data-i18n="h.eyebrow">كيف نعمل معك</p>
-      <h2 class="h2" data-i18n="h.title">رحلة واضحة من أول لقاء</h2>
-      <p class="lead" data-i18n="h.lead">سواء احتجت خدمة واحدة أو المنظومة كاملة، تبدأ رحلتك مع بُعد بخطوات واضحة.</p>
+    <div class="how2__head">
+      <div class="head head--light reveal">
+        <p class="eyebrow" data-i18n="h.eyebrow">كيف نعمل معك</p>
+        <h2 class="h2" data-i18n="h.title">رحلة واضحة من أول لقاء</h2>
+      </div>
+      <p class="lead reveal" data-i18n="h.lead">سواء احتجت خدمة واحدة أو المنظومة كاملة، تبدأ رحلتك مع بُعد بخطوات واضحة.</p>
     </div>
-    <ol class="steps">
-      <li class="reveal"><span>1</span><h3 data-i18n="st.1t">نَفهم احتياجك</h3><p data-i18n="st.1">جلسة تعريفية لفهم المنشأة والمشروع والأهداف.</p></li>
-      <li class="reveal"><span>2</span><h3 data-i18n="st.2t">نُشخّص ونقترح</h3><p data-i18n="st.2">تحديد الأبعاد والخدمات المناسبة ونطاق عمل واضح.</p></li>
-      <li class="reveal"><span>3</span><h3 data-i18n="st.3t">نَتعاقد بوضوح</h3><p data-i18n="st.3">عقد واحد بمؤشرات أداء ومخرجات محددة.</p></li>
-      <li class="reveal"><span>4</span><h3 data-i18n="st.4t">نُطوّر ونُدير</h3><p data-i18n="st.4">فريق مخصص ومدير علاقة يمثّل نقطة تواصل واحدة.</p></li>
-      <li class="reveal"><span>5</span><h3 data-i18n="st.5t">نَقيس ونُطوّر</h3><p data-i18n="st.5">تقارير دورية ومراجعة مستمرة للنتائج.</p></li>
-    </ol>
-    <div class="models">
-      <article class="model reveal"><h3 data-i18n="m.1t">شراكة استراتيجية</h3><p data-i18n="m.1">ندخل معك شريكًا في مشروعك التطويري أو الإستثماري، ونساهم فيه بخبرتنا في التطوير والإدارة والتشغيل، ونتشارك في العائد وفق نموذج شراكة متفق عليه.</p></article>
-      <article class="model reveal"><h3 data-i18n="m.2t">عقد تشغيل وإدارة</h3><p data-i18n="m.2">نتولى عنك إدارة موقعك أو أصلك العقاري أو عقدك بشكل مستمر، بفريق مخصص وتقارير دورية، مقابل أتعاب شهرية أو سنوية.</p></article>
-      <article class="model reveal"><h3 data-i18n="m.3t">مهمة واحدة</h3><p data-i18n="m.3">تستعين ببُعد لإنجاز مهمة محددة بنطاق واضح ومدة معلومة وأتعاب ثابتة، مثل إعداد دراسة جدوى أو تجهيز عرضك في منافسة حكومية.</p></article>
+    <div class="stairs" id="stairs">
+      <svg class="stairs__line" aria-hidden="true"><path id="stairsPath"/></svg>
+      <ol class="stairs__list">
+        <li class="stair reveal" style="--n:0"><span class="stair__no" aria-hidden="true">01</span><svg class="stair__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg><h3 data-i18n="st.1t">نَفهم احتياجك</h3><p data-i18n="st.1">جلسة تعريفية لفهم المنشأة والمشروع والأهداف.</p></li>
+        <li class="stair reveal" style="--n:1"><span class="stair__no" aria-hidden="true">02</span><svg class="stair__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5M8 10.5h5M10.5 8v5"/></svg><h3 data-i18n="st.2t">نُشخّص ونقترح</h3><p data-i18n="st.2">تحديد الأبعاد والخدمات المناسبة ونطاق عمل واضح.</p></li>
+        <li class="stair reveal" style="--n:2"><span class="stair__no" aria-hidden="true">03</span><svg class="stair__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 15h4"/><path d="M9 18.5c1-1 2 1 3 0s2 1 3 0"/></svg><h3 data-i18n="st.3t">نَتعاقد بوضوح</h3><p data-i18n="st.3">عقد واحد بمؤشرات أداء ومخرجات محددة.</p></li>
+        <li class="stair reveal" style="--n:3"><span class="stair__no" aria-hidden="true">04</span><svg class="stair__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/></svg><h3 data-i18n="st.4t">نُطوّر ونُدير</h3><p data-i18n="st.4">فريق مخصص ومدير علاقة يمثّل نقطة تواصل واحدة.</p></li>
+        <li class="stair reveal" style="--n:4"><span class="stair__no" aria-hidden="true">05</span><svg class="stair__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 16l4-4 3 3 5-6"/><path d="M15 9h3v3"/></svg><h3 data-i18n="st.5t">نَقيس ونُطوّر</h3><p data-i18n="st.5">تقارير دورية ومراجعة مستمرة للنتائج.</p></li>
+      </ol>
+    </div>
+    <div class="models2">
+      <p class="models2__label reveal" data-i18n="how.models">نماذج التعاون</p>
+      <div class="models2__row">
+        <article class="model2 reveal"><svg class="model2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l4-4 4 3 3-3 4 1 3 3"/><path d="M7 8l-3 6 5 4 3-2 3 2 4-3-2-5"/></svg><span class="model2__no">01</span><h3 data-i18n="m.1t">شراكة استراتيجية</h3><p data-i18n="m.1">ندخل معك شريكًا في مشروعك التطويري أو الإستثماري، ونساهم فيه بخبرتنا في التطوير والإدارة والتشغيل، ونتشارك في العائد وفق نموذج شراكة متفق عليه.</p></article>
+        <article class="model2 reveal"><svg class="model2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span class="model2__no">02</span><h3 data-i18n="m.2t">عقد تشغيل وإدارة</h3><p data-i18n="m.2">نتولى عنك إدارة موقعك أو أصلك العقاري أو عقدك بشكل مستمر، بفريق مخصص وتقارير دورية، مقابل أتعاب شهرية أو سنوية.</p></article>
+        <article class="model2 reveal"><svg class="model2__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg><span class="model2__no">03</span><h3 data-i18n="m.3t">مهمة واحدة</h3><p data-i18n="m.3">تستعين ببُعد لإنجاز مهمة محددة بنطاق واضح ومدة معلومة وأتعاب ثابتة، مثل إعداد دراسة جدوى أو تجهيز عرضك في منافسة حكومية.</p></article>
+      </div>
     </div>
   </div>
 </section>
@@ -568,29 +546,39 @@
           <p data-i18n="w.1">عقد واحد ونقطة تواصل واحدة تغنيك عن التنسيق بين عشرات الموردين والمستشارين.</p>
         </div>
       </article>
-      <article class="wcard wcard--photo reveal">
-        <div class="wcard__img parallax"><img src="assets/img/office-reception.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="wcard__text">
-          <span class="wcard__no">02</span>
-          <h3 data-i18n="w.3t">معرفة عميقة بالسوق المحلي</h3>
-          <p data-i18n="w.3">مقرنا مكة المكرمة وأعمالنا تمتد في مناطق المملكة، ونعرف الأنظمة والجهات وطبيعة كل سوق.</p>
-        </div>
-      </article>
-      <article class="wcard reveal">
-        <svg class="wico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h16M8 21V3.5l10 4.5-10 4.5"/><path d="M12 21l3-5 3 5"/></svg>
-        <span class="wcard__no">03</span>
+    </div>
+    <div class="whygrid">
+      <article class="wfx wfx--field reveal">
+        <div class="wfx__art"><svg viewBox="0 0 200 120" aria-hidden="true"><path class="fx-ground" d="M20 104h160"/>
+            <rect class="fx-floor" style="--k:0" x="62" y="84" width="52" height="20"/><rect class="fx-floor" style="--k:1" x="62" y="64" width="52" height="20"/>
+            <rect class="fx-floor" style="--k:2" x="62" y="44" width="52" height="20"/><rect class="fx-floor fx-floor--new" style="--k:3" x="62" y="24" width="52" height="20"/>
+            <path class="fx-crane" d="M140 104V14M140 14h-58M140 14l-18 12M100 14v10"/><rect class="fx-load" x="94" y="24" width="12" height="9"/></svg></div>
+        <span class="wfx__no">02</span>
         <h3 data-i18n="w.2t">خبرة من الميدان</h3>
         <p data-i18n="w.2">خدماتنا مبنية على تجربة فعلية في تطوير المشاريع وتشغيلها، لا على النظريات.</p>
       </article>
-      <article class="wcard reveal">
-        <svg class="wico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="6.5" r="2.5"/><circle cx="18.5" cy="6.5" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 6.5h8M6.8 8.7l3.9 7M17.2 8.7l-3.9 7"/></svg>
-        <span class="wcard__no">04</span>
+      <article class="wfx wfx--market reveal">
+        <div class="wfx__art"><svg viewBox="0 0 200 120" aria-hidden="true"><circle class="fx-ring" style="--k:0" cx="100" cy="62" r="18"/><circle class="fx-ring" style="--k:1" cx="100" cy="62" r="18"/><circle class="fx-ring" style="--k:2" cx="100" cy="62" r="18"/>
+            <circle class="fx-city" cx="44" cy="40" r="3.5"/><circle class="fx-city" cx="160" cy="34" r="3.5"/><circle class="fx-city" cx="150" cy="96" r="3.5"/><circle class="fx-city" cx="52" cy="92" r="3.5"/>
+            <path class="fx-route" d="M100 62L44 40M100 62L160 34M100 62L150 96M100 62L52 92"/>
+            <path class="fx-pin" d="M100 66c-7-8-11-13-11-19a11 11 0 0 1 22 0c0 6-4 11-11 19z"/><circle class="fx-pin-dot" cx="100" cy="47" r="4"/></svg></div>
+        <span class="wfx__no">03</span>
+        <h3 data-i18n="w.3t">معرفة عميقة بالسوق المحلي</h3>
+        <p data-i18n="w.3">مقرنا مكة المكرمة وأعمالنا تمتد في مناطق المملكة، ونعرف الأنظمة والجهات وطبيعة كل سوق.</p>
+      </article>
+      <article class="wfx wfx--partners reveal">
+        <div class="wfx__art"><svg viewBox="0 0 200 120" aria-hidden="true"><path class="fx-link" d="M100 60L46 30M100 60L154 30M100 60L40 88M100 60L160 88M100 60L100 14"/>
+            <circle class="fx-node" cx="46" cy="30" r="9"/><circle class="fx-node" cx="154" cy="30" r="9"/><circle class="fx-node" cx="40" cy="88" r="9"/><circle class="fx-node" cx="160" cy="88" r="9"/><circle class="fx-node" cx="100" cy="14" r="8"/>
+            <circle class="fx-core" cx="100" cy="60" r="17"/><path class="fx-check" d="M92 60l6 6 11-12"/></svg></div>
+        <span class="wfx__no">04</span>
         <h3 data-i18n="w.4t">شبكة شركاء مرخّصين</h3>
         <p data-i18n="w.4">نعمل مع جهات متخصصة ومرخّصة في كل مجال يتطلب ترخيصًا خاصًا.</p>
       </article>
-      <article class="wcard reveal">
-        <svg class="wico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9V3.5H9M20.5 15v5.5H15M3.5 3.5l5.5 5.5M20.5 20.5L15 15"/><rect x="9" y="9" width="6" height="6" rx="1.2"/></svg>
-        <span class="wcard__no">05</span>
+      <article class="wfx wfx--flex reveal">
+        <div class="wfx__art"><svg viewBox="0 0 200 120" aria-hidden="true"><rect class="fx-frame" x="56" y="16" width="88" height="88" rx="8"/>
+            <rect class="fx-block fx-b1" x="64" y="24" width="34" height="34" rx="5"/><rect class="fx-block fx-b2" x="102" y="24" width="34" height="34" rx="5"/>
+            <rect class="fx-block fx-b3" x="64" y="62" width="34" height="34" rx="5"/><rect class="fx-block fx-b4" x="102" y="62" width="34" height="34" rx="5"/></svg></div>
+        <span class="wfx__no">05</span>
         <h3 data-i18n="w.5t">مرونة تنظيمية</h3>
         <p data-i18n="w.5">هيكل مرن يستوعب الشراكات المحلية والدولية ويتكيّف مع حجم كل عميل.</p>
       </article>

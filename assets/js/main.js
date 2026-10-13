@@ -351,25 +351,127 @@
   const row = $('.marquee__row');
   row.innerHTML += row.innerHTML;
 
-  /* ------------------------------------------------------------ about: story cards stack; the one underneath settles back as the next arrives */
+  /* ------------------------------------------------------------ story: many points → six dimensions → the BUAD mark
+     The points are sampled from the mark's own outline. While the section is pinned, the scroll moves them from a
+     scatter ("many parties"), into six groups on a ring ("six dimensions"), into the mark ("one ecosystem"). */
   (() => {
-    const cards = $$('#stack .stack__card');
-    if (!cards.length || reduce) return;
-    const frame = () => {
-      if (innerWidth <= 900) { cards.forEach(c => { c.style.transform = ''; c.style.filter = ''; }); return; }
-      const vh = innerHeight;
-      cards.forEach((c, i) => {
-        const next = cards[i + 1];
-        if (!next) return;
-        const top = parseFloat(getComputedStyle(c).top) || 0;
-        const p = Math.min(1, Math.max(0, 1 - (next.getBoundingClientRect().top - top) / (vh - top)));
-        c.style.transform = `scale(${(1 - p * .06).toFixed(4)})`;
-        c.style.filter = `brightness(${(1 - p * .35).toFixed(3)})`;
+    const box = $('#journey'), cv = $('#journeyCanvas');
+    if (!box || !cv) return;
+    const ctx = cv.getContext('2d');
+    const mark = new Path2D(cv.dataset.mark);
+    const steps = $$('.jstep', box), bar = $('#journeyBar');
+    // sample the mark (viewBox 248 × 242) on a grid
+    const probe = document.createElement('canvas').getContext('2d');
+    const pts = [];
+    for (let y = 3; y < 242; y += 6.2) for (let x = 3; x < 248; x += 6.2) if (probe.isPointInPath(mark, x, y, 'evenodd')) pts.push([x, y]);
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const C = [124, 121];
+    const P = pts.map(([x, y], i) => {
+      const g = i % 6, a0 = -Math.PI / 2 + g * Math.PI / 3, k = Math.floor(i / 6);
+      const r = 5.2 * Math.sqrt(k), t = k * 2.39996;                     // sunflower spread inside each group
+      return {
+        m: [x, y],
+        s: [C[0] + (rnd() - .5) * 560, C[1] + (rnd() - .5) * 420],
+        r: [C[0] + Math.cos(a0) * 96 + Math.cos(t) * r, C[1] + Math.sin(a0) * 96 + Math.sin(t) * r],
+        ph: rnd() * 6.28, sz: .7 + rnd() * .6
+      };
+    });
+    const labels = () => [1, 2, 3, 4, 5, 6].map(n => (document.querySelector(`[data-i18n="d${n}.t"]`) || {}).textContent || '');
+    const ease = x => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+    const lerp = (a, b, k) => a + (b - a) * k;
+    let W = 0, H = 0, dpr = 1, prog = 0, visible = false, raf = 0;
+    function size() {
+      dpr = Math.min(2, devicePixelRatio || 1);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+    }
+    function progress() {
+      const r = box.getBoundingClientRect();
+      prog = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+      const k = prog < .36 ? 0 : prog < .7 ? 1 : 2;
+      steps.forEach((s, i) => { s.classList.toggle('is-on', i === k); s.classList.toggle('is-past', i < k); });
+      bar.style.setProperty('--jb', `${(prog * 100).toFixed(1)}%`);
+    }
+    function draw(now) {
+      const t = (now || 0) / 1000;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      const narrow = W < 900, rtl = document.documentElement.dir === 'rtl';
+      const sc = narrow ? Math.min(W * .62, H * .34) / 248 : Math.min(W * .3, H * .6) / 248;
+      const cx = narrow ? W / 2 : (rtl ? W * .31 : W * .66), cy = narrow ? H * .3 : H * .52;
+      const a = ease((prog - .12) / .26), b = ease((prog - .52) / .28);
+      ctx.save();
+      ctx.translate(cx - C[0] * sc, cy - C[1] * sc);
+      ctx.scale(sc, sc);
+      // the finished mark fades in under the points at the very end
+      if (b > .6) {
+        const g = ctx.createLinearGradient(0, 0, 248, 242);
+        g.addColorStop(0, '#fbecc9'); g.addColorStop(.55, '#e6c48d'); g.addColorStop(1, '#b98a52');
+        ctx.globalAlpha = Math.pow((b - .6) / .4, 2) * .95; ctx.fillStyle = g; ctx.fill(mark, 'evenodd'); ctx.globalAlpha = 1;
+      }
+      const wob = reduce ? 0 : (1 - b) * 3.2;
+      for (const p of P) {
+        const x = lerp(lerp(p.s[0], p.r[0], a), p.m[0], b) + Math.sin(t * .9 + p.ph) * wob;
+        const y = lerp(lerp(p.s[1], p.r[1], a), p.m[1], b) + Math.cos(t * .8 + p.ph) * wob;
+        const s = (1.5 + b * .9) * p.sz;
+        ctx.globalAlpha = .35 + .25 * a + .4 * b;
+        ctx.fillStyle = b > .5 ? '#f3dcb2' : '#d2ad7c';
+        ctx.save(); ctx.translate(x, y); ctx.rotate(Math.PI / 4); ctx.fillRect(-s, -s, s * 2, s * 2); ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+      // the six dimensions name their groups while the ring holds
+      const la = a * (1 - b * 1.6);
+      if (la > .02 && !narrow) {
+        const L = labels();
+        ctx.font = `500 ${13 / sc}px Tajawal, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = `rgba(237, 216, 186, ${(la * .9).toFixed(3)})`;
+        L.forEach((txt, g) => {
+          const an = -Math.PI / 2 + g * Math.PI / 3, rr = 96 + 5.2 * Math.sqrt(P.length / 6) + 22 / sc;
+          const cs = Math.cos(an);
+          ctx.textAlign = cs > .3 ? 'left' : cs < -.3 ? 'right' : 'center';
+          ctx.fillText(txt, C[0] + cs * rr, C[1] + Math.sin(an) * rr);
+        });
+      }
+      ctx.restore();
+    }
+    function loop(now) { draw(now); raf = visible ? requestAnimationFrame(loop) : 0; }
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !raf) raf = requestAnimationFrame(loop); }).observe(box);
+    addEventListener('scroll', progress, { passive: true });
+    addEventListener('resize', () => { size(); progress(); draw(); });
+    document.addEventListener('buad:lang', () => draw());
+    size(); progress(); draw();
+  })();
+
+  /* ------------------------------------------------------------ how we work: a gold line climbs the staircase with the scroll */
+  (() => {
+    const box = $('#stairs');
+    if (!box) return;
+    const svg = $('.stairs__line', box), path = $('#stairsPath'), items = $$('.stair', box);
+    function build() {
+      const b = box.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${b.width.toFixed(1)} ${b.height.toFixed(1)}`);
+      const rtl = document.documentElement.dir === 'rtl';
+      let d = '';
+      items.forEach((it, i) => {
+        const r = it.getBoundingClientRect();
+        const x0 = (rtl ? r.right : r.left) - b.left, x1 = (rtl ? r.left : r.right) - b.left, y = r.top - b.top - 10;
+        d += (i ? ` L${x0.toFixed(1)} ${y.toFixed(1)}` : `M${x0.toFixed(1)} ${y.toFixed(1)}`) + ` L${x1.toFixed(1)} ${y.toFixed(1)}`;
       });
-    };
+      path.setAttribute('d', d);
+      box.style.setProperty('--len', path.getTotalLength().toFixed(0));
+      frame();
+    }
+    function frame() {
+      const r = box.getBoundingClientRect(), vh = innerHeight;
+      const k = reduce ? 1 : Math.min(1, Math.max(0, (vh * .85 - r.top) / (r.height + vh * .2)));
+      box.style.setProperty('--sp', k.toFixed(3));
+      items.forEach((it, i) => it.classList.toggle('is-lit', k >= (i + .6) / items.length));
+    }
     addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
-    addEventListener('resize', frame);
-    frame();
+    addEventListener('resize', build);
+    document.addEventListener('buad:lang', () => setTimeout(build, 50));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    setTimeout(build, 300);
   })();
 
   /* ------------------------------------------------------------ vision & mission: the diamond window opens, the vision lights up word by word */

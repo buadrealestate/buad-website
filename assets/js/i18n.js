@@ -248,4 +248,6 @@ window.BUAD_EN = {
   'f.email': 'E-mail (optional)',
   'f.sendwa': 'Send on WhatsApp',
   'f.sendmail': 'Send by e-mail',
+  // how we work (Oct 2026)
+  'how.models': 'Ways to work with us',
 };
