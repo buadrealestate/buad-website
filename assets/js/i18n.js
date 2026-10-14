@@ -114,9 +114,9 @@ window.BUAD_EN = {
   'st.3t': 'We Contract Clearly', 'st.3': 'One contract with defined KPIs and deliverables.',
   'st.4t': 'We Develop & Manage', 'st.4': 'A dedicated team and a relationship manager as one point of contact.',
   'st.5t': 'We Measure & Improve', 'st.5': 'Periodic reports and continuous review of results.',
-  'm.1t': 'Strategic Partnership', 'm.1': 'We join you as a partner in your development or investment project, contributing our expertise in development, management and operations and sharing the returns under an agreed model.',
-  'm.2t': 'Operation & Management Contract', 'm.2': 'We manage your site, real estate asset or contract on an ongoing basis, with a dedicated team and periodic reports, for a monthly or annual fee.',
-  'm.3t': 'Single Assignment', 'm.3': 'Engage Buad for a specific assignment with a clear scope, a defined timeframe and a fixed fee, such as a feasibility study or your bid for a government tender.',
+  'm.1t': 'Strategic Partnership', 'm.1': 'We join you as a partner in your development or investment project, contributing our expertise in development, management and operations and sharing the returns under an agreed model, for example developing land you own in return for a share of the project, or operating an asset for a percentage of its income.',
+  'm.2t': 'Operation & Management Contract', 'm.2': 'We manage your site, real estate asset or contract on an ongoing basis, with a dedicated team and periodic reports, for a monthly or annual fee, for example running a residential or commercial complex, managing a building’s facilities or following up a construction contract.',
+  'm.3t': 'Single Assignment', 'm.3': 'Engage Buad for a specific assignment with a clear scope, a defined timeframe and a fixed fee, such as a feasibility study for your project or your bid for a government tender.',
 
   'w.eyebrow': 'Competitive Advantage', 'w.title': 'Why Buad?',
   'w.1t': 'One Party Instead of Many', 'w.1': 'One contract and one point of contact that spare you the burden of coordinating dozens of suppliers and consultants.',
@@ -182,7 +182,7 @@ window.BUAD_EN = {
 
   /* Projects page */
   'pp.meta.title': 'Our Projects | BUAD', 'pp.title': 'Our Projects',
-  'pp.list.eyebrow': 'Delivered Work', 'pp.list.title': 'Field experience in every dimension',
+  'pp.list.eyebrow': 'Our work', 'pp.list.title': 'Field experience in every dimension',
   'pp.km': 'km of fiber-optic network', 'pp.sar': 'SAR million estimated value',
   'pp.cta.eyebrow': 'Your Next Project',
 
