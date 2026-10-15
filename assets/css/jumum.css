@@ -298,6 +298,26 @@ html[dir="rtl"] .jprog__fill::after { left: auto; right: -120px; animation-name:
 .ms.is-next .ms__st { color: rgba(246, 238, 226, .55); box-shadow: inset 0 0 0 1px rgba(237, 216, 186, .2); }
 .ms.is-next .ms__st::before { border: 1.5px solid rgba(237, 216, 186, .5); width: 6px; height: 6px; }
 .ms.is-next .ms__t { color: rgba(246, 238, 226, .6); }
+/* a key milestone (Ministry of Energy approval): a gold card twice as wide, a seal and a slow sheen */
+.ms-list:has(.is-key) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ms.is-key { grid-column: span 2; overflow: hidden; isolation: isolate; padding: 24px 26px 22px; padding-inline-end: 130px;
+  background: radial-gradient(90% 120% at 100% 0%, rgba(255, 248, 232, .55), transparent 60%), linear-gradient(135deg, #f0d9aa 0%, #d6ad72 55%, #b0804a 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 242, 214, .7), 0 26px 60px -26px rgba(230, 196, 141, .75); }
+html[dir="rtl"] .ms.is-key { background: radial-gradient(90% 120% at 0% 0%, rgba(255, 248, 232, .55), transparent 60%), linear-gradient(225deg, #f0d9aa 0%, #d6ad72 55%, #b0804a 100%); }
+.ms.is-key::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .5) 50%, transparent 65%) -200% 0 / 200% 100% no-repeat; animation: keySheen 6s ease-in-out infinite; }
+@keyframes keySheen { 0%, 55% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.ms.is-key .ms__no { display: none; }
+.ms__flag { position: absolute; top: 20px; inset-inline-end: 22px; display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: #4a2f1c; }
+.ms__flag::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: #4a2f1c; }
+.ms.is-key .ms__st { color: #f3dfb8; background: #1b130f; }
+.ms.is-key .ms__st::before { border-color: #f3dfb8; }
+.ms.is-key .ms__t { font-size: clamp(18px, 1.55vw, 22px); font-weight: 700; line-height: 1.5; color: #1b130f; }
+.ms.is-key .ms__d { color: rgba(27, 19, 15, .7); font-weight: 500; }
+.ms__seal { position: absolute; bottom: 18px; inset-inline-end: 22px; width: 92px; height: 92px; fill: none; stroke: #4a2f1c; stroke-width: 1.6; stroke-linejoin: round; }
+.ms__seal-ring { fill: rgba(74, 47, 28, .08); }
+.ms__seal-tick { stroke-width: 3; stroke-linecap: round; stroke-dasharray: 30; stroke-dashoffset: 30; transition: stroke-dashoffset 1s .5s cubic-bezier(.65, 0, .35, 1); }
+.ms.is-key.in .ms__seal-tick, .ms.is-key:not(.reveal) .ms__seal-tick { stroke-dashoffset: 0; }
 
 /* ---------------------------------------------------------------- request dialog (investment memorandum / leasing) */
 html.rq-open { overflow: hidden; }
@@ -334,7 +354,9 @@ html.rq-open { overflow: hidden; }
 .rq__done { margin-top: 22px; }
 
 @media (max-width: 1100px) {
-  .ms-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ms-list, .ms-list:has(.is-key) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ms.is-key { grid-column: auto; padding-inline-end: 92px; }
+  .ms__seal { width: 64px; height: 64px; }
   .jprog__top { grid-template-columns: auto minmax(0, 1fr); }
   .jprog__count { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: center; gap: 12px; }
   .jprog__count span { max-width: none; }
@@ -342,11 +364,13 @@ html.rq-open { overflow: hidden; }
 @media (max-width: 600px) {
   .jprog__top { grid-template-columns: 1fr; }
   html[dir="rtl"] .jprog__pct { justify-content: flex-end; }
-  .ms-list { grid-template-columns: 1fr; }
+  .ms-list, .ms-list:has(.is-key) { grid-template-columns: 1fr; }
   .ms { min-height: 0; }
+  .ms.is-key { padding-top: 52px; }
   .rq__form { grid-template-columns: 1fr; }
   .rq__panel { border-radius: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .jprog__fill::before, .jprog__fill::after, .jprog__tick, .ms__st::before, .jprog__live i, .jprog__now i { animation: none !important; }
+  .jprog__fill::before, .jprog__fill::after, .jprog__tick, .ms__st::before, .jprog__live i, .jprog__now i, .ms.is-key::after { animation: none !important; }
+  .ms__seal-tick { stroke-dashoffset: 0; transition: none; }
 }
