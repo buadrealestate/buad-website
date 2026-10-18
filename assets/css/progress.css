@@ -207,3 +207,13 @@ main > section.ph.ph--station > .ph__content { position: relative; bottom: auto;
   main > section.ph.ph--station { flex-direction: column; align-items: stretch; min-height: 0; }
   main > section.ph.ph--station > .ph__content { padding-inline-end: max(20px, 5vw); }
 }
+/* hero v3 (user, 2026-10-18): the Darb station photo as the full background, the station name in gold */
+main > section.ph.ph--station { min-height: 78svh; align-items: flex-end; padding-block: 140px 80px; }
+main > section.ph.ph--station > .ph__content { padding-inline-end: max(20px, calc((100vw - 1240px) / 2)); }
+.ph--station .ph__media { opacity: 1; }
+.ph--station .ph__media img { object-position: 50% 62%; }
+.ph--station .ph__shade { background: linear-gradient(180deg, rgba(27, 19, 15, .7) 0%, rgba(27, 19, 15, .15) 30%, rgba(27, 19, 15, .35) 55%, #1b130f 100%), linear-gradient(270deg, rgba(27, 19, 15, .85) 0%, rgba(27, 19, 15, .5) 35%, transparent 65%); }
+.ph__title--gold { max-width: 14ch; color: transparent !important; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(100deg, #c49460, #f3dcb2 40%, #e6c48d 60%, #b98a52); text-shadow: none; }
+.ph--station .ph__title { font-size: clamp(42px, 6vw, 92px); line-height: 1.08; }
+@media (max-width: 900px) { main > section.ph.ph--station { min-height: 72svh; } }

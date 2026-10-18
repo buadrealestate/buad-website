@@ -320,6 +320,8 @@ window.BUAD_EN = {
   'goal.4': 'Saving our clients time and cost through one point of contact and smart solutions',
   'goal.5t': 'Aligned with Vision 2030',
   'goal.5': 'Supporting private-sector growth, raising project quality and empowering national talent',
+  'pr.st.name': 'Fuel Station &amp; Multi-Service Facilities',
+  'pr.sub2': 'Phase One of Al Jumum Interface · operated by Darb',
   'jp.ms.1': 'Investment contract signed with the Holy Capital Municipality and the land handed over',
   'jp.ms.1d': '2025',
   'jp.ms.2': 'Masterplan prepared and the proposal adopted',
