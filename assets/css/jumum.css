@@ -251,6 +251,8 @@ html[dir="rtl"] .zcard__rq i::before { transform: translateX(1px) rotate(-135deg
 .jprog__pct b { font-size: clamp(96px, 12vw, 176px); font-weight: 200; letter-spacing: -.04em; font-variant-numeric: tabular-nums;
   background: linear-gradient(180deg, #fbecc9, #e6c48d 55%, #b98a52); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .jprog__pct span { font-size: clamp(30px, 3.4vw, 50px); font-weight: 300; color: #e6c48d; margin-top: .2em; margin-left: 6px; }
+/* phones clipped the gradient digits (tight line box + negative tracking): give the glyphs room (2026-10-18) */
+.jprog__pct b { display: inline-block; line-height: 1.08; padding: .02em .06em .04em .02em; margin-block: -.08em; }
 .jprog__label { font-size: clamp(18px, 1.7vw, 24px); font-weight: 400; color: var(--cream-text); }
 .jprog__now { margin-top: 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: 15px; color: rgba(239, 225, 202, .62); }
 .jprog__now i { width: 7px; height: 7px; border-radius: 50%; background: #e6c48d; align-self: center; animation: livePulse 1.8s ease-out infinite; }

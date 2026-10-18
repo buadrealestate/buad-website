@@ -290,3 +290,7 @@ html[dir="ltr"] .ph--station .ph__shade { background: linear-gradient(180deg, rg
 @media (max-width: 900px) { .ph--station .ph__slides img { object-position: var(--opm, 50% 50%); } }
 @media (prefers-reduced-motion: reduce) { .ph--station .ph__slides img.is-on { animation: none; } }
 .footer__logo--mark { height: 54px; }
+/* key facts: the unit sits beside the number (m² was dropping to its own line) — 2026-10-18 */
+.prfacts__grid div { grid-template-columns: auto 1fr; align-items: baseline; column-gap: 8px; }
+.prfacts__grid span { grid-column: 1 / -1; }
+.prfacts__grid b { grid-column: 1; }
