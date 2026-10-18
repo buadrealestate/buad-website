@@ -40,7 +40,7 @@
 <main id="top">
 
 <section class="ph ph--station" id="ph">
-  <div class="ph__media" id="jhMedia"><img src="../assets/img/station-darb.webp" alt="" fetchpriority="high"></div>
+  <div class="ph__media ph__slides" id="jhMedia"><img class="is-on" src="../assets/img/station-darb.webp" alt="" fetchpriority="high" style="--op:50% 45%;--opm:72% 40%"><img src="../assets/img/station-darb-2.webp" alt="" loading="lazy" style="--op:50% 70%;--opm:70% 70%"><img src="../assets/img/station-darb-car.webp" alt="" loading="lazy" style="--op:40% 62%;--opm:38% 62%"></div>
   <div class="ph__shade"></div>
   <div class="ph__content wrap" id="jhContent">
     <a href="https://buad.sa/jumum.html" class="jh__back reveal-hero"><i aria-hidden="true"></i><span data-i18n="j.title">مشروع واجهة الجموم</span></a>
@@ -133,7 +133,7 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <img src="../assets/img/logo-h-light.png" alt="BUAD بُعد" class="footer__logo">
+    <img src="../assets/img/logo-mark-sand.png" alt="BUAD بُعد" class="footer__logo footer__logo--mark">
     <p class="footer__motto" data-i18n="ft.motto">بُعد لنحقق رؤية</p>
     <p class="footer__copy"><span data-i18n="ft.copy">جميع الحقوق محفوظة لشركة بُعد</span> © <span id="year">2026</span></p>
   </div>
@@ -143,5 +143,6 @@
 <script src="../assets/js/page.js"></script>
 <script src="../assets/js/jumum-progress.js"></script>
 <script src="../assets/js/progress-page.js"></script>
+<script>(function(){var s=document.querySelectorAll(".ph__slides img"),i=0;if(s.length<2||matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(function(){if(document.hidden)return;s[i].classList.remove("is-on");i=(i+1)%s.length;s[i].classList.add("is-on")},6000)})();</script>
 </body>
 </html>

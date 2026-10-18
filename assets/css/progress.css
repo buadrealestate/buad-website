@@ -283,3 +283,10 @@ html[dir="ltr"] .ph--station .ph__shade { background: linear-gradient(180deg, rg
 .prlogo__plate--pill img { height: 76px; }
 @media (max-width: 600px) { .prlogo__plate--pill img { height: 64px; } }
 @media (max-width: 600px) { .prlogos__in { flex-direction: column; gap: 26px; } }
+/* station hero slideshow (station page, 2026-10-18): photos cross-fade with a slow settle-in zoom */
+.ph--station .ph__slides img { position: absolute; inset: 0; opacity: 0; object-position: var(--op, 50% 50%); transition: opacity 1.8s ease; animation: none; }
+.ph--station .ph__slides img.is-on { opacity: 1; animation: slideSettle 8s ease-out both; }
+@keyframes slideSettle { from { transform: scale(1.07); } to { transform: scale(1); } }
+@media (max-width: 900px) { .ph--station .ph__slides img { object-position: var(--opm, 50% 50%); } }
+@media (prefers-reduced-motion: reduce) { .ph--station .ph__slides img.is-on { animation: none; } }
+.footer__logo--mark { height: 54px; }
