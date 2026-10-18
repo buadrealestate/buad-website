@@ -250,3 +250,31 @@ html[dir="ltr"] .ph--station .ph__shade { background: linear-gradient(180deg, rg
   .ph--station .ph__media img { object-position: 72% 40%; }
   .ph--station .ph__shade { background: linear-gradient(180deg, rgba(27, 19, 15, .3) 0%, rgba(27, 19, 15, 0) 25%, rgba(27, 19, 15, .7) 60%, #1b130f 90%); }
 }
+/* phones: the Gantt becomes clean cards, each with a slim year track (no sideways scroll, no today line) — 2026-10-18 */
+@media (max-width: 1000px) {
+  .gt__chart { overflow: visible; padding: 10px 12px 12px; }
+  .gt__head, .gt__grid, .gt__miles, .gt__today, .gt__past { display: none !important; }
+  .gt__body { display: grid; gap: 10px; }
+  .gt__row { display: block; padding: 16px 16px 18px; border: 0; border-radius: 18px; background: rgba(246, 238, 226, .035); box-shadow: inset 0 0 0 1px rgba(237, 216, 186, .1); }
+  .gt__row.is-now { background: rgba(230, 196, 141, .07); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .35); }
+  .gt__row:hover, .gt__row:focus-visible { background: rgba(246, 238, 226, .05); }
+  .gt__lab { position: static; width: auto; padding: 0; grid-template-columns: 40px 1fr; column-gap: 12px; }
+  .gt__ic { width: 40px; height: 40px; border-radius: 12px; }
+  .gt__lane, .gt__months { min-width: 0; }
+  .gt__lane { height: 6px; min-height: 0; margin: 16px 0 30px; border-radius: 99px; background: rgba(237, 216, 186, .08); }
+  .gt__bar, .gt__row:hover .gt__bar, .gt__row.is-now .gt__bar { height: 6px; margin-top: -3px; transform: none; box-shadow: none; }
+  .gt__row.is-now .gt__bar { background: rgba(230, 196, 141, .25); }
+  .gt__row.is-now:not(:has(em[style])) .gt__bar { animation: none; background: rgba(230, 196, 141, .55); }
+  .gt__row.is-next .gt__bar { background: rgba(237, 216, 186, .28); }
+  .gt__pct { position: absolute; bottom: 100%; margin-bottom: 6px; font-size: 11px; color: var(--gold); }
+  .gt__dates { opacity: 1; margin-top: 10px; }
+  html[dir="rtl"] .gt__dates { right: 0; } html[dir="ltr"] .gt__dates { left: 0; }
+}
+.gt__mfoot { display: none; }
+@media (max-width: 1000px) {
+  .gt__lane { margin: 16px 0 12px; }
+  .gt__lane .gt__dates, .gt__lane .gt__pct { display: none; }
+  .gt__mfoot { display: flex; align-items: center; justify-content: space-between; }
+  .gt__mfoot .gt__dates { position: static; margin: 0; }
+  .gt__mfoot .gt__pct { position: static; margin: 0; font-size: 12px; color: var(--gold); }
+}
