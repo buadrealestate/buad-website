@@ -162,3 +162,10 @@ html[dir="ltr"] .jr__line em { background: linear-gradient(90deg, #fff1d6, var(-
   .jr__line { inset-inline: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { .gt__bar { transform: none; transition: none; } .gt__bar em::after, .jr__step.is-now .jr__node::after { animation: none; } }
+
+/* date range reads with the page: start then end, arrow pointing the reading way */
+.gt__dates { display: inline-flex; align-items: center; gap: 6px; }
+.gt__arr { width: 14px; height: 1px; background: currentColor; position: relative; }
+.gt__arr::after { content: ""; position: absolute; top: -3px; width: 6px; height: 6px; border-top: 1px solid currentColor; border-left: 1px solid currentColor; }
+html[dir="rtl"] .gt__arr::after { left: 0; transform: rotate(-45deg); }
+html[dir="ltr"] .gt__arr::after { right: 0; transform: rotate(135deg); }
