@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* ---------------------------------------------------------------- hero */
-.ph { position: relative; height: 78svh; min-height: 560px; overflow: hidden; background: var(--espresso); color: var(--cream); isolation: isolate; }
+.ph { position: relative; height: 78svh; min-height: 560px; overflow: hidden; background: var(--espresso); color: var(--cream-text); isolation: isolate; }
 .ph__media { position: absolute; inset: -4% 0; will-change: transform; }
 .ph__media img { width: 100%; height: 100%; object-fit: cover; animation: jhIn 2.4s var(--spring) both; }
 .ph__shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -11,14 +11,14 @@
 .ph .deco { z-index: 1; border-color: rgba(237, 216, 186, .25); }
 main > section.ph > .ph__content { position: absolute; z-index: 2; inset-inline: 0; bottom: clamp(70px, 11vh, 120px); will-change: transform, opacity; }
 .ph__title { font-size: clamp(56px, 9vw, 140px); font-weight: 200; line-height: 1.05; letter-spacing: -.02em; }
-.ph__sub { margin-top: 12px; font-size: clamp(18px, 1.9vw, 25px); font-weight: 300; color: rgba(246, 238, 226, .8); }
+.ph__sub { margin-top: 12px; font-size: clamp(18px, 1.9vw, 25px); font-weight: 300; color: rgba(239, 225, 202, .8); }
 .is-ready .ph__content .reveal-hero:nth-child(2) { transition-delay: .1s; }
 .is-ready .ph__content .reveal-hero:nth-child(3) { transition-delay: .2s; }
 .is-ready .ph__content .reveal-hero:nth-child(4) { transition-delay: .32s; }
 
 /* ---------------------------------------------------------------- featured project */
 .pfeat { padding-top: clamp(70px, 9vw, 120px); background: var(--cream); }
-.pfeat__card { position: relative; display: grid; min-height: clamp(520px, 62vw, 680px); border-radius: 28px; overflow: hidden; color: var(--cream);
+.pfeat__card { position: relative; display: grid; min-height: clamp(520px, 62vw, 680px); border-radius: 28px; overflow: hidden; color: var(--cream-text);
   isolation: isolate; box-shadow: 0 40px 80px -40px rgba(43, 31, 25, .55); }
 .pfeat__img { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
 .pfeat__img img { width: 100%; height: 120%; object-fit: cover; transition: scale 1.4s var(--spring); }
@@ -30,9 +30,9 @@ main > section.ph > .ph__content { position: absolute; z-index: 2; inset-inline:
   background: rgba(43, 31, 25, .5); backdrop-filter: blur(10px); border: 1px solid var(--line-light); }
 html[lang="en"] .pfeat__tag { letter-spacing: .18em; text-transform: uppercase; font-size: 11.5px; }
 .pfeat__title { margin-top: 18px; font-size: clamp(36px, 5.4vw, 76px); font-weight: 200; line-height: 1.1; }
-.pfeat__sub { margin-top: 8px; font-size: clamp(16px, 1.5vw, 20px); font-weight: 300; color: rgba(246, 238, 226, .8); }
+.pfeat__sub { margin-top: 8px; font-size: clamp(16px, 1.5vw, 20px); font-weight: 300; color: rgba(239, 225, 202, .8); }
 .pfeat__nums { margin: 30px 0 32px; display: flex; flex-wrap: wrap; gap: 14px clamp(24px, 4vw, 56px); }
-.pfeat__nums dt { font-size: 13.5px; color: rgba(246, 238, 226, .62); }
+.pfeat__nums dt { font-size: 13.5px; color: rgba(239, 225, 202, .62); }
 .pfeat__nums dd { color: var(--sand); }
 .pfeat__nums b { font-size: clamp(28px, 3vw, 42px); font-weight: 200; font-variant-numeric: tabular-nums; }
 .pfeat__nums small { font-size: 14px; color: var(--tan); }
