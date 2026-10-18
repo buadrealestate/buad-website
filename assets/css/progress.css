@@ -294,3 +294,8 @@ html[dir="ltr"] .ph--station .ph__shade { background: linear-gradient(180deg, rg
 .prfacts__grid div { grid-template-columns: auto 1fr; align-items: baseline; column-gap: 8px; }
 .prfacts__grid span { grid-column: 1 / -1; }
 .prfacts__grid b { grid-column: 1; }
+/* phones (iOS especially) shave the light digits when the line box is exactly 1em: give every big number room (2026-10-18) */
+.prfacts__grid b, .bt b, .jprog__count b { line-height: 1.22; padding-block: .03em; overflow: visible; }
+.jprog__pct { overflow: visible; }
+.jprog__pct b { line-height: 1.2 !important; margin-block: -.12em !important; padding: .06em .1em .06em .03em !important; }
+.ph__title--gold { padding-block: .04em .14em; }
