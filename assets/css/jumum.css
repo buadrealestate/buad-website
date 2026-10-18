@@ -395,3 +395,11 @@ html[dir="rtl"] .ms__prog i { margin-inline-start: 0; background: linear-gradien
 }
 @media screen and (max-width: 1100px) and (min-width: 601px) { .jnum:nth-child(3n + 1) { border-inline-start: 0; padding-inline-start: 0; } }
 @media screen and (max-width: 600px) { .jnum:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; } }
+
+/* link to progress.html */
+.jprog__more { display: flex; width: max-content; align-items: center; gap: 12px; margin: 34px auto 0; padding: 13px 24px; border-radius: 99px;
+  font-size: 15px; font-weight: 500; color: #1b130f; background: linear-gradient(100deg, #c49460, #e9cd9c); transition: transform .5s var(--spring), box-shadow .4s; }
+.jprog__more:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -14px rgba(230, 196, 141, .8); }
+.jprog__more i { width: 8px; height: 8px; border-top: 1.6px solid currentColor; border-left: 1.6px solid currentColor; transform: rotate(-45deg); }
+html[dir="ltr"] .jprog__more i { transform: rotate(135deg); }
+
