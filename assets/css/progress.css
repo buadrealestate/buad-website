@@ -232,3 +232,5 @@ html[dir="ltr"] .ph--station .ph__shade { background: linear-gradient(180deg, rg
   .ph--station .ph__shade { background: linear-gradient(180deg, rgba(27, 19, 15, .45) 0%, rgba(27, 19, 15, .05) 30%, rgba(27, 19, 15, .75) 62%, #1b130f 92%); }
 }
 .ph__title--gold { filter: drop-shadow(0 4px 18px rgba(0, 0, 0, .6)); }
+/* hero text sits closer to the right edge (user, 2026-10-18) */
+main > section.ph.ph--station > .ph__content { padding-inline-start: clamp(20px, 3.4vw, 52px); }
