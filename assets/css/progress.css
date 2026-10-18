@@ -240,3 +240,13 @@ main > section.ph.ph--station > .ph__content { width: 100%; max-width: none; mar
 /* components: every tile and diamond alike (user, 2026-10-18) */
 .bt.has-n { background: rgba(246, 238, 226, .035); }
 .bt.has-n .dia { background: none; }
+/* new Darb night photo (2026-10-18): let the canopy glow, shade only behind the text at the bottom */
+.ph--station .ph__media img { object-position: 50% 45%; }
+.ph--station .ph__shade { background: linear-gradient(180deg, rgba(27, 19, 15, .3) 0%, rgba(27, 19, 15, 0) 18%, rgba(27, 19, 15, 0) 42%, rgba(27, 19, 15, .78) 78%, #1b130f 100%),
+  linear-gradient(270deg, rgba(27, 19, 15, .55) 0%, rgba(27, 19, 15, .25) 40%, transparent 65%); }
+html[dir="ltr"] .ph--station .ph__shade { background: linear-gradient(180deg, rgba(27, 19, 15, .3) 0%, rgba(27, 19, 15, 0) 18%, rgba(27, 19, 15, 0) 42%, rgba(27, 19, 15, .78) 78%, #1b130f 100%),
+  linear-gradient(90deg, rgba(27, 19, 15, .55) 0%, rgba(27, 19, 15, .25) 40%, transparent 65%); }
+@media (max-width: 900px) {
+  .ph--station .ph__media img { object-position: 72% 40%; }
+  .ph--station .ph__shade { background: linear-gradient(180deg, rgba(27, 19, 15, .3) 0%, rgba(27, 19, 15, 0) 25%, rgba(27, 19, 15, .7) 60%, #1b130f 90%); }
+}
