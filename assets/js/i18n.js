@@ -249,7 +249,7 @@ window.BUAD_EN = {
   'pr.m9': 'Jul',
   'pr.m10': 'Aug',
   'pr.m11': 'Sep',
-  'pr.w1': 'Rock excavation and levelling the station site',
+  'pr.w1': 'Levelling and preparing the two hills beside the station site',
   'pr.w1n': 'Levelling the two hills on the northern side and the preliminary works on the station plot',
   'pr.w2': 'Drawings and building permit',
   'pr.w2n': 'Preparing and approving the drawings, consultant works and the building permit · contracted and under way',
