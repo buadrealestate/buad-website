@@ -237,3 +237,6 @@ main > section.ph.ph--station > .ph__content { padding-inline-start: clamp(20px,
 /* on wide screens the centred column left a wide gap on the right: the hero text now follows the screen edge */
 main > section.ph.ph--station > .ph__content { width: 100%; max-width: none; margin: 0; padding-inline-start: clamp(24px, 6vw, 120px); padding-inline-end: clamp(24px, 6vw, 120px); }
 .ph--station .ph__title, .ph--station .ph__sub { max-width: 820px; }
+/* components: every tile and diamond alike (user, 2026-10-18) */
+.bt.has-n { background: rgba(246, 238, 226, .035); }
+.bt.has-n .dia { background: none; }
