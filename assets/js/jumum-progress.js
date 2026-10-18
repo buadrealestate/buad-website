@@ -7,9 +7,9 @@
   if (!box) return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const items = [...document.querySelectorAll('.ms-list .ms')];
-  const done = items.filter(m => m.classList.contains('is-done')).length;
-  const now = items.filter(m => m.classList.contains('is-now')).length;
-  const pct = box.dataset.progress ? +box.dataset.progress : Math.round((done + now * .5) / items.length * 100);
+  // completed = 1, in progress = its data-p share (½ when not given), upcoming = 0
+  const share = m => m.classList.contains('is-done') ? 1 : m.classList.contains('is-now') ? (+m.dataset.p || .5) : 0;
+  const pct = box.dataset.progress ? +box.dataset.progress : Math.round(items.reduce((t, m) => t + share(m), 0) / items.length * 100);
   const days = Math.max(0, Math.ceil((new Date(box.dataset.launch + 'T00:00:00+03:00') - Date.now()) / 864e5));
   const pctEl = document.getElementById('jprogPct'), daysEl = document.getElementById('jprogDays'), fill = document.getElementById('jprogFill');
   const ticks = [...box.querySelectorAll('.jprog__tick')];

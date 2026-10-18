@@ -47,12 +47,12 @@ html[dir="ltr"] .jh__back i::after { transform: translateX(1px) rotate(-135deg);
 .jstory__statement .w { display: inline-block; opacity: .12; transform: translateY(14px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .jstory__statement.in .w { opacity: 1; transform: none; }
 .jstory__text { margin-top: 30px; max-width: 820px; }
-.jnums { margin-top: clamp(60px, 8vw, 100px); display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); }
+.jnums { margin-top: clamp(60px, 8vw, 100px); display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--line); }
 .jnum { padding: 30px 0 0; display: grid; align-content: start; gap: 10px; }
 .jnum + .jnum { border-inline-start: 1px solid var(--line); padding-inline-start: clamp(14px, 2vw, 28px); }
 .jnum dt { font-size: 14.5px; color: var(--muted); }
 .jnum dd { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; color: var(--brown); }
-.jnum dd b { font-size: clamp(32px, 3.4vw, 50px); font-weight: 200; line-height: 1; font-variant-numeric: tabular-nums; }
+.jnum dd b { font-size: clamp(30px, 3vw, 46px); font-weight: 200; line-height: 1; font-variant-numeric: tabular-nums; }
 .jnum dd small { font-size: 15px; color: var(--tan); }
 
 /* ---------------------------------------------------------------- interactive plan */
@@ -374,3 +374,24 @@ html.rq-open { overflow: hidden; }
   .jprog__fill::before, .jprog__fill::after, .jprog__tick, .ms__st::before, .jprog__live i, .jprog__now i, .ms.is-key::after { animation: none !important; }
   .ms__seal-tick { stroke-dashoffset: 0; transition: none; }
 }
+
+/* 2026-10-18: station heading in gold, per-milestone progress, "contracted" note, phase-one stars */
+.jprog__station { color: transparent !important; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(100deg, #c49460, #f3dcb2 40%, #e6c48d 60%, #b98a52); }
+.jprog__sub { margin-top: 10px; font-size: clamp(18px, 1.6vw, 24px); font-weight: 300; color: rgba(246, 238, 226, .78); }
+.ms__prog { height: 6px; border-radius: 6px; background: rgba(230, 196, 141, .18); overflow: hidden; }
+.ms__prog i { display: block; height: 100%; width: var(--w); border-radius: 6px; background: linear-gradient(90deg, #e6c48d, #fff1d6); }
+html[dir="rtl"] .ms__prog i { margin-inline-start: 0; background: linear-gradient(270deg, #e6c48d, #fff1d6); }
+.ms__pct { font-size: 13px; color: #e6c48d; } .ms__pct b { font-size: 16px; font-weight: 700; }
+.ms__note { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #e6c48d; }
+.ms__note i { width: 7px; height: 7px; border-radius: 50%; background: #e6c48d; animation: livePulse 1.8s ease-out infinite; }
+.phx__tags li.is-star { background: linear-gradient(100deg, #c49460, #e9cd9c); color: #1b130f; font-weight: 700; box-shadow: 0 6px 18px -8px rgba(230, 196, 141, .8); }
+.phx__tags li.is-star::before { background: #1b130f; }
+/* the last milestone (later phases) runs as one slim bar under the grid */
+@media screen and (min-width: 1101px) {
+  .ms-list:has(.is-key) .ms:last-child { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: center; gap: 18px; padding-block: 16px; }
+  .ms-list:has(.is-key) .ms:last-child .ms__no { position: static; order: 9; margin-inline-start: auto; }
+  .ms-list:has(.is-key) .ms:last-child .ms__d { margin-top: 0; }
+}
+@media screen and (max-width: 1100px) and (min-width: 601px) { .jnum:nth-child(3n + 1) { border-inline-start: 0; padding-inline-start: 0; } }
+@media screen and (max-width: 600px) { .jnum:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; } }
