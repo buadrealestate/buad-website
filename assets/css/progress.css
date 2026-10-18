@@ -93,7 +93,7 @@ html[dir="ltr"] .gt__mile b, html[dir="ltr"] .gt__mile small { translate: -50% 0
 .jr .head { margin-bottom: clamp(30px, 4vw, 50px); }
 .jr__rail { overflow-x: auto; scrollbar-width: none; padding-inline: max(20px, calc((100vw - 1240px) / 2)); padding-block: 16px 20px; }
 .jr__rail::-webkit-scrollbar { display: none; }
-.jr__track { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(190px, 1fr)); gap: 16px; }
+.jr__track { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(170px, 1fr)); gap: 14px; }
 .jr__line { position: absolute; top: 27px; inset-inline: 28px; height: 2px; background: rgba(237, 216, 186, .14); border-radius: 2px; }
 .jr__line em { position: absolute; inset-block: 0; inset-inline-start: 0; width: 0; border-radius: inherit; background: linear-gradient(270deg, #fff1d6, var(--gold), var(--gold2));
   box-shadow: 0 0 14px rgba(230, 196, 141, .7); transition: width 1.8s var(--ease); }
@@ -113,8 +113,8 @@ html[dir="ltr"] .jr__line em { background: linear-gradient(90deg, #fff1d6, var(-
 .jr__step:hover .jr__card { transform: translateY(-8px); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45), 0 24px 40px -26px #000; }
 .jr__step.is-now .jr__card { background: linear-gradient(180deg, rgba(230, 196, 141, .2), rgba(230, 196, 141, .04)); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .6), 0 30px 60px -36px rgba(230, 196, 141, .7); }
 .jr__step.is-go .jr__card { background: linear-gradient(160deg, #f0d9aa, #d6ad72 60%, #b0804a); }
-.jr__card time { font-size: 12.5px; font-weight: 700; color: var(--gold); letter-spacing: .02em; }
-.jr__card h3 { margin-top: 8px; font-size: 19px; font-weight: 700; line-height: 1.35; color: var(--cream); }
+.jr__card time { display: block; font-size: 12px; font-weight: 700; color: var(--gold); white-space: nowrap; }
+.jr__card h3 { margin-top: 8px; font-size: 18px; font-weight: 700; line-height: 1.35; color: var(--cream); }
 .jr__card p { margin-top: 8px; font-size: 14px; line-height: 1.8; color: rgba(246, 238, 226, .62); }
 .jr__step.is-go .jr__card time, .jr__step.is-go .jr__card h3, .jr__step.is-go .jr__card p { color: var(--ink2); }
 .jr__step.is-go .jr__card p { opacity: .75; }
@@ -126,7 +126,8 @@ html[dir="ltr"] .jr__line em { background: linear-gradient(90deg, #fff1d6, var(-
   background: rgba(246, 238, 226, .035); box-shadow: inset 0 0 0 1px rgba(237, 216, 186, .11); transition: background .4s, transform .5s var(--spring), box-shadow .4s; }
 .bt:hover { transform: translateY(-5px); background: rgba(230, 196, 141, .09); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
 .bt b { font-size: 34px; font-weight: 200; line-height: 1; color: var(--gold); }
-.bt b.dia { width: 12px; height: 12px; transform: rotate(45deg); border: 1.5px solid var(--gold); margin-top: 8px; }
+.bt .dia { position: absolute; top: 20px; inset-inline-start: 18px; width: 12px; height: 12px; transform: rotate(45deg); border: 1.5px solid var(--gold); }
+.bt { padding-top: 46px; } .bt.has-n .dia { background: var(--gold); }
 .bt span { font-size: 14px; line-height: 1.5; color: rgba(246, 238, 226, .82); }
 .bt.has-n { background: linear-gradient(160deg, rgba(230, 196, 141, .14), rgba(230, 196, 141, .03)); }
 
@@ -140,7 +141,7 @@ html[dir="ltr"] .jr__line em { background: linear-gradient(90deg, #fff1d6, var(-
 @media (max-width: 1100px) {
   .bld__grid { grid-template-columns: repeat(4, 1fr); }
   .prfacts__grid { grid-template-columns: 1fr 1fr; }
-  .jr__track { grid-template-columns: repeat(6, 250px); width: max-content; }
+  .jr__track { grid-template-columns: repeat(7, 240px); width: max-content; }
 }
 @media (max-width: 1000px) {
   .gt__chart { --lab: 0px; padding-inline: 14px; overflow-x: auto; }
@@ -156,7 +157,7 @@ html[dir="ltr"] .jr__line em { background: linear-gradient(90deg, #fff1d6, var(-
 }
 @media (max-width: 600px) {
   .bld__grid { grid-template-columns: 1fr 1fr; }
-  .jr__track { grid-template-columns: repeat(6, 78vw); }
+  .jr__track { grid-template-columns: repeat(7, 78vw); }
   .jr__rail { scroll-snap-type: x mandatory; padding-inline: 0; scroll-padding-inline: 20px; } .jr__step { scroll-snap-align: start; }
   .jr__track { width: max-content; padding-inline: 20px; }
   .jr__line { inset-inline: 48px; }
@@ -169,3 +170,7 @@ html[dir="ltr"] .jr__line em { background: linear-gradient(90deg, #fff1d6, var(-
 .gt__arr::after { content: ""; position: absolute; top: -3px; width: 6px; height: 6px; border-top: 1px solid currentColor; border-left: 1px solid currentColor; }
 html[dir="rtl"] .gt__arr::after { left: 0; transform: rotate(-45deg); }
 html[dir="ltr"] .gt__arr::after { right: 0; transform: rotate(135deg); }
+/* tiles: label always at the foot; stage cards share one height */
+.bt { align-content: end; }
+.jr__step { display: flex; flex-direction: column; }
+.jr__card { flex: 1; }
