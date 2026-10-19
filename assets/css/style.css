@@ -1468,3 +1468,9 @@ html[dir="rtl"] .hub__flip { transform: scaleX(-1); }
 html[dir="rtl"] .goal__no { left: 22px; right: auto; } html[dir="ltr"] .goal__no { right: 22px; left: auto; }
 .goal:last-child::after { top: auto; bottom: 150px; }
 .goal:last-child::after { top: 92px; bottom: auto; }
+/* phones: the four story chapters stack in one column (the 2-column tablet rule squeezed them and the
+   «المنظومة» labels ran into each other) — 2026-10-19 */
+@media (max-width: 700px) {
+  .story3 { grid-template-columns: 1fr; row-gap: 0; }
+  .story3__arrow, .story3__arrow:nth-child(4) { display: grid; height: 52px; }
+}
