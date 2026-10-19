@@ -348,7 +348,7 @@ window.BUAD_EN = {
   'story.title': 'From an idea… to an integrated ecosystem',
   'story.q1': 'Many parties… one project',
   'story.q1b': 'So we decided to become the one party',
-  'story.c3': 'Jeddah',
+  'story.c3': 'Jeddah', 'story.c5': 'Madinah', 'story.c6': 'Abha',
   'story.c4': 'Specialized, licensed partners',
   'fl.1': 'Opportunity',
   'fl.2': 'Transaction',
