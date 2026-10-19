@@ -217,7 +217,7 @@ window.BUAD_EN = {
   'jp.pr.station': 'Fuel Station &amp; Multi-Service Facilities',
   'jp.n.plan': 'Planning area ratio',
   'jp.n.build': 'Building area ratio',
-  'pr.meta.title': 'Project progress | BUAD',
+  'pr.meta.title': 'Project progress | BUAD', 'st.meta.title': 'Al Jumum Interface · Darb Station',
   'pr.eyebrow': 'Project Updates',
   'pr.title': 'Where the project stands now',
   'pr.sub': 'Fuel Station &amp; Multi-Service Facilities · Phase One of Al Jumum Interface',
