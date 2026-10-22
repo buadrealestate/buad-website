@@ -1475,3 +1475,38 @@ html[dir="rtl"] .goal__no { left: 22px; right: auto; } html[dir="ltr"] .goal__no
   .story3__arrow, .story3__arrow:nth-child(4) { display: grid; height: 52px; }
 }
 .tl0__lbl--o { font-size: 11px; fill: rgba(239, 225, 202, .55); }   /* the two lighter dots: المدينة المنورة · أبها (2026-10-19) */
+
+/* ---------------------------------------------------------------- user 2026-10-22 */
+/* the dimensions motto stays on one line on every screen */
+.dstrips__motto, .dorbit .dstrips__motto { white-space: nowrap; }
+@media (max-width: 760px) { .dstrips__motto, .dorbit .dstrips__motto { font-size: clamp(12px, 3.55vw, 21px); gap: 8px; }
+  .dstrips__motto::before, .dstrips__motto::after { width: 7px; height: 7px; } }
+
+/* divider before our projects */
+.xpdiv { padding-block: clamp(64px, 8vw, 120px); background: var(--ivory); }
+.xpdiv__in { display: flex; align-items: center; gap: clamp(16px, 3vw, 40px); }
+.xpdiv__line { flex: 1 1 0; height: 1px; background: linear-gradient(90deg, transparent, var(--tan)); position: relative; }
+.xpdiv__line:last-child { background: linear-gradient(270deg, transparent, var(--tan)); }
+.xpdiv__line::after { content: ""; position: absolute; top: 50%; width: 9px; height: 9px; border: 1.5px solid var(--tan); transform: translateY(-50%) rotate(45deg); background: var(--ivory); }
+.xpdiv__line:first-child::after { inset-inline-end: -5px; } .xpdiv__line:last-child::after { inset-inline-start: -5px; }
+.xpdiv__title { flex: 0 1 auto; max-width: none; text-align: center; font-size: clamp(24px, 3.2vw, 46px); font-weight: 500; line-height: 1.35; color: var(--brown); text-wrap: balance; }
+
+/* ISO: the standard number on its own line */
+.seal__no { display: block; margin-top: 6px; font-size: 13px; letter-spacing: .06em; color: var(--tan); direction: ltr; unicode-bidi: isolate; }
+
+/* licences, qualifications and memberships as cards */
+.licc-grid { list-style: none; margin: clamp(36px, 4vw, 56px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); }
+.licc { position: relative; display: grid; align-content: start; gap: 10px; padding: 22px 22px 24px; border-radius: 18px; background: var(--ivory);
+  box-shadow: inset 0 0 0 1px rgba(185, 153, 121, .35); transition: transform .5s var(--spring), box-shadow .5s; }
+.licc:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(185, 153, 121, .7), 0 18px 34px -24px rgba(67, 41, 31, .45); }
+.licc__tag { justify-self: start; font-size: 12px; padding: 3px 12px; border-radius: 999px; color: var(--mocha); box-shadow: inset 0 0 0 1px rgba(185, 153, 121, .55); }
+.licc__mark { position: absolute; top: 24px; inset-inline-end: 22px; width: 10px; height: 10px; transform: rotate(45deg); border: 1.5px solid var(--tan); transition: background .5s; }
+.licc:hover .licc__mark { background: var(--tan); }
+.licc b { display: block; margin-top: 6px; font-size: 17px; font-weight: 500; color: var(--brown); line-height: 1.45; }
+.licc__by { display: block; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+@media (max-width: 1100px) { .licc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .licc-grid { grid-template-columns: 1fr; } .licc { padding: 18px 18px 20px; } }
+
+/* footer: the mark with «لنحقق رؤية», then the copyright as the very last line of the page */
+.footer { padding-block: 70px 0; }
+.footer__copy { width: 100%; margin-top: 34px; padding-block: 20px 24px; border-top: 1px solid rgba(239, 225, 202, .12); }

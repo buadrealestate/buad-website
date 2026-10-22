@@ -131,8 +131,9 @@ window.BUAD_EN = {
   'cr.2': 'FAL Real Estate Brokerage License', 'cr.2s': 'Real Estate General Authority',
   'cr.3': 'Real Estate Developer Qualification', 'cr.3s': 'Ministry of Municipalities and Housing',
   'cr.4': 'Al Balad Al Ameen Qualification', 'cr.4s': 'Al Balad Al Ameen Company',
-  'cr.5s': 'Quality management systems 9001:2015', 'cr.6s': 'Environmental management systems 14001:2015',
-  'cr.7s': 'Occupational health &amp; safety management 45001:2018', 'cr.8s': 'Project management 21500:2021',
+  'cr.5s': 'Quality management systems<span class="seal__no">9001:2015</span>', 'cr.6s': 'Environmental management systems<span class="seal__no">14001:2015</span>',
+  'cr.7s': 'Occupational health &amp; safety management<span class="seal__no">45001:2018</span>', 'cr.8s': 'Project management<span class="seal__no">21500:2021</span>',
+  'xp.t': 'Real experience behind every one of our dimensions',
   'cr.9': 'Saudi Contractors Authority Membership', 'cr.9s': 'Membership certificate',
   'cr.10': 'Monsha’at Certificate', 'cr.10s': 'Official classification – Small and Medium Enterprises General Authority',
   'cr.11': 'Off-Plan Sales Certificate', 'cr.11s': 'Saudi Real Estate Institute',
@@ -186,7 +187,7 @@ window.BUAD_EN = {
   'pp.km': 'km of fiber-optic network', 'pp.sar': 'SAR million estimated value',
   'pp.cta.eyebrow': 'Your Next Project',
 
-  'ft.motto': 'Buad — Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad',
+  'ft.motto': 'Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad',
   // sections redesign (Oct 2026)
   'ph.l1': 'Phase One', 'ph.l2': 'Phase Two', 'ph.l3': 'Phase Three', 'ph.l4': 'Phase Four',
   'ph.1a': 'Fuel station &amp; service centers', 'ph.1b': 'Rural farms', 'ph.1c': 'A 2 km walkway', 'ph.1d': 'Diwaniya &amp; administration',
