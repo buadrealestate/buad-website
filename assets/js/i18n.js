@@ -134,6 +134,7 @@ window.BUAD_EN = {
   'cr.5s': 'Quality management systems<span class="seal__no">9001:2015</span>', 'cr.6s': 'Environmental management systems<span class="seal__no">14001:2015</span>',
   'cr.7s': 'Occupational health &amp; safety management<span class="seal__no">45001:2018</span>', 'cr.8s': 'Project management<span class="seal__no">21500:2021</span>',
   'xp.t': 'Real experience behind every one of our dimensions',
+  'xp.e': 'Our projects', 'c.lic': 'Licences, qualifications and memberships',
   'cr.9': 'Saudi Contractors Authority Membership', 'cr.9s': 'Membership certificate',
   'cr.10': 'Monsha’at Certificate', 'cr.10s': 'Official classification – Small and Medium Enterprises General Authority',
   'cr.11': 'Off-Plan Sales Certificate', 'cr.11s': 'Saudi Real Estate Institute',
