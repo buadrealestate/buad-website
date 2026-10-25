@@ -347,7 +347,7 @@ window.BUAD_EN = {
   'rq.btn.mp': 'Request the Masterplan', 'rq.btn.docs': 'Request the Official Documents',
   'dn.title': 'Completed so far', 'dn.0': 'Allocation decision', 'dn.1': 'Requirements kroki', 'dn.2': 'Survey report', 'dn.3': 'Hydrological study', 'dn.4': 'Feasibility studies', 'dn.5': 'Masterplan', 'dn.6': 'Fence building permit', 'dn.7': 'Site preparation permit', 
   'jp.loc.map': 'Project location on Google Maps',
-  'rq.btn.summary': 'Request the Executive Summary', 'dl.proj': 'Project overview', 'dl.projb': 'Al Jumum Interface — project overview (Arabic)',
+  'rq.btn.summary': 'Executive Summary of the Opportunity', 'dl.proj': 'Project overview', 'dl.projb': 'Al Jumum Interface — project overview (Arabic)',
   'vis.eyebrow': 'Visits we are honoured by', 'vis.title': 'Guests who honoured Buad',
   'rq.btn.zone': 'Request a space in this zone',
   // story cards + contact board (Oct 2026)
