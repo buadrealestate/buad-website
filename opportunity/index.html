@@ -139,6 +139,22 @@
   .done__core b { font-size: 19px; font-weight: 700; line-height: 1.35; }
   .done__core svg { position: absolute; top: 16px; inset-inline-end: 16px; width: 40px; height: 40px; fill: rgba(74, 47, 28, .08); stroke: #4a2f1c; stroke-width: 1.8; stroke-linejoin: round; }
 
+  /* remaining items of the levelling phase (user 2026-10-25) */
+  .left__t { margin: clamp(46px, 5vw, 70px) 0 18px; font-size: 13px; letter-spacing: .14em; color: var(--gold); }
+  .left { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .left li { display: flex; flex-direction: column; justify-content: space-between; gap: 26px; min-height: 140px; padding: 20px; border-radius: 22px;
+    background: rgba(243, 230, 207, .035); box-shadow: inset 0 0 0 1px var(--hair-d); }
+  .left li.is-now { background: linear-gradient(160deg, rgba(230, 196, 141, .2), rgba(230, 196, 141, .04)); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .65), 0 24px 50px -30px rgba(230, 196, 141, .6); }
+  .left span { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px;
+    color: rgba(243, 230, 207, .6); box-shadow: inset 0 0 0 1px rgba(243, 230, 207, .22); }
+  .left span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; border: 1.4px solid currentColor; }
+  .left li.is-now span { color: var(--gold); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .5); }
+  .left li.is-now span::before { border: 0; background: var(--gold); animation: lp 1.8s ease-out infinite; }
+  @keyframes lp { 0% { box-shadow: 0 0 0 0 rgba(230, 196, 141, .6); } 100% { box-shadow: 0 0 0 9px rgba(230, 196, 141, 0); } }
+  .left b { font-size: 18px; font-weight: 500; line-height: 1.4; color: rgba(243, 230, 207, .75); }
+  .left li.is-now b { color: #f8ecd8; font-weight: 700; }
+  @media (max-width: 980px) { .left { grid-template-columns: 1fr 1fr; } }
+
   /* 04 why now: full-bleed image band */
   .now { position: relative; min-height: 80dvh; display: grid; place-items: center; text-align: center; overflow: hidden; }
   .now img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -282,6 +298,8 @@
   <div class="w">
     <div class="sh rv"><span class="sh__no" aria-hidden="true">03</span><span class="pill">الإنجاز</span><h2>ما تم إنجازه</h2></div>
     <ul class="done" id="done"></ul>
+    <p class="left__t rv">المتبقي من مرحلة التسوية والتمهيد</p>
+    <ol class="left" id="left"></ol>
   </div>
 </section>
 
@@ -338,6 +356,8 @@
   // «ما تم إنجازه» — the same list as the PDF
   const DONE = ['قرار التخصيص', 'كروكي الإشتراطات', 'التقرير المساحي', 'الدراسة الهيدرولوجية', 'دراسات الجدوى', 'الماستر بلان', 'رخصة بناء السور', 'رخصة تجهيز الموقع'];
   const SEAL = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3l6.2 4.6 7.7-.4 3.4 6.9 6.9 3.4-.4 7.7L60.4 32l-4.6 6.2.4 7.7-6.9 3.4-3.4 6.9-7.7-.4L32 60.4l-6.2-4.6-7.7.4-3.4-6.9-6.9-3.4.4-7.7L3.6 32l4.6-6.2-.4-7.7 6.9-3.4 3.4-6.9 7.7.4z"/><path d="M23 32.5l6 6L42 25.5" style="fill:none;stroke-width:3;stroke-linecap:round"/></svg>';
+  const LEFT = [['now', 'قطع صخري لمنطقة الجبلين'], ['next', 'تنفيذ عبارة السيول'], ['next', 'تسوية الأرض'], ['next', 'تسوير المشروع'], ['next', 'رخصة البناء لكامل المشروع']];
+  document.getElementById('left').innerHTML = LEFT.map(([s, t]) => `<li class="rv is-${s}"><span>${s === 'now' ? 'جارٍ الآن' : 'قادم'}</span><b>${t}</b></li>`).join('');
   document.getElementById('done').innerHTML = DONE.map(t => `<li class="rv"><div class="done__core">${SEAL}<span>منجز</span><b>${t}</b></div></li>`).join('');
   // scroll reveals, staggered among siblings — IntersectionObserver only
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .14, rootMargin: '0px 0px -6% 0px' });
