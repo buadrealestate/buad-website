@@ -43,7 +43,7 @@ window.BUAD_EN = {
 
   'dims.eyebrow': 'The Buad Ecosystem', 'dims.title': 'Six Dimensions for Your Business',
   'dims.lead': 'One ecosystem covering the full lifecycle of your project and organization, from seizing the opportunity to closing the deal, managing the contract, development, and all the way to operations and growth.',
-  'dims.motto': 'One contract. One point of contact. Six dimensions of expertise.',
+  'dims.motto': 'One contract .. One point of contact .. Six dimensions of expertise',
 
   'd1.t': 'Investment & Transactions',
   'd1.tag': 'We discover the opportunity and manage the transaction through to closing',
@@ -172,7 +172,7 @@ window.BUAD_EN = {
   'jp.z.hint': 'Select a zone on the plan', 'jp.z.note': 'Approximate area per the adopted masterplan',
   'jp.phases.title': 'Four phases that build the destination step by step',
   'jp.t.fuel': 'Fuel station &amp; service facilities', 'jp.t.farms': 'Recreational rural farms', 'jp.t.walk': 'Interface Walkway', 'jp.t.diw': 'Diwaniya &amp; administration',
-  'jp.t.hall': 'Business hall', 'jp.t.comm': 'Commercial showrooms', 'jp.t.pop': 'Popular markets', 'jp.t.mall': 'Open-air mall',
+  'jp.t.hall': 'Events hall', 'jp.t.comm': 'Commercial showrooms', 'jp.t.pop': 'Popular markets', 'jp.t.mall': 'Open-air mall',
   'jp.t.modern': 'Modern markets', 'jp.t.log': 'Smart warehousing', 'jp.t.hang': 'Hanging popular restaurants', 'jp.t.visit': 'Visitor &amp; Umrah centre', 'jp.t.ent': 'Entertainment zones',
   'jp.t.chal': 'Chalets', 'jp.t.res': 'Resorts', 'jp.t.mot': 'Motels', 'jp.t.villa': 'Residential compounds',
   'jp.loc.eyebrow': 'Location', 'jp.loc.title': 'At the northern entrance to Makkah',
