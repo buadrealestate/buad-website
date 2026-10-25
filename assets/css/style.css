@@ -1590,22 +1590,19 @@ html[dir="ltr"] .xpd__mark { transform: translate(-50%, -50%); }
 .smap__fog--b { background: radial-gradient(30% 22% at 60% 30%, rgba(255, 244, 230, .5), transparent 70%), radial-gradient(28% 20% at 25% 75%, rgba(255, 238, 214, .4), transparent 70%); }
 .smap__sweep { position: absolute; inset: 0; pointer-events: none; opacity: 0;
   background: linear-gradient(105deg, transparent 35%, rgba(255, 226, 180, .22) 48%, transparent 60%); background-size: 250% 100%; }
-.smap.is-play .smap__cam { animation: smapFly2 6.8s cubic-bezier(.3, .05, .15, 1) both; }
-.smap.is-play .smap__drift { animation: smapDrift 16s ease-in-out 6.8s infinite alternate; }
-.smap.is-play .smap__fog--a { animation: smapFogA 5.6s ease-out .2s both; }
-.smap.is-play .smap__fog--b { animation: smapFogB 6.2s ease-out .6s both; }
-.smap.is-play .smap__sweep { animation: smapSweep 3.2s ease-in-out 3.8s both; }
-.smap.is-play .smap__line { animation: smapDraw 2.6s ease-in-out 6.2s forwards; }
-.smap.is-play .smap__glow { animation: smapFade 1.4s ease 7.6s forwards; }
-.smap.is-play .smap__dim { animation: smapFade 1.6s ease 6.6s forwards; }
-.smap.is-play .smap__pin { animation: smapPin2 .8s cubic-bezier(.3, 1.6, .5, 1) 8.4s forwards; }
-.smap.is-play .smap__pulse { animation: smapPulse 2.2s ease-out 9.2s infinite; }
-.smap.is-play .smap__card { animation: smapCard .9s ease 8.8s forwards; }
+.smap.is-play .smap__cam { animation: smapFly2 3.4s cubic-bezier(.16, .7, .2, 1) both; }   /* one smooth move (user 2026-10-25: no stop-start phases, shorter) */
+.smap.is-play .smap__fog--a { animation: smapFogA 2.6s ease-out both; }
+.smap.is-play .smap__fog--b { animation: smapFogB 2.9s ease-out .1s both; }
+.smap.is-play .smap__sweep { animation: smapSweep 2s ease-in-out 1.2s both; }
+.smap.is-play .smap__line { animation: smapDraw 1.5s ease-in-out 2.4s forwards; }
+.smap.is-play .smap__glow { animation: smapFade 1s ease 3.2s forwards; }
+.smap.is-play .smap__dim { animation: smapFade 1.2s ease 2.6s forwards; }
+.smap.is-play .smap__pin { animation: smapPin2 .7s cubic-bezier(.3, 1.6, .5, 1) 3.6s forwards; }
+.smap.is-play .smap__pulse { animation: smapPulse 2.2s ease-out 4.3s infinite; }
+.smap.is-play .smap__card { animation: smapCard .7s ease 3.9s forwards; }
 @keyframes smapFly2 {
-  0%   { transform: translate(-16%, 20%) scale(3.4) rotateX(52deg) rotateZ(-20deg); filter: brightness(.45) blur(3px) saturate(.8); }
-  30%  { transform: translate(-9%, 12%) scale(2.3) rotateX(42deg) rotateZ(-12deg); filter: brightness(.7) blur(1px) saturate(.9); }
-  65%  { transform: translate(-2%, 3%) scale(1.45) rotateX(24deg) rotateZ(-4deg); filter: brightness(.95) blur(0) saturate(1); }
-  100% { transform: translate(0, -2%) scale(1.14) rotateX(14deg) rotateZ(0); filter: brightness(1) saturate(1.05); } }
+  from { transform: translate(-14%, 18%) scale(3) rotateX(50deg) rotateZ(-18deg); filter: brightness(.5) blur(2px) saturate(.85); }
+  to   { transform: translate(0, -2%) scale(1.14) rotateX(14deg) rotateZ(0); filter: brightness(1) blur(0) saturate(1.05); } }
 @keyframes smapDrift { from { transform: rotateZ(0) scale(1); } to { transform: rotateZ(-1.2deg) scale(1.035); } }
 @keyframes smapFogA { 0% { opacity: .9; transform: scale(1.4) translate(0, 0); } 100% { opacity: 0; transform: scale(2.2) translate(-14%, 8%); } }
 @keyframes smapFogB { 0% { opacity: .8; transform: scale(1.2) translate(0, 0); } 100% { opacity: 0; transform: scale(2) translate(16%, -10%); } }
