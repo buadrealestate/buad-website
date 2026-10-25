@@ -344,6 +344,7 @@ window.BUAD_EN = {
   'jp.ms.8d': '2028',
   'rq.btn.invest': 'Request the Investment Memorandum',
   'rq.btn.lease': 'Leasing for Brands',
+  'jp.loc.map': 'Project location on Google Maps',
   'rq.btn.summary': 'Request the Executive Summary', 'dl.proj': 'Project overview', 'dl.projb': 'Al Jumum Interface — project overview (Arabic)',
   'vis.eyebrow': 'Visits we are honoured by', 'vis.title': 'Guests who honoured Buad',
   'rq.btn.zone': 'Request a space in this zone',
