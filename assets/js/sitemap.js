@@ -5,7 +5,11 @@
 (() => {
   'use strict';
   const MAPS = 'https://maps.app.goo.gl/xBKahBZcByVDwckx6';
-  const KROKI = [   // { src: 'assets/img/jumum/kroki-allocation.webp', ar: 'كروكي التخصيص', en: 'Allocation kroki' }, …
+  // official documents shown on the location view (user 2026-10-25): click a thumbnail to open it large and zoom in
+  const KROKI = [
+    { src: 'assets/img/jumum/doc-kroki-tanzimi.webp', th: 'assets/img/jumum/doc-kroki-tanzimi-t.webp', ar: 'الكروكي التنظيمي', en: 'Planning kroki' },
+    { src: 'assets/img/jumum/doc-survey-report.webp', th: 'assets/img/jumum/doc-survey-report-t.webp', ar: 'التقرير المساحي', en: 'Survey report' },
+    { src: 'assets/img/jumum/doc-kroki-taashir.webp', th: 'assets/img/jumum/doc-kroki-taashir-t.webp', ar: 'كروكي التأشير', en: 'Marking kroki' },
   ];
   // the site outline on the day render (1200 × 669 frame of assets/img/hero/h1-day.webp), traced by hand (user 2026-10-25: cinematic, not a Google map)
   const SITE = 'M212 178 L262 128 L330 112 L395 104 L470 128 L560 150 L660 170 L745 178 L785 215 L800 290 L835 360 L880 450 L900 515 L800 535 L700 555 L625 565 L565 540 L500 480 L430 430 L360 370 L300 320 L255 260 Z';
@@ -20,7 +24,7 @@
 
   function render() {
     const L = T(), B = window.ASSET_BASE || '';   // '../' on pages in a sub-folder (smartface/)
-    const docs = KROKI.map(k => `<a class="smap__doc" href="${B}${k.src}" target="_blank" rel="noopener"><img src="${B}${k.src}" alt=""><span>${en() ? k.en : k.ar}</span></a>`).join('');
+    const docs = KROKI.map((k, i) => `<button type="button" class="smap__doc" data-doc="${i}"><img src="${B}${k.th}" alt=""><span>${en() ? k.en : k.ar}</span></button>`).join('');
     dlg.innerHTML = `
       <div class="smap__stage">
         <div class="smap__drift"><div class="smap__cam">
@@ -42,21 +46,43 @@
         ${docs ? `<div class="smap__docs">${docs}</div>` : ''}
         <div class="smap__actions">
           <a class="btn btn--light btn--ico" href="${MAPS}" target="_blank" rel="noopener"><span>${L.open}</span><i class="btn__ico" aria-hidden="true"></i></a>
-          <button type="button" class="btn btn--ghost smap__replay">${L.replay}</button>
         </div>
       </div>
       <button type="button" class="smap__x" aria-label="${L.close}"></button>`;
     dlg.querySelector('.smap__x').addEventListener('click', () => dlg.close());
-    dlg.querySelector('.smap__replay').addEventListener('click', play);
+    dlg.querySelectorAll('[data-doc]').forEach(b => b.addEventListener('click', () => viewDoc(+b.dataset.doc)));
   }
-  function play() {
-    dlg.classList.remove('is-play'); void dlg.offsetWidth; dlg.classList.add('is-play');
+  function play() { dlg.classList.add('is-static'); }   // a still view (the cinematic fly-in was dropped by the user, 2026-10-25)
+  // document viewer: large image, click / tap to zoom at that point, arrows to move between the documents
+  const dv = document.createElement('dialog'); dv.className = 'dv'; document.body.appendChild(dv);
+  let cur = 0;
+  function viewDoc(i) {
+    cur = (i + KROKI.length) % KROKI.length;
+    const k = KROKI[cur], B = window.ASSET_BASE || '', L = T();
+    dv.innerHTML = `<div class="dv__bar"><b>${en() ? k.en : k.ar}</b><span>${cur + 1} / ${KROKI.length}</span>
+        <a class="dv__full" href="${B}${k.src}" target="_blank" rel="noopener">${en() ? 'Full size' : 'بالحجم الكامل'}</a>
+        <button type="button" class="dv__x" aria-label="${L.close}"></button></div>
+      <div class="dv__view"><img src="${B}${k.src}" alt=""></div>
+      <button type="button" class="dv__nav dv__nav--prev" aria-label="prev"></button><button type="button" class="dv__nav dv__nav--next" aria-label="next"></button>
+      <p class="dv__hint">${en() ? 'Tap the document to zoom' : 'اضغط على المستند للتكبير'}</p>`;
+    const view = dv.querySelector('.dv__view'), img = view.querySelector('img');
+    img.addEventListener('click', e => {
+      const r = img.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+      view.classList.toggle('is-zoom');
+      if (view.classList.contains('is-zoom')) requestAnimationFrame(() => {
+        view.scrollLeft = fx * img.offsetWidth - view.clientWidth / 2; view.scrollTop = fy * img.offsetHeight - view.clientHeight / 2; });
+    });
+    dv.querySelector('.dv__x').addEventListener('click', () => dv.close());
+    dv.querySelector('.dv__nav--prev').addEventListener('click', () => viewDoc(cur - 1));
+    dv.querySelector('.dv__nav--next').addEventListener('click', () => viewDoc(cur + 1));
+    if (!dv.open) dv.showModal();
   }
+  dv.addEventListener('click', e => { if (e.target === dv) dv.close(); });
   function open() {
     render(); dlg.showModal(); document.documentElement.classList.add('rq-open');
     requestAnimationFrame(play);
   }
-  dlg.addEventListener('close', () => { dlg.classList.remove('is-play'); document.documentElement.classList.remove('rq-open'); });
+  dlg.addEventListener('close', () => { dlg.classList.remove('is-static'); document.documentElement.classList.remove('rq-open'); });
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-sitemap]');
