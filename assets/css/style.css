@@ -1655,3 +1655,13 @@ html[dir="ltr"] .xpd__mark { transform: translate(-50%, -50%); }
 .dv__nav--next { left: 14px; } .dv__nav--next::before { transform: translate(-70%, -50%) rotate(45deg); }
 .dv__hint { position: absolute; inset: auto 0 12px; text-align: center; font-size: 12.5px; color: rgba(239, 225, 202, .55); }
 @media (max-width: 760px) { .dv__view img { max-width: calc(100vw - 24px); } .dv__nav { top: auto; bottom: 46px; margin: 0; } .dv__view.is-zoom img { width: 300%; } }
+
+/* the three site documents shown in the «الموقع» section (user 2026-10-25) */
+.jdocs { margin-top: clamp(26px, 3vw, 40px); }
+.jdocs__title { font-size: 14px; letter-spacing: .1em; color: #e6c48d; margin-bottom: 12px; }
+.jdocs__row { display: flex; flex-wrap: wrap; gap: 14px; }
+.jdocs__item { width: clamp(110px, 12vw, 150px); padding: 0; border: 0; background: none; cursor: zoom-in; font: inherit; color: #efe1ca; display: grid; gap: 8px; text-align: center; }
+.jdocs__item img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; border-radius: 12px; background: #fff;
+  box-shadow: 0 0 0 1px rgba(230, 196, 141, .4), 0 18px 34px -20px rgba(0, 0, 0, .8); transition: transform .4s, box-shadow .4s; }
+.jdocs__item:hover img { transform: translateY(-4px); box-shadow: 0 0 0 1.5px #e6c48d, 0 22px 40px -20px rgba(0, 0, 0, .9); }
+.jdocs__item span { font-size: 13.5px; }

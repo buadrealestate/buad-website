@@ -78,6 +78,12 @@
     if (!dv.open) dv.showModal();
   }
   dv.addEventListener('click', e => { if (e.target === dv) dv.close(); });
+  // the same documents shown straight in the «الموقع» section (home page, jumum.html, smartface/) — user 2026-10-25
+  document.querySelectorAll('[data-docs-strip]').forEach(box => {
+    const B = window.ASSET_BASE || '';
+    box.innerHTML = KROKI.map((k, i) => `<button type="button" class="jdocs__item" data-doc-open="${i}"><img src="${B}${k.th}" alt="" loading="lazy"><span data-ar="${k.ar}" data-en="${k.en}">${en() ? k.en : k.ar}</span></button>`).join('');
+  });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-doc-open]'); if (b) { e.preventDefault(); viewDoc(+b.dataset.docOpen); } });
   function open() {
     render(); dlg.showModal(); document.documentElement.classList.add('rq-open');
     requestAnimationFrame(play);
