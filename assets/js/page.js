@@ -64,7 +64,7 @@
     const video = $('#heroVideo');
     if (!video) return null;
     const isPortrait = () => innerHeight > innerWidth * 1.15 && innerWidth < 820;
-    const src = () => `assets/video/hero${isPortrait() ? '-m' : ''}.mp4`;
+    const src = () => `${window.ASSET_BASE || ''}assets/video/hero${isPortrait() ? '-m' : ''}.mp4`;   // ASSET_BASE: '../' on pages in a sub-folder (smartface/)
     const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
     const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
     const PHASES = [[0, 'النهار', 'Day'], [.25, 'العصر', 'Afternoon'], [.42, 'الغروب', 'Sunset'],

@@ -19,12 +19,12 @@
   document.body.appendChild(dlg);
 
   function render() {
-    const L = T();
-    const docs = KROKI.map(k => `<a class="smap__doc" href="${k.src}" target="_blank" rel="noopener"><img src="${k.src}" alt=""><span>${en() ? k.en : k.ar}</span></a>`).join('');
+    const L = T(), B = window.ASSET_BASE || '';   // '../' on pages in a sub-folder (smartface/)
+    const docs = KROKI.map(k => `<a class="smap__doc" href="${B}${k.src}" target="_blank" rel="noopener"><img src="${B}${k.src}" alt=""><span>${en() ? k.en : k.ar}</span></a>`).join('');
     dlg.innerHTML = `
       <div class="smap__stage">
         <div class="smap__cam">
-          <img class="smap__img" src="assets/img/jumum/site-map.webp" alt="">
+          <img class="smap__img" src="${B}assets/img/jumum/site-map.webp" alt="">
           <svg class="smap__svg" viewBox="0 0 1280 751" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <path class="smap__glow" d="${ROUTE}"/><path class="smap__line" d="${ROUTE}" pathLength="1"/>
             <g class="smap__pin" transform="translate(600 410)"><circle r="26" class="smap__pulse"/><path d="M0 0 C-11 -16 -16 -24 -16 -32 A16 16 0 0 1 16 -32 C16 -24 11 -16 0 0Z"/><circle cy="-32" r="6" class="smap__dot"/></g>
