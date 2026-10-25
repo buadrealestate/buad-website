@@ -209,6 +209,67 @@
     .rv { opacity: 1; transform: none; filter: none; transition: none; } .hero__bg img { animation: none; transform: none; }
     .ring .r-fg { transition: none; stroke-dashoffset: 34; } .fork svg path { transition: none; stroke-dashoffset: 0; } }
 
+
+  /* ===== v3: giant figures in the hero */
+  .big { display: grid; gap: 18px; justify-items: start; }
+  .big__item { display: grid; gap: 4px; }
+  .big__k { font-size: 13px; letter-spacing: .16em; color: var(--gold); }
+  .big__n { display: flex; align-items: baseline; gap: 10px; line-height: .9; direction: rtl; }
+  .big__n b { font-size: clamp(90px, 11vw, 170px); font-weight: 200; color: transparent; -webkit-text-stroke: 1.2px #f0d4a3; direction: ltr;
+    background: linear-gradient(180deg, rgba(246, 223, 178, .0) 30%, rgba(246, 223, 178, .35)); -webkit-background-clip: text; background-clip: text; }
+  .big__n small { font-size: clamp(20px, 2vw, 28px); font-weight: 400; color: rgba(243, 230, 207, .85); }
+  .big__n--r { direction: ltr; } .big__n--r i { font-style: normal; font-size: clamp(50px, 6vw, 90px); font-weight: 200; color: var(--gold); }
+  .big__n--r small { color: var(--gold); font-size: clamp(34px, 3.6vw, 56px); font-weight: 200; }
+  .big__go { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; padding: 8px 8px 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 500;
+    color: #f8ecd8; text-decoration: none; box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); transition: background .6s var(--spring); }
+  html[dir="rtl"] .big__go { padding: 8px 20px 8px 8px; }
+  .big__go:hover { background: rgba(230, 196, 141, .12); }
+  .big__go i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); transition: transform .6s var(--spring); }
+  .big__go:hover i { transform: translateY(3px); }
+  .big__go i::before { content: ""; width: 7px; height: 7px; border: solid var(--ink); border-width: 0 0 1.6px 1.6px; transform: rotate(-45deg) translate(1px, -2px); }
+
+  /* ===== v3: the two instruments */
+  .figs { position: relative; padding-block: clamp(70px, 9vw, 130px); background: radial-gradient(60% 60% at 25% 40%, rgba(230, 196, 141, .12), transparent 70%),
+    radial-gradient(50% 60% at 80% 60%, rgba(230, 196, 141, .1), transparent 70%), var(--ink); }
+  .figs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 26px); }
+  .inst { position: relative; overflow: hidden; display: grid; justify-items: center; gap: 18px; padding: clamp(28px, 3.4vw, 48px) clamp(20px, 3vw, 40px);
+    border-radius: 36px; background: linear-gradient(170deg, rgba(58, 38, 26, .8), rgba(26, 17, 12, .9)); box-shadow: inset 0 0 0 1px var(--hair-d), inset 0 1px 0 rgba(255, 240, 210, .1); }
+  .inst::before { content: ""; position: absolute; inset: auto -20% -50% -20%; height: 70%; background: radial-gradient(closest-side, rgba(230, 196, 141, .18), transparent); pointer-events: none; }
+  .inst__k { font-size: 14px; letter-spacing: .18em; color: var(--gold); }
+  .inst__note { font-size: 15.5px; color: rgba(243, 230, 207, .65); }
+  .dial { position: relative; width: min(340px, 82%); aspect-ratio: 1; }
+  .dial svg { width: 100%; height: 100%; overflow: visible; }
+  .dial .seg { fill: none; stroke: rgba(230, 196, 141, .14); stroke-width: 16; stroke-linecap: butt; transition: stroke .5s var(--spring), filter .5s; }
+  .dial .seg.on { stroke: url(#gGold); filter: drop-shadow(0 0 6px rgba(240, 200, 140, .55)); }
+  .dial .num { font: 500 11px Tajawal, sans-serif; fill: rgba(243, 230, 207, .45); text-anchor: middle; dominant-baseline: middle; transition: fill .5s; }
+  .dial .num.on { fill: var(--gold); }
+  .dial__c { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .dial__c b { font-size: clamp(76px, 8vw, 116px); font-weight: 200; line-height: .9; color: #f8ecd8; }
+  .dial__c span { margin-top: 6px; font-size: 18px; color: var(--gold); letter-spacing: .1em; }
+  .gauge { position: relative; width: min(420px, 94%); margin-top: 10px; }
+  .gauge svg { width: 100%; height: auto; overflow: visible; display: block; }
+  .g-track, .g-band { fill: none; stroke-width: 18; }
+  .g-track { stroke: rgba(230, 196, 141, .12); }
+  .g-band { stroke: url(#gGold); stroke-dasharray: 25 100; stroke-dashoffset: -50; opacity: 0; filter: drop-shadow(0 0 10px rgba(240, 200, 140, .6)); transition: opacity 1s var(--spring) .6s; }
+  .inst.in .g-band { opacity: 1; }
+  .g-tick { stroke: rgba(243, 230, 207, .35); stroke-width: 1.2; } .g-tick.maj { stroke: rgba(243, 230, 207, .7); stroke-width: 1.6; }
+  .g-lbl { font: 500 11px Tajawal, sans-serif; fill: rgba(243, 230, 207, .55); text-anchor: middle; dominant-baseline: middle; }
+  .g-lbl.hl { fill: var(--gold); font-weight: 700; font-size: 13px; }
+  .g-needle { transform-origin: 160px 170px; transform: rotate(-90deg); }
+  .g-needle line { stroke: #f8ecd8; stroke-width: 2.4; stroke-linecap: round; }
+  .g-needle circle { fill: var(--ink); stroke: var(--gold); stroke-width: 3; }
+  .gauge__c { margin-top: 18px; text-align: center; }
+  .gauge__c b { display: inline-flex; align-items: baseline; gap: 6px; direction: ltr; font-size: clamp(56px, 6vw, 86px); font-weight: 200; line-height: 1; color: #f8ecd8; }
+  .gauge__c i { font-style: normal; color: var(--gold); font-size: .7em; } .gauge__c small { font-size: .5em; color: var(--gold); }
+  .seals { margin-top: clamp(16px, 2vw, 26px); padding: clamp(22px, 2.6vw, 34px); border-radius: 30px; box-shadow: inset 0 0 0 1px var(--hair-d); }
+  .seals__k { text-align: center; font-size: 13px; letter-spacing: .16em; color: var(--gold); }
+  .seals__row { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .seal { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 8px 14px; }
+  .seal + .seal { border-inline-start: 1px solid var(--hair-d); }
+  .seal svg { flex: none; width: 30px; height: 30px; fill: none; stroke: var(--gold); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+  .seal b { font-size: 17px; font-weight: 500; color: #f8ecd8; }
+  @media (max-width: 900px) { .figs__grid { grid-template-columns: 1fr; } .seals__row { grid-template-columns: 1fr; gap: 6px; } .seal + .seal { border-inline-start: 0; border-top: 1px solid var(--hair-d); }
+    .seal { justify-content: flex-start; } }
   @media (max-width: 980px) {
     .hero__grid, .split { grid-template-columns: 1fr; }
     .bento { grid-template-columns: 1fr 1fr; }
@@ -246,18 +307,52 @@
       <p class="hero__sub rv">مدخل مكة المكرمة الشمالي</p>
       <p class="hero__to rv">سعادة المشارك - الموقر</p>
     </div>
-    <div class="bz rv"><div class="bz__core">
-      <div class="term__row">
-        <div class="term__cell"><p class="term__k">مدة الإستثمار</p><p class="term__v"><b>12</b><small>شهرًا</small></p></div>
-        <div class="term__cell"><p class="term__k">العوائد الربحية</p><p class="term__v term__range"><span>من</span><em>10%</em><span>إلى</span><em>15%</em></p></div>
-      </div>
-      <div class="term__g"><p class="term__k">أداة الضمان المالي</p>
-        <ul><li><i aria-hidden="true"></i>سند قبض نظامي</li><li><i aria-hidden="true"></i>عقد موثق ومعتمد</li><li><i aria-hidden="true"></i>تسجيل ملكية السهم في السجل التجاري</li></ul></div>
-    </div></div>
+    <div class="big rv" aria-label="مدة الإستثمار 12 شهرًا والعوائد الربحية من 10% إلى 15%">
+      <div class="big__item"><p class="big__k">مدة الإستثمار</p><p class="big__n"><b data-to="12">12</b><small>شهرًا</small></p></div>
+      <div class="big__item"><p class="big__k">العوائد الربحية</p><p class="big__n big__n--r"><b data-to="10">10</b><i>–</i><b data-to="15">15</b><small>%</small></p></div>
+      <a class="big__go" href="#figs">التفاصيل<i aria-hidden="true"></i></a>
+    </div>
   </div>
 </header>
 
 <main>
+<!-- ============================================ the two figures: duration dial + returns gauge -->
+<section class="figs" id="figs">
+  <div class="w">
+    <div class="figs__grid">
+      <article class="inst rv" id="dial">
+        <p class="inst__k">مدة الإستثمار</p>
+        <div class="dial">
+          <svg viewBox="0 0 300 300" aria-hidden="true"><g id="dialSegs"></g><g id="dialNums"></g></svg>
+          <div class="dial__c"><b>12</b><span>شهرًا</span></div>
+        </div>
+        <p class="inst__note">مدة قصيرة الأجل · سنة واحدة</p>
+      </article>
+      <article class="inst inst--r rv" id="gauge">
+        <p class="inst__k">العوائد الربحية</p>
+        <div class="gauge">
+          <svg viewBox="0 0 320 190" aria-hidden="true">
+            <path class="g-track" d="M30 170 A130 130 0 0 1 290 170" pathLength="100"/>
+            <path class="g-band" d="M30 170 A130 130 0 0 1 290 170" pathLength="100"/>
+            <g id="gTicks"></g>
+            <g class="g-needle" id="gNeedle"><line x1="160" y1="170" x2="160" y2="62"/><circle cx="160" cy="170" r="9"/></g>
+          </svg>
+          <div class="gauge__c"><b><span id="gFrom">10</span><i>–</i><span id="gTo">15</span><small>%</small></b></div>
+        </div>
+        <p class="inst__note">من 10% إلى 15% على مدة الإستثمار</p>
+      </article>
+    </div>
+    <div class="seals rv">
+      <p class="seals__k">أداة الضمان المالي</p>
+      <div class="seals__row">
+        <div class="seal"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg><b>سند قبض نظامي</b></div>
+        <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><b>عقد موثق ومعتمد</b></div>
+        <div class="seal"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><b>تسجيل ملكية السهم في السجل التجاري</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================ 01 facts -->
 <section class="paper sec">
   <div class="w">
@@ -359,6 +454,45 @@
   const LEFT = [['now', 'قطع صخري لمنطقة الجبلين'], ['next', 'تنفيذ عبارة السيول'], ['next', 'تسوية الأرض'], ['next', 'تسوير المشروع'], ['next', 'رخصة البناء لكامل المشروع']];
   document.getElementById('left').innerHTML = LEFT.map(([s, t]) => `<li class="rv is-${s}"><span>${s === 'now' ? 'جارٍ الآن' : 'قادم'}</span><b>${t}</b></li>`).join('');
   document.getElementById('done').innerHTML = DONE.map(t => `<li class="rv"><div class="done__core">${SEAL}<span>منجز</span><b>${t}</b></div></li>`).join('');
+
+  // ===== v3: count-ups, the 12-month dial and the returns gauge
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ease = x => 1 - Math.pow(1 - x, 4);
+  const tween = (ms, f) => { if (reduce) return f(1); const t0 = performance.now(); (function s(t) { const k = Math.min(1, (t - t0) / ms); f(ease(k)); if (k < 1) requestAnimationFrame(s); })(t0); };
+  document.querySelectorAll('.big__n b[data-to]').forEach(b => { const n = +b.dataset.to; b.textContent = '0'; setTimeout(() => tween(1800, k => b.textContent = Math.round(n * k)), 500); });
+  // dial: 12 arc segments with small gaps, month numbers outside; they light up one by one
+  const NS = 'http://www.w3.org/2000/svg', C = 150, R = 118, RN = 142;
+  const arc = (a0, a1, r) => { const p = a => [C + r * Math.sin(a), C - r * Math.cos(a)]; const [x0, y0] = p(a0), [x1, y1] = p(a1); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
+  const segs = document.getElementById('dialSegs'), nums = document.getElementById('dialNums');
+  for (let i = 0; i < 12; i++) {
+    const a0 = i / 12 * 2 * Math.PI + .045, a1 = (i + 1) / 12 * 2 * Math.PI - .045, am = (i + .5) / 12 * 2 * Math.PI;
+    const s = document.createElementNS(NS, 'path'); s.setAttribute('d', arc(a0, a1, R)); s.setAttribute('class', 'seg'); segs.appendChild(s);
+    const n = document.createElementNS(NS, 'text'); n.setAttribute('x', (C + RN * Math.sin(am)).toFixed(1)); n.setAttribute('y', (C - RN * Math.cos(am)).toFixed(1));
+    n.setAttribute('class', 'num'); n.textContent = i + 1; nums.appendChild(n);
+  }
+  // gauge: 0–20% over a half circle; ticks every 1%, labels every 5%; the needle sweeps up to 10% then sways between 10% and 15%
+  const gT = document.getElementById('gTicks'), GX = 160, GY = 170;
+  for (let v = 0; v <= 20; v++) {
+    const a = Math.PI * (1 - v / 20), maj = v % 5 === 0, r0 = maj ? 100 : 106, r1 = 114;
+    const l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', (GX + r0 * Math.cos(a)).toFixed(1)); l.setAttribute('y1', (GY - r0 * Math.sin(a)).toFixed(1));
+    l.setAttribute('x2', (GX + r1 * Math.cos(a)).toFixed(1)); l.setAttribute('y2', (GY - r1 * Math.sin(a)).toFixed(1));
+    l.setAttribute('class', 'g-tick' + (maj ? ' maj' : '')); gT.appendChild(l);
+    if (maj) { const tx = document.createElementNS(NS, 'text'); tx.setAttribute('x', (GX + 86 * Math.cos(a)).toFixed(1)); tx.setAttribute('y', (GY - 86 * Math.sin(a)).toFixed(1));
+      tx.setAttribute('class', 'g-lbl' + (v === 10 || v === 15 ? ' hl' : '')); tx.textContent = v + '%'; gT.appendChild(tx); }
+  }
+  const needle = document.getElementById('gNeedle');
+  const setV = v => needle.style.transform = `rotate(${-90 + v / 20 * 180}deg)`;
+  const gObs = new IntersectionObserver(([e], o) => {
+    if (!e.isIntersecting) return; o.disconnect();
+    // dial
+    const sg = [...segs.children], nm = [...nums.children];
+    sg.forEach((s, i) => setTimeout(() => { s.classList.add('on'); nm[i].classList.add('on'); }, reduce ? 0 : 250 + i * 110));
+    // gauge
+    tween(1600, k => setV(10 * k));
+    if (!reduce) setTimeout(() => { let t0 = performance.now(); (function sway(t) { const v = 12.5 - 2.5 * Math.cos((t - t0) / 1400); setV(v); requestAnimationFrame(sway); })(t0); }, 1700);
+  }, { threshold: .35 });
+  gObs.observe(document.getElementById('figs'));
   // scroll reveals, staggered among siblings — IntersectionObserver only
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .14, rootMargin: '0px 0px -6% 0px' });
   document.querySelectorAll('.rv, .fork, .ring').forEach(el => {
