@@ -405,3 +405,18 @@ html[dir="rtl"] .ms__prog i { margin-inline-start: 0; background: linear-gradien
 .jprog__more i { width: 8px; height: 8px; border-top: 1.6px solid currentColor; border-left: 1.6px solid currentColor; transform: rotate(-45deg); }
 html[dir="ltr"] .jprog__more i { transform: rotate(135deg); }
 
+
+/* «ما تم إنجازه»: every completed item as a gold card with a seal, like the Ministry of Energy approval (user 2026-10-25) */
+.dn-wrap { margin: clamp(30px, 4vw, 52px) 0 clamp(26px, 3vw, 40px); }
+.dn-wrap__title { font-size: 14px; letter-spacing: .12em; color: var(--tan); margin-bottom: 16px; }
+.dn-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.dn { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: 8px; min-height: 104px; padding: 16px 18px; padding-inline-end: 70px;
+  border-radius: 18px; background: radial-gradient(90% 120% at 100% 0%, rgba(255, 248, 232, .55), transparent 60%), linear-gradient(135deg, #f0d9aa 0%, #d6ad72 55%, #b0804a 100%);
+  box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .6); }
+html[dir="rtl"] .dn { background: radial-gradient(90% 120% at 0% 0%, rgba(255, 248, 232, .55), transparent 60%), linear-gradient(225deg, #f0d9aa 0%, #d6ad72 55%, #b0804a 100%); }
+.dn__st { align-self: flex-start; font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #f3dfb8; background: #1b130f; }
+.dn p { font-size: 16.5px; font-weight: 700; line-height: 1.45; color: #1b130f; }
+.dn__seal { position: absolute; bottom: 14px; inset-inline-end: 14px; width: 46px; height: 46px; fill: rgba(74, 47, 28, .08); stroke: #4a2f1c; stroke-width: 1.8; stroke-linejoin: round; }
+.dn__tick { fill: none; stroke-width: 3; stroke-linecap: round; }
+@media (max-width: 1000px) { .dn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .dn { padding: 14px 14px; padding-inline-end: 58px; min-height: 92px; } .dn p { font-size: 15px; } .dn__seal { width: 38px; height: 38px; } }
