@@ -1580,28 +1580,49 @@ html[dir="ltr"] .xpd__mark { transform: translate(-50%, -50%); }
 .smap__x::before, .smap__x::after { content: ""; position: absolute; top: 50%; left: 50%; width: 18px; height: 1.6px; background: #efe1ca; }
 .smap__x::before { transform: translate(-50%, -50%) rotate(45deg); } .smap__x::after { transform: translate(-50%, -50%) rotate(-45deg); }
 
-.smap.is-play .smap__cam { animation: smapFly 5.2s cubic-bezier(.22, .61, .2, 1) both; }
-.smap.is-play .smap__line { animation: smapDraw 2.6s ease-in-out 4.4s forwards; }
-.smap.is-play .smap__glow { animation: smapFade 1.4s ease 6.4s forwards; }
-.smap.is-play .smap__pin { animation: smapPin .8s cubic-bezier(.3, 1.6, .5, 1) 6.6s forwards; }
-.smap.is-play .smap__pulse { animation: smapPulse 2.2s ease-out 7.4s infinite; }
-.smap.is-play .smap__card { animation: smapCard .9s ease 7s forwards; }
-@keyframes smapFly {
-  0%   { transform: rotateX(48deg) rotateZ(-14deg) scale(2.6) translate(12%, 16%); filter: brightness(.55) blur(2px); }
-  45%  { transform: rotateX(30deg) rotateZ(-6deg) scale(1.7) translate(4%, 6%); filter: brightness(.8) blur(0); }
-  100% { transform: rotateX(0) rotateZ(0) scale(1) translate(0, 0); filter: brightness(.92); } }
-@keyframes smapDraw { to { stroke-dashoffset: 0; } }
-@keyframes smapFade { to { opacity: 1; } }
-@keyframes smapPin { from { opacity: 0; transform: translate(600px, 360px); } to { opacity: 1; transform: translate(600px, 410px); } }
-@keyframes smapPulse { from { opacity: .9; transform: scale(.4); } to { opacity: 0; transform: scale(2.4); } }
-@keyframes smapCard { to { opacity: 1; transform: none; } }
+/* v2 (user 2026-10-25): a drone fly-in over the project render, fog sliding past, a light sweep, then the site outline in gold */
+.smap__drift { position: absolute; inset: 0; transform-style: preserve-3d; }
+.smap__cam { transform-style: preserve-3d; }
+.smap__dim { fill: rgba(12, 7, 4, .58); opacity: 0; }
+.smap__line { stroke-width: 3.2; }
+.smap__fog { position: absolute; inset: -20%; pointer-events: none; opacity: 0; mix-blend-mode: screen; }
+.smap__fog--a { background: radial-gradient(40% 30% at 30% 40%, rgba(255, 240, 220, .55), transparent 70%), radial-gradient(35% 25% at 70% 65%, rgba(255, 236, 210, .45), transparent 70%); }
+.smap__fog--b { background: radial-gradient(30% 22% at 60% 30%, rgba(255, 244, 230, .5), transparent 70%), radial-gradient(28% 20% at 25% 75%, rgba(255, 238, 214, .4), transparent 70%); }
+.smap__sweep { position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 226, 180, .22) 48%, transparent 60%); background-size: 250% 100%; }
+.smap.is-play .smap__cam { animation: smapFly2 6.8s cubic-bezier(.3, .05, .15, 1) both; }
+.smap.is-play .smap__drift { animation: smapDrift 16s ease-in-out 6.8s infinite alternate; }
+.smap.is-play .smap__fog--a { animation: smapFogA 5.6s ease-out .2s both; }
+.smap.is-play .smap__fog--b { animation: smapFogB 6.2s ease-out .6s both; }
+.smap.is-play .smap__sweep { animation: smapSweep 3.2s ease-in-out 3.8s both; }
+.smap.is-play .smap__line { animation: smapDraw 2.6s ease-in-out 6.2s forwards; }
+.smap.is-play .smap__glow { animation: smapFade 1.4s ease 7.6s forwards; }
+.smap.is-play .smap__dim { animation: smapFade 1.6s ease 6.6s forwards; }
+.smap.is-play .smap__pin { animation: smapPin2 .8s cubic-bezier(.3, 1.6, .5, 1) 8.4s forwards; }
+.smap.is-play .smap__pulse { animation: smapPulse 2.2s ease-out 9.2s infinite; }
+.smap.is-play .smap__card { animation: smapCard .9s ease 8.8s forwards; }
+@keyframes smapFly2 {
+  0%   { transform: translate(-16%, 20%) scale(3.4) rotateX(52deg) rotateZ(-20deg); filter: brightness(.45) blur(3px) saturate(.8); }
+  30%  { transform: translate(-9%, 12%) scale(2.3) rotateX(42deg) rotateZ(-12deg); filter: brightness(.7) blur(1px) saturate(.9); }
+  65%  { transform: translate(-2%, 3%) scale(1.45) rotateX(24deg) rotateZ(-4deg); filter: brightness(.95) blur(0) saturate(1); }
+  100% { transform: translate(0, -2%) scale(1.14) rotateX(14deg) rotateZ(0); filter: brightness(1) saturate(1.05); } }
+@keyframes smapDrift { from { transform: rotateZ(0) scale(1); } to { transform: rotateZ(-1.2deg) scale(1.035); } }
+@keyframes smapFogA { 0% { opacity: .9; transform: scale(1.4) translate(0, 0); } 100% { opacity: 0; transform: scale(2.2) translate(-14%, 8%); } }
+@keyframes smapFogB { 0% { opacity: .8; transform: scale(1.2) translate(0, 0); } 100% { opacity: 0; transform: scale(2) translate(16%, -10%); } }
+@keyframes smapSweep { 0% { opacity: 0; background-position: 120% 0; } 30% { opacity: 1; } 100% { opacity: 0; background-position: -60% 0; } }
+@keyframes smapPin2 { from { opacity: 0; transform: translate(590px, 280px); } to { opacity: 1; transform: translate(590px, 330px); } }
 @media (prefers-reduced-motion: reduce) {
-  .smap.is-play .smap__cam { animation: none; } .smap.is-play .smap__line { animation-duration: .01s; animation-delay: 0s; }
+  .smap.is-play .smap__cam, .smap.is-play .smap__drift, .smap.is-play .smap__fog--a, .smap.is-play .smap__fog--b, .smap.is-play .smap__sweep { animation: none; }
+  .smap.is-play .smap__dim { animation-duration: .01s; animation-delay: 0s; } .smap.is-play .smap__line { animation-duration: .01s; animation-delay: 0s; }
   .smap.is-play .smap__glow, .smap.is-play .smap__pin, .smap.is-play .smap__card { animation-duration: .01s; animation-delay: 0s; } }
-@media (max-width: 760px) { .smap__cam { inset: 0 -60%; } .smap__card { inset-inline: 16px; width: auto; bottom: 16px; } }
+@media (max-width: 760px) { .smap__cam { inset: 6% -40%; } .smap__card { inset-inline: 16px; width: auto; bottom: 16px; } }
 
 /* footer logo: a lighter cream, glowing (user 2026-10-25) */
 .footer__logo--gold { animation-name: ftGlowCream; }
 @keyframes ftGlowCream { 0%, 100% { filter: brightness(1.12) drop-shadow(0 0 10px rgba(248, 232, 205, .3)); } 50% { filter: brightness(1.2) drop-shadow(0 0 26px rgba(248, 228, 195, .6)); } }
 
 .dl--foot { margin: 0 0 40px; }
+@keyframes smapDraw { to { stroke-dashoffset: 0; } }
+@keyframes smapFade { to { opacity: 1; } }
+@keyframes smapPulse { from { opacity: .9; transform: scale(.4); } to { opacity: 0; transform: scale(2.4); } }
+@keyframes smapCard { to { opacity: 1; transform: none; } }

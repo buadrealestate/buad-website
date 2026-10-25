@@ -7,8 +7,8 @@
   const MAPS = 'https://maps.app.goo.gl/xBKahBZcByVDwckx6';
   const KROKI = [   // { src: 'assets/img/jumum/kroki-allocation.webp', ar: 'كروكي التخصيص', en: 'Allocation kroki' }, …
   ];
-  // the project frontage in map pixels (1280 × 751 map), traced from the user's satellite map
-  const ROUTE = 'M135 376 L175 315 L408 305 L415 500 L495 508 L533 492 M620 493 L848 498 L852 352 L997 392 L1028 618';
+  // the site outline on the day render (1200 × 669 frame of assets/img/hero/h1-day.webp), traced by hand (user 2026-10-25: cinematic, not a Google map)
+  const SITE = 'M212 178 L262 128 L330 112 L395 104 L470 128 L560 150 L660 170 L745 178 L785 215 L800 290 L835 360 L880 450 L900 515 L800 535 L700 555 L625 565 L565 540 L500 480 L430 430 L360 370 L300 320 L255 260 Z';
   const en = () => document.documentElement.lang === 'en';
   const T = () => en()
     ? { kicker: 'Project location', title: 'Al Jumum Interface', sub: 'The northern entrance of Makkah · on the Madinah Expressway', open: 'Open in Google Maps', replay: 'Replay', close: 'Close' }
@@ -23,13 +23,16 @@
     const docs = KROKI.map(k => `<a class="smap__doc" href="${B}${k.src}" target="_blank" rel="noopener"><img src="${B}${k.src}" alt=""><span>${en() ? k.en : k.ar}</span></a>`).join('');
     dlg.innerHTML = `
       <div class="smap__stage">
-        <div class="smap__cam">
-          <img class="smap__img" src="${B}assets/img/jumum/site-map.webp" alt="">
-          <svg class="smap__svg" viewBox="0 0 1280 751" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <path class="smap__glow" d="${ROUTE}"/><path class="smap__line" d="${ROUTE}" pathLength="1"/>
-            <g class="smap__pin" transform="translate(600 410)"><circle r="26" class="smap__pulse"/><path d="M0 0 C-11 -16 -16 -24 -16 -32 A16 16 0 0 1 16 -32 C16 -24 11 -16 0 0Z"/><circle cy="-32" r="6" class="smap__dot"/></g>
+        <div class="smap__drift"><div class="smap__cam">
+          <img class="smap__img" src="${B}assets/img/hero/h1-day.webp" alt="">
+          <svg class="smap__svg" viewBox="0 0 1200 669" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><mask id="smapHole"><rect width="1200" height="669" fill="#fff"/><path d="${SITE}" fill="#000"/></mask></defs>
+            <rect class="smap__dim" width="1200" height="669" mask="url(#smapHole)"/>
+            <path class="smap__glow" d="${SITE}"/><path class="smap__line" d="${SITE}" pathLength="1"/>
+            <g class="smap__pin" transform="translate(590 330)"><circle r="26" class="smap__pulse"/><path d="M0 0 C-11 -16 -16 -24 -16 -32 A16 16 0 0 1 16 -32 C16 -24 11 -16 0 0Z"/><circle cy="-32" r="6" class="smap__dot"/></g>
           </svg>
-        </div>
+        </div></div>
+        <div class="smap__fog smap__fog--a"></div><div class="smap__fog smap__fog--b"></div><div class="smap__sweep"></div>
         <div class="smap__vignette"></div>
       </div>
       <div class="smap__card">
