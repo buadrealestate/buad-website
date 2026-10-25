@@ -1,5 +1,6 @@
 /* BUAD — requests from visitors (home page + jumum.html):
    [data-rq="invest"]  request the Phase One investment memorandum
+   [data-rq="summary"] request the executive summary of the opportunity
    [data-rq="lease"]   leasing for brands and operators ([data-rq-zone] prefills the zone shown on the masterplan card)
    The site is static, so a request is sent as a ready-made WhatsApp message to BUAD (e-mail as a fallback).
    Nothing is stored. Return figures are deliberately not shown publicly; they are in the memorandum sent on request. */
@@ -10,6 +11,7 @@
   const T = {
     ar: {
       invest: { kicker: 'فرص الإستثمار', title: 'اطلب الملف الإستثماري', lead: 'الملف الإستثماري للمرحلة الأولى من مشروع واجهة الجموم متاح للمستثمرين المهتمين اترك بياناتك ويتواصل معك فريق علاقات المستثمرين' },
+      summary: { kicker: 'فرص الإستثمار', title: 'اطلب الملخص التنفيذي', lead: 'الملخص التنفيذي لفرصة الإستثمار في مشروع واجهة الجموم يُرسل للمهتمين اترك بياناتك ويتواصل معك فريقنا' },
       lease: { kicker: 'فرص الإستئجار والتشغيل', title: 'فرص الإستئجار للعلامات التجارية', lead: 'للعلامات التجارية والمشغّلين الراغبين في موقع ضمن مراحل المشروع: مطاعم أسواق محلات ترفيه خدمات وغيرها' },
       name: 'الاسم', phone: 'رقم الجوال', email: 'البريد الإلكتروني (إختياري)', org: 'الجهة / الشركة (إختياري)',
       type: 'صفة المستثمر', types: ['فرد', 'شركة', 'صندوق أو جهة إستثمارية', 'وسيط'],
@@ -18,10 +20,11 @@
       contact: 'اسم المسؤول', notes: 'ملاحظات (إختياري)',
       send: 'إرسال الطلب عبر واتساب', note: 'يُفتح واتساب برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع',
       err: 'فضلاً أكمل الحقول المطلوبة', okTitle: 'جهّزنا طلبك', okText: 'أكمل الإرسال في واتساب وسيتواصل معك فريقنا قريباً', okMail: 'أو أرسله بالبريد الإلكتروني', close: 'إغلاق',
-      msgInvest: 'طلب الملف الإستثماري — مشروع واجهة الجموم', msgLease: 'طلب إستئجار — مشروع واجهة الجموم'
+      msgInvest: 'طلب الملف الإستثماري — مشروع واجهة الجموم', msgSummary: 'طلب الملخص التنفيذي — مشروع واجهة الجموم', msgLease: 'طلب إستئجار — مشروع واجهة الجموم'
     },
     en: {
       invest: { kicker: 'Investment Opportunities', title: 'Request the Investment Memorandum', lead: 'The Phase One investment memorandum of Al Jumum Interface is available to interested investors. Leave your details and our investor relations team will contact you.' },
+      summary: { kicker: 'Investment Opportunities', title: 'Request the Executive Summary', lead: 'The executive summary of the Al Jumum Interface opportunity is sent to interested parties. Leave your details and our team will contact you.' },
       lease: { kicker: 'Leasing & Operations', title: 'Leasing for Brands', lead: 'For brands and operators looking for a space within the project’s phases: restaurants, markets, retail, entertainment, services and more.' },
       name: 'Name', phone: 'Mobile number', email: 'E-mail (optional)', org: 'Organization (optional)',
       type: 'Investor type', types: ['Individual', 'Company', 'Fund or investment entity', 'Broker'],
@@ -30,7 +33,7 @@
       contact: 'Contact person', notes: 'Notes (optional)',
       send: 'Send the request on WhatsApp', note: 'WhatsApp opens with a ready message to the BUAD team; nothing is stored on this site.',
       err: 'Please complete the required fields.', okTitle: 'Your request is ready', okText: 'Finish sending it on WhatsApp and our team will contact you shortly.', okMail: 'Or send it by e-mail', close: 'Close',
-      msgInvest: 'Investment memorandum request — Al Jumum Interface', msgLease: 'Leasing request — Al Jumum Interface'
+      msgInvest: 'Investment memorandum request — Al Jumum Interface', msgSummary: 'Executive summary request — Al Jumum Interface', msgLease: 'Leasing request — Al Jumum Interface'
     }
   };
 
@@ -49,7 +52,11 @@
   let mode = 'invest';
   function render(zone) {
     const L = T[en() ? 'en' : 'ar'], M = L[mode];
-    const body = mode === 'invest'
+    const body = mode === 'summary'
+      ? field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
+        field('email', L.email, { type: 'email', dir: 'ltr', ac: 'email' }) + field('org', L.org, { ac: 'organization' }) +
+        chips('type', L.type, L.types, true) + field('notes', L.notes, { area: true, full: true })
+      : mode === 'invest'
       ? field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
         field('email', L.email, { type: 'email', dir: 'ltr', ac: 'email' }) + field('org', L.org, { ac: 'organization' }) +
         chips('type', L.type, L.types, true) + chips('size', L.size, L.sizes, false) + field('notes', L.notes, { area: true, full: true })
@@ -97,8 +104,8 @@
       const t = fs ? fs.querySelector('legend').textContent : el?.closest('label')?.querySelector('span')?.textContent;
       return (t || k).replace(/\s*\((إختياري|optional)\)\s*/, '');
     };
-    const keys = mode === 'invest' ? ['name', 'phone', 'email', 'org', 'type', 'size', 'notes'] : ['brand', 'activity', 'zone', 'area', 'contact', 'phone', 'notes'];
-    const lines = [mode === 'invest' ? L.msgInvest : L.msgLease, ''].concat(keys.filter(get).map(k => `${lab(k)}: ${get(k)}`));
+    const keys = mode === 'summary' ? ['name', 'phone', 'email', 'org', 'type', 'notes'] : mode === 'invest' ? ['name', 'phone', 'email', 'org', 'type', 'size', 'notes'] : ['brand', 'activity', 'zone', 'area', 'contact', 'phone', 'notes'];
+    const lines = [mode === 'summary' ? L.msgSummary : mode === 'invest' ? L.msgInvest : L.msgLease, ''].concat(keys.filter(get).map(k => `${lab(k)}: ${get(k)}`));
     const text = lines.join('\n');
     window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
     const ok = dlg.querySelector('.rq__ok');
@@ -108,7 +115,7 @@
   }
 
   function open(m, zone) {
-    mode = m === 'lease' ? 'lease' : 'invest';
+    mode = m === 'lease' ? 'lease' : m === 'summary' ? 'summary' : 'invest';
     render(zone);
     dlg.showModal();
     document.documentElement.classList.add('rq-open');
