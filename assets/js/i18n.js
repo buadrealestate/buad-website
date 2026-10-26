@@ -26,7 +26,7 @@ window.BUAD_EN = {
   'about.title': 'A Saudi company with experience from the heart of projects',
   'about.lead': 'Buad is a Saudi company headquartered in Makkah. It started in development, investment and project management, and has delivered work in Makkah, Riyadh, Jeddah and other regions of the Kingdom.',
   'about.s1t': 'The Beginning',
-  'about.s1': 'Buad is a Saudi company headquartered in Makkah. It started in development, investment and project management and has delivered work in Makkah, Riyadh, Jeddah and other regions of the Kingdom.',
+  'about.s1': 'Buad started in development, investment and project management and has delivered work in Makkah, Riyadh, Jeddah and other regions of the Kingdom.',
   'about.s2t': 'The Shift',
   'about.s2': 'From our project experience, we saw a recurring need among organizations: too many parties managing a single project, and exhausting coordination between them. So we decided to become the one party.',
   'about.s3t': 'The Ecosystem',
