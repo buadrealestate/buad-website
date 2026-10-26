@@ -11,6 +11,8 @@
     { src: 'assets/img/jumum/doc-survey-report.webp', th: 'assets/img/jumum/doc-survey-report-t.webp', ar: 'التقرير المساحي', en: 'Survey report' },
     { src: 'assets/img/jumum/doc-kroki-taashir.webp', th: 'assets/img/jumum/doc-kroki-taashir-t.webp', ar: 'كروكي التأشير', en: 'Marking kroki' },
     { src: 'assets/img/jumum/doc-site-prep.webp', th: 'assets/img/jumum/doc-site-prep-t.webp', ar: 'رخصة تجهيز الموقع', en: 'Site preparation permit' },
+    { src: 'assets/img/jumum/doc-fence-permit.webp', th: 'assets/img/jumum/doc-fence-permit-t.webp', ar: 'رخصة بناء السور', en: 'Fence building permit' },
+    { src: 'assets/img/jumum/doc-kroki-requirements.webp', th: 'assets/img/jumum/doc-kroki-requirements-t.webp', ar: 'كروكي الإشتراطات', en: 'Requirements kroki' },
   ];
   // the site outline on the day render (1200 × 669 frame of assets/img/hero/h1-day.webp), traced by hand (user 2026-10-25: cinematic, not a Google map)
   const SITE = 'M212 178 L262 128 L330 112 L395 104 L470 128 L560 150 L660 170 L745 178 L785 215 L800 290 L835 360 L880 450 L900 515 L800 535 L700 555 L625 565 L565 540 L500 480 L430 430 L360 370 L300 320 L255 260 Z';
