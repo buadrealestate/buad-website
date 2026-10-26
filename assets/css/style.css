@@ -2287,3 +2287,8 @@ html[dir="ltr"] .vx__bar em { transform-origin: 0 50%; }
 .wq__core { box-shadow: 0 0 0 7px var(--sugar-card), 0 0 0 8px rgba(201, 154, 98, .6), 0 20px 40px -14px rgba(27, 19, 15, .8); }
 .c2form { background: linear-gradient(180deg, var(--sugar), var(--sugar-2)); }
 .c2form .fl input, .c2form .fl textarea, .c2form .need span { background: var(--sugar-card); }
+
+/* official documents stay veiled on phones too (user 2026-10-26); tapping one opens it in the viewer */
+@media (hover: none) {
+  .jloc--radar .jdocs.in .jdocs__item img, .jloc--radar .jdocs .jdocs__item img { filter: blur(7px) grayscale(.6) brightness(.85) !important; transform: scale(1.02) !important; transition-delay: 0s !important; }
+}
