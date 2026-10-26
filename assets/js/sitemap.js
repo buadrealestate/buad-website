@@ -7,12 +7,12 @@
   const MAPS = 'https://maps.app.goo.gl/xBKahBZcByVDwckx6';
   // official documents shown on the location view (user 2026-10-25): click a thumbnail to open it large and zoom in
   const KROKI = [
-    { src: 'assets/img/jumum/doc-kroki-tanzimi.webp', th: 'assets/img/jumum/doc-kroki-tanzimi-t.webp', ar: 'الكروكي التنظيمي', en: 'Planning kroki' },
-    { src: 'assets/img/jumum/doc-survey-report.webp', th: 'assets/img/jumum/doc-survey-report-t.webp', ar: 'التقرير المساحي', en: 'Survey report' },
-    { src: 'assets/img/jumum/doc-kroki-taashir.webp', th: 'assets/img/jumum/doc-kroki-taashir-t.webp', ar: 'كروكي التأشير', en: 'Marking kroki' },
-    { src: 'assets/img/jumum/doc-site-prep.webp', th: 'assets/img/jumum/doc-site-prep-t.webp', ar: 'رخصة تجهيز الموقع', en: 'Site preparation permit' },
-    { src: 'assets/img/jumum/doc-fence-permit.webp', th: 'assets/img/jumum/doc-fence-permit-t.webp', ar: 'رخصة بناء السور', en: 'Fence building permit' },
-    { src: 'assets/img/jumum/doc-kroki-requirements.webp', th: 'assets/img/jumum/doc-kroki-requirements-t.webp', ar: 'كروكي الإشتراطات', en: 'Requirements kroki' },
+    { src: 'assets/img/jumum/doc-kroki-tanzimi.webp?v=wm', th: 'assets/img/jumum/doc-kroki-tanzimi-t.webp?v=wm', ar: 'الكروكي التنظيمي', en: 'Planning kroki' },
+    { src: 'assets/img/jumum/doc-survey-report.webp?v=wm', th: 'assets/img/jumum/doc-survey-report-t.webp?v=wm', ar: 'التقرير المساحي', en: 'Survey report' },
+    { src: 'assets/img/jumum/doc-kroki-taashir.webp?v=wm', th: 'assets/img/jumum/doc-kroki-taashir-t.webp?v=wm', ar: 'كروكي التأشير', en: 'Marking kroki' },
+    { src: 'assets/img/jumum/doc-site-prep.webp?v=wm', th: 'assets/img/jumum/doc-site-prep-t.webp?v=wm', ar: 'رخصة تجهيز الموقع', en: 'Site preparation permit' },
+    { src: 'assets/img/jumum/doc-fence-permit.webp?v=wm', th: 'assets/img/jumum/doc-fence-permit-t.webp?v=wm', ar: 'رخصة بناء السور', en: 'Fence building permit' },
+    { src: 'assets/img/jumum/doc-kroki-requirements.webp?v=wm', th: 'assets/img/jumum/doc-kroki-requirements-t.webp?v=wm', ar: 'كروكي الإشتراطات', en: 'Requirements kroki' },
   ];
   // the site outline on the day render (1200 × 669 frame of assets/img/hero/h1-day.webp), traced by hand (user 2026-10-25: cinematic, not a Google map)
   const SITE = 'M212 178 L262 128 L330 112 L395 104 L470 128 L560 150 L660 170 L745 178 L785 215 L800 290 L835 360 L880 450 L900 515 L800 535 L700 555 L625 565 L565 540 L500 480 L430 430 L360 370 L300 320 L255 260 Z';
@@ -63,7 +63,7 @@
     cur = (i + KROKI.length) % KROKI.length;
     const k = KROKI[cur], B = window.ASSET_BASE || '', L = T();
     dv.innerHTML = `<div class="dv__bar"><b>${en() ? k.en : k.ar}</b><span>${cur + 1} / ${KROKI.length}</span>
-        <a class="dv__full" href="${B}${k.src}" target="_blank" rel="noopener">${en() ? 'Full size' : 'بالحجم الكامل'}</a>
+        <em class="dv__only">${en() ? 'View only' : 'للاطلاع فقط'}</em>
         <button type="button" class="dv__x" aria-label="${L.close}"></button></div>
       <div class="dv__view"><img src="${B}${k.src}" alt=""></div>
       <button type="button" class="dv__nav dv__nav--prev" aria-label="prev"></button><button type="button" class="dv__nav dv__nav--next" aria-label="next"></button>
@@ -81,6 +81,12 @@
     if (!dv.open) dv.showModal();
   }
   dv.addEventListener('click', e => { if (e.target === dv) dv.close(); });
+  // view only (user 2026-10-26): no right-click «save image», no dragging the picture out, no print of the open document
+  // (the images also carry a «للاطلاع فقط» watermark — _work/watermark_docs.py; a screenshot cannot be blocked by a web page)
+  const guard = e => { if (e.target.closest && e.target.closest('.dv, .jdocs, .smap__docs')) e.preventDefault(); };
+  document.addEventListener('contextmenu', guard);
+  document.addEventListener('dragstart', guard);
+  document.addEventListener('keydown', e => { if (dv.open && (e.ctrlKey || e.metaKey) && /^[sp]$/i.test(e.key)) e.preventDefault(); });
   // the same documents shown straight in the «الموقع» section (home page, jumum.html, smartface/) — user 2026-10-25
   document.querySelectorAll('[data-docs-strip]').forEach(box => {
     const B = window.ASSET_BASE || '';
