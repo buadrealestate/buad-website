@@ -8,9 +8,13 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   let k = 0, timer = 0, visible = false, held = false, touched = false;
+  // the journey rail above the panels follows the open phase (user 2026-10-26)
+  const rail = document.getElementById('phr'), stops = rail ? [...rail.querySelectorAll('.phr__st')] : [];
+  stops.forEach((st, i) => st.querySelector('button').addEventListener('click', () => { touched = true; open(i); run(); }));
   function open(i) {
     k = i;
     panels.forEach((p, j) => { p.classList.toggle('is-open', j === i); p.setAttribute('aria-expanded', j === i); });
+    if (rail) { rail.style.setProperty('--p', (i / (stops.length - 1)).toFixed(3)); stops.forEach((st, j) => { st.classList.toggle('is-on', j <= i); st.classList.toggle('is-cur', j === i); }); }
     const bar = panels[i].querySelector('.phx__bar'); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
   }
   function run() {

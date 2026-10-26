@@ -114,8 +114,9 @@
       <button type="button" class="btn btn--ghost ja__go" data-rq="invest" data-rq-acts></button>
       <button type="button" class="ja__clear"></button>
     </div>`;
-  const $ = s => root.querySelector(s);
+  const $ = s => root.querySelector(s) || document.querySelector('.ja__tray ' + s);
   const stage = $('.ja__stage'), imgs = [...root.querySelectorAll('.ja__img')], grid = $('.ja__grid'), kinds = $('.ja__kinds'), tray = $('.ja__tray');
+  document.body.appendChild(tray);   // the bar is fixed: keep it above the later sections
   let cur = 0, photo = 0, kind = 'all', layer = 0, timer = 0, auto = !reduce, inView = false;
 
   // two layers cross-fade; a token keeps a late load from an earlier pick out of the way

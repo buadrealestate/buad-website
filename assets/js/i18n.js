@@ -6,8 +6,11 @@ window.BUAD_EN = {
   'nav.about': 'About', 'nav.dims': 'Dimensions', 'nav.jumum': 'Al Jumum', 'nav.station': 'The Station', 'nav.projects': 'Projects',
   'nav.goals': 'Where We Are Heading', 'nav.dims6': 'The Six Dimensions', 'nav.method': 'Our Methodology',
   'jp.loc.mins': 'in minutes', 'dl.pages': '6 pages', 'dl.read': 'Open the file', 'jp.t.food': 'Restaurants &amp; Cafés',
-  'mp.e': 'More of our work', 'mp.t': 'Projects delivered across our dimensions', 'mp.all': 'All projects',
+  'mp.e': 'More of our work', 'mp.t': 'Real experience', 'mp.all': 'All projects',
   'ja.e': 'Al Jumum Interface', 'ja.t': 'Project <b>Activities</b>', 'ja.l': 'Browse the activities of the project and tick the ones you are interested in; we will send you the leasing and investment opportunities in them',
+  'jp.r.min': 'min', 'jp.r1': 'to the Grand Mosque', 'jp.r2': 'to the airport', 'jp.r3': 'to Taif', 'jp.r4': 'to Madinah',
+  'ja.nav': 'Project Activities',
+  'jp.ph.now': 'In progress', 'jp.ph.next': 'Coming', 'jp.ph.acts': 'activities',
   'nav.creds': 'Credentials', 'nav.contact': 'Contact Us',
 
   'hero.kicker': 'A pioneering urban development · The northern entrance to Makkah',
@@ -105,9 +108,9 @@ window.BUAD_EN = {
 
   'p.eyebrow': 'Track record', 'p.title': 'Real experience behind every one of our dimensions',
   'p1.dim': 'Supply & Logistics Services Dimension', 'p1.t': 'Diriyah – Riyadh',
-  'p1.d': 'We formed multiple alliances with prefabricated-housing factories and CLL partitions, combining speed, quality and sustainability: supply chains, specialized technical staff, integrated logistics services and prefabricated building solutions.',
+  'p1.d': 'We delivered multiple services with prefabricated-housing factories and CLL partitions, combining speed, quality and sustainability: supply chains, specialized technical staff, integrated logistics services and prefabricated building solutions.',
   'p2.dim': 'Development & Project Management Dimension', 'p2.t': 'Usfan – Makkah–Madinah Road',
-  'p2.d': 'Developing infrastructure and extending a modern fiber-optic network of about 150 km for the Saudi Telecom Company (stc), supporting digital transformation.',
+  'p2.d': 'Developing infrastructure and extending a modern fiber-optic network for the Saudi Telecom Company (stc), supporting digital transformation.',
   'p3.dim': 'Investment & Transactions Dimension', 'p3.t': 'Industrial Project – Jeddah',
   'p3.d': 'An industrial land development project in its third phase, on a land area of one million m² with an estimated value of SAR 420 million; we provided the investment opportunity and managed the investment contract transaction, from negotiation to signing.',
 
@@ -129,7 +132,7 @@ window.BUAD_EN = {
   'w.4t': 'A Network of Licensed Partners', 'w.4': 'We work with specialized, licensed entities in every field that requires special licensing.',
   'w.5t': 'Organizational Flexibility', 'w.5': 'A flexible structure that accommodates local and international partnerships and adapts to every client’s size.',
 
-  'c.eyebrow': 'Certifications & Licenses', 'c.title': 'Accreditations that strengthen our partners’ trust',
+  'c.eyebrow': 'Certifications & Licenses', 'c.title': 'A methodology and accreditations that strengthen our partners’ trust',
   'c.lead': 'We are committed to the highest standards of quality and compliance, and through strategic accreditations we strengthen the trust of our partners and the community.',
   'cr.1': 'Developer Qualification License', 'cr.1s': 'Off-plan sale and lease certificate – Real Estate General Authority',
   'cr.2': 'FAL Real Estate Brokerage License', 'cr.2s': 'Real Estate General Authority',
@@ -180,7 +183,7 @@ window.BUAD_EN = {
   'jp.t.modern': 'Modern markets', 'jp.t.log': 'Smart warehousing', 'jp.t.hang': 'Hanging popular restaurants', 'jp.t.visit': 'Visitor &amp; Umrah centre', 'jp.t.ent': 'Entertainment zones',
   'jp.t.chal': 'Chalets', 'jp.t.res': 'Resorts', 'jp.t.mot': 'Motels', 'jp.t.villa': 'Residential compounds',
   'jp.loc.eyebrow': 'Location', 'jp.loc.title': 'At the northern entrance to Makkah',
-  'jp.loc.lead': 'In Al Jumum Governorate, on the Madinah Highway beside King Faisal Road',
+  'jp.loc.lead': 'Al Jumum Governorate, on the Madinah Highway beside King Faisal Road',
   'jp.inv.eyebrow': 'Investment Opportunities', 'jp.inv.title': 'Become a partner in Al Jumum Interface',
   'jp.inv.lead': 'We welcome investors, operators and brands interested in partnering or leasing within the project’s phases.',
 
@@ -189,7 +192,7 @@ window.BUAD_EN = {
   /* Projects page */
   'pp.meta.title': 'Our Projects | BUAD', 'pp.title': 'Our Projects',
   'pp.list.eyebrow': 'Our work', 'pp.list.title': 'Field experience in every dimension',
-  'pp.km': 'km of fiber-optic network', 'pp.sar': 'SAR million estimated value',
+  'pp.km': 'km of fiber-optic network', 'pp.sar': 'SAR million',
   'pp.cta.eyebrow': 'Your Next Project',
 
   'ft.motto': 'Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad',
@@ -354,7 +357,7 @@ window.BUAD_EN = {
   'p1.d0': 'Allocation decision', 'p1.d1': 'Requirements kroki', 'p1.d2': 'Survey report', 'p1.d3': 'Hydrological study', 'p1.d4': 'Feasibility studies', 'p1.d5': 'Masterplan', 'p1.d6': 'Fence building permit', 'p1.d7': 'Site preparation permit',
   'p1.l0': 'Levelling the two hills beside the station site', 'p1.l1': 'Building the flood culvert', 'p1.l2': 'Levelling the land', 'p1.l3': 'Fencing the project', 'p1.l4': 'Building permit for the whole project',
   'dn.title': 'Completed so far', 'dn.0': 'Allocation decision', 'dn.1': 'Requirements kroki', 'dn.2': 'Survey report', 'dn.3': 'Hydrological study', 'dn.4': 'Feasibility studies', 'dn.5': 'Masterplan', 'dn.6': 'Fence building permit', 'dn.7': 'Site preparation permit', 
-  'jp.loc.map': 'Project location on Google Maps', 'jp.loc.docs': 'Official site documents',
+  'jp.loc.map': 'Project location on the map', 'jp.loc.docs': 'Official site documents',
   'rq.btn.summary': 'Executive Summary of the Opportunity', 'dl.proj': 'Project overview', 'dl.projb': 'Al Jumum Interface — project overview (Arabic)',
   'vis.eyebrow': 'Visits we are honoured by', 'vis.title': 'Guests who honoured Buad',
   'rq.btn.zone': 'Request a space in this zone',

@@ -1995,3 +1995,22 @@ html[dir="rtl"] .ja__tray { padding: 8px 16px 8px 8px; }
   .ja__tray.is-on { transform: none; }
   .ja__tray .btn { flex: 1 1 40%; }
 }
+
+/* «لماذا بُعد»: the text on the right, the drawing on the left (user 2026-10-26) */
+@media (min-width: 1101px) {
+  .why__bento .wcard--hub { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+  .wcard--hub .hub { grid-column: 2; }
+  .wcard--hub .hub__switch, .wcard--hub .wcard__text { grid-column: 1; }
+}
+
+/* radar labels: one size for all, minutes everywhere (user 2026-10-26) */
+.radar__lbl { width: 150px; max-width: none; min-height: 92px; align-content: center; gap: 4px; }
+.radar__v { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.radar__v em { font-style: normal; font-size: 13px; color: #e6c48d; }
+.radar__lbl small { font-size: 13.5px; font-weight: 500; }
+@media (max-width: 560px) { .radar__lbl { width: 108px; min-height: 74px; } .radar__v em { font-size: 11px; } .radar__lbl small { font-size: 11.5px; } }
+
+/* six dimensions: a bigger target around each moving node; the description also sits with the details on small screens */
+.orb__dot::after { content: ""; position: absolute; inset: -16px; border-radius: 50%; }
+.orb__extra .orb__desc { display: none; }
+@media (max-width: 900px) { .orb__extra .orb__desc { display: block; max-width: 34ch; margin: 0 auto 4px; text-align: center; font-size: 14.5px; line-height: 1.8; color: rgba(239, 225, 202, .8); } }

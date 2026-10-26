@@ -259,7 +259,7 @@
         </div>
         ${src.map((d, i) => `<button type="button" class="orb__node" data-k="${i}" style="--a:${(360 / n) * i}deg"><i class="orb__dot"></i><span class="orb__label"><b>${d.no}</b>${d.title.replace(/<h3([^>]*)class="orb__title"/, '<span$1class="orb__name"').replace('</h3>', '</span>')}</span></button>`).join('')}
       </div>
-      <div class="orb__more">${src.map((d, i) => `<div class="orb__extra" data-k="${i}">${d.svc}${d.who}</div>`).join('')}</div>`;
+      <div class="orb__more">${src.map((d, i) => `<div class="orb__extra" data-k="${i}">${d.desc.replace('dim__desc', 'dim__desc orb__desc')}${d.svc}${d.who}</div>`).join('')}</div>`;
     $('.dstrips__row', sec).after(wrap);
     const nodes = $$('.orb__node', wrap), panels = $$('.orb__panel[data-k]', wrap), extras = $$('.orb__extra', wrap);
     const mark = $('.orb__panel--mark', wrap), arm = $('.orb__arm', wrap), stage = $('.orb__stage', wrap);
@@ -283,13 +283,15 @@
         if (pinned && active === i) { pinned = held = false; next(); return; }
         pinned = held = true; clearTimeout(timer); select(i);
         if (e.pointerType !== 'mouse') {                                   // touch: bring the details into view
-          const r = more.getBoundingClientRect();
+          held = true; const r = more.getBoundingClientRect();
           if (r.bottom > innerHeight) scrollBy({ top: r.bottom - innerHeight + 24, behavior: reduce ? 'auto' : 'smooth' });
         }
       });
       b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); select(i); } });
       b.addEventListener('focus', () => { held = true; clearTimeout(timer); select(i); });
     });
+    // the ring stops turning while the mouse is over it, so a dimension is easy to click (user 2026-10-26)
+    stage.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); } });
     stage.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !pinned) { held = false; next(); } });
     stage.addEventListener('focusout', e => { if (!pinned && !stage.contains(e.relatedTarget)) { held = false; next(); } });
     document.addEventListener('click', e => { if (pinned && !wrap.contains(e.target)) { pinned = held = false; next(); } });
