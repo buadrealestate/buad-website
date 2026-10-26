@@ -465,6 +465,12 @@
     pick(0);
   })();
 
+  /* ------------------------------------------------------------ why buad: a soft light follows the pointer over each quadrant */
+  $$('.wq__q').forEach(q => q.addEventListener('pointermove', e => {
+    const r = q.getBoundingClientRect();
+    q.style.setProperty('--mx', `${e.clientX - r.left}px`); q.style.setProperty('--my', `${e.clientY - r.top}px`);
+  }));
+
   /* ------------------------------------------------------------ goals: a gold path through the five milestones, drawn as the page scrolls */
   (() => {
     const box = $('#gxStage');

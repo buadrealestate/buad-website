@@ -2222,3 +2222,57 @@ html[dir="ltr"] .vx__bar em { transform-origin: 0 50%; }
 .vx .wrap.vx__grid { width: var(--wrap); margin-inline: auto; padding: 0; }
 .vx__big { top: 5%; font-size: clamp(100px, 11vw, 170px); }
 .vx__halo { top: 33%; }
+
+/* ================================================================ «لماذا بُعد» four reasons as quadrants (why_1026.py, user 2026-10-26) */
+.whygrid { display: none; }
+.wq { position: relative; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; border-radius: 36px; overflow: hidden; isolation: isolate;
+  background: #fbf6ee; box-shadow: 0 0 0 1px rgba(61, 45, 36, .08), 0 60px 100px -60px rgba(43, 31, 25, .55); }
+.wq::before, .wq::after { content: ""; position: absolute; z-index: 2; pointer-events: none; background: linear-gradient(var(--dir, 90deg), transparent, #c99a62 18%, #c99a62 82%, transparent); }
+.wq::before { left: 50%; top: 0; bottom: 0; width: 1px; --dir: 180deg; }
+.wq::after { top: 50%; left: 0; right: 0; height: 1px; }
+.wq__q { --mx: 50%; --my: 50%; position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: clamp(20px, 2.6vw, 40px);
+  min-height: 250px; padding: clamp(30px, 3.6vw, 56px); color: var(--brown); transition: color .6s var(--spring); }
+.wq__q::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(160deg, #3a2418, #160e0a); opacity: 0; transition: opacity .7s var(--spring); }
+.wq__q::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(230, 196, 141, .28), transparent 70%); }
+.wq__q:hover::before, .wq__q:hover::after { opacity: 1; }
+.wq__q:hover { color: #f6e7cf; }
+.wq__big { position: absolute; z-index: -1; font-size: clamp(130px, 13vw, 210px); font-weight: 800; line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(168, 121, 74, .14);
+  transition: -webkit-text-stroke-color .6s, transform 1.2s var(--spring); pointer-events: none; }
+.wq__q--0 .wq__big, .wq__q--2 .wq__big { left: 22px; } .wq__q--1 .wq__big, .wq__q--3 .wq__big { right: 22px; }
+.wq__q--0 .wq__big, .wq__q--1 .wq__big { top: 18px; } .wq__q--2 .wq__big, .wq__q--3 .wq__big { bottom: 18px; }
+.wq__q:hover .wq__big { -webkit-text-stroke-color: rgba(230, 196, 141, .22); transform: translateY(-6px); }
+.wq__med { position: relative; width: clamp(92px, 8.4vw, 124px); aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff8ec, #f1dfc2); box-shadow: inset 0 0 0 1px rgba(201, 154, 98, .45), 0 20px 40px -24px rgba(61, 45, 36, .6); transition: background .7s, box-shadow .7s; }
+.wq__med i { position: absolute; border-radius: 50%; pointer-events: none; }
+.wq__r1 { inset: -10px; border: 1px dashed rgba(201, 154, 98, .55); animation: wqSpin 26s linear infinite; }
+.wq__r2 { inset: -22px; border: 1px solid rgba(201, 154, 98, .18); }
+.wq__r2::before { content: ""; position: absolute; top: -4px; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; transform: rotate(45deg); background: #c99a62; }
+.wq__r2 { animation: wqSpin 14s linear infinite reverse; }
+@keyframes wqSpin { to { transform: rotate(360deg); } }
+.wq__med svg { width: 44%; height: 44%; fill: none; stroke: #6b4a33; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; transition: stroke .6s, transform .8s var(--spring); }
+.wq__q:hover .wq__med { background: radial-gradient(circle at 35% 30%, #f6e2bb, #d6ad72 60%, #a87442); box-shadow: 0 0 0 8px rgba(230, 196, 141, .1), 0 0 40px rgba(240, 200, 140, .45); }
+.wq__q:hover .wq__med svg { stroke: #1b130f; transform: scale(1.08); }
+.wq__no { display: block; font-size: 12.5px; letter-spacing: .18em; color: #a8794a; transition: color .6s; }
+.wq__q:hover .wq__no { color: #e6c48d; }
+.wq__txt h3 { margin-top: 8px; font-size: clamp(22px, 2.1vw, 30px); font-weight: 400; line-height: 1.25; }
+.wq__txt p { margin-top: 10px; max-width: 36ch; font-size: 15.5px; line-height: 1.85; color: rgba(61, 45, 36, .7); transition: color .6s; }
+.wq__q:hover .wq__txt p { color: rgba(239, 225, 202, .78); }
+.wq__core { position: absolute; z-index: 3; left: 50%; top: 50%; width: 64px; height: 64px; transform: translate(-50%, -50%) rotate(45deg); border-radius: 14px; display: grid; place-items: center;
+  background: linear-gradient(135deg, #3a2418, #1b120d); box-shadow: 0 0 0 7px #fbf6ee, 0 0 0 8px rgba(201, 154, 98, .6), 0 20px 40px -14px rgba(27, 19, 15, .8); }
+.wq__core img { width: 30px; height: auto; transform: rotate(-45deg); }
+@media (max-width: 860px) {
+  .wq { grid-template-columns: 1fr; border-radius: 28px; }
+  .wq::before, .wq__core { display: none; }
+  .wq::after { display: none; }
+  .wq__q + .wq__q { border-top: 1px solid rgba(201, 154, 98, .45); }
+  .wq__q { min-height: 0; grid-template-columns: auto 1fr; padding: 28px 22px; }
+  .wq__q .wq__big { top: auto !important; bottom: 10px !important; left: 14px !important; right: auto !important; font-size: 120px; }
+  .wq__med { width: 78px; }
+}
+@media (prefers-reduced-motion: reduce) { .wq__r1, .wq__r2 { animation: none; } }
+.wq__no { display: inline-block; }
+.wq__q .wq__big { top: auto !important; bottom: 12px !important; left: 22px !important; right: auto !important; -webkit-text-stroke-color: rgba(168, 121, 74, .11); }
+
+/* «قصتنا»: a warmer sugar-cream ground (user 2026-10-26) */
+.about2 { background: radial-gradient(60% 50% at 80% 70%, rgba(214, 173, 114, .14), transparent 70%), linear-gradient(180deg, #f3e6d1, #efdfc6); }
