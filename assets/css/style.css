@@ -2066,3 +2066,15 @@ html[dir="ltr"] .pv__prev::before { transform: translate(-50%, -50%) rotate(-135
   .arch p { min-height: 3.5em; }
 }
 .arch.is-lit { transform: none; }
+
+.goal h3, .arch h3 { overflow: hidden; }
+/* radar labels a little smaller (user 2026-10-26) */
+.radar__lbl { width: 128px; min-height: 76px; padding: 8px 10px; border-radius: 14px; }
+.radar__lbl b { font-size: clamp(26px, 2.3vw, 34px); }
+.radar__v em { font-size: 12px; }
+.radar__lbl small { font-size: 12.5px; }
+@media (max-width: 560px) { .radar__lbl { width: 98px; min-height: 66px; padding: 6px 8px; } .radar__lbl b { font-size: 22px; } .radar__lbl small { font-size: 11px; } }
+@media (min-width: 1001px) and (max-width: 1239px) {
+  .goal h3, .arch h3 { white-space: normal; min-height: 2.7em; display: flex; align-items: flex-end; }
+  .arch h3 { justify-content: center; }
+}

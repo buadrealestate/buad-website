@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const els = [...document.querySelectorAll('[data-kashida]')];
-  if (!els.length) return;
+  if (!els.length && !document.querySelector('[data-fit]')) return;
   const html = document.documentElement;
   const T = 'ـ';
   const NJ = new Set([...'اأإآٱدذرزوؤةىء']);            // letters that never join the next one
@@ -69,7 +69,21 @@
     });
     el.style.textAlign = 'justify'; el.style.textAlignLast = 'start';   // the last few pixels go to the spaces
   }
-  const run = () => els.forEach(el => { if (el.offsetParent !== null || el.getClientRects().length) justify(el); });
+  // one-line headings in a row ([data-fit="group"]): every heading of the group takes the size of the one that needs the smallest,
+  // so the titles stay on one row, the same size, and none spills out of its card (user 2026-10-26)
+  function fit() {
+    const groups = {};
+    document.querySelectorAll('[data-fit]').forEach(h => (groups[h.dataset.fit] = groups[h.dataset.fit] || []).push(h));
+    Object.values(groups).forEach(hs => {
+      hs.forEach(h => { h.style.fontSize = ''; });
+      if (getComputedStyle(hs[0]).whiteSpace !== 'nowrap') return;
+      let size = Math.min(...hs.map(h => parseFloat(getComputedStyle(h).fontSize)));
+      const over = () => hs.some(h => h.scrollWidth > h.clientWidth + 1);
+      hs.forEach(h => { h.style.fontSize = size + 'px'; });
+      while (over() && size > 12) { size -= .5; hs.forEach(h => { h.style.fontSize = size + 'px'; }); }
+    });
+  }
+  const run = () => { fit(); els.forEach(el => { if (el.offsetParent !== null || el.getClientRects().length) justify(el); }); };
   let lastW = innerWidth, timer = 0;
   addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(timer); timer = setTimeout(run, 180); });
   document.addEventListener('buad:lang', () => setTimeout(run, 30));

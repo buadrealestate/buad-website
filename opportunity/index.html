@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261026h">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261026i">
 <style>
   :root {
     --ink: #1a110c; --paper: #f5ede1; --paper2: #ece0cd; --brown: #3a2418; --mocha: #7a5a43;
@@ -416,6 +416,85 @@
     .st { grid-template-columns: auto 1fr; justify-items: start; text-align: start; align-items: center; }
     .climb__lbl { font-size: 27px; } .climb__lbl--s { font-size: 22px; }
   }
+
+  /* ===== v6 (user 2026-10-26) */
+  /* 01 facts as visual tiles beside the readiness ring */
+  .fx { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+  .ft { position: relative; overflow: hidden; isolation: isolate; display: grid; align-content: end; gap: 6px; min-height: 170px; padding: 22px 24px; border-radius: 26px;
+    background: #fbf6ee; box-shadow: inset 0 0 0 1px var(--hair-l), 0 34px 60px -46px rgba(58, 36, 24, .7); transition: transform .8s var(--spring), box-shadow .8s var(--spring); }
+  .ft:hover { transform: translateY(-5px); box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .45), 0 40px 70px -40px rgba(58, 36, 24, .7); }
+  .ft__k { display: flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: .08em; color: var(--gold-d); }
+  .ft__k i { width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold-d); }
+  .ft__v { font-size: clamp(20px, 1.9vw, 27px); font-weight: 700; line-height: 1.25; color: var(--brown); }
+  .ft__s { font-size: 13.5px; color: var(--mocha); }
+  .ft--owner { grid-column: span 4; min-height: 150px; background: radial-gradient(70% 120% at 0% 0%, rgba(230, 196, 141, .25), transparent 60%), #fbf6ee; }
+  .ft__seal { position: absolute; z-index: -1; inset-inline-end: 18px; top: 50%; margin-top: -55px; width: 110px; fill: none; stroke: rgba(168, 121, 74, .28); stroke-width: 1; animation: ftSpin 40s linear infinite; }
+  .ft__seal path { fill: rgba(168, 121, 74, .1); }
+  @keyframes ftSpin { to { transform: rotate(360deg); } }
+  .ft--term { grid-column: span 2; grid-row: span 3; align-content: space-between; color: #f8ecd8; background: linear-gradient(170deg, #3a2418, #1f130c); }
+  .ft--term .ft__k { color: var(--gold); } .ft--term .ft__k i { background: var(--gold); }
+  .ft__v--big { display: flex; align-items: baseline; gap: 8px; color: #f8ecd8; }
+  .ft__v--big b { font-size: clamp(70px, 7vw, 110px); font-weight: 200; line-height: .85; color: transparent; -webkit-text-stroke: 1.2px #f0d4a3; }
+  .ft__v--big small { font-size: 20px; font-weight: 400; color: var(--gold); }
+  .ft__ticks { display: grid; grid-template-columns: repeat(25, 1fr); gap: 3px; align-items: end; height: 34px; }
+  .ft__ticks i { height: 40%; border-radius: 2px; background: rgba(230, 196, 141, .2); transition: background .4s, height .6s var(--spring); transition-delay: calc(var(--k) * 45ms + .4s); }
+  .ft__ticks i:nth-child(5n) { height: 70%; }
+  .ft--term.in .ft__ticks i { background: linear-gradient(180deg, #f2dcae, #b88550); height: 60%; }
+  .ft--term.in .ft__ticks i:nth-child(5n) { height: 100%; }
+  .ft--area { grid-column: span 2; min-height: 210px; }
+  .ft__map { position: absolute; z-index: -1; inset: 16px 18px auto; width: calc(100% - 36px); height: 42%; }
+  .ft__fill { fill: rgba(168, 121, 74, .08); }
+  .ft__edge { fill: none; stroke: var(--gold-d); stroke-width: 4; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s var(--spring) .3s; }
+  .ft--area.in .ft__edge { stroke-dashoffset: 0; }
+  .ft--inv { grid-column: span 2; min-height: 210px; }
+  .ft__ico { position: absolute; z-index: -1; top: 18px; inset-inline-start: 22px; width: 54px; fill: none; stroke: var(--gold-d); stroke-width: 1.6; stroke-linecap: round; }
+  .ft--loc { grid-column: span 4; min-height: 160px; padding-inline-end: 150px; color: #1a110c; background: linear-gradient(135deg, #f2dcae, #d6ad72 60%, #b88550); }
+  html[dir="rtl"] .ft--loc { padding-inline-end: 24px; padding-inline-start: 150px; }
+  .ft--loc .ft__k { color: rgba(26, 17, 12, .7); } .ft--loc .ft__k i { background: #1a110c; } .ft--loc .ft__v { color: #1a110c; } .ft--loc .ft__s { color: rgba(26, 17, 12, .7); }
+  .ft__compass { position: absolute; z-index: -1; inset-inline-end: 22px; top: 50%; width: 112px; transform: translateY(-50%); overflow: visible; fill: none; stroke: rgba(26, 17, 12, .35); stroke-width: 1.2; }
+  html[dir="rtl"] .ft__compass { inset-inline-end: auto; inset-inline-start: 22px; }
+  .ft__compass text { font: 700 13px Tajawal, sans-serif; fill: #1a110c; stroke: none; text-anchor: middle; }
+  .ft__needle { transform-origin: 60px 60px; animation: ftNeedle 6s ease-in-out infinite; }
+  .ft__needle path { fill: #1a110c; stroke: none; } .ft__needle path.s { fill: rgba(26, 17, 12, .25); }
+  @keyframes ftNeedle { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(10deg); } }
+  @media (max-width: 980px) { .fx { grid-template-columns: 1fr 1fr; } .ft, .ft--owner, .ft--loc { grid-column: 1 / -1; } .ft--term { grid-column: span 1; grid-row: span 2; } .ft--area, .ft--inv { grid-column: span 1; } }
+  @media (max-width: 560px) { .ft--term { grid-column: 1 / -1; grid-row: auto; min-height: 220px; } .ft--area, .ft--inv { grid-column: span 1; min-height: 170px; } }
+
+  /* 02 project: life in the constellation */
+  .orb__spark { fill: #fff3dc; filter: drop-shadow(0 0 1.2px rgba(255, 220, 160, .9)); }
+  .orb__ticks { fill: none; stroke: rgba(168, 121, 74, .5); stroke-width: 1.4; stroke-dasharray: .12 .88; transform-origin: 50px 50px; animation: orbSpin 90s linear infinite reverse; }
+  .orb__pulse { position: absolute; left: 50%; top: 50%; width: clamp(88px, 12vw, 150px); aspect-ratio: 1; transform: translate(-50%, -50%) rotate(45deg); border-radius: 22%;
+    border: 1px solid rgba(168, 121, 74, .55); animation: orbPulse 3.2s ease-out infinite; pointer-events: none; }
+  .orb__pulse--2 { animation-delay: 1.6s; }
+  @keyframes orbPulse { from { opacity: .9; transform: translate(-50%, -50%) rotate(45deg) scale(1); } to { opacity: 0; transform: translate(-50%, -50%) rotate(45deg) scale(1.9); } }
+  .pjv__chips { margin-top: clamp(24px, 3vw, 38px); display: flex; flex-wrap: wrap; gap: 10px; }
+  .pjv__chips span { display: inline-flex; align-items: baseline; gap: 6px; padding: 10px 16px; border-radius: 999px; font-size: 14.5px; color: var(--mocha); background: #fbf6ee; box-shadow: inset 0 0 0 1px var(--hair-l); }
+  .pjv__chips b { font-size: 20px; font-weight: 700; color: var(--brown); direction: ltr; unicode-bidi: isolate; }
+  .pjv { position: relative; }
+  .pjv::before { content: "SMARTFACE"; position: absolute; inset-inline-start: -2%; top: 3%; font-size: clamp(90px, 15vw, 240px); font-weight: 800; letter-spacing: .02em; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1px rgba(168, 121, 74, .1); pointer-events: none; direction: ltr; }
+  .stg .st__dot { transition: background .5s, transform .6s var(--spring), box-shadow .5s; }
+  .stg.in .st__dot { animation: stLit 4.5s ease-in-out infinite; animation-delay: calc(var(--k) * .6s); }
+  @keyframes stLit { 0%, 30%, 100% { transform: none; box-shadow: 0 0 0 6px #2f1d13; } 12% { transform: scale(1.18); box-shadow: 0 0 0 6px #2f1d13, 0 0 24px rgba(242, 220, 174, .8); } }
+
+  /* 04 why now: contour lines, milestones, the summit badge, the road to the goal */
+  .now__topo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .now__topo path { fill: none; stroke: rgba(26, 17, 12, .09); stroke-width: 1.2; }
+  .now::before { opacity: .55; }
+  .climb__ms circle { fill: #fff3dc; stroke: var(--ink); stroke-width: 2.4; }
+  .climb__ms text { font: 600 13px Tajawal, sans-serif; fill: rgba(26, 17, 12, .78); }
+  .climb__ms { opacity: 0; transition: opacity .6s var(--spring); transition-delay: calc(.8s + var(--k) * .35s); }
+  .climb.in .climb__ms { opacity: 1; }
+  .climb__here rect { fill: var(--ink); } .climb__here text { font: 700 14px Tajawal, sans-serif; fill: #f2dcae; }
+  .climb__here { opacity: 0; transform: translateY(8px); transition: opacity .8s var(--spring) 2.3s, transform .8s var(--spring) 2.3s; }
+  .climb.in .climb__here { opacity: 1; transform: none; }
+  .climb.in .climb__rest { animation: road 1.2s linear infinite; }
+  @keyframes road { to { stroke-dashoffset: -28; } }
+  .climb__goal rect { fill: none; stroke: var(--ink); stroke-width: 2.4; }
+  .climb__goal text { font: 700 14px Tajawal, sans-serif; fill: var(--ink); }
+  .climb__goal { opacity: 0; transition: opacity .8s var(--spring) 2.6s; } .climb.in .climb__goal { opacity: 1; }
+  @media (max-width: 560px) { .climb__ms text { font-size: 18px; } .climb__here text, .climb__goal text { font-size: 18px; } }
+  @media (prefers-reduced-motion: reduce) { .ft__seal, .ft__needle, .orb__ticks, .orb__pulse, .stg.in .st__dot, .climb.in .climb__rest { animation: none; } }
 </style>
 </head>
 <body>
@@ -487,7 +566,36 @@
         <p class="dos__rk">نسبة جاهزية الموقع</p>
         <p class="dos__rs">مرحلة التسوية والتمهيد</p>
       </aside>
-      <ol class="ledger"><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg></span><span class="lg__k">مالك الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">أمانة العاصمة المقدسة</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><span class="lg__k">مدة إستثمار الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v"><em>25</em>سنة</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></span><span class="lg__k">مساحة الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">نصف مليون متر مربع</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></span><span class="lg__k">مستثمر الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">قطاع خاص</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg></span><span class="lg__k">موقع الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">مدخل شمال مكة<small>السعودية - المنطقة الغربية</small></b></li></ol>
+<div class="fx">
+        <article class="ft ft--owner rv">
+          <svg class="ft__seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56"/><circle cx="60" cy="60" r="46"/><path d="M60 26l7 14 15 2-11 11 3 15-14-7-14 7 3-15-11-11 15-2z"/></svg>
+          <p class="ft__k"><i aria-hidden="true"></i>مالك الأرض</p>
+          <p class="ft__v">أمانة العاصمة المقدسة</p>
+        </article>
+        <article class="ft ft--term rv">
+          <p class="ft__k"><i aria-hidden="true"></i>مدة إستثمار الأرض</p>
+          <p class="ft__v ft__v--big"><b>25</b><small>سنة</small></p>
+          <span class="ft__ticks" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i><i style="--k:13"></i><i style="--k:14"></i><i style="--k:15"></i><i style="--k:16"></i><i style="--k:17"></i><i style="--k:18"></i><i style="--k:19"></i><i style="--k:20"></i><i style="--k:21"></i><i style="--k:22"></i><i style="--k:23"></i><i style="--k:24"></i></span>
+        </article>
+        <article class="ft ft--area rv">
+          <svg class="ft__map" viewBox="0 0 1508 856" aria-hidden="true"><path class="ft__fill" d="M10 338 L442 617 L535 747 L617 763 L732 846 L985 731 L1299 632 L1300 627 L1224 483 L1226 473 L1232 468 L1248 468 L1483 511 L1498 508 L1498 433 L1491 431 L1485 423 L1460 191 L1448 160 L1236 99 L1229 101 L1213 372 L1204 383 L1143 383 L535 344 L529 336 L548 24 L548 13 L543 10 L361 11 L208 19 L144 114 L144 121 L264 250 L266 261 L261 272 L255 277 L242 276 L109 177 L104 177 L27 294 L29 306Z"/><path class="ft__edge" d="M10 338 L442 617 L535 747 L617 763 L732 846 L985 731 L1299 632 L1300 627 L1224 483 L1226 473 L1232 468 L1248 468 L1483 511 L1498 508 L1498 433 L1491 431 L1485 423 L1460 191 L1448 160 L1236 99 L1229 101 L1213 372 L1204 383 L1143 383 L535 344 L529 336 L548 24 L548 13 L543 10 L361 11 L208 19 L144 114 L144 121 L264 250 L266 261 L261 272 L255 277 L242 276 L109 177 L104 177 L27 294 L29 306Z" pathLength="1"/></svg>
+          <p class="ft__k"><i aria-hidden="true"></i>مساحة الأرض</p>
+          <p class="ft__v">نصف مليون متر مربع</p>
+        </article>
+        <article class="ft ft--inv rv">
+          <svg class="ft__ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M10 40c2.4-7.2 8-11 14-11s11.6 3.8 14 11"/><path d="M33 9l5 5M38 9l-5 5" opacity=".0"/></svg>
+          <p class="ft__k"><i aria-hidden="true"></i>مستثمر الأرض</p>
+          <p class="ft__v">قطاع خاص</p>
+        </article>
+        <article class="ft ft--loc rv">
+          <svg class="ft__compass" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54"/><circle cx="60" cy="60" r="40"/>
+            <path class="ft__cross" d="M60 2v16M60 102v16M2 60h16M102 60h16"/><g class="ft__needle"><path d="M60 22l8 38h-16z"/><path class="s" d="M60 98l-8-38h16z"/></g>
+            <text x="60" y="-4">N</text></svg>
+          <p class="ft__k"><i aria-hidden="true"></i>موقع الأرض</p>
+          <p class="ft__v">مدخل شمال مكة</p>
+          <p class="ft__s">السعودية - المنطقة الغربية</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -501,16 +609,17 @@
         <p class="pjv__k">نوع المشروع</p>
         <p class="pjv__t">واجهة ذكية <b>متكاملة</b></p>
         <p class="pjv__en">SMARTFACE</p>
+        <p class="pjv__chips"><span><b>+45</b> نشاطاً تجارياً</span><span><b>4</b> مراحل تطوير</span><span><b>6</b> مكونات رئيسية</span></p>
       </div>
       <div class="orb rv" aria-label="مكونات المشروع">
-        <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="orb__ring orb__ring--2" cx="50" cy="50" r="48"/><circle class="orb__ring" cx="50" cy="50" r="39"/><line class="orb__ln" x1="50" y1="50" x2="50.00" y2="11.00" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="83.77" y2="30.50" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="83.77" y2="69.50" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="50.00" y2="89.00" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="16.23" y2="69.50" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="16.23" y2="30.50" pathLength="1"/></svg>
-        <div class="orb__core"><span><img src="../assets/img/logo-mark-sand.png" alt=""><b>SMARTFACE</b></span></div>
+        <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="orb__ring orb__ring--2" cx="50" cy="50" r="48"/><circle class="orb__ticks" cx="50" cy="50" r="45" pathLength="120"/><circle class="orb__ring" cx="50" cy="50" r="39"/><line class="orb__ln" x1="50" y1="50" x2="50.00" y2="11.00" pathLength="1"/><circle class="orb__spark" r=".9"><animateMotion dur="2.8s" begin="0.00s" repeatCount="indefinite" path="M50 50 L50.00 11.00"/></circle><line class="orb__ln" x1="50" y1="50" x2="83.77" y2="30.50" pathLength="1"/><circle class="orb__spark" r=".9"><animateMotion dur="2.8s" begin="0.45s" repeatCount="indefinite" path="M50 50 L83.77 30.50"/></circle><line class="orb__ln" x1="50" y1="50" x2="83.77" y2="69.50" pathLength="1"/><circle class="orb__spark" r=".9"><animateMotion dur="2.8s" begin="0.90s" repeatCount="indefinite" path="M50 50 L83.77 69.50"/></circle><line class="orb__ln" x1="50" y1="50" x2="50.00" y2="89.00" pathLength="1"/><circle class="orb__spark" r=".9"><animateMotion dur="2.8s" begin="1.35s" repeatCount="indefinite" path="M50 50 L50.00 89.00"/></circle><line class="orb__ln" x1="50" y1="50" x2="16.23" y2="69.50" pathLength="1"/><circle class="orb__spark" r=".9"><animateMotion dur="2.8s" begin="1.80s" repeatCount="indefinite" path="M50 50 L16.23 69.50"/></circle><line class="orb__ln" x1="50" y1="50" x2="16.23" y2="30.50" pathLength="1"/><circle class="orb__spark" r=".9"><animateMotion dur="2.8s" begin="2.25s" repeatCount="indefinite" path="M50 50 L16.23 30.50"/></circle></svg>
+        <span class="orb__pulse" aria-hidden="true"></span><span class="orb__pulse orb__pulse--2" aria-hidden="true"></span><div class="orb__core"><span><img src="../assets/img/logo-mark-sand.png" alt=""><b>SMARTFACE</b></span></div>
         <ul style="list-style:none;margin:0;padding:0"><li class="orb__n" style="left:50.00%;top:11.00%;--k:0"><span><i><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg></i><b>معارض تجارية</b></span></li><li class="orb__n" style="left:83.77%;top:30.50%;--k:1"><span><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5c1 1.4 2.2 2 3.5 2s2.5-.6 3.5-2M9 10h.01M15 10h.01"/></svg></i><b>مساحات ترفيهية</b></span></li><li class="orb__n" style="left:83.77%;top:69.50%;--k:2"><span><i><svg viewBox="0 0 24 24"><path d="M5 20V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15M4 20h11M7 8h5"/><path d="M14 9h2l2 2v6a1.5 1.5 0 0 0 3 0V9l-3-3"/></svg></i><b>محطة وقود</b></span></li><li class="orb__n" style="left:50.00%;top:89.00%;--k:3"><span><i><svg viewBox="0 0 24 24"><path d="M4 15l1.6-5a2 2 0 0 1 1.9-1.4h9a2 2 0 0 1 1.9 1.4L20 15v4h-3v-2H7v2H4z"/><circle cx="7.5" cy="15" r="1"/><circle cx="16.5" cy="15" r="1"/></svg></i><b>درايف ثرو</b></span></li><li class="orb__n" style="left:16.23%;top:69.50%;--k:4"><span><i><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg></i><b>سكني</b></span></li><li class="orb__n" style="left:16.23%;top:30.50%;--k:5"><span><i><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></i><b>مجمعات وأنشطة متنوعة</b></span></li></ul>
       </div>
     </div>
     <div class="stg rv">
       <div class="stg__h"><p>مرحلة الفرصة</p><b>حزمة التطوير التمهيدي والهندسي</b></div>
-      <ol class="sts"><li class="st"><span class="st__dot">01</span><b>مخططات</b></li><li class="st"><span class="st__dot">02</span><b>دراسات</b></li><li class="st"><span class="st__dot">03</span><b>تراخيص</b></li><li class="st"><span class="st__dot">04</span><b>إستشارات</b></li><li class="st"><span class="st__dot">05</span><b>تمكين إداري وتشغيلي</b></li></ol>
+      <ol class="sts"><li class="st" style="--k:0"><span class="st__dot">01</span><b>مخططات</b></li><li class="st" style="--k:1"><span class="st__dot">02</span><b>دراسات</b></li><li class="st" style="--k:2"><span class="st__dot">03</span><b>تراخيص</b></li><li class="st" style="--k:3"><span class="st__dot">04</span><b>إستشارات</b></li><li class="st" style="--k:4"><span class="st__dot">05</span><b>تمكين إداري وتشغيلي</b></li></ol>
     </div>
   </div>
 </section>
@@ -526,7 +635,7 @@
 </section>
 
 <!-- ============================================ 04 why now (v5: colour band + climb) -->
-<section class="now">
+<section class="now"><svg class="now__topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-50 420 C 200 360 380 470 620 390 S 1050 300 1260 360"/><path d="M-50 382 C 200 320 380 440 620 354 S 1050 266 1260 320"/><path d="M-50 344 C 200 280 380 410 620 318 S 1050 232 1260 280"/><path d="M-50 306 C 200 240 380 380 620 282 S 1050 198 1260 240"/><path d="M-50 268 C 200 200 380 350 620 246 S 1050 164 1260 200"/><path d="M-50 230 C 200 160 380 320 620 210 S 1050 130 1260 160"/><path d="M-50 192 C 200 120 380 290 620 174 S 1050 96 1260 120"/><path d="M-50 154 C 200 80 380 260 620 138 S 1050 62 1260 80"/><path d="M-50 116 C 200 40 380 230 620 102 S 1050 28 1260 40"/><path d="M-50 78 C 200 0 380 200 620 66 S 1050 -6 1260 0"/></svg>
   <div class="w now__in">
     <div>
       <span class="pill rv">لماذا اختار هذه الفرصة الآن؟</span>
@@ -536,13 +645,18 @@
     <svg class="climb rv" viewBox="0 0 600 370" aria-hidden="true">
       <circle class="climb__dot climb__dot--s" cx="590" cy="320" r="6"/>
       <path class="climb__done" d="M590 320 L520 290 L470 300 L405 215 L370 232 L300 110" pathLength="1"/>
-      <path class="climb__rest" d="M300 110 L20 110"/>
+      <path class="climb__rest" d="M300 110 L48 110"/>
+      <g class="climb__goal"><rect x="20" y="96" width="28" height="28" rx="5" transform="rotate(45 34 110)"/><text x="34" y="150" text-anchor="middle" direction="rtl">التشغيل</text></g>
+      <g class="climb__ms" style="--k:0"><circle cx="520" cy="290" r="6"/><text x="520" y="272" text-anchor="middle" direction="rtl">التخصيص</text></g>
+      <g class="climb__ms" style="--k:1"><circle cx="405" cy="215" r="6"/><text x="420" y="196" text-anchor="middle" direction="rtl">الدراسات</text></g>
+      <g class="climb__ms" style="--k:2"><circle cx="370" cy="232" r="6"/><text x="352" y="262" text-anchor="middle" direction="rtl">الرخص</text></g>
       <g class="climb__flag"><line x1="300" y1="110" x2="300" y2="40"/><path d="M300 42 L252 54 L300 68 Z"/></g>
+      <g class="climb__here"><rect x="318" y="30" width="86" height="32" rx="16"/><text x="361" y="51" text-anchor="middle" direction="rtl">نحن هنا</text></g>
       <circle class="climb__pulse" cx="300" cy="110" r="10"/><circle class="climb__dot" cx="300" cy="110" r="8"/>
-      <g class="climb__lbl"><g class="climb__tick" transform="translate(498 335)"><circle r="13"/><path d="M-5.5 0.5l3.8 3.8 7.2-7.4"/></g>
-        <text x="476" y="342" text-anchor="start" direction="rtl">القرارات والرخص صادرة</text></g>
-      <text class="climb__lbl" x="160" y="92" text-anchor="middle" direction="rtl">أعمال تنفيذية</text>
-      <text class="climb__lbl climb__lbl--s" x="160" y="140" text-anchor="middle" direction="rtl">بتكلفة محددة</text>
+      <g class="climb__lbl"><g class="climb__tick" transform="translate(498 345)"><circle r="13"/><path d="M-5.5 0.5l3.8 3.8 7.2-7.4"/></g>
+        <text x="476" y="352" text-anchor="start" direction="rtl">القرارات والرخص صادرة</text></g>
+      <text class="climb__lbl" x="170" y="92" text-anchor="middle" direction="rtl">أعمال تنفيذية</text>
+      <text class="climb__lbl climb__lbl--s" x="170" y="140" text-anchor="middle" direction="rtl">بتكلفة محددة</text>
     </svg>
   </div>
 </section>
@@ -654,6 +768,6 @@
     io.observe(el);
   });
 </script>
-<script src="../assets/js/requests.js?v=20261026h"></script>
+<script src="../assets/js/requests.js?v=20261026i"></script>
 </body>
 </html>
