@@ -2276,3 +2276,14 @@ html[dir="ltr"] .vx__bar em { transform-origin: 0 50%; }
 
 /* «قصتنا»: a warmer sugar-cream ground (user 2026-10-26) */
 .about2 { background: radial-gradient(60% 50% at 80% 70%, rgba(214, 173, 114, .14), transparent 70%), linear-gradient(180deg, #f3e6d1, #efdfc6); }
+
+/* ================================================================ sugar-cream ground for every light section (user rule 2026-10-26: no white grounds) */
+:root { --sugar: #f3e6d1; --sugar-2: #efdfc6; --sugar-card: #f8eedd; }
+.vx, .why, .creds, .contact, .jst, .jphases {
+  background: radial-gradient(60% 50% at 80% 70%, rgba(214, 173, 114, .14), transparent 70%), linear-gradient(180deg, var(--sugar), var(--sugar-2)) !important; }
+.c2form { background: var(--sugar-card); box-shadow: inset 0 0 0 1px rgba(185, 153, 121, .25); }
+.c2form .fl input, .c2form .fl textarea, .c2form .need span { background: #fbf4e8; }
+.wq { background: var(--sugar-card); }
+.wq__core { box-shadow: 0 0 0 7px var(--sugar-card), 0 0 0 8px rgba(201, 154, 98, .6), 0 20px 40px -14px rgba(27, 19, 15, .8); }
+.c2form { background: linear-gradient(180deg, var(--sugar), var(--sugar-2)); }
+.c2form .fl input, .c2form .fl textarea, .c2form .need span { background: var(--sugar-card); }
