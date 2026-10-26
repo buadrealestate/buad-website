@@ -2056,3 +2056,13 @@ html[dir="ltr"] .pv__prev::before { transform: translate(-50%, -50%) rotate(-135
   .pv__img { min-height: 0; aspect-ratio: 16 / 11; }
   .pv__d { font-size: 15.5px; }
 }
+
+/* headings on one row (user 2026-10-26): story, goals and values */
+@media (min-width: 1001px) {
+  .tale3__art { aspect-ratio: 30 / 24; display: flex; flex-direction: column; justify-content: center; }
+  .goal h3 { white-space: nowrap; font-size: clamp(15px, 1.22vw, 19px); }
+  .goal p { min-height: 5.4em; }
+  .arch h3 { white-space: nowrap; font-size: clamp(16px, 1.4vw, 22px); }
+  .arch p { min-height: 3.5em; }
+}
+.arch.is-lit { transform: none; }
