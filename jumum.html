@@ -83,8 +83,8 @@
     <div class="jloc__text">
       <div class="head head--light reveal">
         <p class="eyebrow" data-i18n="jp.loc.eyebrow">الموقع</p>
-        <h2 class="h2" data-i18n="jp.loc.title">عند مدخل شمال مكة</h2>
-        <p class="lead" data-i18n="jp.loc.lead">محافظة الجموم على طريق المدينة المنورة السريع بجوار طريق الملك فيصل</p>
+        <h2 class="h2" data-i18n="jp.loc.title">مدخل شمال مكة</h2>
+        <p class="lead" data-i18n="jp.loc.lead">طريق مكة - المدينة السريع بجوار طريق الملك فيصل</p>
       </div>
       <a class="btn btn--light btn--ico jloc__map reveal" href="https://maps.app.goo.gl/xBKahBZcByVDwckx6" data-sitemap><span data-i18n="jp.loc.map">موقع المشروع على الخريطة</span><i class="btn__ico" aria-hidden="true"></i></a>
       <div class="jdocs reveal"><p class="jdocs__title" data-i18n="jp.loc.docs">المستندات النظامية للموقع</p><div class="jdocs__row" data-docs-strip></div></div>
@@ -263,6 +263,7 @@
 
 
 
+
 <!-- phase1:start -->
 <section class="jprog p1" id="phase1">
   <div class="wrap">
@@ -278,7 +279,7 @@
         <div class="jprog__pct"><b class="p1__pct" dir="ltr">0</b><span dir="ltr">%</span></div>
         <div class="jprog__labels">
           <p class="jprog__label" data-i18n="p1.label">نسبة جاهزية الموقع - مرحلة التسوية والتمهيد</p>
-          <p class="jprog__now"><i aria-hidden="true"></i><span data-i18n="jp.pr.now">نعمل الآن على</span> <b data-i18n="p1.now">تسوية وتمهيد الجبلين المحاذيين لموقع المحطة</b></p>
+          <p class="jprog__now"><i aria-hidden="true"></i><span data-i18n="jp.pr.now">نعمل الآن على</span> <b data-i18n="p1.now">تسوية وتمهيد كامل الموقع</b></p>
         </div>
       </div>
       <div class="jprog__track" aria-hidden="true"><i class="jprog__fill p1__fill"></i></div>
@@ -387,12 +388,12 @@
 <script src="assets/js/sitemap.js?v=20261026m"></script>
 <script src="assets/js/requests.js?v=20261026m"></script>
 <script src="assets/js/jumum-activities.js?v=20261026m" defer></script>
+<script src="assets/js/kashida.js?v=20261026m" defer></script>
 <script>/* phase-1 meter: counts up when it comes into view (phase1.py) */
 (()=>{document.querySelectorAll('[data-p1]').forEach(m=>{const p=+m.dataset.p1,n=m.querySelector('.p1__pct'),f=m.querySelector('.p1__fill');
 const show=k=>{n.textContent=Math.round(p*k);f.style.width=(p*k).toFixed(2)+'%'};
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){show(1);m.classList.add('is-loaded');return}show(0);
 new IntersectionObserver(([e],o)=>{if(!e.isIntersecting)return;o.disconnect();const t0=performance.now();
 (function s(t){const k=Math.min(1,(t-t0)/2400);show(1-Math.pow(1-k,4));if(k<1)requestAnimationFrame(s);else m.classList.add('is-loaded')})(t0)},{threshold:.4}).observe(m)})})();</script>
-<script src="assets/js/kashida.js?v=20261026m" defer></script>
 </body>
 </html>
