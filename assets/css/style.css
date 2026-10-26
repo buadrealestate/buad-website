@@ -2088,3 +2088,13 @@ html[dir="ltr"] .pv__prev::before { transform: translate(-50%, -50%) rotate(-135
 .jloc--radar .jdocs__row { flex-wrap: wrap; gap: 14px 12px; }
 .jloc--radar .jdocs__item { flex: 0 0 calc((100% - 24px) / 3); max-width: 150px; }
 @media (hover: none) { .jloc--radar .jdocs.in .jdocs__item:nth-child(n+5) img { transition-delay: 2.2s; } }
+
+/* «واجهة الجموم» stands out in the menu (user 2026-10-26): a gold capsule with a pulsing diamond */
+.nav__links a.nav__hl { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px !important; border-radius: 999px; font-weight: 700; color: #1b130f !important;
+  background: linear-gradient(100deg, #f2dcae, #d6ad72 55%, #c08f58); box-shadow: 0 8px 22px -10px rgba(214, 173, 114, .9); transition: transform .4s var(--spring), box-shadow .4s; }
+.nav__links a.nav__hl::after { display: none; }
+.nav__links a.nav__hl::before { content: ""; width: 7px; height: 7px; transform: rotate(45deg); background: #1b130f; animation: hlPulse 2.4s ease-in-out infinite; }
+.nav__links a.nav__hl:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -10px rgba(214, 173, 114, 1); }
+@keyframes hlPulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@media (max-width: 1100px) { .nav__links a.nav__hl { align-self: flex-start; } }
+@media (prefers-reduced-motion: reduce) { .nav__links a.nav__hl::before { animation: none; } }
