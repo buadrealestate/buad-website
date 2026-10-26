@@ -332,6 +332,7 @@
     if (masterplan) masterplan.relabel();
     if (film) film.relabel();
     store.set('buad-lang', lang);
+    document.dispatchEvent(new CustomEvent('buad:lang'));
     frame();
   }
   $('#langBtn').addEventListener('click', () => setLang(en() ? 'ar' : 'en'));

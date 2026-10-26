@@ -274,13 +274,25 @@
       wrap.classList.toggle('has-active', k >= 0);
     }
     const next = () => { clearTimeout(timer); if (!held && visible) timer = setTimeout(() => { select((active + 1) % n); next(); }, 6000); };
+    // a click / tap pins the dimension (its details stay open, the ring stops) until it is tapped again or the visitor taps
+    // elsewhere — user 2026-10-26: the details must open on a click too, not only on hover
+    let pinned = false;
+    const more = $('.orb__more', wrap);
     nodes.forEach((b, i) => {
-      b.addEventListener('click', () => { select(i); next(); });
+      b.addEventListener('click', e => {
+        if (pinned && active === i) { pinned = held = false; next(); return; }
+        pinned = held = true; clearTimeout(timer); select(i);
+        if (e.pointerType !== 'mouse') {                                   // touch: bring the details into view
+          const r = more.getBoundingClientRect();
+          if (r.bottom > innerHeight) scrollBy({ top: r.bottom - innerHeight + 24, behavior: reduce ? 'auto' : 'smooth' });
+        }
+      });
       b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); select(i); } });
       b.addEventListener('focus', () => { held = true; clearTimeout(timer); select(i); });
     });
-    stage.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; next(); } });
-    stage.addEventListener('focusout', e => { if (!stage.contains(e.relatedTarget)) { held = false; next(); } });
+    stage.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !pinned) { held = false; next(); } });
+    stage.addEventListener('focusout', e => { if (!pinned && !stage.contains(e.relatedTarget)) { held = false; next(); } });
+    document.addEventListener('click', e => { if (pinned && !wrap.contains(e.target)) { pinned = held = false; next(); } });
     new IntersectionObserver(([e]) => {
       visible = e.isIntersecting;
       if (visible) { sec.classList.add('is-in'); if (active < 0) setTimeout(() => { if (active < 0) select(0); next(); }, 1400); else next(); }

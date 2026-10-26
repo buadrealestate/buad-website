@@ -21,7 +21,7 @@
       type: 'صفة المستثمر', types: ['فرد', 'شركة', 'صندوق أو جهة إستثمارية', 'وسيط'],
       size: 'حجم المشاركة المتوقعة (إختياري)', sizes: ['أقل من 500 ألف', '500 ألف – 2 مليون', '2 – 10 ملايين', 'أكثر من 10 ملايين'],
       brand: 'اسم العلامة التجارية / الشركة', activity: 'النشاط', zone: 'المنطقة المطلوبة (إختياري)', area: 'المساحة التقريبية بالمتر المربع (إختياري)',
-      contact: 'اسم المسؤول', notes: 'ملاحظات (إختياري)',
+      contact: 'اسم المسؤول', notes: 'ملاحظات (إختياري)', actsNote: 'الأنشطة المهتم بها: ',
       send: 'إرسال الطلب عبر واتساب', note: 'يُفتح واتساب برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع',
       err: 'فضلاً أكمل الحقول المطلوبة', okTitle: 'جهّزنا طلبك', okText: 'أكمل الإرسال في واتساب وسيتواصل معك فريقنا قريباً', okMail: 'أو أرسله بالبريد الإلكتروني', close: 'إغلاق',
       msgInvest: 'طلب الملف الإستثماري — مشروع واجهة الجموم', msgSummary: 'طلب الملخص التنفيذي — مشروع واجهة الجموم', msgMasterplan: 'طلب الماستر بلان — مشروع واجهة الجموم', msgDocs: 'طلب المستندات النظامية — مشروع واجهة الجموم', msgLease: 'طلب إستئجار — مشروع واجهة الجموم'
@@ -36,7 +36,7 @@
       type: 'Investor type', types: ['Individual', 'Company', 'Fund or investment entity', 'Broker'],
       size: 'Expected participation (optional)', sizes: ['Under SAR 500K', 'SAR 500K – 2M', 'SAR 2 – 10M', 'Over SAR 10M'],
       brand: 'Brand / company name', activity: 'Activity', zone: 'Preferred zone (optional)', area: 'Approximate area in m² (optional)',
-      contact: 'Contact person', notes: 'Notes (optional)',
+      contact: 'Contact person', notes: 'Notes (optional)', actsNote: 'Activities of interest: ',
       send: 'Send the request on WhatsApp', note: 'WhatsApp opens with a ready message to the BUAD team; nothing is stored on this site.',
       err: 'Please complete the required fields.', okTitle: 'Your request is ready', okText: 'Finish sending it on WhatsApp and our team will contact you shortly.', okMail: 'Or send it by e-mail', close: 'Close',
       msgInvest: 'Investment memorandum request — Al Jumum Interface', msgSummary: 'Executive summary request — Al Jumum Interface', msgMasterplan: 'Masterplan request — Al Jumum Interface', msgDocs: 'Official documents request — Al Jumum Interface', msgLease: 'Leasing request — Al Jumum Interface'
@@ -50,13 +50,13 @@
 
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const field = (name, label, opts = {}) => `<label class="fl${opts.full ? ' full' : ''}">${opts.area
-    ? `<textarea name="${name}" rows="3" placeholder=" "></textarea>`
+    ? `<textarea name="${name}" rows="3" placeholder=" ">${esc(opts.value || '')}</textarea>`
     : `<input name="${name}" placeholder=" "${opts.req ? ' required' : ''}${opts.type ? ` type="${opts.type}"` : ''}${opts.dir ? ` dir="${opts.dir}"` : ''}${opts.mode ? ` inputmode="${opts.mode}"` : ''}${opts.ac ? ` autocomplete="${opts.ac}"` : ''} value="${esc(opts.value || '')}">`}<span>${label}</span></label>`;
   const chips = (name, legend, list, first) => `<fieldset class="needs full"><legend>${legend}</legend>${list.map((t, i) =>
     `<label class="need"><input type="radio" name="${name}" value="${esc(t)}"${first && i === 0 ? ' checked' : ''}><span>${t}</span></label>`).join('')}</fieldset>`;
 
   let mode = 'invest';
-  function render(zone) {
+  function render(zone, acts) {
     const L = T[en() ? 'en' : 'ar'], M = L[mode];
     const body = (mode === 'summary' || mode === 'masterplan' || mode === 'docs')
       ? field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
@@ -65,8 +65,8 @@
       : mode === 'invest'
       ? field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
         field('email', L.email, { type: 'email', dir: 'ltr', ac: 'email' }) + field('org', L.org, { ac: 'organization' }) +
-        chips('type', L.type, L.types, true) + chips('size', L.size, L.sizes, false) + field('notes', L.notes, { area: true, full: true })
-      : field('brand', L.brand, { req: true, ac: 'organization' }) + field('activity', L.activity, { req: true }) +
+        chips('type', L.type, L.types, true) + chips('size', L.size, L.sizes, false) + field('notes', L.notes, { area: true, full: true, value: acts ? L.actsNote + acts : '' })
+      : field('brand', L.brand, { req: true, ac: 'organization' }) + field('activity', L.activity, { req: true, value: acts || '' }) +
         field('zone', L.zone, { value: zone || '' }) + field('area', L.area, { dir: 'ltr', mode: 'numeric' }) +
         field('contact', L.contact, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
         field('notes', L.notes, { area: true, full: true });
@@ -120,9 +120,9 @@
     ok.hidden = false;
   }
 
-  function open(m, zone) {
+  function open(m, zone, acts) {
     mode = ['lease', 'summary', 'masterplan', 'docs'].includes(m) ? m : 'invest';
-    render(zone);
+    render(zone, acts);
     dlg.showModal();
     document.documentElement.classList.add('rq-open');
     setTimeout(() => dlg.querySelector('input')?.focus(), 60);
@@ -135,6 +135,7 @@
     if (!b) return;
     e.preventDefault();
     const zone = b.hasAttribute('data-rq-zone') ? (document.getElementById('zName')?.textContent || '') : '';
-    open(b.dataset.rq, zone);
+    const acts = b.hasAttribute('data-rq-acts') && window.jumumPicked ? window.jumumPicked() : '';   // ticked activities («أنشطة المشروع»)
+    open(b.dataset.rq, zone, acts);
   });
 })();

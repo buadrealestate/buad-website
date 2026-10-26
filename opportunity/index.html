@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261025m">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261026b">
 <style>
   :root {
     --ink: #1a110c; --paper: #f5ede1; --paper2: #ece0cd; --brown: #3a2418; --mocha: #7a5a43;
@@ -50,7 +50,7 @@
   @keyframes heroIn { to { transform: scale(1.02); } }
   .hero__bg::after { content: ""; position: absolute; inset: 0;
     background: radial-gradient(60% 70% at 70% 30%, transparent, rgba(26, 17, 12, .55) 70%), linear-gradient(180deg, rgba(26, 17, 12, .3), rgba(26, 17, 12, .55) 50%, var(--ink) 98%); }
-  .hero__grid { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(24px, 4vw, 70px); align-items: end; }
+  .hero__grid { position: relative; display: grid; justify-items: start; }
   .pill { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border-radius: 999px; font-size: 12px; letter-spacing: .14em; color: var(--gold);
     box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
   .pill::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
@@ -58,8 +58,6 @@
   .hero h1 { margin-top: 22px; font-size: clamp(42px, 6.6vw, 104px); font-weight: 200; line-height: 1.02; color: #f8ecd8; }
   .hero h1 b { display: block; font-weight: 700; background: linear-gradient(90deg, #f6dfb2, #d6ad72 60%, #b88550); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
   .hero__sub { margin-top: 14px; font-size: clamp(17px, 1.6vw, 22px); color: rgba(243, 230, 207, .8); }
-  .hero__to { margin-top: 22px; display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; color: #f8ecd8; }
-  .hero__to::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
 
   /* double-bezel term card */
   .bz { padding: 7px; border-radius: 34px; background: rgba(243, 230, 207, .06); box-shadow: inset 0 0 0 1px var(--hair-d); }
@@ -115,20 +113,6 @@
   .f p, .f--w p { margin-top: 14px; font-size: clamp(20px, 1.9vw, 27px); font-weight: 400; line-height: 1.35; color: var(--brown); }
   .f--w p small { display: block; margin-top: 4px; font-size: .62em; color: var(--mocha); }
 
-  /* 02 project: editorial split */
-  .split { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(26px, 4vw, 70px); align-items: center; }
-  .split__img .lb__core { padding: 0; overflow: hidden; aspect-ratio: 4 / 4.4; }
-  .split__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.6s var(--spring); }
-  .split__img:hover img { transform: scale(1.05); }
-  .pj { display: grid; gap: clamp(26px, 3vw, 40px); }
-  .pj h3 { font-size: 12.5px; letter-spacing: .14em; color: var(--gold-d); font-weight: 500; }
-  .pj__type { margin-top: 10px; font-size: clamp(30px, 3.4vw, 48px); font-weight: 300; line-height: 1.15; color: var(--brown); }
-  .pj__type span { display: block; margin-top: 8px; font-size: .46em; letter-spacing: .3em; color: var(--gold-d); }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-  .chips span { padding: 10px 18px; border-radius: 999px; font-size: 16px; color: var(--brown); background: #fbf6ee; box-shadow: inset 0 0 0 1px var(--hair-l); }
-  .chips--g span { background: transparent; box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .45); }
-  .pj__stage { margin-top: 10px; font-size: 20px; color: var(--brown); }
-
   /* 03 done: dark band */
   .dark { background: var(--ink); color: var(--cream); }
   .done { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -155,15 +139,6 @@
   .left li.is-now b { color: #f8ecd8; font-weight: 700; }
   @media (max-width: 980px) { .left { grid-template-columns: 1fr 1fr; } }
 
-  /* 04 why now: full-bleed image band */
-  .now { position: relative; min-height: 80dvh; display: grid; place-items: center; text-align: center; overflow: hidden; }
-  .now img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .now::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(26, 17, 12, .55), rgba(26, 17, 12, .9)); }
-  .now__in { position: relative; z-index: 1; display: grid; justify-items: center; gap: 22px; padding: 80px 16px; }
-  .now h2 { font-size: clamp(48px, 9vw, 150px); font-weight: 200; line-height: 1; color: #f8ecd8; }
-  .now h2 b { font-weight: 700; color: var(--gold); }
-  .now p { max-width: 34ch; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.6; color: rgba(243, 230, 207, .85); }
-
   /* 05 paths: a fork from the end of the term into three cards */
   .fork__node { display: flex; justify-content: center; }
   .fork__node span { padding: 12px 24px; border-radius: 999px; font-size: 16px; font-weight: 500; color: #f8ecd8; background: var(--brown); box-shadow: 0 20px 40px -24px rgba(58, 36, 24, .9); }
@@ -177,8 +152,6 @@
   .path h3 { font-size: clamp(24px, 2.4vw, 32px); font-weight: 700; color: var(--brown); }
   .path p { font-size: 17.5px; line-height: 1.75; color: var(--mocha); }
   .path q { quotes: "«" "»"; color: var(--brown); font-weight: 500; }
-  .path--hl .lb__core { background: linear-gradient(170deg, #3a2418, #24160e); }
-  .path--hl h3 { color: #f8ecd8; } .path--hl p { color: rgba(243, 230, 207, .78); } .path--hl q, .path--hl i { color: var(--gold); }
 
   /* 06 perks */
   .perks { display: grid; grid-template-columns: repeat(4, 1fr); border-radius: 30px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--hair-d); }
@@ -209,24 +182,6 @@
     .rv { opacity: 1; transform: none; filter: none; transition: none; } .hero__bg img { animation: none; transform: none; }
     .ring .r-fg { transition: none; stroke-dashoffset: 34; } .fork svg path { transition: none; stroke-dashoffset: 0; } }
 
-
-  /* ===== v3: giant figures in the hero */
-  .big { display: grid; gap: 18px; justify-items: start; }
-  .big__item { display: grid; gap: 4px; }
-  .big__k { font-size: 13px; letter-spacing: .16em; color: var(--gold); }
-  .big__n { display: flex; align-items: baseline; gap: 10px; line-height: .9; direction: rtl; }
-  .big__n b { font-size: clamp(90px, 11vw, 170px); font-weight: 200; color: transparent; -webkit-text-stroke: 1.2px #f0d4a3; direction: ltr;
-    background: linear-gradient(180deg, rgba(246, 223, 178, .0) 30%, rgba(246, 223, 178, .35)); -webkit-background-clip: text; background-clip: text; }
-  .big__n small { font-size: clamp(20px, 2vw, 28px); font-weight: 400; color: rgba(243, 230, 207, .85); }
-  .big__n--r { direction: ltr; } .big__n--r i { font-style: normal; font-size: clamp(50px, 6vw, 90px); font-weight: 200; color: var(--gold); }
-  .big__n--r small { color: var(--gold); font-size: clamp(34px, 3.6vw, 56px); font-weight: 200; }
-  .big__go { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; padding: 8px 8px 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 500;
-    color: #f8ecd8; text-decoration: none; box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); transition: background .6s var(--spring); }
-  html[dir="rtl"] .big__go { padding: 8px 20px 8px 8px; }
-  .big__go:hover { background: rgba(230, 196, 141, .12); }
-  .big__go i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); transition: transform .6s var(--spring); }
-  .big__go:hover i { transform: translateY(3px); }
-  .big__go i::before { content: ""; width: 7px; height: 7px; border: solid var(--ink); border-width: 0 0 1.6px 1.6px; transform: rotate(-45deg) translate(1px, -2px); }
 
   /* ===== v3: the two instruments */
   .figs { position: relative; padding-block: clamp(70px, 9vw, 130px); background: radial-gradient(60% 60% at 25% 40%, rgba(230, 196, 141, .12), transparent 70%),
@@ -271,34 +226,6 @@
   @media (max-width: 900px) { .figs__grid { grid-template-columns: 1fr; } .seals__row { grid-template-columns: 1fr; gap: 6px; } .seal + .seal { border-inline-start: 0; border-top: 1px solid var(--hair-d); }
     .seal { justify-content: flex-start; } }
 
-  /* ===== v4: project — full-height photo with a floating type card, component tiles, the opportunity stage as numbered steps */
-  .pjx { display: grid; grid-template-columns: 1fr 1.1fr; background: var(--paper2); color: var(--brown); }
-  .pjx__media { position: relative; min-height: 100%; overflow: hidden; }
-  .pjx__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 2s var(--spring); }
-  .pjx:hover .pjx__media img { transform: scale(1.0); }
-  .pjx__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26, 17, 12, .72), transparent 55%); }
-  .pjx__tag { position: absolute; z-index: 1; inset: auto clamp(20px, 3vw, 44px) clamp(20px, 3vw, 44px); display: grid; gap: 6px; color: #f8ecd8; }
-  .pjx__tag span { font-size: 13px; letter-spacing: .16em; color: var(--gold); }
-  .pjx__tag b { font-size: clamp(32px, 3.6vw, 54px); font-weight: 300; line-height: 1.1; }
-  .pjx__tag em { font-style: normal; font-size: 15px; letter-spacing: .4em; color: var(--gold); }
-  .pjx__body { padding: clamp(70px, 8vw, 130px) clamp(20px, 5vw, 80px); }
-  .sh--tight { margin-bottom: clamp(28px, 3vw, 44px); }
-  .pjx__k { margin: 0 0 16px; font-size: 13px; letter-spacing: .14em; color: var(--gold-d); font-weight: 500; }
-  .pjx__k small { display: block; margin-top: 6px; letter-spacing: 0; font-size: 19px; color: var(--brown); font-weight: 400; }
-  .cps { list-style: none; margin: 0 0 clamp(36px, 4vw, 56px); padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .cp { display: grid; justify-items: center; gap: 12px; padding: 22px 12px 20px; border-radius: 22px; text-align: center; background: #fbf6ee;
-    box-shadow: inset 0 0 0 1px var(--hair-l), 0 24px 40px -34px rgba(58, 36, 24, .6); transition: transform .7s var(--spring), box-shadow .7s var(--spring); }
-  .cp:hover { transform: translateY(-5px); box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .5), 0 30px 50px -34px rgba(58, 36, 24, .7); }
-  .cp__ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(160deg, #3a2418, #24160e); }
-  .cp__ic svg { width: 24px; height: 24px; fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
-  .cp b { font-size: 16.5px; font-weight: 500; line-height: 1.35; }
-  .sts { list-style: none; margin: 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
-  .sts::before { content: ""; position: absolute; top: 21px; inset-inline: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-d) 12%, var(--gold-d) 88%, transparent); }
-  .st { position: relative; display: grid; justify-items: center; gap: 12px; text-align: center; }
-  .st__dot { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-size: 12.5px; font-weight: 700; color: var(--gold); background: var(--brown);
-    box-shadow: 0 0 0 6px var(--paper2); }
-  .st b { font-size: 15.5px; font-weight: 500; line-height: 1.35; padding-inline: 4px; }
-
   /* ===== v4: paths — a rail «end of term», three cards, each with a visual equation */
   .pxs { padding-block: clamp(90px, 11vw, 160px); background: var(--paper); color: var(--brown); }
   .pxs__head { display: grid; justify-items: center; gap: 14px; text-align: center; margin-bottom: clamp(40px, 5vw, 70px); }
@@ -323,7 +250,6 @@
   .eq__in { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
   .eq__down { width: 1px; height: 22px; position: relative; background: var(--gold-d); }
   .eq__down::after { content: ""; position: absolute; bottom: 0; left: -3px; width: 6px; height: 6px; border: solid var(--gold-d); border-width: 0 1.4px 1.4px 0; transform: rotate(45deg); }
-  .px--hl .eq__down, .px--hl .eq__arr { background: var(--gold); } .px--hl .eq__down::after, .px--hl .eq__arr::after { border-color: var(--gold); }
   .eq__row { justify-content: center; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; }
   .eq__c { padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 500; background: #fff; box-shadow: inset 0 0 0 1px var(--hair-l); }
   .eq__c--out { color: #f8ecd8; background: var(--brown); box-shadow: none; }
@@ -332,12 +258,7 @@
   .eq__arr::after { content: ""; position: absolute; top: -3px; left: 0; width: 6px; height: 6px; border: solid var(--gold-d); border-width: 0 0 1.4px 1.4px; transform: rotate(45deg); }
   html[dir="ltr"] .eq__arr::after { left: auto; right: 0; transform: rotate(-135deg); }
   .px p { font-size: 16.5px; line-height: 1.75; color: var(--mocha); }
-  .px--hl { background: linear-gradient(170deg, #3a2418, #24160e); color: #f8ecd8; box-shadow: 0 50px 80px -50px rgba(26, 17, 12, .9); }
-  .px--hl .px__ic { background: rgba(230, 196, 141, .14); } .px--hl .px__ic svg { stroke: var(--gold); } .px--hl .px__no { color: var(--gold); }
-  .px--hl .eq { background: rgba(243, 230, 207, .06); } .px--hl .eq__c { color: var(--brown); background: #f3e6cf; }
-  .px--hl .eq__c--out { color: var(--ink); background: var(--gold); } .px--hl p { color: rgba(243, 230, 207, .75); }
   @media (max-width: 980px) {
-    .pjx { grid-template-columns: 1fr; } .pjx__media { min-height: 420px; }
     .pxg { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
@@ -346,7 +267,6 @@
     .st { grid-template-columns: auto 1fr; justify-items: start; text-align: start; align-items: center; }
   }
   @media (max-width: 980px) {
-    .hero__grid, .split { grid-template-columns: 1fr; }
     .bento { grid-template-columns: 1fr 1fr; }
     .f-ring { grid-column: 1 / -1; grid-row: auto; } .f { grid-column: span 1; } .f--w { grid-column: 1 / -1; }
     .done { grid-template-columns: 1fr 1fr; }
@@ -362,10 +282,144 @@
     .isl__in img { height: 18px; } .isl__in a { font-size: 12.5px; }
     .paper { border-radius: 30px 30px 0 0; }
   }
+
+  /* ===== v5 (user 2026-10-26) */
+  .hero h1 { font-size: clamp(46px, 7.4vw, 120px); }
+  .hero__cue { margin-top: clamp(26px, 4vh, 44px); display: inline-flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .16em; color: rgba(243, 230, 207, .7); text-decoration: none; }
+  .hero__cue i { width: 1px; height: 46px; background: linear-gradient(180deg, var(--gold), transparent); position: relative; overflow: hidden; }
+  .hero__cue i::after { content: ""; position: absolute; inset: 0 0 auto; height: 14px; background: #fff3dc; animation: cue 2.2s var(--spring) infinite; }
+  @keyframes cue { from { transform: translateY(-14px); } to { transform: translateY(46px); } }
+
+  /* 01 dossier: readiness panel + a ledger of the land facts */
+  .dos { display: grid; grid-template-columns: minmax(300px, .82fr) 1.5fr; gap: clamp(16px, 2.4vw, 34px); align-items: stretch; }
+  .dos__ready { position: relative; overflow: hidden; display: grid; justify-items: center; align-content: center; gap: 6px; padding: clamp(30px, 3.6vw, 52px) 24px; text-align: center;
+    border-radius: 34px; color: #f8ecd8; background: radial-gradient(80% 60% at 50% 38%, rgba(230, 196, 141, .2), transparent 70%), linear-gradient(170deg, #3a2418, #1f130c);
+    box-shadow: 0 50px 80px -50px rgba(26, 17, 12, .9), inset 0 1px 0 rgba(255, 240, 210, .12); }
+  .dos__ready::before { content: ""; position: absolute; width: 150%; aspect-ratio: 1; top: -46%; left: -25%; border-radius: 50%;
+    background: repeating-radial-gradient(circle, transparent 0 34px, rgba(230, 196, 141, .07) 34px 35px); pointer-events: none; }
+  .dos .ring { width: min(250px, 78%); }
+  .dos .ring circle { stroke-width: 5; }
+  .dos .ring .r-tk { stroke: rgba(230, 196, 141, .35); stroke-width: 2; stroke-dasharray: .4 2.1; }
+  .dos .ring__v b { font-size: clamp(60px, 6vw, 84px); }
+  .dos__rk { position: relative; margin-top: 20px; font-size: clamp(21px, 1.9vw, 26px); font-weight: 700; color: #f8ecd8; }
+  .dos__rs { position: relative; display: inline-flex; align-items: center; gap: 10px; font-size: 15.5px; color: var(--gold); }
+  .dos__rs::before, .dos__rs::after { content: ""; width: 18px; height: 1px; background: rgba(230, 196, 141, .6); }
+  .ledger { list-style: none; margin: 0; padding: clamp(8px, 1.2vw, 14px) clamp(20px, 2.6vw, 38px); border-radius: 34px; background: #fbf6ee;
+    box-shadow: inset 0 0 0 1px var(--hair-l), 0 40px 70px -56px rgba(58, 36, 24, .7); }
+  .lg { position: relative; display: grid; grid-template-columns: 46px auto 1fr auto; align-items: center; gap: 16px; padding: clamp(18px, 2vw, 26px) 0; }
+  .lg + .lg { border-top: 1px solid var(--hair-l); }
+  .lg__ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(168, 121, 74, .1); transition: background .6s var(--spring); }
+  .lg__ic svg { width: 22px; height: 22px; fill: none; stroke: var(--gold-d); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; transition: stroke .6s; }
+  .lg:hover .lg__ic { background: var(--brown); } .lg:hover .lg__ic svg { stroke: var(--gold); }
+  .lg__k { font-size: 15px; color: var(--mocha); }
+  .lg__lead { height: 1px; min-width: 24px; background: repeating-linear-gradient(90deg, rgba(122, 90, 67, .45) 0 2px, transparent 2px 7px); }
+  .lg__v { font-size: clamp(20px, 2vw, 28px); font-weight: 700; color: var(--brown); text-align: end; line-height: 1.25; }
+  .lg__v em { font-style: normal; font-size: 1.5em; font-weight: 300; color: var(--gold-d); margin-inline-end: 6px; }
+  .lg__v small { display: block; font-size: 14px; font-weight: 400; color: var(--mocha); }
+
+  /* 02 project: the type as a statement + its components as a constellation around the SmartFace mark */
+  .pjv { background: var(--paper2); color: var(--brown); overflow: hidden; }
+  .pjv__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(30px, 5vw, 80px); align-items: center; }
+  .pjv__k { font-size: 13px; letter-spacing: .16em; color: var(--gold-d); }
+  .pjv__t { margin-top: 12px; font-size: clamp(42px, 5.4vw, 84px); font-weight: 200; line-height: 1.04; color: var(--brown); }
+  .pjv__t b { font-weight: 700; display: block; }
+  .pjv__en { margin-top: 18px; font-size: clamp(22px, 2.6vw, 38px); font-weight: 300; letter-spacing: .5em; color: transparent; -webkit-text-stroke: 1px var(--gold-d); direction: ltr; text-align: end; }
+  html[dir="rtl"] .pjv__en { text-align: start; }
+  .orb { position: relative; width: min(560px, 100%); aspect-ratio: 1; margin-inline: auto; }
+  .orb > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .orb__ring { fill: none; stroke: rgba(168, 121, 74, .35); stroke-width: .25; stroke-dasharray: .8 1.4; transform-origin: 50px 50px; animation: orbSpin 60s linear infinite; }
+  .orb__ring--2 { stroke-dasharray: none; stroke: rgba(168, 121, 74, .16); animation: none; }
+  @keyframes orbSpin { to { transform: rotate(360deg); } }
+  .orb__ln { stroke: var(--gold-d); stroke-width: .3; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--spring); }
+  .orb.in .orb__ln { stroke-dashoffset: 0; }
+  .orb__core { position: absolute; left: 50%; top: 50%; width: clamp(88px, 12vw, 150px); height: clamp(88px, 12vw, 150px); transform: translate(-50%, -50%) rotate(45deg); border-radius: 22%;
+    background: linear-gradient(135deg, #3a2418, #1f130c); box-shadow: 0 30px 60px -30px rgba(26, 17, 12, .9), 0 0 0 8px rgba(168, 121, 74, .12), 0 0 0 18px rgba(168, 121, 74, .06); display: grid; place-items: center; }
+  .orb__core span { transform: rotate(-45deg); display: grid; justify-items: center; gap: 2px; color: var(--gold); }
+  .orb__core img { width: clamp(30px, 4.6vw, 52px); height: auto; }
+  .orb__core b { font-size: clamp(10px, 1vw, 13px); letter-spacing: .22em; font-weight: 500; direction: ltr; }
+  .orb__n { position: absolute; width: 0; height: 0; }
+  .orb__n > span { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 10px; width: 132px; text-align: center;
+    opacity: 0; scale: .7; transition: opacity .8s var(--spring), scale .9s var(--spring); transition-delay: calc(var(--k) * 110ms + 500ms); }
+  .orb.in .orb__n > span { opacity: 1; scale: 1; }
+  .orb__n i { width: clamp(54px, 5.2vw, 70px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: #fbf6ee;
+    box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .5), 0 20px 34px -22px rgba(58, 36, 24, .7); transition: background .6s var(--spring), transform .6s var(--spring); }
+  .orb__n i svg { width: 46%; height: 46%; fill: none; stroke: var(--gold-d); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+  .orb__n:hover i { background: var(--brown); transform: scale(1.08); } .orb__n:hover i svg { stroke: var(--gold); }
+  .orb__n b { font-size: 15.5px; font-weight: 700; line-height: 1.3; color: var(--brown); }
+  .stg { margin-top: clamp(50px, 6vw, 90px); padding: clamp(26px, 3vw, 40px) clamp(20px, 3vw, 44px); border-radius: 34px; color: #f8ecd8;
+    background: linear-gradient(170deg, #3a2418, #24160e); box-shadow: 0 50px 80px -56px rgba(26, 17, 12, .9); }
+  .stg__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 30px; }
+  .stg__h p { font-size: 13px; letter-spacing: .16em; color: var(--gold); }
+  .stg__h b { font-size: clamp(20px, 2vw, 26px); font-weight: 500; }
+  .stg .sts::before { background: linear-gradient(90deg, transparent, rgba(230, 196, 141, .6) 12%, rgba(230, 196, 141, .6) 88%, transparent); }
+  .stg .st__dot { color: var(--ink); background: var(--gold); box-shadow: 0 0 0 6px #2f1d13; }
+  .sts { list-style: none; margin: 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
+  .sts::before { content: ""; position: absolute; top: 21px; inset-inline: 10%; height: 1px; }
+  .st { position: relative; display: grid; justify-items: center; gap: 12px; text-align: center; }
+  .st__dot { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-size: 12.5px; font-weight: 700; }
+  .st b { font-size: 16px; font-weight: 500; line-height: 1.35; padding-inline: 4px; }
+
+  /* 04 why now: a caramel band, the climb is behind us and the rest is a flat road */
+  .now { position: relative; overflow: hidden; color: var(--ink);
+    background: radial-gradient(70% 90% at 85% 10%, rgba(255, 236, 200, .55), transparent 60%), linear-gradient(135deg, #d9ae74 0%, #b9874f 48%, #8f5f36 100%); }
+  .now::before { content: ""; position: absolute; width: 70vmax; aspect-ratio: 1; inset-inline-start: -18vmax; bottom: -40vmax; transform: rotate(45deg);
+    border: 1px solid rgba(26, 17, 12, .12); box-shadow: 0 0 0 60px rgba(26, 17, 12, .03), 0 0 0 61px rgba(26, 17, 12, .1), 0 0 0 140px rgba(26, 17, 12, .025), 0 0 0 141px rgba(26, 17, 12, .08); pointer-events: none; }
+  .now__in { position: relative; display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(26px, 4vw, 70px); align-items: center; padding-block: clamp(90px, 11vw, 150px); }
+  .now .pill { color: var(--ink); box-shadow: inset 0 0 0 1px rgba(26, 17, 12, .4); } .now .pill::before { background: var(--ink); }
+  .now h2 { margin-top: 20px; font-size: clamp(54px, 8.4vw, 136px); font-weight: 200; line-height: .98; color: var(--ink); }
+  .now h2 b { display: block; font-weight: 800; color: #fff3dc; text-shadow: 0 2px 0 rgba(26, 17, 12, .12); }
+  .now p { margin-top: 22px; max-width: 30ch; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.65; color: #2a1a10; }
+  .climb { width: 100%; height: auto; overflow: visible; }
+  .climb__fill { fill: url(#gClimb); opacity: 0; transition: opacity 1.2s var(--spring) 1s; }
+  .climb__done { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s var(--spring) .2s; }
+  .climb__rest { fill: none; stroke: rgba(26, 17, 12, .55); stroke-width: 2.4; stroke-dasharray: 6 8; stroke-linecap: round; opacity: 0; transition: opacity 1s var(--spring) 2.1s; }
+  .climb__flag, .climb__lbl, .climb__dot { opacity: 0; transition: opacity .8s var(--spring) 2s, transform .9s var(--spring) 2s; }
+  .climb__flag { transform: translateY(10px); }
+  .climb.in .climb__fill, .climb.in .climb__rest, .climb.in .climb__flag, .climb.in .climb__lbl, .climb.in .climb__dot { opacity: 1; transform: none; }
+  .climb.in .climb__done { stroke-dashoffset: 0; }
+  .climb__flag path { fill: #fff3dc; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+  .climb__flag line { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+  .climb__dot { fill: #fff3dc; stroke: var(--ink); stroke-width: 3; } .climb__dot--s { fill: var(--ink); stroke: none; }
+  .climb__pulse { fill: none; stroke: #fff3dc; stroke-width: 2; transform-origin: center; transform-box: fill-box; animation: cp 2.2s ease-out infinite; }
+  @keyframes cp { from { transform: scale(.6); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
+  .climb__lbl { font: 700 17px Tajawal, sans-serif; fill: var(--ink); }
+  .climb__lbl--s { font-weight: 500; font-size: 14px; fill: rgba(26, 17, 12, .72); }
+  .climb__tick { fill: var(--ink); }
+  .climb__tick path { fill: none; stroke: #e2b880; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 05 paths: one look for the three cards, joined to «نهاية المدة الإستثمارية» by drawn lines */
+  .pxs__fork { display: block; width: 100%; height: clamp(50px, 6vw, 90px); margin-top: -2px; overflow: visible; }
+  .pxs__fork path { fill: none; stroke: var(--gold-d); stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--spring) .2s; }
+  .pxs__fork circle { fill: var(--gold-d); }
+  .pxs__fork.in path { stroke-dashoffset: 0; }
+  .pxs__head { margin-bottom: 0; }
+  .px { position: relative; overflow: hidden; isolation: isolate; border-top: 0; transition: transform .8s var(--spring), background .8s var(--spring), color .8s var(--spring); }
+  .px::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, #f2dcae, #c99a62, #a8794a); }
+  .px__big { position: absolute; z-index: -1; inset-inline-end: -6px; bottom: -34px; font-size: 190px; font-weight: 800; line-height: 1; color: transparent;
+    -webkit-text-stroke: 1px rgba(168, 121, 74, .16); pointer-events: none; transition: -webkit-text-stroke-color .8s; }
+  .px:hover { background: linear-gradient(170deg, #3a2418, #24160e); color: #f8ecd8; }
+  .px:hover .px__big { -webkit-text-stroke-color: rgba(230, 196, 141, .3); }
+  .px:hover .px__ic { background: rgba(230, 196, 141, .14); } .px:hover .px__ic svg { stroke: var(--gold); } .px:hover .px__no { color: var(--gold); }
+  .px:hover .eq { background: rgba(243, 230, 207, .07); } .px:hover p { color: rgba(243, 230, 207, .78); }
+  .px .eq__c--out { color: var(--ink); background: linear-gradient(135deg, #f2dcae, #d6ad72); }
+  .eq { transition: background .8s var(--spring); } .px p { transition: color .8s var(--spring); }
+
+  @media (max-width: 980px) {
+    .dos, .pjv__grid, .now__in { grid-template-columns: 1fr; }
+    .pxs__fork { display: none; } .pxs__head { margin-bottom: 30px; }
+  }
+  @media (max-width: 560px) {
+    .lg { grid-template-columns: 42px 1fr; gap: 6px 14px; }
+    .lg__ic { grid-row: span 2; width: 42px; height: 42px; } .lg__lead { display: none; } .lg__v { text-align: start; }
+    .orb__n > span { width: 92px; gap: 6px; } .orb__n b { font-size: 12.5px; }
+    .sts { grid-template-columns: 1fr; gap: 14px; } .sts::before { top: 0; bottom: 0; inset-inline: auto; inset-inline-start: 20px; width: 1px; height: auto; background: rgba(230, 196, 141, .5); }
+    .st { grid-template-columns: auto 1fr; justify-items: start; text-align: start; align-items: center; }
+    .climb__lbl { font-size: 27px; } .climb__lbl--s { font-size: 22px; }
+  }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dfb2"/><stop offset=".6" stop-color="#d6ad72"/><stop offset="1" stop-color="#b0804a"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dfb2"/><stop offset=".6" stop-color="#d6ad72"/><stop offset="1" stop-color="#b0804a"/></linearGradient><linearGradient id="gClimb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a110c" stop-opacity=".22"/><stop offset="1" stop-color="#1a110c" stop-opacity="0"/></linearGradient></defs></svg>
 
 <nav class="isl"><div class="isl__in">
   <img src="../assets/img/logo-h-light.png" alt="BUAD بُعد">
@@ -380,13 +434,7 @@
       <span class="pill rv">واجهة الجموم · SmartFace</span>
       <h1 class="rv">الملخص التنفيذي <b>للفرصة الإستثمارية</b></h1>
       <p class="hero__sub rv">مدخل مكة المكرمة الشمالي</p>
-      <p class="hero__to rv">سعادة المشارك - الموقر</p>
-    </div>
-    <div class="big rv" aria-label="مدة الإستثمار 12 شهرًا والعوائد الربحية من 10% إلى 15%">
-      <div class="big__item"><p class="big__k">مدة الإستثمار</p><p class="big__n"><b data-to="12">12</b><small>شهرًا</small></p></div>
-      <div class="big__item"><p class="big__k">العوائد الربحية</p><p class="big__n big__n--r"><b data-to="10">10</b><i>–</i><b data-to="15">15</b><small>%</small></p></div>
-      <a class="big__go" href="#figs">التفاصيل<i aria-hidden="true"></i></a>
-    </div>
+      <a class="hero__cue rv" href="#figs"><i aria-hidden="true"></i>مدة الإستثمار والعوائد</a>
   </div>
 </header>
 
@@ -422,7 +470,7 @@
       <div class="seals__row">
         <div class="seal"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg><b>سند قبض نظامي</b></div>
         <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><b>عقد موثق ومعتمد</b></div>
-        <div class="seal"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><b>تسجيل ملكية السهم في السجل التجاري</b></div>
+        <div class="seal"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><b>تسجيل ملكية الحصة في السجل التجاري</b></div>
       </div>
     </div>
   </div>
@@ -432,30 +480,38 @@
 <section class="paper sec">
   <div class="w">
     <div class="sh rv"><span class="sh__no" aria-hidden="true">01</span><span class="pill pill--l">الفرصة</span><h2>معلومات الفرصة الإستثمارية</h2></div>
-    <div class="bento">
-      <div class="lb f-ring rv"><div class="lb__core">
-        <div class="ring"><svg viewBox="0 0 120 120"><circle class="r-bg" cx="60" cy="60" r="52" pathLength="100"/><circle class="r-fg" cx="60" cy="60" r="52" pathLength="100"/></svg>
+    <div class="dos">
+      <aside class="dos__ready rv">
+        <div class="ring"><svg viewBox="0 0 120 120"><circle class="r-tk" cx="60" cy="60" r="58.5" pathLength="100"/><circle class="r-bg" cx="60" cy="60" r="50" pathLength="100"/><circle class="r-fg" cx="60" cy="60" r="50" pathLength="100"/></svg>
           <div class="ring__v"><b>66<small>%</small></b></div></div>
-        <h3>جاهزية الموقع</h3><p>من المخاطر أُزيلت</p>
-      </div></div>
-      <div class="lb f rv"><div class="lb__core"><h3><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg>مالك الأرض</h3><p>أمانة العاصمة المقدسة</p></div></div>
-      <div class="lb f rv"><div class="lb__core"><h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>مدة إستثمار الأرض</h3><p>25 سنة</p></div></div>
-      <div class="lb f rv"><div class="lb__core"><h3><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>مساحة الأرض</h3><p>نصف مليون متر مربع</p></div></div>
-      <div class="lb f rv"><div class="lb__core"><h3><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg>مستثمر الأرض</h3><p>قطاع خاص</p></div></div>
-      <div class="lb f--w rv"><div class="lb__core"><h3><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg>موقع الأرض</h3><p>مدخل شمال مكة<small>السعودية - المنطقة الغربية</small></p></div></div>
+        <p class="dos__rk">نسبة جاهزية الموقع</p>
+        <p class="dos__rs">مرحلة التسوية والتمهيد</p>
+      </aside>
+      <ol class="ledger"><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg></span><span class="lg__k">مالك الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">أمانة العاصمة المقدسة</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><span class="lg__k">مدة إستثمار الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v"><em>25</em>سنة</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></span><span class="lg__k">مساحة الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">نصف مليون متر مربع</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></span><span class="lg__k">مستثمر الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">قطاع خاص</b></li><li class="lg rv"><span class="lg__ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg></span><span class="lg__k">موقع الأرض</span><i class="lg__lead" aria-hidden="true"></i><b class="lg__v">مدخل شمال مكة<small>السعودية - المنطقة الغربية</small></b></li></ol>
     </div>
   </div>
 </section>
 
-<!-- ============================================ 02 project (v4) -->
-<section class="pjx">
-  <div class="pjx__media"><img src="../assets/img/hero/h1-day.webp" alt="" loading="lazy"><div class="pjx__tag"><span>نوع المشروع</span><b>واجهة ذكية متكاملة</b><em>SMARTFACE</em></div></div>
-  <div class="pjx__body">
-    <div class="sh sh--tight rv"><span class="sh__no" aria-hidden="true">02</span><span class="pill pill--l">المشروع</span><h2>نوع المشروع ومكوناته</h2></div>
-    <p class="pjx__k rv">مكونات المشروع</p>
-    <ul class="cps"><li class="cp rv"><span class="cp__ic"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg></span><b>معارض تجارية</b></li><li class="cp rv"><span class="cp__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5c1 1.4 2.2 2 3.5 2s2.5-.6 3.5-2M9 10h.01M15 10h.01"/></svg></span><b>مساحات ترفيهية</b></li><li class="cp rv"><span class="cp__ic"><svg viewBox="0 0 24 24"><path d="M5 20V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15M4 20h11M7 8h5"/><path d="M14 9h2l2 2v6a1.5 1.5 0 0 0 3 0V9l-3-3"/></svg></span><b>محطة وقود</b></li><li class="cp rv"><span class="cp__ic"><svg viewBox="0 0 24 24"><path d="M4 15l1.6-5a2 2 0 0 1 1.9-1.4h9a2 2 0 0 1 1.9 1.4L20 15v4h-3v-2H7v2H4z"/><circle cx="7.5" cy="15" r="1"/><circle cx="16.5" cy="15" r="1"/></svg></span><b>درايف ثرو</b></li><li class="cp rv"><span class="cp__ic"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><b>سكني</b></li><li class="cp rv"><span class="cp__ic"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span><b>مجمعات تجارية متنوعة</b></li></ul>
-    <p class="pjx__k rv">مرحلة الفرصة <small>حزمة التطوير التمهيدي والهندسي</small></p>
-    <ol class="sts"><li class="st rv"><span class="st__dot">01</span><b>مخططات</b></li><li class="st rv"><span class="st__dot">02</span><b>دراسات</b></li><li class="st rv"><span class="st__dot">03</span><b>تراخيص</b></li><li class="st rv"><span class="st__dot">04</span><b>إستشارات</b></li><li class="st rv"><span class="st__dot">05</span><b>تمكين إداري وتشغيلي</b></li></ol>
+<!-- ============================================ 02 project (v5: no photo) -->
+<section class="pjv sec">
+  <div class="w">
+    <div class="sh rv"><span class="sh__no" aria-hidden="true">02</span><span class="pill pill--l">المشروع</span><h2>نوع المشروع ومكوناته</h2></div>
+    <div class="pjv__grid">
+      <div class="rv">
+        <p class="pjv__k">نوع المشروع</p>
+        <p class="pjv__t">واجهة ذكية <b>متكاملة</b></p>
+        <p class="pjv__en">SMARTFACE</p>
+      </div>
+      <div class="orb rv" aria-label="مكونات المشروع">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="orb__ring orb__ring--2" cx="50" cy="50" r="48"/><circle class="orb__ring" cx="50" cy="50" r="39"/><line class="orb__ln" x1="50" y1="50" x2="50.00" y2="11.00" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="83.77" y2="30.50" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="83.77" y2="69.50" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="50.00" y2="89.00" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="16.23" y2="69.50" pathLength="1"/><line class="orb__ln" x1="50" y1="50" x2="16.23" y2="30.50" pathLength="1"/></svg>
+        <div class="orb__core"><span><img src="../assets/img/logo-mark-sand.png" alt=""><b>SMARTFACE</b></span></div>
+        <ul style="list-style:none;margin:0;padding:0"><li class="orb__n" style="left:50.00%;top:11.00%;--k:0"><span><i><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg></i><b>معارض تجارية</b></span></li><li class="orb__n" style="left:83.77%;top:30.50%;--k:1"><span><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5c1 1.4 2.2 2 3.5 2s2.5-.6 3.5-2M9 10h.01M15 10h.01"/></svg></i><b>مساحات ترفيهية</b></span></li><li class="orb__n" style="left:83.77%;top:69.50%;--k:2"><span><i><svg viewBox="0 0 24 24"><path d="M5 20V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15M4 20h11M7 8h5"/><path d="M14 9h2l2 2v6a1.5 1.5 0 0 0 3 0V9l-3-3"/></svg></i><b>محطة وقود</b></span></li><li class="orb__n" style="left:50.00%;top:89.00%;--k:3"><span><i><svg viewBox="0 0 24 24"><path d="M4 15l1.6-5a2 2 0 0 1 1.9-1.4h9a2 2 0 0 1 1.9 1.4L20 15v4h-3v-2H7v2H4z"/><circle cx="7.5" cy="15" r="1"/><circle cx="16.5" cy="15" r="1"/></svg></i><b>درايف ثرو</b></span></li><li class="orb__n" style="left:16.23%;top:69.50%;--k:4"><span><i><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg></i><b>سكني</b></span></li><li class="orb__n" style="left:16.23%;top:30.50%;--k:5"><span><i><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></i><b>مجمعات تجارية متنوعة</b></span></li></ul>
+      </div>
+    </div>
+    <div class="stg rv">
+      <div class="stg__h"><p>مرحلة الفرصة</p><b>حزمة التطوير التمهيدي والهندسي</b></div>
+      <ol class="sts"><li class="st"><span class="st__dot">01</span><b>مخططات</b></li><li class="st"><span class="st__dot">02</span><b>دراسات</b></li><li class="st"><span class="st__dot">03</span><b>تراخيص</b></li><li class="st"><span class="st__dot">04</span><b>إستشارات</b></li><li class="st"><span class="st__dot">05</span><b>تمكين إداري وتشغيلي</b></li></ol>
+    </div>
   </div>
 </section>
 
@@ -469,13 +525,25 @@
   </div>
 </section>
 
-<!-- ============================================ 04 why now -->
+<!-- ============================================ 04 why now (v5: colour band + climb) -->
 <section class="now">
-  <img src="../assets/img/jumum/aerial-day.webp" alt="" loading="lazy">
-  <div class="now__in">
-    <span class="pill rv">لماذا الآن؟</span>
-    <h2 class="rv">الأصعب <b>انتهى</b></h2>
-    <p class="rv">القرارات النظامية والرخص صادرة والمتبقي أعمال تنفيذية بتكلفة محددة</p>
+  <div class="w now__in">
+    <div>
+      <span class="pill rv">لماذا الآن؟</span>
+      <h2 class="rv">الأصعب <b>انتهى</b></h2>
+      <p class="rv">القرارات النظامية والرخص صادرة والمتبقي أعمال تنفيذية بتكلفة محددة</p>
+    </div>
+    <svg class="climb rv" viewBox="0 0 600 370" aria-hidden="true">
+      <circle class="climb__dot climb__dot--s" cx="590" cy="320" r="6"/>
+      <path class="climb__done" d="M590 320 L520 290 L470 300 L405 215 L370 232 L300 110" pathLength="1"/>
+      <path class="climb__rest" d="M300 110 L20 110"/>
+      <g class="climb__flag"><line x1="300" y1="110" x2="300" y2="40"/><path d="M300 42 L252 54 L300 68 Z"/></g>
+      <circle class="climb__pulse" cx="300" cy="110" r="10"/><circle class="climb__dot" cx="300" cy="110" r="8"/>
+      <g class="climb__lbl"><g class="climb__tick" transform="translate(498 335)"><circle r="13"/><path d="M-5.5 0.5l3.8 3.8 7.2-7.4"/></g>
+        <text x="476" y="342" text-anchor="start" direction="rtl">القرارات والرخص صادرة</text></g>
+      <text class="climb__lbl" x="160" y="92" text-anchor="middle" direction="rtl">أعمال تنفيذية</text>
+      <text class="climb__lbl climb__lbl--s" x="160" y="140" text-anchor="middle" direction="rtl">بتكلفة محددة</text>
+    </svg>
   </div>
 </section>
 
@@ -488,21 +556,25 @@
       <p>عند إنتهاء المدة الإستثمارية يمنحك العقد حق إختيار المسار الذي يناسبك</p>
       <div class="pxs__rail" aria-hidden="true"><i></i><span>نهاية المدة الإستثمارية</span><i></i></div>
     </div>
+    <svg class="pxs__fork" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M600 0 C600 60 200 40 200 100" pathLength="1"/><path d="M600 0 L600 100" pathLength="1"/><path d="M600 0 C600 60 1000 40 1000 100" pathLength="1"/></svg>
     <div class="pxg"><article class="px rv">
         <header class="px__h"><span class="px__ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9h.01M18 15h.01"/></svg></span><span class="px__no">المسار 01</span></header>
+        <span class="px__big" aria-hidden="true">01</span>
         <h3>مسار السيولة</h3>
         <div class="eq eq--stack"><span class="eq__in"><span class="eq__c">أصل رأس المال</span><i class="eq__plus">+</i><span class="eq__c">أرباحك السنوية</span></span><i class="eq__down" aria-hidden="true"></i><span class="eq__c eq__c--out">نقداً وتخارج</span></div>
         <p>تسترد «أصل رأس المال + أرباحك السنوية» نقداً وتخارج</p>
-      </article><article class="px rv px--hl">
+      </article><article class="px rv">
         <header class="px__h"><span class="px__ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><span class="px__no">المسار 02</span></header>
+        <span class="px__big" aria-hidden="true">02</span>
         <h3>مسار الملكية</h3>
-        <div class="eq eq--stack"><span class="eq__in"><span class="eq__c">أصل رأس المال</span><i class="eq__plus">+</i><span class="eq__c">أرباحك السنوية</span></span><i class="eq__down" aria-hidden="true"></i><span class="eq__c eq__c--out">أسهم ملكية في شركة المشروع</span></div>
-        <p>تحول «أصل رأس المال + أرباحك السنوية» إلى أسهم ملكية في شركة المشروع</p>
+        <div class="eq eq--stack"><span class="eq__in"><span class="eq__c">أصل رأس المال</span><i class="eq__plus">+</i><span class="eq__c">أرباحك السنوية</span></span><i class="eq__down" aria-hidden="true"></i><span class="eq__c eq__c--out">حصص ملكية في شركة المشروع</span></div>
+        <p>تحول «أصل رأس المال + أرباحك السنوية» إلى حصص ملكية في شركة المشروع</p>
       </article><article class="px rv">
         <header class="px__h"><span class="px__ic"><svg viewBox="0 0 24 24"><path d="M6 4v6a6 6 0 0 0 6 6h6M18 12l3 4-3 4"/><path d="M6 20v-4"/></svg></span><span class="px__no">المسار 03</span></header>
+        <span class="px__big" aria-hidden="true">03</span>
         <h3>المسار الهجين</h3>
-        <div class="eq"><span class="eq__row"><span class="eq__c">الأصل</span><i class="eq__arr" aria-hidden="true"></i><span class="eq__c eq__c--out">أسهم</span></span><span class="eq__row"><span class="eq__c">أرباحك فقط</span><i class="eq__arr" aria-hidden="true"></i><span class="eq__c eq__c--out">نقداً</span></span></div>
-        <p>تحول «الأصل» إلى أسهم لتضمن إستمرار الشراكة وتستلم «أرباحك فقط» نقداً</p>
+        <div class="eq"><span class="eq__row"><span class="eq__c">الأصل</span><i class="eq__arr" aria-hidden="true"></i><span class="eq__c eq__c--out">حصص</span></span><span class="eq__row"><span class="eq__c">أرباحك فقط</span><i class="eq__arr" aria-hidden="true"></i><span class="eq__c eq__c--out">نقداً</span></span></div>
+        <p>تحول «الأصل» إلى حصص لتضمن إستمرار الشراكة وتستلم «أرباحك فقط» نقداً</p>
       </article></div>
   </div>
 </section>
@@ -533,7 +605,7 @@
   // «ما تم إنجازه» — the same list as the PDF
   const DONE = ['قرار التخصيص', 'كروكي الإشتراطات', 'التقرير المساحي', 'الدراسة الهيدرولوجية', 'دراسات الجدوى', 'الماستر بلان', 'رخصة بناء السور', 'رخصة تجهيز الموقع'];
   const SEAL = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3l6.2 4.6 7.7-.4 3.4 6.9 6.9 3.4-.4 7.7L60.4 32l-4.6 6.2.4 7.7-6.9 3.4-3.4 6.9-7.7-.4L32 60.4l-6.2-4.6-7.7.4-3.4-6.9-6.9-3.4.4-7.7L3.6 32l4.6-6.2-.4-7.7 6.9-3.4 3.4-6.9 7.7.4z"/><path d="M23 32.5l6 6L42 25.5" style="fill:none;stroke-width:3;stroke-linecap:round"/></svg>';
-  const LEFT = [['now', 'قطع صخري لمنطقة الجبلين'], ['next', 'تنفيذ عبارة السيول'], ['next', 'تسوية الأرض'], ['next', 'تسوير المشروع'], ['next', 'رخصة البناء لكامل المشروع']];
+  const LEFT = [['now', 'تسوية وتمهيد الجبلين المحاذيين لموقع المحطة'], ['next', 'تنفيذ عبارة السيول'], ['next', 'تسوية الأرض'], ['next', 'تسوير المشروع'], ['next', 'رخصة البناء لكامل المشروع']];
   document.getElementById('left').innerHTML = LEFT.map(([s, t]) => `<li class="rv is-${s}"><span>${s === 'now' ? 'جارٍ الآن' : 'قادم'}</span><b>${t}</b></li>`).join('');
   document.getElementById('done').innerHTML = DONE.map(t => `<li class="rv"><div class="done__core">${SEAL}<span>منجز</span><b>${t}</b></div></li>`).join('');
 
@@ -541,7 +613,6 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ease = x => 1 - Math.pow(1 - x, 4);
   const tween = (ms, f) => { if (reduce) return f(1); const t0 = performance.now(); (function s(t) { const k = Math.min(1, (t - t0) / ms); f(ease(k)); if (k < 1) requestAnimationFrame(s); })(t0); };
-  document.querySelectorAll('.big__n b[data-to]').forEach(b => { const n = +b.dataset.to; b.textContent = '0'; setTimeout(() => tween(1800, k => b.textContent = Math.round(n * k)), 500); });
   // dial: 12 arc segments with small gaps, month numbers outside; they light up one by one
   const NS = 'http://www.w3.org/2000/svg', C = 150, R = 118, RN = 142;
   const arc = (a0, a1, r) => { const p = a => [C + r * Math.sin(a), C - r * Math.cos(a)]; const [x0, y0] = p(a0), [x1, y1] = p(a1); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
@@ -577,12 +648,12 @@
   gObs.observe(document.getElementById('figs'));
   // scroll reveals, staggered among siblings — IntersectionObserver only
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .14, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.rv, .fork, .ring').forEach(el => {
+  document.querySelectorAll('.rv, .fork, .ring, .pxs__fork').forEach(el => {
     const sib = el.parentElement ? [...el.parentElement.children].filter(c => c.classList.contains('rv')) : [];
     el.style.transitionDelay = (Math.max(0, sib.indexOf(el)) % 6) * 90 + 'ms';
     io.observe(el);
   });
 </script>
-<script src="../assets/js/requests.js?v=20261025m"></script>
+<script src="../assets/js/requests.js?v=20261026b"></script>
 </body>
 </html>
