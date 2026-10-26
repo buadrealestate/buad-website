@@ -2292,3 +2292,9 @@ html[dir="ltr"] .vx__bar em { transform-origin: 0 50%; }
 @media (hover: none) {
   .jloc--radar .jdocs.in .jdocs__item img, .jloc--radar .jdocs .jdocs__item img { filter: blur(7px) grayscale(.6) brightness(.85) !important; transform: scale(1.02) !important; transition-delay: 0s !important; }
 }
+
+/* documents: blurred on every device; only a real mouse hover clears them (some phones report hover support, user 2026-10-26) */
+.jloc--radar .jdocs .jdocs__item img, .jloc--radar .jdocs.in .jdocs__item img { filter: blur(7px) grayscale(.6) brightness(.85) !important; transform: scale(1.02) !important; transition-delay: 0s !important; }
+@media (hover: hover) and (pointer: fine) {
+  .jloc--radar .jdocs .jdocs__item:hover img, .jloc--radar .jdocs .jdocs__item:focus-visible img { filter: none !important; transform: translateY(-6px) scale(1.03) !important; }
+}
