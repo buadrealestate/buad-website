@@ -205,7 +205,7 @@
   .gauge svg { width: 100%; height: auto; overflow: visible; display: block; }
   .g-track, .g-band { fill: none; stroke-width: 18; }
   .g-track { stroke: rgba(230, 196, 141, .12); }
-  .g-band { stroke: url(#gGold); stroke-dasharray: 25 100; stroke-dashoffset: -50; opacity: 0; filter: drop-shadow(0 0 10px rgba(240, 200, 140, .6)); transition: opacity 1s var(--spring) .6s; }
+  .g-band { stroke: url(#gGold); stroke-dasharray: 50 100; stroke-dashoffset: -50; opacity: 0; filter: drop-shadow(0 0 10px rgba(240, 200, 140, .6)); transition: opacity 1s var(--spring) .6s; }
   .inst.in .g-band { opacity: 1; }
   .g-tick { stroke: rgba(243, 230, 207, .35); stroke-width: 1.2; } .g-tick.maj { stroke: rgba(243, 230, 207, .7); stroke-width: 1.6; }
   .g-lbl { font: 500 11px Tajawal, sans-serif; fill: rgba(243, 230, 207, .55); text-anchor: middle; dominant-baseline: middle; }
@@ -215,7 +215,7 @@
   .g-needle circle { fill: var(--ink); stroke: var(--gold); stroke-width: 3; }
   .gauge__c { margin-top: 18px; text-align: center; }
   .gauge__c b { display: inline-flex; align-items: baseline; gap: 6px; direction: ltr; font-size: clamp(56px, 6vw, 86px); font-weight: 200; line-height: 1; color: #f8ecd8; }
-  .gauge__c i { font-style: normal; color: var(--gold); font-size: .7em; } .gauge__c small { font-size: .5em; color: var(--gold); }
+  .gauge__c i { font-style: normal; color: var(--gold); font-size: .6em; margin-inline: .12em; } .gauge__c b { font-size: clamp(40px, 4.2vw, 62px); }
   .seals { margin-top: clamp(16px, 2vw, 26px); padding: clamp(22px, 2.6vw, 34px); border-radius: 30px; box-shadow: inset 0 0 0 1px var(--hair-d); }
   .seals__k { text-align: center; font-size: 13px; letter-spacing: .16em; color: var(--gold); }
   .seals__row { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -539,9 +539,9 @@
             <g id="gTicks"></g>
             <g class="g-needle" id="gNeedle"><line x1="160" y1="170" x2="160" y2="62"/><circle cx="160" cy="170" r="9"/></g>
           </svg>
-          <div class="gauge__c"><b><span id="gFrom">10</span><i>–</i><span id="gTo">15</span><small>%</small></b></div>
+          <div class="gauge__c"><b dir="ltr"><span>10%</span><i>-</i><span>15%</span><i>-</i><span>20%</span></b></div>
         </div>
-        <p class="inst__note">من 10% إلى 15% على مدة الإستثمار</p>
+        <p class="inst__note">على مدة الإستثمار</p>
       </article>
     </div>
     <div class="seals rv">
@@ -737,7 +737,7 @@
     const n = document.createElementNS(NS, 'text'); n.setAttribute('x', (C + RN * Math.sin(am)).toFixed(1)); n.setAttribute('y', (C - RN * Math.cos(am)).toFixed(1));
     n.setAttribute('class', 'num'); n.textContent = i + 1; nums.appendChild(n);
   }
-  // gauge: 0–20% over a half circle; ticks every 1%, labels every 5%; the needle sweeps up to 10% then sways between 10% and 15%
+  // gauge: 0–20% over a half circle; ticks every 1%, labels every 5%; the needle sweeps up to 10% then sways between 10% and 20% (user 2026-10-26: 10% - 15% - 20%)
   const gT = document.getElementById('gTicks'), GX = 160, GY = 170;
   for (let v = 0; v <= 20; v++) {
     const a = Math.PI * (1 - v / 20), maj = v % 5 === 0, r0 = maj ? 100 : 106, r1 = 114;
@@ -746,7 +746,7 @@
     l.setAttribute('x2', (GX + r1 * Math.cos(a)).toFixed(1)); l.setAttribute('y2', (GY - r1 * Math.sin(a)).toFixed(1));
     l.setAttribute('class', 'g-tick' + (maj ? ' maj' : '')); gT.appendChild(l);
     if (maj) { const tx = document.createElementNS(NS, 'text'); tx.setAttribute('x', (GX + 86 * Math.cos(a)).toFixed(1)); tx.setAttribute('y', (GY - 86 * Math.sin(a)).toFixed(1));
-      tx.setAttribute('class', 'g-lbl' + (v === 10 || v === 15 ? ' hl' : '')); tx.textContent = v + '%'; gT.appendChild(tx); }
+      tx.setAttribute('class', 'g-lbl' + (v === 10 || v === 15 || v === 20 ? ' hl' : '')); tx.textContent = v + '%'; gT.appendChild(tx); }
   }
   const needle = document.getElementById('gNeedle');
   const setV = v => needle.style.transform = `rotate(${-90 + v / 20 * 180}deg)`;
@@ -757,7 +757,7 @@
     sg.forEach((s, i) => setTimeout(() => { s.classList.add('on'); nm[i].classList.add('on'); }, reduce ? 0 : 250 + i * 110));
     // gauge
     tween(1600, k => setV(10 * k));
-    if (!reduce) setTimeout(() => { let t0 = performance.now(); (function sway(t) { const v = 12.5 - 2.5 * Math.cos((t - t0) / 1400); setV(v); requestAnimationFrame(sway); })(t0); }, 1700);
+    if (!reduce) setTimeout(() => { let t0 = performance.now(); (function sway(t) { const v = 15 - 5 * Math.cos((t - t0) / 1600); setV(v); requestAnimationFrame(sway); })(t0); }, 1700);
   }, { threshold: .35 });
   gObs.observe(document.getElementById('figs'));
   // scroll reveals, staggered among siblings — IntersectionObserver only
