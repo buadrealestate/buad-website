@@ -2014,3 +2014,9 @@ html[dir="rtl"] .ja__tray { padding: 8px 16px 8px 8px; }
 .orb__dot::after { content: ""; position: absolute; inset: -16px; border-radius: 50%; }
 .orb__extra .orb__desc { display: none; }
 @media (max-width: 900px) { .orb__extra .orb__desc { display: block; max-width: 34ch; margin: 0 auto 4px; text-align: center; font-size: 14.5px; line-height: 1.8; color: rgba(239, 225, 202, .8); } }
+
+/* official documents: four (and more) in one row (user 2026-10-26) */
+.jloc--radar .jdocs__row { flex-wrap: nowrap; gap: 12px; }
+.jloc--radar .jdocs__item { width: auto; flex: 1 1 0; min-width: 0; max-width: 150px; }
+.jloc--radar .jdocs__item span { font-size: 12.5px; line-height: 1.35; }
+@media (hover: none) { .jloc--radar .jdocs.in .jdocs__item:nth-child(4) img { transition-delay: 1.9s; } }
