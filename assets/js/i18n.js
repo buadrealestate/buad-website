@@ -246,7 +246,7 @@ window.BUAD_EN = {
   'pr.st.lead': 'What gets done at each stage, as in the delivery plan',
   'pr.b.title': 'What we are building',
   'pr.cta.t': 'Become a partner in Al Jumum Interface',
-  'pr.more': 'Full timeline',
+  'pr.more': 'The station investment file',
   'pr.m0': 'Oct',
   'pr.m1': 'Nov',
   'pr.m2': 'Dec',
