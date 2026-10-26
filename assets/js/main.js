@@ -432,23 +432,70 @@
     return { splitWords };
   })();
 
-  /* ------------------------------------------------------------ values: a light passes from arch to arch; hovering or tapping one holds it */
+  /* ------------------------------------------------------------ values: a showcase (user 2026-10-26) — the list on one side, the chosen
+     value shown large in the arch panel; it plays through the five while in view, a hover / tap / focus takes over */
   (() => {
-    const list = $('#valArches');
-    if (!list) return;
-    const arches = $$('.arch', list);
+    const list = $('#vxList'), show = $('#vxShow');
+    if (!list || !show) return;
+    const items = $$('.vx__item', list), dots = $$('.vx__dots i', show);
     let k = 0, timer = 0, visible = false, held = false;
-    const light = i => { k = i; arches.forEach((a, j) => a.classList.toggle('is-lit', j === i)); };
-    const run = () => { clearTimeout(timer); if (visible && !held && !reduce) timer = setTimeout(() => { light((k + 1) % arches.length); run(); }, 3200); };
-    arches.forEach((a, i) => {
-      a.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); light(i); } });
-      a.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; run(); } });
-      a.addEventListener('click', () => { light(i); run(); });
-      a.addEventListener('focus', () => { held = true; clearTimeout(timer); light(i); });
-      a.addEventListener('blur', () => { held = false; run(); });
+    const pick = i => {
+      k = i;
+      items.forEach((it, j) => { it.classList.toggle('is-on', j === i); $('.vx__btn', it).setAttribute('aria-pressed', j === i); });
+      dots.forEach((d, j) => d.classList.toggle('is-on', j === i));
+      const it = items[i];
+      $('.vx__big', show).textContent = String(i + 1).padStart(2, '0');
+      $('.vx__halo i', show).innerHTML = $('.vx__ic', it).innerHTML;
+      $('.vx__t', show).innerHTML = $('.vx__name', it).innerHTML;
+      $('.vx__p', show).innerHTML = $('.vx__d', it).innerHTML;
+      show.classList.remove('is-swap'); void show.offsetWidth; show.classList.add('is-swap');
+      list.classList.remove('is-run'); void list.offsetWidth; if (visible && !held && !reduce) list.classList.add('is-run');
+    };
+    const run = () => { clearTimeout(timer); if (visible && !held && !reduce) timer = setTimeout(() => { pick((k + 1) % items.length); run(); }, 5000); };
+    items.forEach((it, i) => {
+      const b = $('.vx__btn', it);
+      b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); pick(i); } });
+      b.addEventListener('click', () => { held = false; pick(i); run(); });
+      b.addEventListener('focus', () => { held = true; clearTimeout(timer); pick(i); });
+      b.addEventListener('blur', () => { held = false; run(); });
     });
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) run(); else clearTimeout(timer); }, { threshold: .4 }).observe(list);
-    light(0);
+    list.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; pick(k); run(); } });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) { pick(k); run(); } else clearTimeout(timer); }, { threshold: .35 }).observe(show);
+    document.addEventListener('buad:lang', () => pick(k));
+    pick(0);
+  })();
+
+  /* ------------------------------------------------------------ goals: a gold path through the five milestones, drawn as the page scrolls */
+  (() => {
+    const box = $('#gxStage');
+    if (!box) return;
+    const svg = $('.gx__path', box), line = $('#gxLine'), track = $('.gx__track', box), nodes = $$('.gx__node', box), goal = $('.gx__goal', box);
+    function build() {
+      const b = box.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${b.width.toFixed(1)} ${b.height.toFixed(1)}`);
+      const pts = nodes.map(n => { const r = n.getBoundingClientRect(); return [r.left + r.width / 2 - b.left, r.top + r.height / 2 - b.top]; });
+      if (goal && getComputedStyle(goal).display !== 'none') { const r = goal.getBoundingClientRect(); pts.push([r.left + r.width / 2 - b.left, r.top + r.height / 2 - b.top]); }
+      let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+      for (let i = 1; i < pts.length; i++) {
+        const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2;
+        d += ` C${mx.toFixed(1)} ${y0.toFixed(1)} ${mx.toFixed(1)} ${y1.toFixed(1)} ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+      }
+      line.setAttribute('d', d); track.setAttribute('d', d);
+      box.style.setProperty('--len', line.getTotalLength().toFixed(0));
+      frame();
+    }
+    function frame() {
+      const r = box.getBoundingClientRect(), vh = innerHeight;
+      const k = reduce ? 1 : Math.min(1, Math.max(0, (vh * .8 - r.top) / (r.height + vh * .1)));
+      box.style.setProperty('--gp', k.toFixed(3));
+      $$('.gx__m', box).forEach((m, i, all) => m.classList.toggle('is-lit', k >= (i + .5) / (all.length + 1)));
+      if (goal) goal.classList.toggle('is-lit', k > .97);
+    }
+    addEventListener('scroll', () => requestAnimationFrame(frame), { passive: true });
+    addEventListener('resize', build);
+    document.addEventListener('buad:lang', () => setTimeout(build, 60));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    setTimeout(build, 400);
   })();
 
   /* ------------------------------------------------------------ why buad: "many parties" vs "one party" diagram */

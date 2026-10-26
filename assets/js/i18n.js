@@ -11,6 +11,7 @@ window.BUAD_EN = {
   'jp.r.min': 'min', 'jp.r1': 'to the Grand Mosque', 'jp.r2': 'to the airport', 'jp.r3': 'to Taif', 'jp.r4': 'to Madinah',
   'ja.nav': 'Project Activities',
   'jp.ph.now': 'In progress', 'jp.ph.next': 'Coming', 'jp.ph.acts': 'activities',
+  'goal.vision': 'Saudi Vision',
   'nav.creds': 'Credentials', 'nav.contact': 'Contact Us',
 
   'hero.kicker': 'A pioneering urban development · The northern entrance to Makkah',
