@@ -35,7 +35,7 @@ window.BUAD_EN = {
   'about.s2t': 'The Shift',
   'about.s2': 'From our project experience, we saw a recurring need among organizations: too many parties managing a single project, and exhausting coordination between them. So we decided to become the one party.',
   'about.s3t': 'The Ecosystem',
-  'about.s3': 'Today we offer more than 30 services across six integrated dimensions, covering the full lifecycle of the project and the organization: from opportunity to transaction, to contract, to development, to operations.',
+  'about.s3': 'We offer more than 30 services across six integrated dimensions, covering the full lifecycle of the project and the organization: from opportunity to transaction, to contract, to development, to operations.',
   'stat.1': 'Specialized services', 'stat.2': 'Integrated dimensions', 'stat.3': 'Contract', 'stat.4': 'Point of contact',
 
   'mv.m': 'Our Mission',

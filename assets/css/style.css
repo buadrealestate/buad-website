@@ -2358,3 +2358,8 @@ html[dir="ltr"] .vx__bar em { transform-origin: 0 50%; }
 }
 
 .jprog__more[hidden] { display: none !important; }
+
+/* radar ring numbers and N as CSS labels: visible, but not part of the page text (CEO note 2026-10-27: «153045 N») */
+.radar__lab { position: absolute; left: 50%; transform: translate(-50%, -78%); pointer-events: none; font-size: clamp(9px, 1vw, 13px); font-weight: 500; color: rgba(237, 216, 186, .5); }
+.radar__lab::before { content: attr(data-t); }
+.radar__lab--n { font-weight: 700; color: #e6c48d; font-size: clamp(11px, 1.2vw, 16px); }
