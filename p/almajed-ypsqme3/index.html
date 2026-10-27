@@ -256,6 +256,28 @@
   .why__img--s { width: 72%; margin-inline-start: auto; margin-top: -60px; position: relative; z-index: 1; box-shadow: 0 0 0 6px #1d130d, 0 40px 70px -30px rgba(0, 0, 0, .95); }
   @media (max-width: 600px) { .why__img--s { width: 100%; margin-top: 0; } }
   .why__pics > .why__img:first-child figcaption { inset: 16px 16px auto auto; }
+
+  /* v3 (user 2026-10-27) */
+  .hero__pill--owner { font-size: clamp(14px, 1.15vw, 16px); font-weight: 700; padding: 10px 18px; line-height: 1.5; letter-spacing: .02em; }
+  .bar__go { white-space: nowrap; }
+  .fg--area { align-content: end; }
+  .fg--area svg { position: absolute; top: 22px; left: 22px; right: auto; width: 40%; }
+  .fg--area span, .fg--area b, .fg--area em { position: relative; z-index: 1; }
+  .end .cta { justify-content: center; align-items: center; }
+  .end .cta .btn { min-width: 230px; justify-content: center; padding-inline: 26px; }
+  .end .cta .btn--gold { justify-content: space-between; padding-inline: 26px 8px; }
+  .contact { justify-content: center; }
+  .jr h3 { min-height: 1.4em; }
+  .jr p { min-height: 3.5em; }
+  @media (min-width: 981px) { .jr li { grid-template-rows: auto auto 1fr; align-content: start; } }
+  @media (max-width: 600px) {
+    .fg--area svg { width: 34%; top: 16px; }
+    .end .cta .btn { min-width: 0; width: 100%; }
+    .jr p { min-height: 0; }
+  }
+  html[dir="rtl"] .btn--ghost, .btn--ghost { padding-inline: 28px !important; justify-content: center; text-align: center; }
+  .jr p { max-width: 210px; margin-inline: auto; }
+  @media (max-width: 980px) { .jr p { max-width: none; margin-inline: 0; } }
 </style>
 </head>
 <body>
@@ -270,7 +292,7 @@
 <header class="hero">
   <div class="w hero__grid">
     <div>
-      <span class="hero__pill rv"><i aria-hidden="true"></i>عرض للمالك : مبطي الجهني</span>
+      <span class="hero__pill hero__pill--owner rv"><i aria-hidden="true"></i>عرض للمالك : مبطي الجهني - وحدة العلاقة المعنية بالإعتماد - الموقرين</span>
       <h1 class="rv">محطتكم جاهزة <b>للإنطلاق معنا</b></h1>
       <p class="lead rv">تتولى بُعد إدارة وتطوير وتشغيل محطة الوقود ومرافق الخدمة على أرضكم تحت عقد واحد ونقطة تواصل واحدة بإدارة فنية وتنظيمية كاملة تشمل الجوانب القانونية والتعاقدية والتنفيذية والتشغيلية من الرخصة إلى التشغيل</p>
       <div class="chips rv">
@@ -387,8 +409,8 @@
     <ol class="jr rv">
       <li><span class="jr__no">01</span><h3>الدراسة والتحديث</h3><p>مراجعة الرخصة والمخطط وتحديثهما ودراسة الجدوى</p></li>
       <li><span class="jr__no">02</span><h3>الموافقات</h3><p>إستكمال موافقات الجهات ومتطلبات وزارة الطاقة</p></li>
-      <li><span class="jr__no">03</span><h3>التعاقد</h3><p>إختيار المقاول والمشغّل وصياغة العقود</p></li>
-      <li><span class="jr__no">04</span><h3>التنفيذ</h3><p>إدارة الإنشاء والإشراف حتى الإستلام</p></li>
+      <li><span class="jr__no">03</span><h3>التعاقد</h3><p>إختيار المقاول والمشغّل المؤهل وصياغة العقود</p></li>
+      <li><span class="jr__no">04</span><h3>التنفيذ</h3><p>إدارة أعمال الإنشاء والإشراف على الجودة حتى الإستلام</p></li>
       <li><span class="jr__no">05</span><h3>التشغيل</h3><p>إفتتاح المحطة وإدارة التشغيل والتأجير والعائد</p></li>
     </ol>
   </div>
@@ -400,7 +422,7 @@
     <div class="why__pics"><figure class="why__img rv"><img src="station.webp" alt="تصور محطة الجهني"><figcaption>تصور المحطة على المخطط المعتمد</figcaption></figure><figure class="why__img why__img--s rv"><img src="station-alt.webp" alt=""><figcaption>من شارع عمرو بن أبي وقاص</figcaption></figure></div>
     <div class="rv">
       <p class="eb">لماذا بُعد</p>
-      <h2 class="h2">شريك يعرف <b>المحطات</b></h2>
+      <h2 class="h2">شريك إستراتيجي <b>مع مشغّلي محطات مؤهلين</b></h2>
       <p class="lead" style="margin-top:16px">شركة سعودية مقرها مكة المكرمة تقدم منظومة متكاملة للإدارة والتطوير والتشغيل وتطوّر اليوم محطة وقود ومرافق خدمة ضمن مشروع واجهة الجموم</p>
       <ul class="creds">
         <li class="wide"><b>محطة وقود ومرافق خدمة · واجهة الجموم</b><span>مشروع قائم نطوّره على مدخل مكة المكرمة الشمالي بتشغيل درب</span></li>
@@ -451,7 +473,6 @@
     <div class="cta rv">
       <a class="btn btn--gold" href="https://wa.me/966550000126?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A8%D9%8F%D8%B9%D8%AF%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%B9%D8%B1%D8%B6%20%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D9%88%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%88%D8%AA%D8%B4%D8%BA%D9%8A%D9%84%20%D9%85%D8%AD%D8%B7%D8%A9%20%D8%A7%D9%84%D8%AC%D9%87%D9%86%D9%8A" target="_blank" rel="noopener">حدد موعد الإجتماع<i aria-hidden="true"></i></a>
       <a class="btn btn--ghost" href="tel:+966550000126">إتصل بنا</a>
-      <a class="btn btn--ghost" href="tel:+966507390568"><bdi>0507390568</bdi></a>
     </div>
     <div class="contact rv"><span>+966 55 000 0126</span><span>+966 50 739 0568</span><span>info@buad-r.sa</span><span>buad.sa</span></div>
     <p class="note rv">هذا العرض خاص ومعدّ لمالك المحطة الأستاذ مبطي الجهني وتخضع تفاصيله للإتفاقية بين الطرفين</p>
