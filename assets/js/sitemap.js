@@ -83,7 +83,7 @@
   dv.addEventListener('click', e => { if (e.target === dv) dv.close(); });
   // view only (user 2026-10-26): no right-click «save image», no dragging the picture out, no print of the open document
   // (the images also carry a «للاطلاع فقط» watermark — _work/watermark_docs.py; a screenshot cannot be blocked by a web page)
-  const guard = e => { if (e.target.closest && e.target.closest('.dv, .jdocs, .smap__docs')) e.preventDefault(); };
+  const guard = e => { if (e.target.closest && e.target.closest('.dv, .jdocs, .docp, .smap__docs')) e.preventDefault(); };
   document.addEventListener('contextmenu', guard);
   document.addEventListener('dragstart', guard);
   document.addEventListener('keydown', e => { if (dv.open && (e.ctrlKey || e.metaKey) && /^[sp]$/i.test(e.key)) e.preventDefault(); });
@@ -93,6 +93,27 @@
     box.innerHTML = KROKI.map((k, i) => `<button type="button" class="jdocs__item" data-doc-open="${i}"><img src="${B}${k.th}" alt="" loading="lazy"><span data-ar="${k.ar}" data-en="${k.en}">${en() ? k.en : k.ar}</span></button>`).join('');
   });
   document.addEventListener('click', e => { const b = e.target.closest('[data-doc-open]'); if (b) { e.preventDefault(); viewDoc(+b.dataset.docOpen); } });
+  // «المستندات النظامية للموقع» in «كن شريكاً» (user 2026-10-27): a panel with the veiled documents (they clear on a mouse hover,
+  // open large on a click) and the masterplan request inside it
+  const dp = document.createElement('dialog'); dp.className = 'docp'; document.body.appendChild(dp);
+  function openPanel() {
+    const B = window.ASSET_BASE || '', E = en();
+    dp.innerHTML = `<div class="docp__in">
+        <button type="button" class="docp__x" aria-label="${E ? 'Close' : 'إغلاق'}"></button>
+        <p class="docp__k"><i aria-hidden="true"></i>${E ? 'Al Jumum Interface' : 'واجهة الجموم'}</p>
+        <h2 class="docp__t">${E ? 'Official site documents' : 'المستندات النظامية للموقع'}</h2>
+        <p class="docp__l">${E ? 'Hover a document to clear it and click to view it · view only' : 'مرّر على المستند ليتضح واضغط عليه لعرضه · للاطلاع فقط'}</p>
+        <div class="jdocs__row docp__row">${KROKI.map((k, i) => `<button type="button" class="jdocs__item" data-doc-open="${i}"><img src="${B}${k.th}" alt="" loading="lazy"><span>${E ? k.en : k.ar}</span></button>`).join('')}</div>
+        <div class="docp__mp"><div><b>${E ? 'The masterplan' : 'الماستر بلان'}</b><span>${E ? 'Sent on request to interested parties' : 'يُرسل للمهتمين عند الطلب'}</span></div>
+          <button type="button" class="btn btn--light btn--ico" data-rq="masterplan"><span>${E ? 'Request the masterplan' : 'اطلب الماستر بلان'}</span><i class="btn__ico" aria-hidden="true"></i></button></div>
+      </div>`;
+    dp.querySelector('.docp__x').addEventListener('click', () => dp.close());
+    dp.querySelector('[data-rq]').addEventListener('click', () => dp.close());
+    dp.showModal(); document.documentElement.classList.add('rq-open');
+  }
+  dp.addEventListener('close', () => document.documentElement.classList.remove('rq-open'));
+  dp.addEventListener('click', e => { if (e.target === dp) dp.close(); });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-docs-open]'); if (b) { e.preventDefault(); openPanel(); } });
   function open() {
     render(); dlg.showModal(); document.documentElement.classList.add('rq-open');
     requestAnimationFrame(play);
