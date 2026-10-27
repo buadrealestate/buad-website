@@ -20,8 +20,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/img/brand/poster.webp">
-<link rel="stylesheet" href="assets/css/style.css?v=20261026t">
-<link rel="stylesheet" href="assets/css/jumum.css?v=20261026t">
+<link rel="stylesheet" href="assets/css/style.css?v=20261027a">
+<link rel="stylesheet" href="assets/css/jumum.css?v=20261027a">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://buad.sa/#org",
  "name":"بُعد","alternateName":["بعد","شركة بعد العقارية","بُعد العقارية","BUAD","Buad","Buad Real Estate"],
@@ -73,7 +73,7 @@
   <div class="hero__stage">
     <img class="hero__poster" src="assets/img/brand/poster.webp" srcset="assets/img/brand/poster-m.webp 1280w, assets/img/brand/poster.webp 1920w" sizes="100vw" alt="BUAD بُعد" fetchpriority="high">
     <video class="hero__video" id="brandVideo" muted playsinline loop preload="auto" disablepictureinpicture></video>
-    <div class="hero__fit" aria-hidden="true"><video id="brandVideoFit" muted playsinline loop preload="none" disablepictureinpicture></video></div>
+    <div class="hero__fit" aria-hidden="true"><video id="brandVideoFit" muted playsinline loop preload="none" disablepictureinpicture poster="assets/img/brand/poster-m.webp"></video></div>
   </div>
   <div class="hero__shade hero__shade--brand"></div>
   <h1 class="sr-only">بُعد | BUAD</h1>
@@ -82,7 +82,6 @@
     <p class="hero__sub reveal-hero" data-i18n="hero.sub">منظومة متكاملة للإدارة والتطوير والتشغيل</p>
     <div class="hero__actions reveal-hero">
       <a href="#about" class="btn btn--light btn--ico"><span data-i18n="hero.cta2">تعرّف على بُعد</span><i class="btn__ico" aria-hidden="true"></i></a>
-      <a href="#projects" class="btn btn--ghost" data-i18n="hero.cta3">مشاريعنا</a>
     </div>
   </div>
   <a href="#intro" class="hero__scroll" aria-label="scroll"><span></span></a>
@@ -443,7 +442,7 @@
         <h2 class="h2" data-i18n="jp.loc.title">مدخل شمال مكة</h2>
         <p class="lead" data-i18n="jp.loc.lead">طريق مكة - المدينة السريع بجوار طريق الملك فيصل</p>
       </div>
-      <a class="btn btn--light btn--ico jloc__map reveal" href="https://maps.app.goo.gl/xBKahBZcByVDwckx6" data-sitemap><span data-i18n="jp.loc.map">موقع المشروع على الخريطة</span><i class="btn__ico" aria-hidden="true"></i></a>
+      <a class="btn btn--light btn--ico jloc__map reveal" href="https://maps.app.goo.gl/xBKahBZcByVDwckx6" target="_blank" rel="noopener"><span data-i18n="jp.loc.map">موقع المشروع على الخريطة</span><i class="btn__ico" aria-hidden="true"></i></a>
       <div class="jdocs reveal"><p class="jdocs__title" data-i18n="jp.loc.docs">المستندات النظامية للموقع</p><div class="jdocs__row" data-docs-strip></div></div>
     </div>
     <div class="radar reveal" role="img" aria-label="المسافات من مشروع واجهة الجموم">
@@ -478,10 +477,11 @@
         <p class="jt__v"><b data-count="468323" data-sep="1">0</b><small data-i18n="unit.m2">م²</small></p>
       </div>
       <div class="jt jt--ring reveal">
-        <svg class="jt__ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="jt__r0" cx="60" cy="60" r="48" pathLength="100"/><circle class="jt__r1" cx="60" cy="60" r="48" pathLength="100"/><circle class="jt__r2" cx="60" cy="60" r="48" pathLength="100"/></svg>
-        <div class="jt__legend">
-          <p><i class="a"></i><b data-count="67" data-suffix="%" dir="ltr">0</b><span data-i18n="jp.n.build">نسبة المساحة البنائية</span></p>
-          <p><i class="b"></i><b data-count="33" data-suffix="%" dir="ltr">0</b><span data-i18n="jp.n.plan">نسبة المساحة التخطيطية</span></p>
+        <div class="jt__dial">
+          <svg class="jt__ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="jt__r0" cx="60" cy="60" r="48" pathLength="100"/><circle class="jt__r1" cx="60" cy="60" r="48" pathLength="100"/><circle class="jt__r2" cx="60" cy="60" r="48" pathLength="100"/></svg>
+          <p class="jt__mid" data-i18n="jp.n.split">توزيع مساحة الموقع</p>
+          <p class="jt__pin jt__pin--a"><b data-count="67" data-suffix="%" dir="ltr">0</b><span data-i18n="jp.n.buildS">بنائية</span></p>
+          <p class="jt__pin jt__pin--b"><b data-count="33" data-suffix="%" dir="ltr">0</b><span data-i18n="jp.n.planS">تخطيطية</span></p>
         </div>
       </div>
       <div class="jt jt--dark reveal">
@@ -685,7 +685,7 @@
         <li class="ms is-next reveal"><span class="ms__no" aria-hidden="true">09</span><span class="ms__st" data-i18n="jp.st.next">قادم</span><p class="ms__t" data-i18n="jp.ms.7">تشغيل محطة الوقود ومرافق الخدمة</p><time class="ms__d" data-i18n="jp.ms.7d">سبتمبر 2027</time></li>
         <li class="ms is-next reveal"><span class="ms__no" aria-hidden="true">10</span><span class="ms__st" data-i18n="jp.st.next">قادم</span><p class="ms__t" data-i18n="jp.ms.8">إستكمال مراحل التطوير للمحطة والمرافق الخدمية</p><time class="ms__d" data-i18n="jp.ms.8d">2028</time></li>
     </ol>
-    <a class="jprog__more reveal" href="station/"><span data-i18n="pr.more">الملف الإستثماري للمحطة</span><i aria-hidden="true"></i></a>
+    <a class="jprog__more reveal" href="station/" hidden><span data-i18n="pr.more">الملف الإستثماري للمحطة</span><i aria-hidden="true"></i></a>
   </div>
 </section>
 
@@ -1047,17 +1047,17 @@
   </div>
 </footer>
 
-<script src="assets/js/i18n.js?v=20261026t"></script>
-<script src="assets/js/jumum-zones.js?v=20261026t"></script>
-<script src="assets/js/main.js?v=20261026t"></script>
-<script src="assets/js/jumum-sections.js?v=20261026t"></script>
-<script src="assets/js/jumum-phases.js?v=20261026t"></script>
-<script src="assets/js/jumum-progress.js?v=20261026t"></script>
-<script src="assets/js/sitemap.js?v=20261026t"></script>
-<script src="assets/js/requests.js?v=20261026t"></script>
-<script src="assets/js/jumum-activities.js?v=20261026t" defer></script>
-<script src="assets/js/projects-view.js?v=20261026t" defer></script>
-<script src="assets/js/kashida.js?v=20261026t" defer></script>
+<script src="assets/js/i18n.js?v=20261027a"></script>
+<script src="assets/js/jumum-zones.js?v=20261027a"></script>
+<script src="assets/js/main.js?v=20261027a"></script>
+<script src="assets/js/jumum-sections.js?v=20261027a"></script>
+<script src="assets/js/jumum-phases.js?v=20261027a"></script>
+<script src="assets/js/jumum-progress.js?v=20261027a"></script>
+<script src="assets/js/sitemap.js?v=20261027a"></script>
+<script src="assets/js/requests.js?v=20261027a"></script>
+<script src="assets/js/jumum-activities.js?v=20261027a" defer></script>
+<script src="assets/js/projects-view.js?v=20261027a" defer></script>
+<script src="assets/js/kashida.js?v=20261027a" defer></script>
 <script>/* phase-1 meter: counts up when it comes into view (phase1.py) */
 (()=>{document.querySelectorAll('[data-p1]').forEach(m=>{const p=+m.dataset.p1,n=m.querySelector('.p1__pct'),f=m.querySelector('.p1__fill');
 const show=k=>{n.textContent=Math.round(p*k);f.style.width=(p*k).toFixed(2)+'%'};

@@ -2324,3 +2324,37 @@ html[dir="ltr"] .vx__bar em { transform-origin: 0 50%; }
   .ja__grid::-webkit-scrollbar { display: none; }
   .ja__tile { scroll-snap-align: start; }
 }
+
+/* six dimensions: the details below open on a click only; a quiet hint until then (user 2026-10-27) */
+.orb__hint { grid-area: 1 / 1; align-self: center; justify-self: center; display: inline-flex; align-items: center; gap: 10px; font-size: 13.5px; color: rgba(239, 225, 202, .5);
+  transition: opacity .4s; }
+.orb__hint i { width: 7px; height: 7px; transform: rotate(45deg); border: 1.4px solid #e6c48d; animation: hlPulse 2.4s ease-in-out infinite; }
+.orb.is-pinned .orb__hint { opacity: 0; }
+.orb__node { cursor: pointer; }
+
+/* «نبذة عن المشروع» ring: the two shares sit on the ring itself (user 2026-10-27) */
+.jt--ring { align-content: center; justify-items: center; padding: 26px 18px; }
+.jt__dial { position: relative; width: min(210px, 100%); aspect-ratio: 1; }
+.jt__dial .jt__ring { width: 100%; height: 100%; }
+.jt__dial .jt__ring circle { stroke-width: 14; }
+.jt__mid { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 24%; font-size: 12px; line-height: 1.45; color: var(--muted); }
+.jt__pin { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 0; padding: 6px 11px 5px; border-radius: 14px; white-space: nowrap;
+  box-shadow: 0 10px 24px -10px rgba(43, 31, 25, .6); opacity: 0; scale: .7; transition: opacity .6s var(--spring), scale .7s var(--spring); }
+.jt__pin b { font-size: 20px; font-weight: 700; line-height: 1.1; }
+.jt__pin span { font-size: 11px; font-weight: 500; }
+.jt__pin--a { left: 85%; top: 69.4%; color: #f8ecd8; background: #8f5f36; transition-delay: 1.2s; }
+.jt__pin--b { left: 15%; top: 30.6%; color: #1b130f; background: #e9cd9c; transition-delay: 1.6s; }
+.jt--ring.in .jt__pin { opacity: 1; scale: 1; }
+.jt__r1 { stroke: #8f5f36; }
+@media (max-width: 600px) { .jt--ring { grid-template-columns: 1fr !important; justify-items: center !important; } .jt__dial { width: 190px; } }
+
+/* phones (portrait): no blurred copy of the brand film around the logo (user 2026-10-27: it looked noisy) — the film sits sharp in the
+   middle and fades into the colour of its own wall */
+@media (orientation: portrait) and (max-width: 820px) {
+  .hero--brand .hero__stage { background: radial-gradient(130% 70% at 50% 40%, #3a2a20 0%, #261a13 45%, #160f0b 100%); }
+  .hero--brand .hero__video, .hero--brand .hero__poster { visibility: hidden; }
+  .hero__fit { top: 40%; width: 175vw;
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 48%, transparent 96%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 48%, transparent 96%); }
+}
+
+.jprog__more[hidden] { display: none !important; }

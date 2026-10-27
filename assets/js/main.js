@@ -45,7 +45,7 @@
   let wantT = null, seeking = false;
   function seek(t) {
     showTime(t);
-    if (!dur) return;
+    if (!dur) { wantT = T; return; }   // applied once the film's metadata arrives (as a fraction until then)
     wantT = T * dur;
     if (!seeking) { seeking = true; video.currentTime = wantT; wantT = null; }
   }
@@ -59,7 +59,17 @@
     const r = track.getBoundingClientRect();
     seek((e.clientX - r.left) / r.width);
   }
+  // phones (iOS above all) only load / seek a film after it has been started once inside a user gesture (user 2026-10-27: the
+  // slider did nothing on the phone) — the first touch starts and pauses it so every seek after that shows the frame
+  let unlocked = false;
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    loadFilm(); video.muted = true;
+    const pr = video.play(); if (pr && pr.then) pr.then(() => { if (!auto || dragging) video.pause(); }).catch(() => {});
+  }
+  track.addEventListener('touchstart', unlock, { passive: true });
   track.addEventListener('pointerdown', e => {
+    unlock();
     dragging = true; auto = false; video.pause(); track.classList.add('is-drag');
     video.classList.add('is-on'); clearTimeout(loopTimer);
     track.setPointerCapture(e.pointerId); setFromPointer(e);
@@ -105,12 +115,14 @@
   let filmVisible = false, filmLoaded = false;
   function loadFilm() {
     if (filmLoaded) return; filmLoaded = true;
-    video.preload = 'auto'; video.src = filmSrc();
+    video.preload = 'auto'; video.muted = true; video.src = filmSrc(); video.load();
     video.addEventListener('loadedmetadata', () => {
       dur = video.duration || 0;
       video.classList.add('is-on');
-      if (auto && filmVisible) video.play().catch(() => {});
+      if (wantT !== null) { seeking = true; video.currentTime = Math.min(wantT * dur, dur); wantT = null; }   // a drag made before the film was ready
+      else if (auto && filmVisible) video.play().catch(() => {});
     }, { once: true });
+    if (auto && filmVisible) video.play().catch(() => {});   // muted inline films may start before the metadata event (iOS)
   }
   const filmBox = $('[data-film]') || $('#jumumFilm');
   new IntersectionObserver(([e]) => { if (e.isIntersecting) loadFilm(); }, { rootMargin: '900px 0px' }).observe(filmBox);
@@ -259,42 +271,46 @@
         </div>
         ${src.map((d, i) => `<button type="button" class="orb__node" data-k="${i}" style="--a:${(360 / n) * i}deg"><i class="orb__dot"></i><span class="orb__label"><b>${d.no}</b>${d.title.replace(/<h3([^>]*)class="orb__title"/, '<span$1class="orb__name"').replace('</h3>', '</span>')}</span></button>`).join('')}
       </div>
-      <div class="orb__more">${src.map((d, i) => `<div class="orb__extra" data-k="${i}">${d.desc.replace('dim__desc', 'dim__desc orb__desc')}${d.svc}${d.who}</div>`).join('')}</div>`;
+      <div class="orb__more"><p class="orb__hint"><i aria-hidden="true"></i><span></span></p>${src.map((d, i) => `<div class="orb__extra" data-k="${i}">${d.desc.replace('dim__desc', 'dim__desc orb__desc')}${d.svc}${d.who}</div>`).join('')}</div>`;
     $('.dstrips__row', sec).after(wrap);
     const nodes = $$('.orb__node', wrap), panels = $$('.orb__panel[data-k]', wrap), extras = $$('.orb__extra', wrap);
     const mark = $('.orb__panel--mark', wrap), arm = $('.orb__arm', wrap), stage = $('.orb__stage', wrap);
 
-    let spin = 0, active = -1, timer = 0, held = false, visible = false, last = performance.now();
+    // the details under the ring (services + «لمن») open only on a click / tap on a dimension — not on hover or the timer
+    // (user 2026-10-27); hovering or the 6-second play only lights the dimension and its text in the centre
+    let spin = 0, active = -1, timer = 0, held = false, visible = false, last = performance.now(), pinned = false;
     function select(k) {
       active = k;
       nodes.forEach((b, i) => b.classList.toggle('is-active', i === k));
       panels.forEach((p, i) => p.classList.toggle('is-on', i === k));
-      extras.forEach((p, i) => p.classList.toggle('is-on', i === k));
+      extras.forEach((p, i) => p.classList.toggle('is-on', i === k && pinned));
+      wrap.classList.toggle('is-pinned', pinned);
       mark.classList.toggle('is-on', k < 0);
       wrap.classList.toggle('has-active', k >= 0);
     }
     const next = () => { clearTimeout(timer); if (!held && visible) timer = setTimeout(() => { select((active + 1) % n); next(); }, 6000); };
     // a click / tap pins the dimension (its details stay open, the ring stops) until it is tapped again or the visitor taps
     // elsewhere — user 2026-10-26: the details must open on a click too, not only on hover
-    let pinned = false;
     const more = $('.orb__more', wrap);
+    const hint = () => { $('.orb__hint span', wrap).textContent = document.documentElement.lang === 'en' ? 'Click a dimension to see its services' : 'اضغط على البُعد لعرض خدماته وتفاصيله'; };
+    hint(); document.addEventListener('buad:lang', hint);
     nodes.forEach((b, i) => {
       b.addEventListener('click', e => {
-        if (pinned && active === i) { pinned = held = false; next(); return; }
+        if (pinned && active === i) { pinned = held = false; select(i); next(); return; }
         pinned = held = true; clearTimeout(timer); select(i);
         if (e.pointerType !== 'mouse') {                                   // touch: bring the details into view
           held = true; const r = more.getBoundingClientRect();
           if (r.bottom > innerHeight) scrollBy({ top: r.bottom - innerHeight + 24, behavior: reduce ? 'auto' : 'smooth' });
         }
       });
-      b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); select(i); } });
-      b.addEventListener('focus', () => { held = true; clearTimeout(timer); select(i); });
+      b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && !pinned) { held = true; clearTimeout(timer); select(i); } });
+      b.addEventListener('focus', () => { if (!pinned) { held = true; clearTimeout(timer); select(i); } });
     });
     // the ring stops turning while the mouse is over it, so a dimension is easy to click (user 2026-10-26)
     stage.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; clearTimeout(timer); } });
     stage.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !pinned) { held = false; next(); } });
     stage.addEventListener('focusout', e => { if (!pinned && !stage.contains(e.relatedTarget)) { held = false; next(); } });
-    document.addEventListener('click', e => { if (pinned && !wrap.contains(e.target)) { pinned = held = false; next(); } });
+    document.addEventListener('click', e => { if (pinned && !wrap.contains(e.target)) { pinned = held = false; select(active); next(); } });
     new IntersectionObserver(([e]) => {
       visible = e.isIntersecting;
       if (visible) { sec.classList.add('is-in'); if (active < 0) setTimeout(() => { if (active < 0) select(0); next(); }, 1400); else next(); }

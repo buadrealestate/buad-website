@@ -12,6 +12,7 @@ window.BUAD_EN = {
   'ja.nav': 'Project Activities',
   'jp.ph.now': 'In progress', 'jp.ph.next': 'Coming', 'jp.ph.acts': 'activities',
   'goal.vision': 'Saudi Vision',
+  'jp.n.split': 'Site area split', 'jp.n.buildS': 'built-up', 'jp.n.planS': 'planning',
   'nav.creds': 'Credentials', 'nav.contact': 'Contact Us',
 
   'hero.kicker': 'A pioneering urban development · The northern entrance to Makkah',
