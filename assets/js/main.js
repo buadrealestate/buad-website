@@ -18,7 +18,7 @@
   const mobile = innerWidth < 900;
   // portrait phones get the portrait cut; everything else the full 16:9 film (re-checked on resize)
   const isPortrait = () => innerHeight > innerWidth * 1.15 && innerWidth < 820;
-  const filmSrc = () => `assets/video/hero${isPortrait() ? '-m' : ''}.mp4?v=hf1`;   // hf1: the Higgsfield day -> night clip with the buildings around the project (user 2026-10-28)
+  const filmSrc = () => `assets/video/hero${isPortrait() ? '-m' : ''}.mp4?v=hf2`;   // hf1: the Higgsfield day -> night clip with the buildings around the project (user 2026-10-28)
   const video = $('#heroVideo');
   const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
