@@ -527,3 +527,6 @@ html[dir="ltr"] .phr__line em { transform-origin: 0 50%; }
   .jt--ring { grid-column: 1 / -1; grid-template-columns: auto 1fr; justify-items: start; min-height: 0; }
   .jt__ring { width: 110px; }
 }
+
+/* no cost tile (nocost_1028.py): the activities + lease tiles share the last row */
+@media (min-width: 601px) { .jst__bento > .jt:not(.jt--site):not(.jt--ring) { grid-column: span 3; } }
