@@ -352,7 +352,7 @@ window.BUAD_EN = {
   'jp.ms.7d': 'September 2027',
   'jp.ms.8': 'Completing the development stages of the station and service facilities',
   'jp.ms.8d': '2028',
-  'rq.btn.invest': 'Request the Investment Memorandum',
+  'rq.btn.invest': 'Request the Investment Memorandum', 'rq.btn.docs': 'Request the official documents', 'jp.nav.docs': 'Official documents',
   'rq.btn.lease': 'Leasing for Brands',
   'rq.btn.mp': 'Request the Masterplan', 'rq.btn.docs': 'Request the Official Documents',
   'p1.title': 'Levelling &amp; Site Preparation', 'p1.eyebrow': 'Phase one of the project', 'p1.label': 'Site readiness · levelling &amp; site preparation phase',

@@ -27,7 +27,8 @@
 
   function render() {
     const L = T(), B = window.ASSET_BASE || '';   // '../' on pages in a sub-folder (smartface/)
-    const docs = KROKI.map((k, i) => `<button type="button" class="smap__doc" data-doc="${i}"><img src="${B}${k.th}" alt=""><span>${en() ? k.en : k.ar}</span></button>`).join('');
+    // documents are sent on request only (user 2026-10-29) — not shown in the location view
+    const docs = false && KROKI.map((k, i) => `<button type="button" class="smap__doc" data-doc="${i}"><img src="${B}${k.th}" alt=""><span>${en() ? k.en : k.ar}</span></button>`).join('');
     dlg.innerHTML = `
       <div class="smap__stage">
         <div class="smap__drift"><div class="smap__cam">

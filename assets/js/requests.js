@@ -2,7 +2,8 @@
    [data-rq="invest"]  request the Phase One investment memorandum
    [data-rq="summary"] request the executive summary of the opportunity
    [data-rq="masterplan"] request the masterplan
-   [data-rq="docs"]    request the official documents (decisions, kroki, permits, approvals)
+   [data-rq="docs"]    request the official documents (user 2026-10-29: request only, the documents themselves are not shown on the site;
+                        the list below = the site documents + the masterplan + the Ministry of Energy approval & station proposal)
    [data-rq="lease"]   leasing for brands and operators ([data-rq-zone] prefills the zone shown on the masterplan card)
    The site is static, so a request is sent as a ready-made WhatsApp message to BUAD (e-mail as a fallback).
    Nothing is stored. Return figures are deliberately not shown publicly; they are in the memorandum sent on request. */
@@ -15,7 +16,8 @@
       invest: { kicker: 'فرص الإستثمار', title: 'اطلب الملف الإستثماري', lead: 'الملف الإستثماري للمرحلة الأولى من مشروع واجهة الجموم متاح للمستثمرين المهتمين اترك بياناتك ويتواصل معك فريق علاقات المستثمرين' },
       summary: { kicker: 'فرص الإستثمار', title: 'اطلب الملخص التنفيذي', lead: 'الملخص التنفيذي لفرصة الإستثمار في مشروع واجهة الجموم يُرسل للمهتمين اترك بياناتك ويتواصل معك فريقنا' },
       masterplan: { kicker: 'فرص الإستثمار', title: 'اطلب الماستر بلان', lead: 'المخطط العام لمشروع واجهة الجموم يُرسل للمهتمين اترك بياناتك ويتواصل معك فريقنا' },
-      docs: { kicker: 'فرص الإستثمار', title: 'اطلب المستندات النظامية', lead: 'قرار التخصيص والكروكي والرخص والموافقات الصادرة للمشروع تُرسل للمهتمين اترك بياناتك ويتواصل معك فريقنا' },
+      docs: { kicker: 'فرص الإستثمار', title: 'اطلب المستندات النظامية', lead: 'المستندات النظامية لمشروع واجهة الجموم تُرسل للمهتمين عند الطلب اختر ما تحتاجه واترك بياناتك ويتواصل معك فريقنا' },
+      docsL: 'المستندات المطلوبة', docsList: ['الكروكي التنظيمي', 'التقرير المساحي', 'كروكي التأشير', 'رخصة تجهيز الموقع', 'رخصة بناء السور', 'كروكي الإشتراطات', 'الماستر بلان', 'خطاب موافقة وزارة الطاقة ومقترح المحطة'],
       lease: { kicker: 'فرص الإستئجار والتشغيل', title: 'فرص الإستئجار للعلامات التجارية', lead: 'للعلامات التجارية والمشغّلين الراغبين في موقع ضمن مراحل المشروع: مطاعم أسواق محلات ترفيه خدمات وغيرها' },
       name: 'الاسم', phone: 'رقم الجوال', email: 'البريد الإلكتروني (إختياري)', org: 'الجهة / الشركة (إختياري)',
       type: 'صفة المستثمر', types: ['فرد', 'شركة', 'صندوق أو جهة إستثمارية', 'وسيط'],
@@ -30,7 +32,8 @@
       invest: { kicker: 'Investment Opportunities', title: 'Request the Investment Memorandum', lead: 'The Phase One investment memorandum of Al Jumum Interface is available to interested investors. Leave your details and our investor relations team will contact you.' },
       summary: { kicker: 'Investment Opportunities', title: 'Request the Executive Summary', lead: 'The executive summary of the Al Jumum Interface opportunity is sent to interested parties. Leave your details and our team will contact you.' },
       masterplan: { kicker: 'Investment Opportunities', title: 'Request the Masterplan', lead: 'The Al Jumum Interface masterplan is sent to interested parties. Leave your details and our team will contact you.' },
-      docs: { kicker: 'Investment Opportunities', title: 'Request the Official Documents', lead: 'The allocation decision, kroki, permits and approvals issued for the project are sent to interested parties. Leave your details and our team will contact you.' },
+      docs: { kicker: 'Investment Opportunities', title: 'Request the Official Documents', lead: 'The official documents of Al Jumum Interface are sent to interested parties on request. Choose what you need, leave your details and our team will contact you.' },
+      docsL: 'Documents requested', docsList: ['Planning kroki', 'Survey report', 'Marking kroki', 'Site preparation permit', 'Fence building permit', 'Requirements kroki', 'The masterplan', 'Ministry of Energy approval letter & station proposal'],
       lease: { kicker: 'Leasing & Operations', title: 'Leasing for Brands', lead: 'For brands and operators looking for a space within the project’s phases: restaurants, markets, retail, entertainment, services and more.' },
       name: 'Name', phone: 'Mobile number', email: 'E-mail (optional)', org: 'Organization (optional)',
       type: 'Investor type', types: ['Individual', 'Company', 'Fund or investment entity', 'Broker'],
@@ -58,8 +61,10 @@
   let mode = 'invest';
   function render(zone, acts) {
     const L = T[en() ? 'en' : 'ar'], M = L[mode];
+    const docList = mode === 'docs' ? `<fieldset class="needs full"><legend>${L.docsL}</legend>${L.docsList.map(t =>
+      `<label class="need"><input type="checkbox" name="docs" value="${esc(t)}" checked><span>${t}</span></label>`).join('')}</fieldset>` : '';
     const body = (mode === 'summary' || mode === 'masterplan' || mode === 'docs')
-      ? field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
+      ? docList + field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
         field('email', L.email, { type: 'email', dir: 'ltr', ac: 'email' }) + field('org', L.org, { ac: 'organization' }) +
         chips('type', L.type, L.types, true) + field('notes', L.notes, { area: true, full: true })
       : mode === 'invest'
@@ -112,6 +117,7 @@
     };
     const keys = (mode === 'summary' || mode === 'masterplan' || mode === 'docs') ? ['name', 'phone', 'email', 'org', 'type', 'notes'] : mode === 'invest' ? ['name', 'phone', 'email', 'org', 'type', 'size', 'notes'] : ['brand', 'activity', 'zone', 'area', 'contact', 'phone', 'notes'];
     const lines = [mode === 'masterplan' ? L.msgMasterplan : mode === 'docs' ? L.msgDocs : mode === 'summary' ? L.msgSummary : mode === 'invest' ? L.msgInvest : L.msgLease, ''].concat(keys.filter(get).map(k => `${lab(k)}: ${get(k)}`));
+    if (mode === 'docs') { const d = f.getAll('docs'); if (d.length) lines.splice(2, 0, `${L.docsL}: ${d.join('، ')}`, ''); }
     const text = lines.join('\n');
     window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
     const ok = dlg.querySelector('.rq__ok');
