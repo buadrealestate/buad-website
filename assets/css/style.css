@@ -2402,3 +2402,20 @@ html[dir="rtl"] .c2info__logo { align-self: flex-start !important; margin-inline
 @media (max-width: 760px) { .docp__row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .docp__mp .btn, .docp__mp .btn span { color: var(--brown); }
 .docp__mp .btn span { display: inline; font-size: 15px; font-weight: 500; }
+
+/* brand film (user 2026-10-29) — home page, after the Al Jumum sections */
+.bfilm { background: linear-gradient(180deg, #f3e6d1, #efdfc6); padding-block: clamp(90px, 10vw, 150px); text-align: center; }
+.bfilm .h2 { margin-top: 6px; }
+.bfilm__frame { position: relative; margin: clamp(30px, 4vw, 48px) auto 0; max-width: 1100px; aspect-ratio: 16 / 9; border-radius: 28px; overflow: hidden;
+  background: #1a110c; box-shadow: 0 40px 80px -40px rgba(46, 35, 29, .55), 0 0 0 1px rgba(185, 153, 121, .35); }
+.bfilm__frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bfilm__play { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, rgba(26, 17, 12, 0) 40%, rgba(26, 17, 12, .55)); color: var(--cream-text); font: inherit; }
+.bfilm__play i { width: clamp(68px, 7vw, 92px); aspect-ratio: 1; border-radius: 50%; background: rgba(239, 225, 202, .16); backdrop-filter: blur(8px);
+  box-shadow: 0 0 0 1px rgba(239, 225, 202, .55); position: relative; transition: transform .35s cubic-bezier(.2, .8, .2, 1), background .35s; }
+.bfilm__play i::after { content: ''; position: absolute; inset: 0; margin: auto; translate: 8% 0; width: 0; height: 0;
+  border-style: solid; border-width: 13px 0 13px 21px; border-color: transparent transparent transparent #f6dfb2; }
+.bfilm__play span { font-size: clamp(15px, 1.3vw, 18px); font-weight: 700; letter-spacing: .02em; text-shadow: 0 2px 12px rgba(0, 0, 0, .6); }
+.bfilm__play:hover i { transform: scale(1.07); background: rgba(239, 225, 202, .26); }
+.bfilm__frame.is-playing .bfilm__play { display: none; }
+@media (max-width: 760px) { .bfilm__frame { border-radius: 18px; } }
