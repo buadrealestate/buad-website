@@ -344,6 +344,10 @@ html.rq-open { overflow: hidden; }
 .rq .fl textarea { min-height: 96px; }
 .rq .need span { background: #fff; }
 .rq__form .btn { margin-top: 4px; }
+.rq__send { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.rq__send .btn { margin-top: 4px; justify-content: center; }
+.rq__btn-mail { border: 1px solid var(--brown); color: var(--brown); background: transparent; }
+.rq__btn-mail:hover { background: rgba(67, 41, 31, .07); }
 .rq__note { font-size: 12.5px; color: var(--muted); text-align: center; }
 .rq .form__msg { min-height: 0; }
 .rq__ok { display: grid; justify-items: center; text-align: center; padding-block: 20px 6px; }
@@ -369,7 +373,7 @@ html.rq-open { overflow: hidden; }
   .ms-list, .ms-list:has(.is-key) { grid-template-columns: 1fr; }
   .ms { min-height: 0; }
   .ms.is-key { padding-top: 52px; }
-  .rq__form { grid-template-columns: 1fr; }
+  .rq__form, .rq__send { grid-template-columns: 1fr; }
   .rq__panel { border-radius: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {

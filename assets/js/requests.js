@@ -3,9 +3,9 @@
    [data-rq="summary"] request the executive summary of the opportunity
    [data-rq="masterplan"] request the masterplan
    [data-rq="docs"]    request the official documents (user 2026-10-29: request only, the documents themselves are not shown on the site;
-                        the list below = the site documents + the masterplan + the Ministry of Energy approval & station proposal)
+                        the list below = the site documents + the masterplan + the Ministry of Energy approval)
    [data-rq="lease"]   leasing for brands and operators ([data-rq-zone] prefills the zone shown on the masterplan card)
-   The site is static, so a request is sent as a ready-made WhatsApp message to BUAD (e-mail as a fallback).
+   The site is static, so a request is sent as a ready-made message to BUAD, by WhatsApp or by e-mail (two buttons, user 2026-10-29).
    Nothing is stored. Return figures are deliberately not shown publicly; they are in the memorandum sent on request. */
 (() => {
   'use strict';
@@ -17,15 +17,15 @@
       summary: { kicker: 'فرص الإستثمار', title: 'اطلب الملخص التنفيذي', lead: 'الملخص التنفيذي لفرصة الإستثمار في مشروع واجهة الجموم يُرسل للمهتمين اترك بياناتك ويتواصل معك فريقنا' },
       masterplan: { kicker: 'فرص الإستثمار', title: 'اطلب الماستر بلان', lead: 'المخطط العام لمشروع واجهة الجموم يُرسل للمهتمين اترك بياناتك ويتواصل معك فريقنا' },
       docs: { kicker: 'فرص الإستثمار', title: 'اطلب المستندات النظامية', lead: 'المستندات النظامية لمشروع واجهة الجموم تُرسل للمهتمين عند الطلب اختر ما تحتاجه واترك بياناتك ويتواصل معك فريقنا' },
-      docsL: 'المستندات المطلوبة', docsList: ['الكروكي التنظيمي', 'التقرير المساحي', 'كروكي التأشير', 'رخصة تجهيز الموقع', 'رخصة بناء السور', 'كروكي الإشتراطات', 'الماستر بلان', 'خطاب موافقة وزارة الطاقة ومقترح المحطة'],
+      docsL: 'المستندات المطلوبة', docsList: ['الكروكي التنظيمي', 'التقرير المساحي', 'كروكي التأشير', 'رخصة تجهيز الموقع', 'رخصة بناء السور', 'كروكي الإشتراطات', 'الماستر بلان', 'موافقة وزارة الطاقة'],
       lease: { kicker: 'فرص الإستئجار والتشغيل', title: 'فرص الإستئجار للعلامات التجارية', lead: 'للعلامات التجارية والمشغّلين الراغبين في موقع ضمن مراحل المشروع: مطاعم أسواق محلات ترفيه خدمات وغيرها' },
       name: 'الاسم', phone: 'رقم الجوال', email: 'البريد الإلكتروني (إختياري)', org: 'الجهة / الشركة (إختياري)',
       type: 'صفة المستثمر', types: ['فرد', 'شركة', 'صندوق أو جهة إستثمارية', 'وسيط'],
       size: 'حجم المشاركة المتوقعة (إختياري)', sizes: ['أقل من 500 ألف', '500 ألف – 2 مليون', '2 – 10 ملايين', 'أكثر من 10 ملايين'],
       brand: 'اسم العلامة التجارية / الشركة', activity: 'النشاط', zone: 'المنطقة المطلوبة (إختياري)', area: 'المساحة التقريبية بالمتر المربع (إختياري)',
       contact: 'اسم المسؤول', notes: 'ملاحظات (إختياري)', actsNote: 'الأنشطة المهتم بها: ',
-      send: 'إرسال الطلب عبر واتساب', note: 'يُفتح واتساب برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع',
-      err: 'فضلاً أكمل الحقول المطلوبة', okTitle: 'جهّزنا طلبك', okText: 'أكمل الإرسال في واتساب وسيتواصل معك فريقنا قريباً', okMail: 'أو أرسله بالبريد الإلكتروني', close: 'إغلاق',
+      send: 'إرسال الطلب عبر الواتساب', sendMail: 'إرسال الطلب عبر البريد الإلكتروني', note: 'يُفتح الواتساب أو بريدك الإلكتروني برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع',
+      err: 'فضلاً أكمل الحقول المطلوبة', okTitle: 'جهّزنا طلبك', okText: 'أكمل الإرسال في الواتساب وسيتواصل معك فريقنا قريباً', okTextMail: 'أكمل الإرسال من بريدك الإلكتروني وسيتواصل معك فريقنا قريباً', okMail: 'أو أرسله بالبريد الإلكتروني', okWa: 'أو أرسله عبر الواتساب', close: 'إغلاق',
       msgInvest: 'طلب الملف الإستثماري — مشروع واجهة الجموم', msgSummary: 'طلب الملخص التنفيذي — مشروع واجهة الجموم', msgMasterplan: 'طلب الماستر بلان — مشروع واجهة الجموم', msgDocs: 'طلب المستندات النظامية — مشروع واجهة الجموم', msgLease: 'طلب إستئجار — مشروع واجهة الجموم'
     },
     en: {
@@ -33,15 +33,15 @@
       summary: { kicker: 'Investment Opportunities', title: 'Request the Executive Summary', lead: 'The executive summary of the Al Jumum Interface opportunity is sent to interested parties. Leave your details and our team will contact you.' },
       masterplan: { kicker: 'Investment Opportunities', title: 'Request the Masterplan', lead: 'The Al Jumum Interface masterplan is sent to interested parties. Leave your details and our team will contact you.' },
       docs: { kicker: 'Investment Opportunities', title: 'Request the Official Documents', lead: 'The official documents of Al Jumum Interface are sent to interested parties on request. Choose what you need, leave your details and our team will contact you.' },
-      docsL: 'Documents requested', docsList: ['Planning kroki', 'Survey report', 'Marking kroki', 'Site preparation permit', 'Fence building permit', 'Requirements kroki', 'The masterplan', 'Ministry of Energy approval letter & station proposal'],
+      docsL: 'Documents requested', docsList: ['Planning kroki', 'Survey report', 'Marking kroki', 'Site preparation permit', 'Fence building permit', 'Requirements kroki', 'The masterplan', 'Ministry of Energy approval'],
       lease: { kicker: 'Leasing & Operations', title: 'Leasing for Brands', lead: 'For brands and operators looking for a space within the project’s phases: restaurants, markets, retail, entertainment, services and more.' },
       name: 'Name', phone: 'Mobile number', email: 'E-mail (optional)', org: 'Organization (optional)',
       type: 'Investor type', types: ['Individual', 'Company', 'Fund or investment entity', 'Broker'],
       size: 'Expected participation (optional)', sizes: ['Under SAR 500K', 'SAR 500K – 2M', 'SAR 2 – 10M', 'Over SAR 10M'],
       brand: 'Brand / company name', activity: 'Activity', zone: 'Preferred zone (optional)', area: 'Approximate area in m² (optional)',
       contact: 'Contact person', notes: 'Notes (optional)', actsNote: 'Activities of interest: ',
-      send: 'Send the request on WhatsApp', note: 'WhatsApp opens with a ready message to the BUAD team; nothing is stored on this site.',
-      err: 'Please complete the required fields.', okTitle: 'Your request is ready', okText: 'Finish sending it on WhatsApp and our team will contact you shortly.', okMail: 'Or send it by e-mail', close: 'Close',
+      send: 'Send the request on WhatsApp', sendMail: 'Send the request by e-mail', note: 'WhatsApp or your e-mail opens with a ready message to the BUAD team; nothing is stored on this site.',
+      err: 'Please complete the required fields.', okTitle: 'Your request is ready', okText: 'Finish sending it on WhatsApp and our team will contact you shortly.', okTextMail: 'Finish sending it from your e-mail and our team will contact you shortly.', okMail: 'Or send it by e-mail', okWa: 'Or send it on WhatsApp', close: 'Close',
       msgInvest: 'Investment memorandum request — Al Jumum Interface', msgSummary: 'Executive summary request — Al Jumum Interface', msgMasterplan: 'Masterplan request — Al Jumum Interface', msgDocs: 'Official documents request — Al Jumum Interface', msgLease: 'Leasing request — Al Jumum Interface'
     }
   };
@@ -84,26 +84,29 @@
           <p class="rq__lead">${M.lead}</p>
           <form class="rq__form" novalidate>${body}
             <p class="form__msg full" role="status" aria-live="polite"></p>
-            <button class="btn btn--dark btn--ico full" type="submit"><span>${L.send}</span><i class="btn__ico" aria-hidden="true"></i></button>
+            <div class="rq__send full">
+              <button class="btn btn--dark btn--ico" type="submit" value="wa"><span>${L.send}</span><i class="btn__ico" aria-hidden="true"></i></button>
+              <button class="btn rq__btn-mail" type="submit" value="mail"><span>${L.sendMail}</span></button>
+            </div>
             <p class="rq__note full">${L.note}</p>
           </form>
         </div>
         <div class="rq__ok" hidden>
           <span class="rq__check" aria-hidden="true"></span>
           <h2 class="rq__title">${L.okTitle}</h2>
-          <p class="rq__lead">${L.okText}</p>
+          <p class="rq__lead rq__ok-text">${L.okText}</p>
           <a class="rq__mail" href="#">${L.okMail}</a>
           <button type="button" class="btn btn--dark rq__done">${L.close}</button>
         </div>
       </div>`;
     const form = dlg.querySelector('form');
     form.addEventListener('input', e => { e.target.classList.remove('is-invalid'); form.querySelector('.form__msg').textContent = ''; });
-    form.addEventListener('submit', e => { e.preventDefault(); submit(form, L); });
+    form.addEventListener('submit', e => { e.preventDefault(); submit(form, L, e.submitter?.value === 'mail' ? 'mail' : 'wa'); });
     dlg.querySelector('.rq__x').addEventListener('click', () => dlg.close());
     dlg.querySelector('.rq__done').addEventListener('click', () => dlg.close());
   }
 
-  function submit(form, L) {
+  function submit(form, L, via) {
     const f = new FormData(form);
     const get = k => (f.get(k) || '').toString().trim();
     const missing = [...form.querySelectorAll('[required]')].filter(i => !i.value.trim());
@@ -119,9 +122,14 @@
     const lines = [mode === 'masterplan' ? L.msgMasterplan : mode === 'docs' ? L.msgDocs : mode === 'summary' ? L.msgSummary : mode === 'invest' ? L.msgInvest : L.msgLease, ''].concat(keys.filter(get).map(k => `${lab(k)}: ${get(k)}`));
     if (mode === 'docs') { const d = f.getAll('docs'); if (d.length) lines.splice(2, 0, `${L.docsL}: ${d.join('، ')}`, ''); }
     const text = lines.join('\n');
-    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
-    const ok = dlg.querySelector('.rq__ok');
-    ok.querySelector('.rq__mail').href = `mailto:${MAIL}?subject=${encodeURIComponent(lines[0])}&body=${encodeURIComponent(text)}`;
+    const wa = `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+    const mail = `mailto:${MAIL}?subject=${encodeURIComponent(lines[0])}&body=${encodeURIComponent(text)}`;
+    if (via === 'mail') location.href = mail; else window.open(wa, '_blank', 'noopener');
+    const ok = dlg.querySelector('.rq__ok'), alt = ok.querySelector('.rq__mail');   // the other channel as a fallback link
+    ok.querySelector('.rq__ok-text').textContent = via === 'mail' ? L.okTextMail : L.okText;
+    alt.textContent = via === 'mail' ? L.okWa : L.okMail;
+    alt.href = via === 'mail' ? wa : mail;
+    if (via === 'mail') { alt.target = '_blank'; alt.rel = 'noopener'; }
     dlg.querySelector('.rq__form-wrap').hidden = true;
     ok.hidden = false;
   }
