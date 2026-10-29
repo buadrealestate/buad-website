@@ -61,7 +61,7 @@
   let mode = 'invest';
   function render(zone, acts) {
     const L = T[en() ? 'en' : 'ar'], M = L[mode];
-    const docList = mode === 'docs' ? `<fieldset class="needs full"><legend>${L.docsL}</legend>${L.docsList.map(t =>
+    const docList = mode === 'docs' ? `<fieldset class="needs docs full"><legend>${L.docsL}</legend>${L.docsList.map(t =>
       `<label class="need"><input type="checkbox" name="docs" value="${esc(t)}" checked><span>${t}</span></label>`).join('')}</fieldset>` : '';
     const body = (mode === 'summary' || mode === 'masterplan' || mode === 'docs')
       ? docList + field('name', L.name, { req: true, ac: 'name' }) + field('phone', L.phone, { req: true, dir: 'ltr', mode: 'tel', ac: 'tel' }) +
