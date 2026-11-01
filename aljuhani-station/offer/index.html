@@ -7,17 +7,17 @@
      the language of buad.sa/p/aljuhani-station/ (its parent page) (espresso + gold, the gold site plan drawn in, Tajawal 200/800, sugar-cream sections).
      Wording = the PDF (03 ملفات العمل/عرض خدمات محطة الجهني/build.py) — keep both in sync. Download: buad-system-offer-aljuhani.pdf = the user's file «عرض منظومة بُعد - محطة الجهني.pdf» (2026-11-01) with the stamp and signature removed.
      noindex, not in the sitemap, no links from the site. -->
-<title>عرض خدمات بُعد · محطة الجهني</title>
+<title>عرض منظومة بُعد · محطة الجهني</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="عرض بُعد لإدارة وتطوير وتشغيل محطة الوقود في حي الحمدانية بجدة">
 <meta name="theme-color" content="#160e0a">
-<meta property="og:title" content="عرض خدمات بُعد · محطة الجهني">
+<meta property="og:title" content="عرض منظومة بُعد · محطة الجهني">
 <meta property="og:description" content="إدارة · تطوير · تشغيل — عقد واحد .. نقطة تواصل واحدة .. مسؤولية واحدة عن النتيجة">
 <meta property="og:image" content="https://buad.sa/aljuhani-station/og-offer.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="تصور محطة الجهني مع شعار بُعد">
+<meta property="og:image:alt" content="عرض منظومة بُعد · تصور محطة الجهني">
 <meta name="twitter:image" content="https://buad.sa/aljuhani-station/og-offer.jpg">
 <meta property="og:url" content="https://buad.sa/aljuhani-station/offer/">
 <meta name="twitter:card" content="summary_large_image">
@@ -162,7 +162,10 @@
   .fee--b .ring circle { fill: none; stroke-width: 7; }
   .fee--b .ring .bg { stroke: rgba(239, 225, 202, .1); } .fee--b .ring .fg { stroke: var(--gold); stroke-linecap: round; stroke-dasharray: 0 400; transition: stroke-dasharray 1.8s var(--spring); }
   .fee--b .ring.in .fg { stroke-dasharray: 18.5 400; }   /* 7% of 2π·42 */
-  .fee--b .ring span { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font-size: 13px; color: var(--soft); line-height: 1.4; }
+  .fee--b .ring span { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 12.5px; color: var(--soft); line-height: 1.45; }
+  .fee--b .ring span b { font-size: 30px; font-weight: 800; color: var(--gold); line-height: 1.05; margin-bottom: 4px; }
+  .fee--b .ring { width: 170px; }
+  .fee--b .ring::after { content: ""; position: absolute; top: 3px; left: 50%; width: 10px; height: 10px; margin-left: -5px; transform: rotate(45deg); background: var(--gold); box-shadow: 0 0 12px rgba(230,196,141,.7); }
   .fee-note { margin-top: 22px; display: flex; align-items: center; gap: 12px; font-size: 14.5px; color: var(--soft); }
   .fee-note::before { content: ""; width: 26px; height: 1px; background: var(--gold); flex: none; }
 
@@ -189,7 +192,7 @@
   .hub__ring li { position: absolute; transform: translate(-50%, -50%);
     white-space: nowrap; padding: 8px 15px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #f6e7cf; background: rgba(34, 22, 15, .92); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
   .hub__txt p { font-size: clamp(16px, 1.4vw, 19px); line-height: 2; color: var(--soft); text-align: justify; }
-  .hub__txt strong { display: block; margin-top: 22px; padding: 18px 22px; border-radius: 20px; font-size: clamp(17px, 1.6vw, 20px); font-weight: 700; color: #f6e7cf; line-height: 1.7;
+  .hub__txt strong { display: block; text-align: center; margin-top: 22px; padding: 18px 22px; border-radius: 20px; font-size: clamp(17px, 1.6vw, 20px); font-weight: 700; color: #f6e7cf; line-height: 1.7;
     background: linear-gradient(100deg, rgba(230, 196, 141, .16), rgba(230, 196, 141, .04)); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
 
   /* operator priority */
@@ -269,7 +272,7 @@
 
 <nav class="bar"><div class="bar__in">
   <img src="../../assets/img/logo-h-sand.png" alt="بُعد">
-  <span class="bar__tag">عرض خدمات · محطة الجهني</span>
+  <span class="bar__tag">عرض منظومة بُعد · محطة الجهني</span>
   <a class="bar__go" href="../buad-system-offer-aljuhani.pdf" download="عرض منظومة بُعد - محطة الجهني.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل العرض</a>
 </div></nav>
 
@@ -278,7 +281,7 @@
   <div class="w hero__grid">
     <div>
       <div class="ref rv"><span><b>الرقم :</b>ب ع / <span class="n">49</span> / <span class="n">2026</span></span><span><b>التاريخ :</b>الأحد <span class="n">2026/11/01</span> م</span></div>
-      <h1 class="rv">عرض خدمات بُعد <b>إدارة وتطوير وتشغيل</b></h1>
+      <h1 class="rv">عرض منظومة بُعد <b>إدارة وتطوير وتشغيل</b></h1>
       <span class="owner rv"><i aria-hidden="true"></i>سعادة الأستاذ/ مبطي الجهني - الموقر</span>
       <p class="lead rv">يسعدنا أن نقدم لكم عرض خدماتنا لمحطتكم في حي الحمدانية إذ تتولى بُعد إدارة كامل مراحل المحطة نيابةً عنكم من تحديث الرخصة وإستكمال الموافقات إلى التطوير والتنفيذ ثم تشغيل مستمر يحفظ قيمة الأصل وينمّي عائده</p>
       <div class="chips rv">
@@ -336,19 +339,19 @@
       <article class="fee rv">
         <span class="fee__k">أتعاب البُعدين <span class="n">01</span> و<span class="n">02</span></span>
         <div class="fee__v"><b class="n">12.5<sup>%</sup></b><span>من إجمالي تكلفة التنفيذ</span></div>
-        <p class="fee__s">= <span class="n">375,000</span> ريال على تكلفة تنفيذ متوقعة <span class="n">3,000,000</span> ريال</p>
+        <p class="fee__s">على تكلفة تنفيذ متوقعة من <span class="n">3</span> مليون إلى <span class="n">4</span> مليون ريال</p>
         <div class="calc">
-          <div class="calc__row"><label for="cost">جرّب على تكلفة تنفيذ أخرى</label><output id="costOut" for="cost"><span class="n">3,000,000</span><small>ريال</small></output></div>
-          <input class="rng" id="cost" type="range" min="2000000" max="6000000" step="100000" value="3000000" aria-label="تكلفة التنفيذ المتوقعة بالريال">
-          <div class="calc__ends"><span class="n">2,000,000</span><span class="n">6,000,000</span></div>
-          <div class="calc__fee"><span>أتعاب البُعدين</span><b><span class="n" id="feeOut">375,000</span><small>ريال</small></b></div>
+          <div class="calc__row"><label for="cost">حرّك لتعرف الأتعاب على تكلفة التنفيذ</label><output id="costOut" for="cost"><span class="n">3,500,000</span><small>ريال</small></output></div>
+          <input class="rng" id="cost" type="range" min="3000000" max="4000000" step="50000" value="3500000" aria-label="تكلفة التنفيذ المتوقعة بالريال">
+          <div class="calc__ends"><span><span class="n">3</span> مليون</span><span><span class="n">4</span> مليون</span></div>
+          <div class="calc__fee"><span>أتعاب البُعدين</span><b><span class="n" id="feeOut">437,500</span><small>ريال</small></b></div>
         </div>
       </article>
       <article class="fee fee--b rv">
         <div><span class="fee__k">أتعاب البُعد <span class="n">03</span></span>
           <div class="fee__v"><b class="n">7<sup>%</sup></b><span>سنوياً</span></div>
           <p class="fee__s">من الإيراد المحصّل</p></div>
-        <div class="ring" id="ring"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" cx="50" cy="50" r="42"/></svg><span>من كل ريال<br>يُحصَّل</span></div>
+        <div class="ring" id="ring"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" cx="50" cy="50" r="42"/></svg><span><b class="n">7%</b>من كل ريال<br>يُحصَّل للعقار</span></div>
       </article>
     </div>
     <p class="fee-note rv">الأتعاب غير شاملة ضريبة القيمة المضافة ولا تشمل تكاليف التنفيذ والرسوم الحكومية</p>
