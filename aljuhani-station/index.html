@@ -236,6 +236,11 @@
   /* v2 (user 2026-10-27) */
   .one { display: block; text-align: center; font-size: clamp(16px, 1.5vw, 19px); color: #f6e7cf; }
   .one b { color: var(--gold); font-weight: 700; }
+  .one--lines { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 22px; }
+  .one--lines span { display: inline-flex; align-items: center; gap: 22px; }
+  .one--lines span::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
+  .one--lines b + span::before { display: none; }
+  @media (max-width: 620px) { .one--lines { flex-direction: column; gap: 6px; } .one--lines span::before { display: none; } .one--lines b { margin-bottom: 4px; } }
   .allies { margin-top: 18px; padding: 18px 20px; border-radius: 20px; background: rgba(22, 14, 10, .82); }
   .allies p { font-size: 13.5px; letter-spacing: .06em; color: var(--gold); margin-bottom: 12px; }
   .allies div { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -395,7 +400,7 @@
         <h3>المسار التشغيلي</h3>
         <ul><li>إختيار مشغّل وقود مؤهل لدى وزارة الطاقة</li><li>تأجير المحلات والأكشاك والخدمات</li><li>إدارة التشغيل والصيانة والأصول</li><li>تقارير دورية واضحة للمالك</li></ul></article>
     </div>
-    <p class="one rv"><b>نقدم لك :</b> عقد واحد .. نقطة تواصل واحدة .. مسؤولية واحدة عن النتيجة</p>
+    <p class="one one--lines rv"><b>نقدم لك</b><span>عقد واحد</span><span>نقطة تواصل واحدة</span><span>مسؤولية واحدة عن النتيجة</span></p>
     <div class="dl rv"><div><b>عرض خدمات بُعد · الأتعاب ورحلة المشروع</b><span>ملف PDF من صفحتين · ب ع / 49 / 2026</span></div><a class="btn btn--gold" href="buad-offer-aljuhani.pdf" download="عرض خدمات بُعد - محطة الجهني.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل العرض</a></div>
   </div>
 </section>
