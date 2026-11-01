@@ -3,245 +3,249 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- Private internal page (user 2026-11-01): pricing options for BUAD's services on the Al-Juhani station (Al Hamdaniya, Jeddah),
-     BUAD manages it from permit to operation with Aldrees as operator. Temporary: delete this folder once the pricing is agreed.
-     Private link only: noindex, not in the sitemap, no link from the site. -->
-<title>تسعير محطة الجهني · بُعد</title>
+<!-- Private page (user 2026-11-01): replaces the temporary internal pricing page. It now shows BUAD's services offer for the
+     Al-Juhani station (ب ع / 49 / 2026) as a web page — same wording and look as the PDF built by
+     03 ملفات العمل/عرض خدمات محطة الجهني/build.py — with a download of that PDF (no signature). noindex, no links from the site. -->
+<title>عرض خدمات بُعد · محطة الجهني</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#160e0a">
 <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
-/* Layout: one reading column, an RTL internal memo in BUAD colours — summary, options table, the recommended three layers, a small calculator, open questions */
-:root {
-  --bg: #f5ebdd; --paper: #fbf5ec; --ink: #2a1c15; --muted: #6f5b4d; --brown: #43291f; --tan: #a9794f; --line: #dfccb7; --soft: #efe2d0;
-  --font: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #1b1310; --paper: #241a15; --ink: #f1e6d8; --muted: #b9a593; --brown: #e7cfb3; --tan: #d0a275; --line: #3f2f26; --soft: #2e221c; color-scheme: dark } }
-:root[data-theme="dark"] {
-  --bg: #1b1310; --paper: #241a15; --ink: #f1e6d8; --muted: #b9a593; --brown: #e7cfb3; --tan: #d0a275; --line: #3f2f26; --soft: #2e221c; color-scheme: dark }
+  :root {
+    --ink: #160e0a; --esp: #22160f; --brown: #3a2418; --mocha: #7a5a43; --gold: #e6c48d; --gold-d: #a8794a; --cream: #efe1ca;
+    --soft: rgba(239, 225, 202, .74); --sugar: #f3e6d1; --card: #f8eedd; --hair-d: rgba(230, 196, 141, .24); --hair-l: rgba(58, 36, 24, .15); --txt: #2b1d15;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--sugar); }
+  body { font-family: Tajawal, sans-serif; color: var(--txt); background: var(--sugar); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .n { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  .w { width: min(1080px, 100%); margin-inline: auto; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+  .eb { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; letter-spacing: .06em; color: var(--gold-d); }
+  .eb::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: currentColor; }
+  h2 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 200; line-height: 1.2; color: var(--brown); text-wrap: balance; }
+  h2 b { font-weight: 800; }
 
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.8; direction: rtl;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
-.wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 34px; }
-.n { direction: ltr; unicode-bidi: isolate; display: inline-block; font-variant-numeric: tabular-nums; }
-h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.35; }
-p { margin: 0; }
+  /* hero */
+  .hero { position: relative; overflow: hidden; color: var(--cream); padding-block: 26px 40px;
+    background: radial-gradient(60% 70% at 12% 35%, rgba(230, 196, 141, .14), transparent 70%), linear-gradient(165deg, #22160f, #110b07); }
+  .hero__plan { position: absolute; left: -40px; top: 90px; width: min(460px, 46vw); opacity: .5; pointer-events: none; }
+  .top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+  .top img { height: 34px; }
+  .meta { font-size: 13px; line-height: 1.85; color: var(--soft); }
+  .meta b { color: var(--gold); font-weight: 500; margin-left: 6px; }
+  .hero__in { position: relative; max-width: 640px; margin-top: 36px; }
+  .hero .eb { color: var(--gold); }
+  h1 { font-size: clamp(38px, 6vw, 68px); font-weight: 200; line-height: 1.12; margin-top: 8px; }
+  h1 b { font-weight: 800; color: var(--gold); }
+  .pill { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 8px 18px; border-radius: 999px; font-size: 15.5px; font-weight: 700;
+    background: rgba(22, 14, 10, .55); box-shadow: inset 0 0 0 1px var(--hair-d); }
+  .pill i { width: 8px; height: 8px; border-radius: 50%; background: #6fcf8a; box-shadow: 0 0 0 4px rgba(111, 207, 138, .2); }
+  .lead { margin-top: 16px; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.9; color: var(--soft); }
+  .figs { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 30px; }
+  .figs > div { border-radius: 14px; padding: 12px 16px; background: rgba(22, 14, 10, .5); box-shadow: inset 0 0 0 1px var(--hair-d); }
+  .figs > div > span { display: block; font-size: 13px; color: var(--soft); }
+  .figs b { display: block; font-size: 22px; font-weight: 800; color: var(--gold); line-height: 1.35; margin-top: 2px; }
+  .figs b small { font-size: 13px; font-weight: 500; color: var(--cream); margin-right: 4px; }
+  .figs b.t { font-size: 16px; }
+  .cta { position: relative; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding-inline: 24px; border-radius: 999px; font: inherit; font-size: 15.5px; font-weight: 700; }
+  .btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .btn--gold { color: var(--ink); background: var(--gold); }
+  .btn--ghost { color: #f6e7cf; box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .5); }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-header { display: grid; gap: 10px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
-.tag { justify-self: start; font-size: 12.5px; font-weight: 700; letter-spacing: .3px; color: var(--tan); border: 1px solid var(--tan); padding: 2px 12px; border-radius: 999px; }
-h1 { font-size: clamp(26px, 5vw, 36px); font-weight: 800; color: var(--brown); }
-.lede { color: var(--muted); max-width: 64ch; }
+  /* sections */
+  section { padding-block: 52px 0; }
+  .dims { display: grid; gap: 12px; margin-top: 22px; }
+  .dim { background: var(--card); border-radius: 16px; box-shadow: inset 0 0 0 1px var(--hair-l); padding: 20px 24px; display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 20px; }
+  .dim .no { font-size: 38px; font-weight: 200; color: var(--gold-d); line-height: 1; }
+  .dim h3 { font-size: 21px; font-weight: 800; color: var(--brown); margin-top: 6px; line-height: 1.3; }
+  ul.dots { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 28px; }
+  ul.dots li { position: relative; padding-right: 18px; font-size: 15.5px; line-height: 1.6; }
+  ul.dots li::before { content: ""; position: absolute; right: 2px; top: 10px; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold-d); }
+  ul.dots li.add { font-weight: 700; color: var(--brown); }
+  .fees-note { margin-top: 22px; font-size: 14px; color: var(--mocha); text-align: center; }
+  .fees { margin-top: 10px; display: grid; grid-template-columns: 1.35fr 1fr; border-radius: 20px; overflow: hidden; background: linear-gradient(165deg, #22160f, #110b07); color: var(--cream); }
+  .fees > div { padding: 22px 30px; }
+  .fees > div + div { border-right: 1px solid var(--hair-d); }
+  .fees > div > span { display: block; font-size: 14.5px; color: var(--soft); font-weight: 500; }
+  .fees b { display: block; font-size: clamp(34px, 4vw, 46px); font-weight: 800; color: var(--gold); line-height: 1.2; margin-top: 4px; }
+  .fees b small { font-size: 17px; font-weight: 500; color: var(--cream); margin-right: 6px; }
+  .fees em { display: block; font-style: normal; font-size: 14.5px; color: var(--soft); margin-top: 4px; }
+  .fees em .n { color: var(--gold); font-weight: 700; }
+  .one { margin-top: 24px; text-align: center; font-size: clamp(18px, 2vw, 22px); font-weight: 800; color: var(--brown); }
+  .one i { font-style: normal; color: var(--gold-d); margin: 0 8px; font-weight: 500; }
 
-.bottom { background: var(--brown); color: var(--paper); padding: 20px 22px; border-radius: 6px; display: grid; gap: 6px; }
-:root[data-theme="dark"] .bottom { color: #241a15; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bottom { color: #241a15; } }
-.bottom b { font-size: 13px; letter-spacing: .3px; opacity: .8; font-weight: 700; }
-.bottom p { font-size: 17px; font-weight: 500; }
+  .jr { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 26px; position: relative; }
+  .jr::before { content: ""; position: absolute; top: 21px; right: 30px; left: 30px; height: 1px; background: var(--gold-d); opacity: .45; }
+  .jr .no { position: relative; display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--esp); color: var(--gold); font-weight: 800; font-size: 15px; }
+  .jr h3 { font-size: 18px; font-weight: 800; color: var(--brown); margin-top: 10px; }
+  .jr p { font-size: 14.5px; line-height: 1.6; color: var(--mocha); margin-top: 4px; }
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
+  .blk { background: var(--card); border-radius: 16px; box-shadow: inset 0 0 0 1px var(--hair-l); padding: 22px 26px; min-width: 0; }
+  .blk h3 { font-size: 19px; font-weight: 800; color: var(--brown); display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .blk h3::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: var(--gold-d); flex: none; }
+  .blk p { font-size: 15.5px; line-height: 1.8; }
+  .blk ul.dots { grid-template-columns: 1fr; }
+  .ops { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+  .ops span { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 6px; border-radius: 999px; background: var(--esp); color: var(--cream); font-weight: 700; font-size: 15.5px; }
+  .ops span i { font-style: normal; color: var(--gold); font-weight: 800; font-size: 13px; }
+  .std { margin-top: 30px; border-radius: 20px; background: linear-gradient(165deg, #22160f, #110b07); color: var(--cream); padding: 26px 32px; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: center; }
+  .std h3 { font-size: 26px; font-weight: 200; line-height: 1.35; }
+  .std h3 b { font-weight: 800; color: var(--gold); }
+  .std ol { list-style: none; counter-reset: s; display: grid; gap: 8px; }
+  .std li { counter-increment: s; position: relative; padding-right: 38px; font-size: 16px; line-height: 1.6; }
+  .std li::before { content: counter(s, decimal-leading-zero); position: absolute; right: 0; top: 0; color: var(--gold); font-weight: 800; }
+  .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 30px; align-items: center; }
+  .why figure { border-radius: 20px; overflow: hidden; position: relative; }
+  .why figure img { width: 100%; display: block; aspect-ratio: 16 / 10; object-fit: cover; }
+  .why figcaption { position: absolute; bottom: 10px; right: 10px; font-size: 13px; color: var(--cream); background: rgba(22, 14, 10, .62); padding: 3px 12px; border-radius: 999px; }
+  .why .lead2 { font-size: clamp(18px, 2vw, 22px); line-height: 1.8; margin-top: 8px; }
+  .next { margin-top: 18px; border-right: 4px solid var(--gold-d); padding: 4px 16px 4px 0; font-size: 17px; line-height: 1.85; }
+  .next b { color: var(--brown); }
+  .bye { margin-top: 14px; font-size: 17px; font-weight: 500; color: var(--brown); }
+  .sign { margin-top: 26px; font-size: 18px; color: var(--brown); }
+  .sign b { font-weight: 800; }
 
-section { display: grid; gap: 14px; }
-h2 { font-size: 21px; font-weight: 800; color: var(--brown); display: flex; align-items: center; gap: 10px; }
-h2::before { content: ""; width: 8px; height: 8px; background: var(--tan); transform: rotate(45deg); flex: none; }
-.sub { color: var(--muted); font-size: 14.5px; }
+  .dl { margin-top: 46px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding: 22px 26px; border-radius: 20px;
+    background: linear-gradient(165deg, #22160f, #110b07); color: var(--cream); }
+  .dl strong { display: block; font-size: 19px; color: var(--gold); }
+  .dl span { font-size: 14.5px; color: var(--soft); }
+  .fine { margin-top: 18px; font-size: 13.5px; color: var(--mocha); text-align: center; }
+  footer { margin-top: 40px; background: var(--ink); color: var(--soft); font-size: 13.5px; padding-block: 18px calc(18px + env(safe-area-inset-bottom, 0px)); }
+  footer .w { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
+  footer .c { direction: ltr; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  footer .c b { color: var(--gold); font-weight: 500; }
 
-.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
-table { width: 100%; border-collapse: collapse; min-width: 600px; font-size: 14.5px; }
-th { text-align: right; font-weight: 700; font-size: 13px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--soft); }
-td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-tr:last-child td { border-bottom: 0; }
-td:first-child { font-weight: 700; color: var(--brown); white-space: nowrap; }
-tr.pick td { background: color-mix(in srgb, var(--tan) 10%, transparent); }
-.chip { display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--tan); border: 1px solid var(--tan); border-radius: 999px; padding: 0 8px; margin-inline-start: 6px; vertical-align: 2px; }
-
-.layers { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
-.layer { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: start; padding: 16px 18px; }
-.layer + .layer { border-top: 1px solid var(--line); }
-.step { width: 30px; height: 30px; border: 1.5px solid var(--brown); transform: rotate(45deg); display: grid; place-items: center; margin: 4px 6px 0; }
-.step span { transform: rotate(-45deg); font-weight: 800; font-size: 13px; color: var(--brown); }
-.layer h3 { font-size: 16.5px; font-weight: 800; }
-.layer p { color: var(--muted); font-size: 14.5px; min-width: 0; }
-.layer .rate { font-weight: 800; color: var(--brown); white-space: nowrap; font-size: 15px; }
-.when { font-size: 13px; color: var(--tan); font-weight: 700; }
-
-.calc { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 16px; }
-.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 14px; }
-.fields label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 500; }
-.fields input { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; direction: ltr; text-align: left; width: 100%; font-variant-numeric: tabular-nums; }
-.fields input:focus-visible { outline: 2px solid var(--tan); outline-offset: 1px; }
-.out { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); padding-top: 14px; gap: 12px; }
-.out div { display: grid; gap: 2px; }
-.out span { font-size: 12.5px; color: var(--muted); }
-.out b { font-size: 19px; font-weight: 800; color: var(--brown); }
-.out div:last-child b { color: var(--tan); }
-.warn { font-size: 13px; color: var(--muted); border-inline-start: 3px solid var(--tan); padding-inline-start: 10px; }
-
-ol.q { margin: 0; padding: 0; list-style: none; counter-reset: q; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
-ol.q li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 13px 16px; }
-ol.q li + li { border-top: 1px solid var(--line); }
-ol.q li::before { content: counter(q); font-weight: 800; color: var(--tan); }
-ol.q b { color: var(--brown); }
-ul.notes { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; color: var(--ink); font-size: 15px; }
-footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 14px; }
-
-@media (max-width: 640px) {
-  .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .out { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .layer { grid-template-columns: 40px 1fr; }
-  .layer .rate { grid-column: 2; }
-}
+  @media (max-width: 860px) {
+    .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dim { grid-template-columns: 1fr; gap: 10px; }
+    .dim .no { font-size: 30px; }
+    .fees { grid-template-columns: 1fr; } .fees > div + div { border-right: 0; border-top: 1px solid var(--hair-d); }
+    .jr { grid-template-columns: 1fr; gap: 14px; } .jr::before { display: none; }
+    .jr li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 0 14px; } .jr h3 { margin-top: 6px; } .jr p { grid-column: 2; }
+    .two { grid-template-columns: 1fr; }
+    .std { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+    .why { grid-template-columns: 1fr; }
+    .hero__plan { width: 70vw; top: auto; bottom: 120px; opacity: .25; }
+  }
+  @media (max-width: 560px) {
+    ul.dots { grid-template-columns: 1fr; }
+    .ops { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dim, .blk { padding: 18px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header>
-    <span class="tag">داخلي · مسودة للنقاش</span>
-    <h1>تسعير خدمات بُعد لمحطة الجهني</h1>
-    <p class="lede">محطة الأستاذ مبطي الجهني بحي الحمدانية في جدة (<span class="n">3,368.76</span> م²، رخصة بناء محطة وقود). قبلوا عرضنا مبدئياً، وبُعد تدير المحطة من الرخصة إلى التشغيل وتجيب لها الدريس مشغلاً. هذي الصفحة ترتب طرق التسعير الممكنة والمقترح منها.</p>
-  </header>
-
-  <div class="bottom">
-    <b>الخلاصة</b>
-    <p>نقترح تسعيراً مركّباً من ثلاث طبقات: رسوم ثابتة لمرحلة التراخيص، ونسبة من تكلفة التنفيذ، ونسبة سنوية من دخل المحطة طوال عقد المشغل. كذا تُغطّى تكاليف بُعد من البداية، ويبقى لها دخل مستمر مربوط بنجاح المحطة.</p>
+<header class="hero">
+  <img class="hero__plan" src="../almajed-ypsqme3/plan-gold.webp" alt="">
+  <div class="w">
+    <div class="top"><img src="../../assets/img/logo-h-sand.png" alt="بُعد">
+      <div class="meta"><div><b>اليوم :</b>الأحد</div><div><b>التاريخ :</b><span class="n">2026/11/01</span> م</div><div><b>الرقم :</b>ب ع / <span class="n">49</span> / <span class="n">2026</span></div>
+        <div><b>الموضوع :</b>عرض خدمات إدارة وتطوير وتشغيل محطة وقود</div></div></div>
+    <div class="hero__in">
+      <span class="eb">إدارة وتطوير وتشغيل</span>
+      <h1>عرض خدمات <b>بُعد</b></h1>
+      <span class="pill"><i aria-hidden="true"></i>سعادة الأستاذ/ مبطي الجهني - الموقر</span>
+      <p class="lead">يسعدنا أن نقدم لكم عرض خدماتنا لمحطتكم في حي الحمدانية، إذ تتولى بُعد إدارة كامل مراحل المحطة نيابةً عنكم، من تحديث الرخصة وإستكمال الموافقات، إلى التطوير والتنفيذ، ثم تشغيل مستمر يحفظ قيمة الأصل وينمّي عائده.</p>
+    </div>
+    <div class="figs">
+      <div><span>مساحة الأرض</span><b><span class="n">3,368.76</span><small>م²</small></b></div>
+      <div><span>إجمالي المسطحات</span><b><span class="n">939.91</span><small>م²</small></b></div>
+      <div><span>الوحدات</span><b><span class="n">13</span><small>وحدة</small></b></div>
+      <div><span>رخصة البناء</span><b class="t">صادرة - نبدأ بتحديثها</b></div>
+    </div>
+    <div class="cta">
+      <a class="btn btn--gold" href="../almajed-ypsqme3/buad-offer-aljuhani.pdf" download="عرض خدمات بُعد - محطة الجهني.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل العرض PDF</a>
+      <a class="btn btn--ghost" href="#fees">الأتعاب</a>
+    </div>
   </div>
+</header>
 
-  <section>
-    <h2>طرق التسعير المتعارف عليها</h2>
-    <p class="sub">النسب تقريبية من السوق، وتُحدَّد نهائياً بعد عرض المقاول وعرض الدريس.</p>
-    <div class="tbl"><table>
-      <thead><tr><th>النموذج</th><th>كيف يشتغل</th><th>يناسب متى</th></tr></thead>
-      <tbody>
-        <tr class="pick"><td>رسوم إدارة تطوير<span class="chip">ضمن المقترح</span></td><td>نسبة من تكلفة البناء، تقريباً <span class="n">5% – 10%</span> (في واجهة الجموم اعتمدنا <span class="n">10%</span>)</td><td>إذا المالك هو اللي يموّل البناء</td></tr>
-        <tr class="pick"><td>رسوم ثابتة على مراحل<span class="chip">ضمن المقترح</span></td><td>مبلغ مقطوع لتحديث الرخصة والموافقات والتعاقد، يُدفع على دفعات</td><td>يحمي بُعد لو تعطّل المشروع</td></tr>
-        <tr><td>عمولة إستقطاب المشغل</td><td>مبلغ أو نسبة عند توقيع عقد الدريس</td><td>تحتاج التأكد من أنظمة الوساطة العقارية ورخصة فال</td></tr>
-        <tr class="pick"><td>إدارة أملاك سنوية<span class="chip">ضمن المقترح</span></td><td>نسبة من الإيجار المحصّل، تقريباً <span class="n">5% – 10%</span> سنوياً (عقد الدريس والمحلات والأكشاك)</td><td>دخل مستمر طوال العقد</td></tr>
-        <tr><td>مشاركة في الدخل</td><td>بُعد تأخذ نسبة من صافي دخل المحطة (مثلاً <span class="n">10% – 20%</span>) بدل الرسوم</td><td>إذا المالك ما يبغى يدفع شيئاً مقدماً</td></tr>
-        <tr><td>إستئجار المحطة كاملة</td><td>بُعد تستأجر المحطة من المالك بإيجار ثابت، وتؤجرها للدريس والمحلات، والفرق ربحها</td><td>أعلى ربح، لكن فيه مخاطرة والتزام مالي على بُعد</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section>
-    <h2>المقترح: ثلاث طبقات</h2>
-    <div class="layers">
-      <div class="layer">
-        <div class="step"><span>1</span></div>
-        <div><h3>رسوم ثابتة لمرحلة الدراسة والتراخيص</h3><p>تحديث رخصة البناء وتجديدها، موافقات الدفاع المدني ووزارة الطاقة، رخص التشغيل، وهيكلة العقود.</p><p class="when">تُدفع مقدماً وعلى مراحل</p></div>
-        <div class="rate">مبلغ مقطوع</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>2</span></div>
-        <div><h3>رسوم إدارة التطوير</h3><p>طرح أعمال التنفيذ وتقييم المقاولين، إدارة الجدول والتكلفة، الإشراف على الجودة حتى الإستلام، وتجهيز المحطة على اشتراطات المشغل.</p><p class="when">تُدفع مع دفعات المقاول</p></div>
-        <div class="rate"><span class="n">6% – 8%</span> من تكلفة التنفيذ</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>3</span></div>
-        <div><h3>نسبة سنوية من الإيراد المحصّل</h3><p>إدارة عقد الدريس، تأجير المحلات والأكشاك، التشغيل والصيانة، وتقارير دورية للمالك.</p><p class="when">طوال مدة عقد المشغل</p></div>
-        <div class="rate"><span class="n">5% – 10%</span> سنوياً</div>
-      </div>
+<main>
+<section>
+  <div class="w">
+    <h2>نعمل معكم وفق <b><span class="n">3</span> أبعاد</b></h2>
+    <div class="dims">
+      <div class="dim"><div><span class="no n">01</span><h3>بُعد العقود والمناقصات</h3></div>
+        <ul class="dots"><li>تحديث رخصة البناء وتجديدها</li><li>صياغة العقود ومراجعتها وحفظ حقوق المالك وسياسة التعاقدات</li>
+          <li>إستكمال موافقات الدفاع المدني والجهات المختصة</li><li>التفاوض مع المشغّل والمستأجرين والموردين</li>
+          <li>متطلبات وزارة الطاقة لتأهيل المحطة</li><li>مراجعة التصاميم الهندسية</li>
+          <li>رخص التشغيل والسجلات النظامية</li><li>مراجعة الأعمال المنفذة</li>
+          <li>طرح أعمال التنفيذ وتقييم عروض المقاولين</li></ul></div>
+      <div class="dim"><div><span class="no n">02</span><h3>بُعد التطوير</h3></div>
+        <ul class="dots"><li>إدارة المشروع ومتابعة الجدول والتكلفة</li><li>الإستلام والتسليم وشهادات الإنجاز</li>
+          <li>الإشراف على الجودة حتى الإستلام</li><li>تعيين المقاولين والموردين بأقل تكلفة وأعلى جودة</li>
+          <li>تجهيز المحطة وفق اشتراطات المشغّلين المؤهلين</li><li>تنسيق أعمال ومراحل التنفيذ</li>
+          <li class="add">توفير الكوادر الفنية المتخصصة في الموقع</li><li class="add">الإشراف الإداري والفني طوال مراحل التنفيذ</li></ul></div>
+      <div class="dim"><div><span class="no n">03</span><h3>بُعد الأصول والتشغيل</h3></div>
+        <ul class="dots"><li>إختيار مشغّل وقود مؤهل لدى وزارة الطاقة</li><li>إدارة الموقع العام</li>
+          <li>إدارة المرافق والعقارات</li><li>تقارير دورية واضحة للمالك</li>
+          <li>إدارة التشغيل والصيانة والأصول</li></ul></div>
     </div>
-  </section>
-
-  <section>
-    <h2>حاسبة توضيحية</h2>
-    <p class="sub">الأرقام المعبّأة مفترضة للتوضيح فقط، وليست أرقاماً حقيقية. غيّرها وتتحدث النتيجة.</p>
-    <form class="calc" id="calc" onsubmit="return false">
-      <div class="fields">
-        <label for="fixed">الرسوم الثابتة (ريال)<input id="fixed" inputmode="numeric" value="150,000"></label>
-        <label for="cost">تكلفة البناء (ريال)<input id="cost" inputmode="numeric" value="4,500,000"></label>
-        <label for="devp">نسبة إدارة التطوير %<input id="devp" inputmode="decimal" value="7"></label>
-        <label for="income">دخل المحطة السنوي (ريال)<input id="income" inputmode="numeric" value="900,000"></label>
-        <label for="mgmt">النسبة السنوية %<input id="mgmt" inputmode="decimal" value="7.5"></label>
-        <label for="years">مدة عقد المشغل (سنة)<input id="years" inputmode="numeric" value="15"></label>
-      </div>
-      <div class="out">
-        <div><span>الرسوم الثابتة</span><b class="n" id="oFixed">–</b></div>
-        <div><span>إدارة التطوير</span><b class="n" id="oDev">–</b></div>
-        <div><span>الإدارة السنوية</span><b class="n" id="oYear">–</b></div>
-        <div><span>الإجمالي على مدة العقد</span><b class="n" id="oTotal">–</b></div>
-      </div>
-      <p class="warn">الإدارة السنوية محسوبة على دخل ثابت بدون زيادات الإيجار، والمبالغ قبل الضريبة.</p>
-    </form>
-  </section>
-
-  <section>
-    <h2>كيف نتعاقد معه</h2>
-    <p class="sub">بالترتيب من القبول المبدئي إلى التشغيل. الأطراف مكتوبة جنب كل عقد.</p>
-    <div class="layers">
-      <div class="layer">
-        <div class="step"><span>1</span></div>
-        <div><h3>مذكرة تفاهم</h3><p>تثبّت القبول المبدئي: نطاق العمل باختصار، وحصرية لبُعد لمدة محددة (مثلاً <span class="n">6</span> أشهر) ما يتعامل فيها المالك مع مطوّر أو مشغل غيرنا، والسرية، ورسوم مرحلة الدراسة والتراخيص.</p><p class="when">الآن</p></div>
-        <div class="rate">المالك · بُعد</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>2</span></div>
-        <div><h3>وكالة أو تفويض</h3><p>تفويض بُعد بمراجعة أمانة جدة وبلدية طيبة والدفاع المدني ووزارة الطاقة نيابة عن المالك، لتحديث الرخصة وإستكمال الموافقات.</p><p class="when">مع مذكرة التفاهم</p></div>
-        <div class="rate">من المالك لبُعد</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>3</span></div>
-        <div><h3>عقد الإدارة والتطوير والتشغيل</h3><p>العقد الرئيسي: المسارات الأربعة، والأتعاب الثلاث وجدول دفعها، والتزامات المالك (التمويل، المستندات، الرد على الموافقات خلال مدة محددة)، والتقارير الدورية، ومدة العقد مربوطة بعقد المشغل، وحالات الإنهاء والتعويض، والإفصاح عن أي عمولة من المشغل.</p><p class="when">بعد اتفاق التسعير</p></div>
-        <div class="rate">المالك · بُعد</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>4</span></div>
-        <div><h3>عقد المقاول</h3><p>المالك صاحب العمل، وبُعد ممثله ومديرة المشروع: تطرح الأعمال وتقيّم العروض وتعتمد المستخلصات وتشرف حتى الإستلام.</p><p class="when">مرحلة التنفيذ</p></div>
-        <div class="rate">المالك · المقاول</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>5</span></div>
-        <div><h3>عقد المشغل</h3><p>عقد إيجار أو تشغيل المحطة مع الدريس، بُعد تفاوض عليه وتديره بعد التوقيع. نوصي أن يكون باسم المالك مباشرة، حتى ما تتحمل بُعد التزام الإيجار، إلا إذا اخترنا نموذج إستئجار المحطة كاملة فيصير بين المالك وبُعد ثم بين بُعد والدريس.</p><p class="when">قبل نهاية التنفيذ</p></div>
-        <div class="rate">المالك · الدريس</div>
-      </div>
-      <div class="layer">
-        <div class="step"><span>6</span></div>
-        <div><h3>عقود المحلات والأكشاك</h3><p>إذا ما كانت ضمن عقد الدريس: تؤجرها بُعد بإسم المالك وتوثّقها في منصة إيجار، وتحصّل الإيجارات وتسلّمها للمالك بعد خصم نسبتها.</p><p class="when">مع التشغيل</p></div>
-        <div class="rate">المالك · المستأجرون</div>
-      </div>
+    <p class="fees-note" id="fees">الأتعاب غير شاملة ضريبة القيمة المضافة، ولا تشمل تكاليف التنفيذ والرسوم الحكومية</p>
+    <div class="fees">
+      <div><span>أتعاب البُعدين <span class="n">01</span> و<span class="n">02</span></span><b><span class="n">12.5%</span><small>من إجمالي تكلفة التنفيذ</small></b>
+        <em>= <span class="n">375,000</span> ريال على تكلفة تنفيذ متوقعة <span class="n">3,000,000</span> ريال</em></div>
+      <div><span>أتعاب البُعد <span class="n">03</span></span><b><span class="n">7%</span><small>سنوياً</small></b><em>من الإيراد المحصّل</em></div>
     </div>
-  </section>
+    <p class="one">عقد واحد <i>..</i> نقطة تواصل واحدة <i>..</i> مسؤولية واحدة عن النتيجة</p>
+  </div>
+</section>
 
-  <section>
-    <h2>قبل تحديد الأرقام نحتاج نعرف</h2>
-    <ol class="q">
-      <li><div><b>مين يموّل البناء؟</b> المالك أو الدريس أو بُعد. هذا اللي يحدد النموذج.</div></li>
-      <li><div><b>عرض الدريس المبدئي:</b> يستأجر المحطة كاملة مع المحلات أو الوقود فقط؟ وكم الإيجار والمدة؟ ومين يبني؟</div></li>
-      <li><div><b>تكلفة البناء التقديرية:</b> عرض سعر من مقاول على المخطط المعتمد (<span class="n">939.91</span> م² مسطحات، <span class="n">13</span> وحدة، دوران).</div></li>
-      <li><div><b>توجه بُعد:</b> دخل مستمر طوال العقد، أو أتعاب ثم الخروج بعد التشغيل؟</div></li>
+<section>
+  <div class="w">
+    <span class="eb">رحلة المشروع</span>
+    <h2 style="margin-top:6px">من التوقيع <b>إلى التشغيل</b></h2>
+    <ol class="jr">
+      <li><span class="no n">01</span><h3>الدراسة والتحديث</h3><p>مراجعة الرخصة والمخطط وتحديثهما ودراسة الجدوى</p></li>
+      <li><span class="no n">02</span><h3>الموافقات</h3><p>إستكمال موافقات الجهات ومتطلبات وزارة الطاقة</p></li>
+      <li><span class="no n">03</span><h3>التعاقد</h3><p>إختيار المقاول والمشغّل المؤهل وإبرام العقود</p></li>
+      <li><span class="no n">04</span><h3>التنفيذ</h3><p>إدارة أعمال الإنشاء والإشراف على الجودة حتى الإستلام</p></li>
+      <li><span class="no n">05</span><h3>التشغيل</h3><p>إفتتاح المحطة وإدارة التشغيل والتأجير والعائد</p></li>
     </ol>
-  </section>
+    <div class="two">
+      <div class="blk"><h3>ندير عنكم المقاولين ومقدمي الخدمات</h3>
+        <p>نختار المقاولين والشركاء ومقدمي الخدمات المؤهلين، ونتعاقد معهم ونشرف عليهم في كل مرحلة: الإنشاء والتجهيز، والتصميم والإشراف، والتشغيل، والصيانة، والنظافة، والأمن، والتسويق والتأجير. وتبقى بُعد مسؤولة أمامكم عن النتيجة، فلا تحتاجون التعامل مع أكثر من جهة.</p></div>
+      <div class="blk"><h3>إختيار المشغّل الأنسب</h3>
+        <p>نختار للمحطة المشغّل الأنسب من كبار المشغّلين المؤهلين لدى وزارة الطاقة، وفق الأولوية التالية:</p>
+        <div class="ops"><span><i class="n">1</i>الدريس</span><span><i class="n">2</i>درب</span><span><i class="n">3</i>أرامكو</span><span><i class="n">4</i>ساسكو</span></div></div>
+    </div>
+    <div class="two" style="margin-top:16px">
+      <div class="blk"><h3>شفافية كاملة مع المالك</h3>
+        <ul class="dots"><li>تقرير شهري خلال التنفيذ، وتقرير ربع سنوي خلال التشغيل</li><li>حسابات مستقلة للمحطة، ولكم حق الإطلاع عليها ومراجعتها في أي وقت</li>
+          <li>تحويل صافي الإيراد لكم كل ربع سنة مع كشف حساب تفصيلي</li><li>عقد المشغّل بإسمكم مباشرة، وبموافقتكم على مدته وقيمته</li></ul></div>
+      <div class="std" style="margin-top:0;grid-template-columns:1fr;gap:14px"><h3>المعيار الذي <b>نلتزم به</b></h3>
+        <ol><li>تصميم وتجهيز يطابق اشتراطات وزارة الطاقة ومعايير كبار المشغّلين من اليوم الأول</li>
+          <li>محطة جاهزة لإستقطاب أفضل مشغّل، وبشروط تعاقدية أقوى للمالك</li>
+          <li>تكلفة محسوبة بلا إعادة عمل، وقيمة أعلى للأصل على المدى الطويل</li></ol></div>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>ملاحظات</h2>
-    <ul class="notes">
-      <li>إذا الدريس بيدفع لبُعد عمولة كذلك، يُذكر هذا للمالك في العقد حتى لا يكون فيه تعارض مصالح.</li>
-      <li>أي عمولة على تأجير أو وساطة تحتاج رخصة فال، ونتأكد من النسب النظامية قبل اعتمادها.</li>
-      <li>إذا الدريس هو اللي يبني ويستأجر المحطة كاملة، تصغر الطبقة الثانية والثالثة، ويصير التركيز على الرسوم الثابتة وأتعاب الإستقطاب.</li>
-    </ul>
-  </section>
+<section>
+  <div class="w">
+    <div class="why">
+      <div><span class="eb">لماذا بُعد</span>
+        <p class="lead2">ممثل احترافي للمالك يقدم منظومة متكاملة للإدارة والتطوير والتشغيل.</p>
+        <p class="next"><b>الخطوة التالية:</b> توقيع عقد الإدارة والتطوير والتشغيل،<br>ونبدأ بعده مباشرة بتحديث الرخصة</p>
+        <p class="bye">أطيب الأمنيات ودمتم بخير</p>
+        <p class="sign"><b>بُعد</b> - إدارة تطوير الأعمال</p></div>
+      <figure><img src="../almajed-ypsqme3/station.webp" alt="تصور محطة الجهني"><figcaption>تصور المحطة على المخطط المعتمد</figcaption></figure>
+    </div>
+    <div class="dl"><div><strong>عرض خدمات بُعد · محطة الجهني</strong><span>ملف PDF من صفحتين · ب ع / <span class="n">49</span> / <span class="n">2026</span></span></div>
+      <a class="btn btn--gold" href="../almajed-ypsqme3/buad-offer-aljuhani.pdf" download="عرض خدمات بُعد - محطة الجهني.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل العرض</a></div>
+    <p class="fine">تخضع الأتعاب والإلتزامات التفصيلية لعقد الإدارة والتطوير والتشغيل</p>
+  </div>
+</section>
+</main>
 
-  <footer>بُعد · صفحة مؤقتة للنقاش الداخلي، تُحذف بعد اعتماد التسعير.</footer>
-</div>
-
-<script>
-(function () {
-  const $ = id => document.getElementById(id);
-  const num = id => { const v = parseFloat(String($(id).value).replace(/[^\d.]/g, '')); return isNaN(v) ? 0 : v; };
-  const fmt = v => Math.round(v).toLocaleString('en-US');
-  function run() {
-    const fixed = num('fixed'), dev = num('cost') * num('devp') / 100, year = num('income') * num('mgmt') / 100;
-    $('oFixed').textContent = fmt(fixed);
-    $('oDev').textContent = fmt(dev);
-    $('oYear').textContent = fmt(year);
-    $('oTotal').textContent = fmt(fixed + dev + year * num('years'));
-  }
-  document.querySelectorAll('#calc input').forEach(i => i.addEventListener('input', run));
-  run();
-})();
-</script>
+<footer><div class="w"><span>بُعد · إدارة · تطوير · تشغيل</span><span class="c"><b>buad.sa</b><span>info@buad-r.sa</span><span>4030560162</span><span>Kingdom of Saudi Arabia</span></span></div></footer>
 </body>
 </html>
