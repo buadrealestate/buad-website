@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Private internal page (user 2026-11-01): pricing options for BUAD's services on the Al-Juhani station (Al Hamdaniya, Jeddah),
+     BUAD manages it from permit to operation with Aldrees as operator. Temporary: delete this folder once the pricing is agreed.
+     Private link only: noindex, not in the sitemap, no link from the site. -->
+<title>تسعير محطة الجهني · بُعد</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: one reading column, an RTL internal memo in BUAD colours — summary, options table, the recommended three layers, a small calculator, open questions */
+:root {
+  --bg: #f5ebdd; --paper: #fbf5ec; --ink: #2a1c15; --muted: #6f5b4d; --brown: #43291f; --tan: #a9794f; --line: #dfccb7; --soft: #efe2d0;
+  --font: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1310; --paper: #241a15; --ink: #f1e6d8; --muted: #b9a593; --brown: #e7cfb3; --tan: #d0a275; --line: #3f2f26; --soft: #2e221c; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #1b1310; --paper: #241a15; --ink: #f1e6d8; --muted: #b9a593; --brown: #e7cfb3; --tan: #d0a275; --line: #3f2f26; --soft: #2e221c; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.8; direction: rtl;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+.wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 34px; }
+.n { direction: ltr; unicode-bidi: isolate; display: inline-block; font-variant-numeric: tabular-nums; }
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.35; }
+p { margin: 0; }
+
+header { display: grid; gap: 10px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.tag { justify-self: start; font-size: 12.5px; font-weight: 700; letter-spacing: .3px; color: var(--tan); border: 1px solid var(--tan); padding: 2px 12px; border-radius: 999px; }
+h1 { font-size: clamp(26px, 5vw, 36px); font-weight: 800; color: var(--brown); }
+.lede { color: var(--muted); max-width: 64ch; }
+
+.bottom { background: var(--brown); color: var(--paper); padding: 20px 22px; border-radius: 6px; display: grid; gap: 6px; }
+:root[data-theme="dark"] .bottom { color: #241a15; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bottom { color: #241a15; } }
+.bottom b { font-size: 13px; letter-spacing: .3px; opacity: .8; font-weight: 700; }
+.bottom p { font-size: 17px; font-weight: 500; }
+
+section { display: grid; gap: 14px; }
+h2 { font-size: 21px; font-weight: 800; color: var(--brown); display: flex; align-items: center; gap: 10px; }
+h2::before { content: ""; width: 8px; height: 8px; background: var(--tan); transform: rotate(45deg); flex: none; }
+.sub { color: var(--muted); font-size: 14.5px; }
+
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
+table { width: 100%; border-collapse: collapse; min-width: 600px; font-size: 14.5px; }
+th { text-align: right; font-weight: 700; font-size: 13px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--soft); }
+td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 700; color: var(--brown); white-space: nowrap; }
+tr.pick td { background: color-mix(in srgb, var(--tan) 10%, transparent); }
+.chip { display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--tan); border: 1px solid var(--tan); border-radius: 999px; padding: 0 8px; margin-inline-start: 6px; vertical-align: 2px; }
+
+.layers { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
+.layer { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: start; padding: 16px 18px; }
+.layer + .layer { border-top: 1px solid var(--line); }
+.step { width: 30px; height: 30px; border: 1.5px solid var(--brown); transform: rotate(45deg); display: grid; place-items: center; margin: 4px 6px 0; }
+.step span { transform: rotate(-45deg); font-weight: 800; font-size: 13px; color: var(--brown); }
+.layer h3 { font-size: 16.5px; font-weight: 800; }
+.layer p { color: var(--muted); font-size: 14.5px; min-width: 0; }
+.layer .rate { font-weight: 800; color: var(--brown); white-space: nowrap; font-size: 15px; }
+.when { font-size: 13px; color: var(--tan); font-weight: 700; }
+
+.calc { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 16px; }
+.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 14px; }
+.fields label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 500; }
+.fields input { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; direction: ltr; text-align: left; width: 100%; font-variant-numeric: tabular-nums; }
+.fields input:focus-visible { outline: 2px solid var(--tan); outline-offset: 1px; }
+.out { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); padding-top: 14px; gap: 12px; }
+.out div { display: grid; gap: 2px; }
+.out span { font-size: 12.5px; color: var(--muted); }
+.out b { font-size: 19px; font-weight: 800; color: var(--brown); }
+.out div:last-child b { color: var(--tan); }
+.warn { font-size: 13px; color: var(--muted); border-inline-start: 3px solid var(--tan); padding-inline-start: 10px; }
+
+ol.q { margin: 0; padding: 0; list-style: none; counter-reset: q; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
+ol.q li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 13px 16px; }
+ol.q li + li { border-top: 1px solid var(--line); }
+ol.q li::before { content: counter(q); font-weight: 800; color: var(--tan); }
+ol.q b { color: var(--brown); }
+ul.notes { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; color: var(--ink); font-size: 15px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 14px; }
+
+@media (max-width: 640px) {
+  .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .out { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .layer { grid-template-columns: 40px 1fr; }
+  .layer .rate { grid-column: 2; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="tag">داخلي · مسودة للنقاش</span>
+    <h1>تسعير خدمات بُعد لمحطة الجهني</h1>
+    <p class="lede">محطة الأستاذ مبطي الجهني بحي الحمدانية في جدة (<span class="n">3,368.76</span> م²، رخصة بناء محطة وقود). قبلوا عرضنا مبدئياً، وبُعد تدير المحطة من الرخصة إلى التشغيل وتجيب لها الدريس مشغلاً. هذي الصفحة ترتب طرق التسعير الممكنة والمقترح منها.</p>
+  </header>
+
+  <div class="bottom">
+    <b>الخلاصة</b>
+    <p>نقترح تسعيراً مركّباً من ثلاث طبقات: رسوم ثابتة لمرحلة التراخيص، ونسبة من تكلفة التنفيذ، ونسبة سنوية من دخل المحطة طوال عقد المشغل. كذا تُغطّى تكاليف بُعد من البداية، ويبقى لها دخل مستمر مربوط بنجاح المحطة.</p>
+  </div>
+
+  <section>
+    <h2>طرق التسعير المتعارف عليها</h2>
+    <p class="sub">النسب تقريبية من السوق، وتُحدَّد نهائياً بعد عرض المقاول وعرض الدريس.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>النموذج</th><th>كيف يشتغل</th><th>يناسب متى</th></tr></thead>
+      <tbody>
+        <tr class="pick"><td>رسوم إدارة تطوير<span class="chip">ضمن المقترح</span></td><td>نسبة من تكلفة البناء، تقريباً <span class="n">5% – 10%</span> (في واجهة الجموم اعتمدنا <span class="n">10%</span>)</td><td>إذا المالك هو اللي يموّل البناء</td></tr>
+        <tr class="pick"><td>رسوم ثابتة على مراحل<span class="chip">ضمن المقترح</span></td><td>مبلغ مقطوع لتحديث الرخصة والموافقات والتعاقد، يُدفع على دفعات</td><td>يحمي بُعد لو تعطّل المشروع</td></tr>
+        <tr><td>عمولة إستقطاب المشغل</td><td>مبلغ أو نسبة عند توقيع عقد الدريس</td><td>تحتاج التأكد من أنظمة الوساطة العقارية ورخصة فال</td></tr>
+        <tr class="pick"><td>إدارة أملاك سنوية<span class="chip">ضمن المقترح</span></td><td>نسبة من الإيجار المحصّل، تقريباً <span class="n">5% – 10%</span> سنوياً (عقد الدريس والمحلات والأكشاك)</td><td>دخل مستمر طوال العقد</td></tr>
+        <tr><td>مشاركة في الدخل</td><td>بُعد تأخذ نسبة من صافي دخل المحطة (مثلاً <span class="n">10% – 20%</span>) بدل الرسوم</td><td>إذا المالك ما يبغى يدفع شيئاً مقدماً</td></tr>
+        <tr><td>إستئجار المحطة كاملة</td><td>بُعد تستأجر المحطة من المالك بإيجار ثابت، وتؤجرها للدريس والمحلات، والفرق ربحها</td><td>أعلى ربح، لكن فيه مخاطرة والتزام مالي على بُعد</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>المقترح: ثلاث طبقات</h2>
+    <div class="layers">
+      <div class="layer">
+        <div class="step"><span>1</span></div>
+        <div><h3>رسوم ثابتة لمرحلة الدراسة والتراخيص</h3><p>تحديث رخصة البناء وتجديدها، موافقات الدفاع المدني ووزارة الطاقة، رخص التشغيل، وهيكلة العقود.</p><p class="when">تُدفع مقدماً وعلى مراحل</p></div>
+        <div class="rate">مبلغ مقطوع</div>
+      </div>
+      <div class="layer">
+        <div class="step"><span>2</span></div>
+        <div><h3>رسوم إدارة التطوير</h3><p>طرح أعمال التنفيذ وتقييم المقاولين، إدارة الجدول والتكلفة، الإشراف على الجودة حتى الإستلام، وتجهيز المحطة على اشتراطات المشغل.</p><p class="when">تُدفع مع دفعات المقاول</p></div>
+        <div class="rate"><span class="n">6% – 8%</span> من تكلفة التنفيذ</div>
+      </div>
+      <div class="layer">
+        <div class="step"><span>3</span></div>
+        <div><h3>نسبة سنوية من الإيراد المحصّل</h3><p>إدارة عقد الدريس، تأجير المحلات والأكشاك، التشغيل والصيانة، وتقارير دورية للمالك.</p><p class="when">طوال مدة عقد المشغل</p></div>
+        <div class="rate"><span class="n">5% – 10%</span> سنوياً</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>حاسبة توضيحية</h2>
+    <p class="sub">الأرقام المعبّأة مفترضة للتوضيح فقط، وليست أرقاماً حقيقية. غيّرها وتتحدث النتيجة.</p>
+    <form class="calc" id="calc" onsubmit="return false">
+      <div class="fields">
+        <label for="fixed">الرسوم الثابتة (ريال)<input id="fixed" inputmode="numeric" value="150,000"></label>
+        <label for="cost">تكلفة البناء (ريال)<input id="cost" inputmode="numeric" value="4,500,000"></label>
+        <label for="devp">نسبة إدارة التطوير %<input id="devp" inputmode="decimal" value="7"></label>
+        <label for="income">دخل المحطة السنوي (ريال)<input id="income" inputmode="numeric" value="900,000"></label>
+        <label for="mgmt">النسبة السنوية %<input id="mgmt" inputmode="decimal" value="7.5"></label>
+        <label for="years">مدة عقد المشغل (سنة)<input id="years" inputmode="numeric" value="15"></label>
+      </div>
+      <div class="out">
+        <div><span>الرسوم الثابتة</span><b class="n" id="oFixed">–</b></div>
+        <div><span>إدارة التطوير</span><b class="n" id="oDev">–</b></div>
+        <div><span>الإدارة السنوية</span><b class="n" id="oYear">–</b></div>
+        <div><span>الإجمالي على مدة العقد</span><b class="n" id="oTotal">–</b></div>
+      </div>
+      <p class="warn">الإدارة السنوية محسوبة على دخل ثابت بدون زيادات الإيجار، والمبالغ قبل الضريبة.</p>
+    </form>
+  </section>
+
+  <section>
+    <h2>قبل تحديد الأرقام نحتاج نعرف</h2>
+    <ol class="q">
+      <li><div><b>مين يموّل البناء؟</b> المالك أو الدريس أو بُعد. هذا اللي يحدد النموذج.</div></li>
+      <li><div><b>عرض الدريس المبدئي:</b> يستأجر المحطة كاملة مع المحلات أو الوقود فقط؟ وكم الإيجار والمدة؟ ومين يبني؟</div></li>
+      <li><div><b>تكلفة البناء التقديرية:</b> عرض سعر من مقاول على المخطط المعتمد (<span class="n">939.91</span> م² مسطحات، <span class="n">13</span> وحدة، دوران).</div></li>
+      <li><div><b>توجه بُعد:</b> دخل مستمر طوال العقد، أو أتعاب ثم الخروج بعد التشغيل؟</div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>ملاحظات</h2>
+    <ul class="notes">
+      <li>إذا الدريس بيدفع لبُعد عمولة كذلك، يُذكر هذا للمالك في العقد حتى لا يكون فيه تعارض مصالح.</li>
+      <li>أي عمولة على تأجير أو وساطة تحتاج رخصة فال، ونتأكد من النسب النظامية قبل اعتمادها.</li>
+      <li>إذا الدريس هو اللي يبني ويستأجر المحطة كاملة، تصغر الطبقة الثانية والثالثة، ويصير التركيز على الرسوم الثابتة وأتعاب الإستقطاب.</li>
+    </ul>
+  </section>
+
+  <footer>بُعد · صفحة مؤقتة للنقاش الداخلي، تُحذف بعد اعتماد التسعير.</footer>
+</div>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const num = id => { const v = parseFloat(String($(id).value).replace(/[^\d.]/g, '')); return isNaN(v) ? 0 : v; };
+  const fmt = v => Math.round(v).toLocaleString('en-US');
+  function run() {
+    const fixed = num('fixed'), dev = num('cost') * num('devp') / 100, year = num('income') * num('mgmt') / 100;
+    $('oFixed').textContent = fmt(fixed);
+    $('oDev').textContent = fmt(dev);
+    $('oYear').textContent = fmt(year);
+    $('oTotal').textContent = fmt(fixed + dev + year * num('years'));
+  }
+  document.querySelectorAll('#calc input').forEach(i => i.addEventListener('input', run));
+  run();
+})();
+</script>
+</body>
+</html>
