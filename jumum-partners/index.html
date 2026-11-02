@@ -184,7 +184,7 @@
   tr[data-i] { cursor: pointer; }
 
   .typer { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
-  .typer input { width: 3.4ch; min-width: 0; font: 200 clamp(64px, 8vw, 112px)/1 Tajawal, sans-serif; color: #f8ecd8; background: transparent; border: 0;
+  .typer input { flex: 1 1 8ch; width: 8ch; max-width: 100%; min-width: 0; font: 200 clamp(40px, 5.2vw, 76px)/1.1 Tajawal, sans-serif; color: #f8ecd8; background: transparent; border: 0;
     border-bottom: 2px solid rgba(230, 196, 141, .5); text-align: center; direction: ltr; -moz-appearance: textfield; padding: 0 2px 4px; }
   .typer input::-webkit-outer-spin-button, .typer input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   .typer input:focus { outline: none; border-bottom-color: var(--gold); }
@@ -405,14 +405,14 @@
     <div class="head rv"><p class="eb">عائدك من المشاركة</p><h2 class="h2">اختر مبلغك <b>وشوف حصتك</b></h2></div>
     <div class="inst rv">
       <div class="inst__l">
-        <label for="amtIn">اكتب مبلغ مشاركتك بالمليون</label>
+        <label for="amtIn">اكتب مبلغ مشاركتك بالريال</label>
         <div class="typer">
-          <button type="button" class="typer__b" id="amtMinus" aria-label="أقل بمليون">−</button>
-          <input id="amtIn" lang="en" type="number" inputmode="numeric" min="1" max="47" step="1" value="10" aria-describedby="amtHint">
-          <button type="button" class="typer__b" id="amtPlus" aria-label="أكثر بمليون">+</button>
-          <span class="typer__u" id="amtU">ملايين ريال</span>
+          <button type="button" class="typer__b" id="amtMinus" aria-label="أقل بـ 100,000 ريال">−</button>
+          <input id="amtIn" lang="en" type="text" inputmode="numeric" autocomplete="off" value="10,000,000" aria-describedby="amtHint">
+          <button type="button" class="typer__b" id="amtPlus" aria-label="أكثر بـ 100,000 ريال">+</button>
+          <span class="typer__u">ريال</span>
         </div>
-        <p class="inst__hint" id="amtHint">السهم الواحد مليون ريال · من سهم واحد إلى <span class="n">47</span> سهماً</p>
+        <p class="inst__hint" id="amtHint">اكتب أي مبلغ حتى <span class="n">47,000,000</span> ريال · السهم الواحد مليون ريال</p>
         <button type="button" class="btn btn--gold inst__go" data-req>اطلب الإستثمار بهذا المبلغ<i aria-hidden="true"></i></button>
       </div>
       <div class="inst__r">
@@ -564,11 +564,11 @@
   <form id="rqF">
     <button type="button" class="rq__x" id="rqX" aria-label="إغلاق">×</button>
     <h3 id="rqT">اطلب الإستثمار</h3>
-    <p>اكتب بياناتك وعدد الأسهم ويُفتح لك الواتساب أو بريدك برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع</p>
+    <p>اكتب بياناتك ومبلغ مشاركتك ويُفتح لك الواتساب أو بريدك برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع</p>
     <label for="rqName">الإسم<input id="rqName" name="name" required autocomplete="name"></label>
     <div class="rq__row">
       <label for="rqPhone">رقم الجوال<input id="rqPhone" lang="en" name="phone" type="tel" inputmode="tel" required autocomplete="tel" dir="ltr"></label>
-      <label for="rqShares">عدد الأسهم<input id="rqShares" lang="en" name="shares" type="text" inputmode="numeric" pattern="([1-9]|[1-3][0-9]|4[0-7])" title="من 1 إلى 47" required dir="ltr"></label>
+      <label for="rqShares">مبلغ المشاركة (ريال)<input id="rqShares" lang="en" name="amount" type="text" inputmode="numeric" required dir="ltr"></label>
     </div>
     <label for="rqCity">المدينة<input id="rqCity" name="city" autocomplete="address-level2"></label>
     <label for="rqNote">ملاحظات<textarea id="rqNote" name="note" rows="3"></textarea></label>
@@ -593,30 +593,31 @@
     15: ['12.77%', 1768500, 2874000, 51.6], 20: ['17.02%', 2357900, 3832000, 68.8], 25: ['21.28%', 2947400, 4790000, 86.0], 30: ['25.53%', 3536900, 5748000, 103.2],
     35: ['29.79%', 4126400, 6706000, 120.4], 40: ['34.04%', 4715900, 7664000, 137.6], 47: ['40%', 5541200, 9005000, 161.6] };
   const $ = id => document.getElementById(id), C = 2 * Math.PI * 42, fmt = v => Math.round(v).toLocaleString('en-US');
-  const unit = m => m === 1 ? 'مليون ريال' : (m <= 10 ? 'ملايين ريال' : 'مليون ريال');
-  const amtIn = $('amtIn');
+  const amtIn = $('amtIn'), MAX = 47000000, num = v => +String(v).replace(/[^\d]/g, '') || 0;
   $('capArc').style.strokeDasharray = `${C * .40} 400`;      // the investors' 40% of the company, faint
+  // any amount in riyals: the PDF's row when it is a whole number of millions in the table, otherwise per riyal
   function calc() {
-    let m = Math.round(+amtIn.value || 0);
-    if (m < 1 || m > 47) { amtIn.setCustomValidity('من 1 إلى 47'); return; }
-    amtIn.setCustomValidity('');
-    const r = ROWS[m] || [(m * 40 / 47).toFixed(2) + '%', m * 117900, m * 191600, +(m * 3.44).toFixed(1)];
-    $('amtU').textContent = unit(m);
-    $('rPct').textContent = r[0]; $('rY1').textContent = fmt(r[1]); $('rY4').textContent = fmt(r[2]); $('rTot').textContent = r[3].toFixed(1);
+    const v = Math.min(num(amtIn.value), MAX), m = v / 1e6;
+    if (!v) return;
+    const r = ROWS[m] || [(m * 40 / 47).toFixed(2) + '%', m * 117900, m * 191600, +(m * 3.44).toFixed(2)];
+    $('rPct').textContent = r[0]; $('rY1').textContent = fmt(r[1]); $('rY4').textContent = fmt(r[2]);
+    $('rTot').textContent = r[3] >= 10 ? r[3].toFixed(1) : (+r[3].toFixed(2)).toString();
     $('shareArc').style.strokeDasharray = `${C * parseFloat(r[0]) / 100} 400`;
     $('vIn').style.width = (m / r[3] * 100) + '%'; $('vOut').style.width = '100%';
     $('mult').textContent = (r[3] / m).toFixed(1) + '×';
   }
-  const step = d => { amtIn.value = Math.min(47, Math.max(1, (Math.round(+amtIn.value) || 0) + d)); calc(); };
-  $('amtMinus').addEventListener('click', () => step(-1)); $('amtPlus').addEventListener('click', () => step(1));
-  amtIn.addEventListener('input', calc);
-  amtIn.addEventListener('blur', () => { if (!(+amtIn.value >= 1)) amtIn.value = 1; if (+amtIn.value > 47) amtIn.value = 47; calc(); });
+  function tidy() { const v = Math.min(num(amtIn.value), MAX); amtIn.value = v ? fmt(v) : ''; }
+  const step = d => { amtIn.value = fmt(Math.min(MAX, Math.max(100000, num(amtIn.value) + d))); calc(); };
+  $('amtMinus').addEventListener('click', () => step(-100000)); $('amtPlus').addEventListener('click', () => step(100000));
+  amtIn.addEventListener('input', () => {                       // keep the thousands separators while typing
+    const end = amtIn.value.length - amtIn.selectionEnd; tidy(); const pos = Math.max(0, amtIn.value.length - end); amtIn.setSelectionRange(pos, pos); calc(); });
+  amtIn.addEventListener('blur', () => { if (!num(amtIn.value)) amtIn.value = fmt(1000000); tidy(); calc(); });
   calc();
 
   // «اطلب الإستثمار»: a ready message to BUAD by WhatsApp or e-mail; nothing is stored here
   const WA = '966550000126', MAIL = 'info@buad-r.sa', dlg = $('rq'), form = $('rqF');
   document.querySelectorAll('[data-req]').forEach(b => b.addEventListener('click', () => {
-    $('rqShares').value = Math.min(47, Math.max(1, Math.round(+amtIn.value) || 1)); $('rqOk').hidden = true;
+    $('rqShares').value = fmt(Math.min(num(amtIn.value), MAX) || 1000000); $('rqOk').hidden = true;
     dlg.showModal ? dlg.showModal() : dlg.setAttribute('open', '');
   }));
   $('rqX').addEventListener('click', () => dlg.close());
@@ -624,7 +625,7 @@
   form.addEventListener('submit', e => {
     e.preventDefault();
     const f = new FormData(form), via = e.submitter && e.submitter.value === 'mail' ? 'mail' : 'wa';
-    const lines = ['طلب إستثمار · واجهة الجموم', 'الإسم: ' + f.get('name'), 'الجوال: ' + f.get('phone'), 'عدد الأسهم: ' + f.get('shares') + ' (' + f.get('shares') + ' مليون ريال)'];
+    const lines = ['طلب إستثمار · واجهة الجموم', 'الإسم: ' + f.get('name'), 'الجوال: ' + f.get('phone'), 'مبلغ المشاركة: ' + f.get('amount') + ' ريال'];
     if (f.get('city')) lines.push('المدينة: ' + f.get('city'));
     if (f.get('note')) lines.push('ملاحظات: ' + f.get('note'));
     const text = lines.join('\n');
