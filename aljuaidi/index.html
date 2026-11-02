@@ -136,9 +136,11 @@
   .res b small { font-size: 14px; font-weight: 500; color: var(--gold-d); margin-inline-start: 6px; }
   .res > div:last-child { background: linear-gradient(135deg, #e9cd9c, #c49460); } .res > div:last-child > span { color: rgba(27, 19, 15, .72); } .res > div:last-child b { color: #1b130f; font-weight: 700; }
   .tbl { margin-top: 18px; overflow-x: auto; border-radius: 24px; background: var(--card); box-shadow: inset 0 0 0 1px var(--hair-l); }
-  table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 15px; color: var(--brown); }
-  th { text-align: start; font-size: 13px; font-weight: 700; color: var(--mocha); padding: 14px 18px; border-bottom: 1px solid var(--hair-l); }
-  td { padding: 12px 18px; border-bottom: 1px solid var(--hair-l); font-variant-numeric: tabular-nums; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; font: 500 16px/1.5 Tajawal, sans-serif; color: var(--brown); }
+  th { text-align: start; font-size: 14px; font-weight: 800; color: var(--gold-d); padding: 16px 20px; border-bottom: 1px solid rgba(168, 121, 74, .35); }
+  td { padding: 13px 20px; border-bottom: 1px solid var(--hair-l); }
+  td:first-child { font-weight: 700; }
+  td .n { font-size: 17px; letter-spacing: .01em; }
   tr:last-child td { border-bottom: 0; }
   tr.on td { background: rgba(214, 173, 114, .2); font-weight: 800; }
   tr.cap td { color: var(--gold-d); font-weight: 700; }
@@ -208,7 +210,7 @@
   .lgd > div > em { display: block; font-style: normal; font-size: 13.5px; color: var(--soft); margin-top: 4px; line-height: 1.6; }
   .tbl--d { background: rgba(239, 225, 202, .04); box-shadow: inset 0 0 0 1px var(--hair-d); }
   .tbl--d table { color: #f6e7cf; min-width: 760px; } .tbl--d th { color: var(--gold); border-color: var(--hair-d); } .tbl--d td { border-color: var(--hair-d); }
-  .tbl--d tr.sub td { font-size: 13px; color: var(--soft); padding-top: 4px; }
+  .tbl--d tr.sub td { font-size: 13px; color: var(--soft); padding-top: 4px; } .tbl--d tr.sub td .n { font-size: 13.5px; }
   .tbl--d tr.tot td { font-weight: 800; color: var(--gold); background: rgba(230, 196, 141, .1); }
   .tbl--d tr.fin td { font-weight: 800; color: var(--ink); background: var(--gold); }
 
