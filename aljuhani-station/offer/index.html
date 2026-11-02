@@ -258,6 +258,7 @@
     .bar__tag { display: none; }
     .seal { width: 108px; }
     .clear { grid-template-columns: 1fr; }
+    .cl { grid-template-columns: 54px minmax(0, 1fr); align-items: center; gap: 16px; padding: 20px; }
     .hub__ring { width: 80%; } .hub__ring li { font-size: 11px; }
     .ops li { grid-template-columns: 52px minmax(0, 1fr); } .ops li b { width: 52px; height: 52px; } .ops li em { grid-column: 2; }
     .ref span + span { padding-inline-start: 0; border-inline-start: 0; }
@@ -291,9 +292,6 @@
         <span>الوحدات <b class="n">13</b> وحدة</span>
         <span>رخصة البناء <b>صادرة</b> - نبدأ بتحديثها</span>
       </div>
-      <div class="cta rv">
-        <a class="btn btn--gold" href="#dims">إطلع على العرض<i aria-hidden="true"></i></a>
-      </div>
     </div>
     <div class="hero__plan" aria-label="المخطط الهندسي المعتمد للمحطة">
       <img src="../plan-gold.webp" alt="">
@@ -321,7 +319,7 @@
         <h3><small>البُعد الثاني</small>بُعد التطوير</h3>
         <ul><li>إدارة المشروع ومتابعة الجدول والتكلفة</li><li>الإشراف على الجودة حتى الإستلام</li><li>تجهيز المحطة وفق اشتراطات المشغّلين المؤهلين</li>
           <li>الإستلام والتسليم وشهادات الإنجاز</li><li>تعيين المقاولين والموردين بأقل تكلفة وأعلى جودة</li><li>تنسيق أعمال ومراحل التنفيذ</li>
-          <li class="add">توفير الكوادر الفنية المتخصصة في الموقع</li><li class="add">الإشراف الإداري والفني طوال مراحل التنفيذ</li></ul></article>
+          <li>توفير الكوادر الفنية المتخصصة في الموقع</li><li>الإشراف الإداري والفني طوال مراحل التنفيذ</li></ul></article>
       <article class="dim rv"><span class="dim__no n">03</span>
         <h3><small>البُعد الثالث</small>بُعد الأصول والتشغيل</h3>
         <ul><li>إختيار مشغّل وقود مؤهل لدى وزارة الطاقة</li><li>إدارة المرافق والعقارات</li><li>إدارة التشغيل والصيانة والأصول</li>
@@ -502,18 +500,19 @@
       const target = Math.min(full, Math.max(...lastW));
       items.forEach((it, k) => it.lines.forEach((ln, j) => {
         const last = j === it.lines.length - 1, w = wid(it, ln.idx);
-        const goal = last ? (w >= target * .84 ? target : 0) : full;
-        if (goal - w > goal * .17) return;                    // a long stretch reads badly: leave that line as it is
+        const goal = w >= full * .7 ? full : 0;               // user 2026-11-02: lines aligned to both edges; very short lines stay natural
         let need = Math.floor((goal - w) / tw); if (need <= 0) return;
         const ws = ln.idx.map(i => ({ i, w: it.words[i], s: slots(it.words[i]), n: {}, k: 0 })).filter(o => o.s.length).sort((a, b) => b.w.length - a.w.length);
         if (!ws.length) return; let g = 0;
-        while (need > 0 && g++ < 400) { const o = ws[g % ws.length], pos = o.s[o.k++ % o.s.length]; if ((o.n[pos] || 0) >= 3) continue;
+        while (need > 0 && g++ < 400) { const o = ws[g % ws.length], pos = o.s[o.k++ % o.s.length]; if ((o.n[pos] || 0) >= 5) continue;
           o.n[pos] = (o.n[pos] || 0) + 1; it.spans[o.i].textContent = build(o.w, o.n);
           if (Math.round(it.spans[ln.idx[ln.idx.length - 1]].offsetTop) !== ln.t || Math.round(it.spans[ln.idx[0]].offsetTop) !== ln.t) { o.n[pos]--; it.spans[o.i].textContent = build(o.w, o.n); break; }
           need--; }
       }));
+      items.forEach(it => { const ln = it.lines[it.lines.length - 1]; it.li.dataset.kl = wid(it, ln.idx) >= full * .9 ? '1' : ''; });
     }
-    const run = () => document.querySelectorAll('.dim ul').forEach(card);
+    const run = () => document.querySelectorAll('.dim ul').forEach(ul => { [...ul.children].forEach(li => { li.style.textAlign = 'start'; li.style.textAlignLast = 'start'; }); card(ul);
+      [...ul.children].forEach(li => { li.style.textAlign = 'justify'; li.style.textAlignLast = li.dataset.kl ? 'justify' : 'start'; }); });
     let lw = innerWidth, tm = 0;
     addEventListener('resize', () => { if (innerWidth === lw) return; lw = innerWidth; clearTimeout(tm); tm = setTimeout(run, 160); });
     (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(run, 60));
