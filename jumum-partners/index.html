@@ -83,7 +83,7 @@
   .hero .cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
 
   /* three key boxes */
-  .tri { position: relative; z-index: 3; margin-top: -1px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 26px; overflow: hidden;
+  .tri { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 26px; overflow: hidden;
     background: linear-gradient(170deg, rgba(58, 38, 26, .9), rgba(22, 14, 10, .96)); box-shadow: inset 0 0 0 1px var(--hair-d), 0 40px 70px -40px rgba(0, 0, 0, .9); }
   .tri > div { padding: clamp(22px, 2.6vw, 34px); text-align: center; }
   .tri > div + div { border-right: 1px solid var(--hair-d); }
@@ -183,6 +183,32 @@
   tr.cap td { color: var(--gold-d); font-weight: 700; }
   tr[data-i] { cursor: pointer; }
 
+  .typer { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+  .typer input { width: 3.4ch; min-width: 0; font: 200 clamp(64px, 8vw, 112px)/1 Tajawal, sans-serif; color: #f8ecd8; background: transparent; border: 0;
+    border-bottom: 2px solid rgba(230, 196, 141, .5); text-align: center; direction: ltr; -moz-appearance: textfield; padding: 0 2px 4px; }
+  .typer input::-webkit-outer-spin-button, .typer input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .typer input:focus { outline: none; border-bottom-color: var(--gold); }
+  .typer__b { width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer; font: 300 26px/1 Tajawal, sans-serif; color: #f6e7cf; background: rgba(239, 225, 202, .08); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
+  .typer__b:hover { background: rgba(230, 196, 141, .16); } .typer__b:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .typer__u { font-size: clamp(17px, 1.6vw, 22px); font-weight: 700; color: var(--gold); }
+  .inst__go { justify-self: start; margin-top: 14px; }
+  .ring2 > div > em { display: block; white-space: nowrap; }
+  /* request dialog */
+  .rq { width: min(560px, calc(100% - 28px)); max-height: calc(100dvh - 28px); margin: auto; padding: 0; border: 0; border-radius: 28px; color: var(--brown);
+    background: linear-gradient(180deg, var(--sugar), var(--sugar-2)); box-shadow: 0 50px 100px -30px rgba(0, 0, 0, .7); overflow: auto; }
+  .rq::backdrop { background: rgba(22, 14, 10, .7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .rq form { display: grid; gap: 14px; padding: clamp(24px, 4vw, 36px); }
+  .rq__x { position: absolute; top: 16px; left: 16px; width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer; font-size: 20px; color: var(--brown); background: rgba(58, 36, 24, .08); }
+  .rq h3 { font-size: 26px; font-weight: 800; } .rq h3 + p { font-size: 15px; color: var(--mocha); line-height: 1.8; }
+  .rq label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; color: var(--mocha); }
+  .rq input, .rq textarea { font: 500 16px Tajawal, sans-serif; color: var(--brown); padding: 12px 14px; border-radius: 14px; border: 0; background: #f8eedd; box-shadow: inset 0 0 0 1px rgba(58, 36, 24, .18); }
+  .rq input:focus, .rq textarea:focus { outline: 2px solid var(--gold-d); outline-offset: 1px; }
+  .rq__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rq__send { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+  .rq__send .btn { justify-content: center; padding-inline: 18px; height: 52px; }
+  .rq__mail { color: var(--brown); background: transparent; box-shadow: inset 0 0 0 1px var(--brown); }
+  .rq__note { font-size: 13px; color: var(--mocha); text-align: center; }
+  @media (max-width: 560px) { .rq__row, .rq__send { grid-template-columns: 1fr; } }
   /* scenarios */
   .sc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .s { position: relative; overflow: hidden; display: grid; gap: 14px; padding: clamp(24px, 2.6vw, 32px); border-radius: 28px; background: linear-gradient(170deg, rgba(58, 38, 26, .7), rgba(22, 14, 10, .9)); box-shadow: inset 0 0 0 1px var(--hair-d); }
@@ -306,7 +332,7 @@
 <nav class="bar"><div class="bar__in">
   <img src="../assets/img/logo-h-sand.png" alt="بُعد">
   <span class="bar__tag">الشراكة وحصص الملكية · واجهة الجموم</span>
-  <a class="bar__go" href="#calc">احسب حصتك</a>
+  <button type="button" class="bar__go" data-req style="border:0;cursor:pointer;font:inherit;font-weight:700">اطلب الإستثمار</button>
 </div></nav>
 
 <!-- ============================================ hero -->
@@ -325,7 +351,7 @@
 
 <main>
 <!-- ============================================ three key numbers + intro -->
-<section class="sec light" id="intro" style="padding-top:0">
+<section class="sec light" id="intro" style="padding-top:clamp(48px,6vw,80px)">
   <div class="w">
     <div class="tri rv">
       <div><b><span class="n">35.1</span><small>مليون ريال</small></b><span>تقييم الأرض بسعر <span class="n">12.5</span> ريال للمتر</span><em>الحصة العينية للشركاء الأصليين</em></div>
@@ -336,7 +362,7 @@
     <div class="intro" style="margin-top:clamp(56px,7vw,96px)">
       <div class="rv">
         <p class="eb">الفرصة</p>
-        <p style="margin-top:16px">واجهة الجموم أرض بمساحة قرابة نصف مليون متر مربع عند <b>مدخل مكة المكرمة الشمالي</b> على طريق مكة - المدينة وبين أربع مدن: مكة المكرمة والمدينة المنورة وجدة والطائف. عقدنا مع أمانة العاصمة المقدسة لمدة <span class="n">25</span> سنة بإيجار <b>ثابت <span class="n">1.6</span> مليون</b> لا يزيد طوال المدة، بينما إيجاراتنا للمستأجرين تزيد <span class="n">10%</span> كل <span class="n">3</span> سنوات، فالفارق يكبر كل سنة. الأرض مرخّصة بقرارات صادرة، وإيجار السنة الأولى مدفوع، وتمديد فترة السماح مسدد. تدخل الآن <b>بسعر أقل من السوق</b>، وتسترد رأس مالك <b>قبل الشركاء المؤسسين</b>.</p>
+        <p style="margin-top:16px">واجهة الجموم أرض بمساحة قرابة نصف مليون متر مربع عند <b>مدخل مكة المكرمة الشمالي</b> على طريق مكة - المدينة وبين أربع مدن: مكة المكرمة والمدينة المنورة وجدة والطائف عقدنا مع أمانة العاصمة المقدسة لمدة <span class="n">25</span> سنة بإيجار <b>ثابت <span class="n">1.6</span> مليون</b> لا يزيد طوال المدة بينما إيجاراتنا للمستأجرين تزيد <span class="n">10%</span> كل <span class="n">3</span> سنوات فالفارق يكبر كل سنة الأرض مرخّصة بقرارات صادرة وإيجار السنة الأولى مدفوع وتمديد فترة السماح مسدد تدخل الآن <b>بسعر أقل من السوق</b> وتسترد رأس مالك <b>قبل الشركاء المؤسسين</b></p>
       </div>
       <div class="figs">
         <div class="fg fg--a rv"><b><span class="n">1,000,000</span></b><span>قيمة السهم الواحد (ريال)</span></div>
@@ -354,11 +380,11 @@
     <div class="head rv"><p class="eb">لماذا هذه الأرض</p><h2 class="h2" style="color:#f8ecd8">موقع وطلب ودخلان <b>بسعر دخول أقل من السوق</b></h2></div>
     <div class="why">
       <ul class="pts rv">
-        <li><b>الموقع</b><span><span class="n">16</span> دقيقة للحرم و<span class="n">30</span> دقيقة لمطار جدة و<span class="n">40</span> دقيقة للطائف، على طريق المعتمرين والزوار</span></li>
+        <li><b>الموقع</b><span><span class="n">16</span> دقيقة للحرم و<span class="n">30</span> دقيقة لمطار جدة و<span class="n">40</span> دقيقة للطائف على طريق المعتمرين والزوار</span></li>
         <li><b>المساحة</b><span><span class="n">468,322</span> م² منها <span class="n">304,409</span> م² قابلة للتأجير</span></li>
-        <li><b>الطلب</b><span>الجموم أكثر من <span class="n">110</span> آلاف نسمة، ومركز لثمانية مراكز إدارية</span></li>
-        <li><b>التكلفة</b><span>إيجار الأمانة <span class="n">3.4</span> ريال للمتر، ونؤجر بـ <span class="n">35</span> ريال بعد التجهيز</span></li>
-        <li><b>دخلان</b><span>تأجير الأراضي، ومحطة وقود ومرافق خدمية</span></li>
+        <li><b>الطلب</b><span>الجموم أكثر من <span class="n">110</span> آلاف نسمة ومركز لثمانية مراكز إدارية</span></li>
+        <li><b>التكلفة</b><span>إيجار الأمانة <span class="n">3.4</span> ريال للمتر ونؤجر بـ <span class="n">35</span> ريال بعد التجهيز</span></li>
+        <li><b>دخلان</b><span>تأجير الأراضي ومحطة وقود ومرافق خدمية</span></li>
         <li><b>جاهزية</b><span>التأجير على الخارطة يبدأ خلال سنة</span></li>
       </ul>
       <div class="mk rv">
@@ -367,7 +393,7 @@
         <div class="mk__row"><div><strong>أرض الفروسية بالطائف</strong><small><span class="n">325,000</span> م² · قبل صدور أي تراخيص أو اعتمادات أو موافقات نظامية</small></div><b><span class="n">15.7</span><small>ريال/م² سنوياً</small></b></div>
         <div class="mk__row"><div><strong>أرض على كورنيش جازان</strong><small><span class="n">113,000</span> م² · محدودة بمنطقة واحدة ونشاط سياحي واحد يستهدف السياح فقط</small></div><b><span class="n">35.61</span><small>ريال/م² سنوياً</small></b></div>
         <div class="mk__row mk__row--us"><div><strong>واجهة الجموم: سعر دخولك الآن</strong></div><b><span class="n">12.5</span><small>ريال/م² سنوياً</small></b></div>
-        <p class="mk__note">قيمة حق الأرض محسوبة بأسلوب الدخل على <span class="n">12.5</span> ريال/م²، أقل من كل المؤيدات</p>
+        <p class="mk__note">قيمة حق الأرض محسوبة بأسلوب الدخل على <span class="n">12.5</span> ريال/م² أقل من كل المؤيدات</p>
       </div>
     </div>
   </div>
@@ -379,18 +405,20 @@
     <div class="head rv"><p class="eb">عائدك من المشاركة</p><h2 class="h2">اختر مبلغك <b>وشوف حصتك</b></h2></div>
     <div class="inst rv">
       <div class="inst__l">
-        <label for="amtR">مبلغ مشاركتك</label>
-        <div class="amt"><b class="n" id="amt">10</b><span id="amtU">ملايين ريال</span></div>
-        <div class="rail">
-          <input type="range" id="amtR" min="0" max="10" step="1" value="3" aria-valuetext="10 ملايين ريال">
-          <div class="ticks" id="ticks"></div>
+        <label for="amtIn">اكتب مبلغ مشاركتك بالمليون</label>
+        <div class="typer">
+          <button type="button" class="typer__b" id="amtMinus" aria-label="أقل بمليون">−</button>
+          <input id="amtIn" lang="en" type="number" inputmode="numeric" min="1" max="47" step="1" value="10" aria-describedby="amtHint">
+          <button type="button" class="typer__b" id="amtPlus" aria-label="أكثر بمليون">+</button>
+          <span class="typer__u" id="amtU">ملايين ريال</span>
         </div>
-        <p class="inst__hint">حرّك المؤشر أو اختر مبلغاً · السهم الواحد مليون ريال والسقف <span class="n">47</span> سهماً</p>
+        <p class="inst__hint" id="amtHint">السهم الواحد مليون ريال · من سهم واحد إلى <span class="n">47</span> سهماً</p>
+        <button type="button" class="btn btn--gold inst__go" data-req>اطلب الإستثمار بهذا المبلغ<i aria-hidden="true"></i></button>
       </div>
       <div class="inst__r">
         <div class="ring2" aria-hidden="true">
           <svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="cap" cx="50" cy="50" r="42" id="capArc"/><circle class="fg" cx="50" cy="50" r="42" id="shareArc" style="stroke-dasharray:0 400"/></svg>
-          <div><b class="n" id="rPct">8.51%</b><span>نسبتك في الشركة</span><em>من حصة المستثمرين <span class="n">40%</span></em></div>
+          <div><b class="n" id="rPct">8.51%</b><span>نسبتك في الشركة</span><em>حصة المستثمرين كاملة <span class="n">40%</span></em></div>
         </div>
       </div>
     </div>
@@ -401,13 +429,6 @@
         <div class="vs" aria-hidden="true"><div><span>رأس مالك</span><i id="vIn"></i></div><div><span>ما تستلمه</span><i id="vOut"></i></div></div>
         <span class="mult"><span class="n" id="mult">3.4×</span> رأس مالك</span></div>
     </div>
-    <details class="full rv">
-      <summary>عرض جدول كل المبالغ<i aria-hidden="true"></i></summary>
-      <div class="tbl"><table>
-        <thead><tr><th>مبلغ الدخول</th><th>نسبتك في الشركة</th><th>ربحك في السنة الأولى</th><th>ربحك في السنة الرابعة</th><th>مجموع ما تستلمه خلال 25 سنة</th></tr></thead>
-        <tbody id="rows"></tbody>
-      </table></div>
-    </details>
   </div>
 </section>
 
@@ -415,7 +436,7 @@
 <section class="sec dark" id="returns">
   <div class="w">
     <div class="head rv"><p class="eb">عائدك من المشاركة</p><h2 class="h2" style="color:#f8ecd8">العائد حسب <b>سعر التأجير</b></h2>
-      <p class="lead"><span class="n">50</span> سهماً، سُدد منها <span class="n">3</span> أسهم، والمتاح <span class="n">47</span> سهماً</p></div>
+      <p class="lead"><span class="n">50</span> سهماً سُدد منها <span class="n">3</span> أسهم والمتاح <span class="n">47</span> سهماً</p></div>
     <div class="sc">
       <article class="s rv"><span class="s__tag">متحفظ جداً</span><div class="s__p"><b class="n">30</b><span>ريال/م²</span></div>
         <dl><div><dt>العائد السنوي</dt><dd class="n">10%</dd></div><div><dt>استرداد رأس المال</dt><dd><span class="n">6</span> سنوات</dd></div>
@@ -427,7 +448,7 @@
         <dl><div><dt>العائد السنوي</dt><dd class="n">13%</dd></div><div><dt>استرداد رأس المال</dt><dd><span class="n">5</span> سنوات</dd></div>
           <div><dt>ربح كل مليون (السنة الرابعة)</dt><dd class="n">213,000</dd></div><div><dt>حصيلة إستثمار كل مليون خلال <span class="n">25</span> سنة</dt><dd><span class="n">3.84</span> مليون</dd></div></dl></article>
     </div>
-    <p class="note rv">الاسترداد من بدء الدخل في مايو <span class="n">2028</span> كأقصى موعد، والأرقام بعد مصاريف تشغيل تبدأ <span class="n">10%</span> وترتفع تدريجياً إلى <span class="n">15%</span>، وقبل الزكاة، وتشمل إيرادات المحطة وإيجار الأمانة الثابت</p>
+    <p class="note rv">الاسترداد من بدء الدخل في مايو <span class="n">2028</span> كأقصى موعد والأرقام بعد مصاريف تشغيل تبدأ <span class="n">10%</span> وترتفع تدريجياً إلى <span class="n">15%</span> وقبل الزكاة وتشمل إيرادات المحطة وإيجار الأمانة الثابت</p>
   </div>
 </section>
 
@@ -446,7 +467,7 @@
       <div class="card prio rv"><h3>أولوية الاسترداد</h3>
         <div class="prio__big"><span class="n">70%</span><small>من الأرباح للمستثمر حتى يسترد رأس ماله كاملاً</small></div>
         <ol class="flow"><li><i class="n">1</i>يسترد المستثمر رأس ماله</li><li><i class="n">2</i>يُعوَّض المؤسسون</li><li><i class="n">3</i>يعود التوزيع لنسب الملكية</li></ol>
-        <p>مجموع ما يستلمه كل طرف خلال <span class="n">25</span> سنة لا يتغير، والذي يتقدم هو موعد استردادك</p></div>
+        <p>مجموع ما يستلمه كل طرف خلال <span class="n">25</span> سنة لا يتغير والذي يتقدم هو موعد استردادك</p></div>
     </div>
   </div>
 </section>
@@ -457,16 +478,16 @@
     <div class="charter__side rv">
       <p class="eb">حقوقك كشريك</p>
       <h2 class="h2">شريك <b>بحقوق واضحة</b></h2>
-      <p>حقوق مكتوبة في نظام شركة المشروع، تحفظ نصيبك وصوتك ومعلوماتك من أول دفعة إلى آخر سنة في العقد</p>
+      <p>حقوق مكتوبة في نظام شركة المشروع تحفظ نصيبك وصوتك ومعلوماتك من أول دفعة إلى آخر سنة في العقد</p>
       <div class="seal2" aria-hidden="true"><div><b class="n">6</b><span>حقوق للشريك</span></div></div>
     </div>
     <ol class="arts">
       <li class="art rv"><div><h3>توزيع الأرباح</h3><p>ما لا يقل عن <b><span class="n">70%</span></b> من صافي الدخل النقدي مرتين في السنة بعد تحصيل إيجار المستأجرين</p><span class="art__chip">مرتين في السنة</span></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span></li>
       <li class="art rv"><div><h3>المشاركة في الإدارة</h3><p>نرحب بدخول كفاءات من طرفك في الإدارة مع شركة المشروع</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4M16 4.8a3 3 0 0 1 0 6M18 14.6c1.8.6 2.8 2.4 3 5.4"/></svg></span></li>
-      <li class="art rv"><div><h3>القرارات الكبرى</h3><p>بيع الأصل والاقتراض وإدخال شريك ومرحلة جديدة: بموافقة مجلس الإدارة وفق سياسة الحوكمة المعتمدة في نظام الشركة، ويُمثَّل الشركاء في المجلس بحسب حصصهم</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-3 7h6zM17 7l-3 7h6z"/><path d="M8 21h8"/></svg></span></li>
-      <li class="art rv"><div><h3>الشفافية</h3><p>حساب مستقل لشركة المشروع، والصرف على بنود المرحلة حسب الإنجاز، وتقرير ربع سنوي وقوائم مالية سنوية مدققة</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg></span></li>
-      <li class="art rv"><div><h3>حق التخارج</h3><p>بعد <b><span class="n">6</span> سنوات</b> من بدء الدخل، بسعر يحدده مقيّم معتمد</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8M10 5H5v14h14v-5"/></svg></span></li>
-      <li class="art rv"><div><h3>المراحل القادمة</h3><p>حق الأولوية في أي زيادة رأس مال أو مرحلة جديدة، ولا يُطلب منك تمويل إضافي في المرحلة الأولى</p><span class="art__chip">بلا تمويل إضافي</span></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V10l6-5 6 5v11"/><path d="M10 21v-5h4v5"/></svg></span></li>
+      <li class="art rv"><div><h3>القرارات الكبرى</h3><p>بيع الأصل والاقتراض وإدخال شريك ومرحلة جديدة: بموافقة مجلس الإدارة وفق سياسة الحوكمة المعتمدة في نظام الشركة ويُمثَّل الشركاء في المجلس بحسب حصصهم</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-3 7h6zM17 7l-3 7h6z"/><path d="M8 21h8"/></svg></span></li>
+      <li class="art rv"><div><h3>الشفافية</h3><p>حساب مستقل لشركة المشروع والصرف على بنود المرحلة حسب الإنجاز وتقرير ربع سنوي وقوائم مالية سنوية مدققة</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg></span></li>
+      <li class="art rv"><div><h3>حق التخارج</h3><p>بعد <b><span class="n">6</span> سنوات</b> من بدء الدخل بسعر يحدده مقيّم معتمد</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8M10 5H5v14h14v-5"/></svg></span></li>
+      <li class="art rv"><div><h3>المراحل القادمة</h3><p>حق الأولوية في أي زيادة رأس مال أو مرحلة جديدة ولا يُطلب منك تمويل إضافي في المرحلة الأولى</p><span class="art__chip">بلا تمويل إضافي</span></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V10l6-5 6 5v11"/><path d="M10 21v-5h4v5"/></svg></span></li>
     </ol>
   </div>
 </section>
@@ -475,17 +496,17 @@
 <section class="sec light" id="value">
   <div class="w">
     <div class="head rv"><p class="eb">قيمة الأرض وملكية الشركة</p><h2 class="h2">لماذا قيمة حق الأرض <b><span class="n">35.1</span> مليون؟</b></h2>
-      <p class="lead">كيف وصلنا إلى قيمة حق الأرض، وكيف تحددت حصة كل شريك</p></div>
+      <p class="lead">كيف وصلنا إلى قيمة حق الأرض وكيف تحددت حصة كل شريك</p></div>
     <div class="lv">
       <div class="rv">
-        <p class="quote">الشركاء الأصليون لا يملكون الأرض، بل يملكون حق إستثمارها <span class="n">25</span> سنة. وقيمة هذا الحق ببساطة: <b>كم تكسب الأرض لو أُجّرت بسعر السوق، ناقص ما ندفعه للأمانة</b>، محسوباً بقيمة اليوم.</p>
-        <p class="ex"><b>مثال الخصم:</b> الريال الذي يصلنا في <span class="n">2028</span> يساوي اليوم <span class="n">0.86</span>، وفي <span class="n">2038</span> يساوي <span class="n">0.33</span>، وفي <span class="n">2053</span> يساوي <span class="n">0.08</span>. لذلك أول <span class="n">5</span> سنوات وحدها تمثل قرابة <span class="n">40%</span> من القيمة.</p>
+        <p class="quote">الشركاء الأصليون لا يملكون الأرض بل يملكون حق إستثمارها <span class="n">25</span> سنة وقيمة هذا الحق ببساطة: <b>كم تكسب الأرض لو أُجّرت بسعر السوق ناقص ما ندفعه للأمانة</b> محسوباً بقيمة اليوم</p>
+        <p class="ex"><b>مثال الخصم:</b> الريال الذي يصلنا في <span class="n">2028</span> يساوي اليوم <span class="n">0.86</span> وفي <span class="n">2038</span> يساوي <span class="n">0.33</span> وفي <span class="n">2053</span> يساوي <span class="n">0.08</span> لذلك أول <span class="n">5</span> سنوات وحدها تمثل قرابة <span class="n">40%</span> من القيمة</p>
       </div>
       <ol class="ladder rv">
         <li><i class="n">1</i><div><strong>دخل الأرض بحالتها بسعر متحفظ</strong><small><span class="n">12.5</span> ريال × <span class="n">468,322</span> م²</small></div><b><span class="n">5.85</span> مليون سنوياً</b></li>
         <li><i class="n">2</i><div><strong>ناقص إيجار الأمانة</strong><small>ثابت طوال العقد</small></div><b><span class="n">(1.60)</span> مليون سنوياً</b></li>
-        <li><i class="n">3</i><div><strong>صافي ما يبقى للشركاء</strong><small>لمدة <span class="n">25</span> سنة، بمجموع <span class="n">106.8</span> مليون</small></div><b><span class="n">4.25</span> مليون سنوياً</b></li>
-        <li class="end"><i class="n">4</i><div><strong>قيمته اليوم</strong><small>الريال الذي يأتي بعد سنوات أقل قيمة من ريال اليوم، فنخصم <span class="n">10%</span> عن كل سنة</small></div><b><span class="n">35.1</span> مليون</b></li>
+        <li><i class="n">3</i><div><strong>صافي ما يبقى للشركاء</strong><small>لمدة <span class="n">25</span> سنة بمجموع <span class="n">106.8</span> مليون</small></div><b><span class="n">4.25</span> مليون سنوياً</b></li>
+        <li class="end"><i class="n">4</i><div><strong>قيمته اليوم</strong><small>الريال الذي يأتي بعد سنوات أقل قيمة من ريال اليوم فنخصم <span class="n">10%</span> عن كل سنة</small></div><b><span class="n">35.1</span> مليون</b></li>
       </ol>
     </div>
   </div>
@@ -522,7 +543,7 @@
         <tr><td>قيمة الحصة بسعر الطرح (كل <span class="n">1%</span> = <span class="n">1,175,000</span>)</td><td><span class="n">48,175,000</span></td><td><span class="n">11,750,000</span></td><td><span class="n">10,575,000</span></td><td><span class="n">47,000,000</span></td><td><span class="n">117,500,000</span></td></tr>
       </tbody>
     </table></div>
-    <p class="note rv" style="margin-top:0">المستثمرون يكملون تكاليف المرحلة (<span class="n">47</span> مليون) مقابل <span class="n">40%</span>، وكل <span class="n">1%</span> يساوي <span class="n">1,175,000</span>. ولبُعد <span class="n">25%</span> حصة تأسيس وإدارة، والنسب النهائية للشركاء الأصليين متفق عليها بينهم. الحصة العينية توزعت بنسبة ما دفعه كل شريك من إيجار السنة.</p>
+    <p class="note rv" style="margin-top:0">المستثمرون يكملون تكاليف المرحلة (<span class="n">47</span> مليون) مقابل <span class="n">40%</span> وكل <span class="n">1%</span> يساوي <span class="n">1,175,000</span> ولبُعد <span class="n">25%</span> حصة تأسيس وإدارة والنسب النهائية للشركاء الأصليين متفق عليها بينهم الحصة العينية توزعت بنسبة ما دفعه كل شريك من إيجار السنة</p>
   </div>
 </section>
 
@@ -533,12 +554,31 @@
     <h2 class="rv">الأسهم محدودة <b>والتسجيل بأسبقية التوقيع وسداد الدفعة الأولى</b></h2>
     <p class="rv">الدفعة الأولى مطلع نوفمبر <span class="n">2026</span>م</p>
     <div class="cta rv">
-      <a class="btn btn--gold" href="https://wa.me/966550000126?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A8%D9%8F%D8%B9%D8%AF%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9%20%D9%81%D9%8A%20%D9%88%D8%A7%D8%AC%D9%87%D8%A9%20%D8%A7%D9%84%D8%AC%D9%85%D9%88%D9%85" target="_blank" rel="noopener">سجّل اهتمامك<i aria-hidden="true"></i></a>
+      <button type="button" class="btn btn--gold" data-req>اطلب الإستثمار<i aria-hidden="true"></i></button>
       <a class="btn btn--ghost" href="#calc">احسب حصتك</a>
     </div>
     <div class="contact"><span>buad.sa</span><span>info@buad-r.sa</span><span>+966 55 000 0126</span></div>
   </div>
 </section>
+<dialog class="rq" id="rq" aria-labelledby="rqT">
+  <form id="rqF">
+    <button type="button" class="rq__x" id="rqX" aria-label="إغلاق">×</button>
+    <h3 id="rqT">اطلب الإستثمار</h3>
+    <p>اكتب بياناتك وعدد الأسهم ويُفتح لك الواتساب أو بريدك برسالة جاهزة إلى فريق بُعد ولا نحفظ بياناتك في الموقع</p>
+    <label for="rqName">الإسم<input id="rqName" name="name" required autocomplete="name"></label>
+    <div class="rq__row">
+      <label for="rqPhone">رقم الجوال<input id="rqPhone" lang="en" name="phone" type="tel" inputmode="tel" required autocomplete="tel" dir="ltr"></label>
+      <label for="rqShares">عدد الأسهم<input id="rqShares" lang="en" name="shares" type="text" inputmode="numeric" pattern="([1-9]|[1-3][0-9]|4[0-7])" title="من 1 إلى 47" required dir="ltr"></label>
+    </div>
+    <label for="rqCity">المدينة<input id="rqCity" name="city" autocomplete="address-level2"></label>
+    <label for="rqNote">ملاحظات<textarea id="rqNote" name="note" rows="3"></textarea></label>
+    <div class="rq__send">
+      <button class="btn btn--gold" type="submit" value="wa">إرسال عبر الواتساب</button>
+      <button class="btn rq__mail" type="submit" value="mail">إرسال عبر البريد الإلكتروني</button>
+    </div>
+    <p class="rq__note" id="rqOk" hidden>أكمل الإرسال من التطبيق الذي فُتح لك وسيتواصل معك فريقنا قريباً</p>
+  </form>
+</dialog>
 </main>
 
 <script>
@@ -548,39 +588,50 @@
     const sib = [...el.parentElement.children].filter(c => c.classList.contains('rv'));
     el.style.transitionDelay = (Math.max(0, sib.indexOf(el)) % 6) * 80 + 'ms'; io.observe(el);
   });
-  // share table (from the PDF) + amount slider
-  const R = [ // amount (million), share, year-1 profit, year-4 profit, total over 25 years (million)
-    [1, '0.85%', '117,900', '191,600', '3.4'], [3, '2.55%', '353,700', '574,800', '10.3'], [5, '4.26%', '589,500', '958,000', '17.2'],
-    [10, '8.51%', '1,179,000', '1,916,000', '34.4'], [15, '12.77%', '1,768,500', '2,874,000', '51.6'], [20, '17.02%', '2,357,900', '3,832,000', '68.8'],
-    [25, '21.28%', '2,947,400', '4,790,000', '86.0'], [30, '25.53%', '3,536,900', '5,748,000', '103.2'], [35, '29.79%', '4,126,400', '6,706,000', '120.4'],
-    [40, '34.04%', '4,715,900', '7,664,000', '137.6'], [47, '40%', '5,541,200', '9,005,000', '161.6']];
-  const unit = m => m === 1 ? 'مليون' : (m <= 10 ? 'ملايين' : 'مليون');
-  const label = m => m === 1 ? 'مليون' : m + ' ' + unit(m) + (m === 47 ? ' (السقف)' : '');
-  const $ = id => document.getElementById(id);
-  const rows = $('rows'), ticks = $('ticks'), range = $('amtR'), C = 2 * Math.PI * 42;
+  // amount → share and returns; the PDF's rows where they exist, otherwise per million (0.851% · 117,900 · 191,600 · 3.44M)
+  const ROWS = { 1: ['0.85%', 117900, 191600, 3.4], 3: ['2.55%', 353700, 574800, 10.3], 5: ['4.26%', 589500, 958000, 17.2], 10: ['8.51%', 1179000, 1916000, 34.4],
+    15: ['12.77%', 1768500, 2874000, 51.6], 20: ['17.02%', 2357900, 3832000, 68.8], 25: ['21.28%', 2947400, 4790000, 86.0], 30: ['25.53%', 3536900, 5748000, 103.2],
+    35: ['29.79%', 4126400, 6706000, 120.4], 40: ['34.04%', 4715900, 7664000, 137.6], 47: ['40%', 5541200, 9005000, 161.6] };
+  const $ = id => document.getElementById(id), C = 2 * Math.PI * 42, fmt = v => Math.round(v).toLocaleString('en-US');
+  const unit = m => m === 1 ? 'مليون ريال' : (m <= 10 ? 'ملايين ريال' : 'مليون ريال');
+  const amtIn = $('amtIn');
   $('capArc').style.strokeDasharray = `${C * .40} 400`;      // the investors' 40% of the company, faint
-  R.forEach((r, i) => {
-    const tr = document.createElement('tr'); tr.dataset.i = i; if (r[0] === 47) tr.className = 'cap';
-    tr.innerHTML = `<td>${label(r[0])}</td><td><span class="n">${r[1]}</span></td><td><span class="n">${r[2]}</span></td><td><span class="n">${r[3]}</span></td><td><span class="n">${r[4]}</span> مليون</td>`;
-    tr.addEventListener('click', () => pick(i)); rows.append(tr);
-    const b = document.createElement('button'); b.type = 'button'; b.className = 'n'; b.textContent = r[0];
-    b.style.right = (i / (R.length - 1) * 100) + '%'; b.setAttribute('aria-label', label(r[0]));
-    b.addEventListener('click', () => pick(i)); ticks.append(b);
-  });
-  range.addEventListener('input', () => pick(+range.value));
-  function pick(i) {
-    const r = R[i], tot = parseFloat(r[4]);
-    range.value = i; range.style.setProperty('--p', (i / (R.length - 1) * 100) + '%');
-    range.setAttribute('aria-valuetext', label(r[0]) + ' ريال');
-    $('amt').textContent = r[0]; $('amtU').textContent = (r[0] === 1 ? 'مليون' : unit(r[0])) + ' ريال';
-    $('rPct').textContent = r[1]; $('rY1').textContent = r[2]; $('rY4').textContent = r[3]; $('rTot').textContent = r[4];
-    $('shareArc').style.strokeDasharray = `${C * parseFloat(r[1]) / 100} 400`;
-    $('vIn').style.width = (r[0] / tot * 100) + '%'; $('vOut').style.width = '100%';
-    $('mult').textContent = (tot / r[0]).toFixed(1) + '×';
-    [...ticks.children].forEach((t, k) => t.classList.toggle('on', k === i));
-    [...rows.children].forEach((tr, k) => tr.classList.toggle('on', k === i));
+  function calc() {
+    let m = Math.round(+amtIn.value || 0);
+    if (m < 1 || m > 47) { amtIn.setCustomValidity('من 1 إلى 47'); return; }
+    amtIn.setCustomValidity('');
+    const r = ROWS[m] || [(m * 40 / 47).toFixed(2) + '%', m * 117900, m * 191600, +(m * 3.44).toFixed(1)];
+    $('amtU').textContent = unit(m);
+    $('rPct').textContent = r[0]; $('rY1').textContent = fmt(r[1]); $('rY4').textContent = fmt(r[2]); $('rTot').textContent = r[3].toFixed(1);
+    $('shareArc').style.strokeDasharray = `${C * parseFloat(r[0]) / 100} 400`;
+    $('vIn').style.width = (m / r[3] * 100) + '%'; $('vOut').style.width = '100%';
+    $('mult').textContent = (r[3] / m).toFixed(1) + '×';
   }
-  pick(3);
+  const step = d => { amtIn.value = Math.min(47, Math.max(1, (Math.round(+amtIn.value) || 0) + d)); calc(); };
+  $('amtMinus').addEventListener('click', () => step(-1)); $('amtPlus').addEventListener('click', () => step(1));
+  amtIn.addEventListener('input', calc);
+  amtIn.addEventListener('blur', () => { if (!(+amtIn.value >= 1)) amtIn.value = 1; if (+amtIn.value > 47) amtIn.value = 47; calc(); });
+  calc();
+
+  // «اطلب الإستثمار»: a ready message to BUAD by WhatsApp or e-mail; nothing is stored here
+  const WA = '966550000126', MAIL = 'info@buad-r.sa', dlg = $('rq'), form = $('rqF');
+  document.querySelectorAll('[data-req]').forEach(b => b.addEventListener('click', () => {
+    $('rqShares').value = Math.min(47, Math.max(1, Math.round(+amtIn.value) || 1)); $('rqOk').hidden = true;
+    dlg.showModal ? dlg.showModal() : dlg.setAttribute('open', '');
+  }));
+  $('rqX').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(form), via = e.submitter && e.submitter.value === 'mail' ? 'mail' : 'wa';
+    const lines = ['طلب إستثمار · واجهة الجموم', 'الإسم: ' + f.get('name'), 'الجوال: ' + f.get('phone'), 'عدد الأسهم: ' + f.get('shares') + ' (' + f.get('shares') + ' مليون ريال)'];
+    if (f.get('city')) lines.push('المدينة: ' + f.get('city'));
+    if (f.get('note')) lines.push('ملاحظات: ' + f.get('note'));
+    const text = lines.join('\n');
+    if (via === 'mail') location.href = `mailto:${MAIL}?subject=${encodeURIComponent(lines[0])}&body=${encodeURIComponent(text)}`;
+    else window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    $('rqOk').hidden = false;
+  });
 </script>
 </body>
 </html>
