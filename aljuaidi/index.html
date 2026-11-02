@@ -119,32 +119,67 @@
   .mk__row--us strong { color: var(--gold); } .mk__row--us b { color: var(--gold); font-weight: 800; }
   .mk__note { padding: 14px 24px 20px; font-size: 14px; color: var(--soft); line-height: 1.8; border-top: 1px solid var(--hair-d); }
 
-  /* calculator */
-  .calc { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 14px; align-items: stretch; }
-  .pick { padding: clamp(24px, 3vw, 36px); border-radius: 30px; color: #f6e7cf; background: radial-gradient(80% 60% at 70% 0%, rgba(230, 196, 141, .2), transparent 70%), linear-gradient(165deg, #3a2418, #1b120d); }
-  .pick label { display: block; font-size: 14px; color: var(--soft); }
-  .pick__amt { margin-top: 6px; font-size: clamp(46px, 6vw, 82px); font-weight: 200; line-height: 1; color: #f8ecd8; }
-  .pick__amt small { font-size: .3em; font-weight: 700; color: var(--gold); margin-inline-start: 8px; }
-  .chips { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .chips button { font: inherit; font-size: 14px; font-weight: 700; color: #f6e7cf; background: transparent; border: 0; cursor: pointer; padding: 8px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .4); transition: background .3s, color .3s; }
-  .chips button[aria-pressed="true"] { color: var(--ink); background: var(--gold); box-shadow: none; }
-  .chips button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-  .res { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .res > div { display: grid; align-content: end; gap: 6px; padding: 22px 24px; border-radius: 26px; background: var(--card); box-shadow: inset 0 0 0 1px var(--hair-l); }
-  .res > div > span { font-size: 14px; color: var(--mocha); }
-  .res b { font-size: clamp(26px, 2.8vw, 40px); font-weight: 300; color: var(--brown); line-height: 1.1; }
-  .res b small { font-size: 14px; font-weight: 500; color: var(--gold-d); margin-inline-start: 6px; }
-  .res > div:last-child { background: linear-gradient(135deg, #e9cd9c, #c49460); } .res > div:last-child > span { color: rgba(27, 19, 15, .72); } .res > div:last-child b { color: #1b130f; font-weight: 700; }
-  .tbl { margin-top: 18px; overflow-x: auto; border-radius: 24px; background: var(--card); box-shadow: inset 0 0 0 1px var(--hair-l); }
+  /* calculator: one instrument — amount slider + share ring, then what you get, then the full table on demand */
+  .inst { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); border-radius: 32px; overflow: hidden; color: #f6e7cf;
+    background: radial-gradient(70% 80% at 85% 0%, rgba(230, 196, 141, .2), transparent 70%), linear-gradient(165deg, #3a2418, #160e0a);
+    box-shadow: 0 50px 80px -50px rgba(58, 36, 24, .9); }
+  .inst__l { padding: clamp(26px, 3.4vw, 46px); display: grid; align-content: start; gap: 8px; }
+  .inst__l label { font-size: 14px; color: var(--soft); letter-spacing: .04em; }
+  .amt { display: flex; align-items: baseline; gap: 12px; }
+  .amt b { font-size: clamp(64px, 8vw, 118px); font-weight: 200; line-height: .95; color: #f8ecd8; }
+  .amt span { font-size: clamp(17px, 1.6vw, 22px); font-weight: 700; color: var(--gold); }
+  .rail { position: relative; margin-top: 30px; padding-bottom: 38px; }
+  .rail input { display: block; -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px; cursor: pointer; outline: none; margin: 0;
+    background: linear-gradient(to left, var(--gold) var(--p, 30%), rgba(239, 225, 202, .14) var(--p, 30%)); }
+  .rail input::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: #f6e7cf; box-shadow: 0 0 0 7px rgba(230, 196, 141, .25), 0 8px 18px rgba(0, 0, 0, .5); }
+  .rail input::-moz-range-thumb { width: 30px; height: 30px; border: 0; border-radius: 50%; background: #f6e7cf; box-shadow: 0 0 0 7px rgba(230, 196, 141, .25); }
+  .rail input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 7px rgba(230, 196, 141, .6); }
+  .ticks { position: absolute; top: 22px; right: 15px; left: 15px; height: 20px; }
+  .ticks button { position: absolute; top: 0; transform: translateX(50%); font: inherit; font-size: 12.5px; font-weight: 700; color: var(--soft); background: none; border: 0; cursor: pointer; padding: 4px 2px; }
+  .ticks button::before { content: ""; position: absolute; top: -8px; left: 50%; width: 1px; height: 6px; background: rgba(230, 196, 141, .4); }
+  .ticks button.on { color: var(--gold); }
+  .inst__hint { font-size: 13px; color: var(--soft); }
+  .inst__r { display: grid; place-items: center; padding: clamp(26px, 3vw, 40px); border-inline-start: 1px solid var(--hair-d); background: rgba(22, 14, 10, .25); }
+  .ring2 { position: relative; width: min(260px, 70vw); aspect-ratio: 1; }
+  .ring2 svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring2 circle { fill: none; stroke-width: 9; }
+  .ring2 .bg { stroke: rgba(239, 225, 202, .1); }
+  .ring2 .cap { stroke: rgba(230, 196, 141, .22); }
+  .ring2 .fg { stroke: var(--gold); stroke-linecap: round; transition: stroke-dasharray 1s var(--spring); }
+  .ring2 > div { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .ring2 b { font-size: clamp(40px, 4.4vw, 58px); font-weight: 200; color: #f8ecd8; line-height: 1; }
+  .ring2 > div > span { margin-top: 8px; font-size: 14px; color: var(--soft); }
+  .ring2 > div > em { margin-top: 4px; font-style: normal; font-size: 12.5px; color: var(--gold); }
+  .gets { margin-top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .get { display: grid; align-content: start; gap: 8px; padding: 24px 26px; border-radius: 26px; background: var(--card); box-shadow: inset 0 0 0 1px var(--hair-l); }
+  .get > span:not(.mult) { font-size: 14px; color: var(--mocha); }
+  .get b { font-size: clamp(30px, 3vw, 44px); font-weight: 300; line-height: 1.05; color: var(--brown); }
+  .get b small { font-size: 14px; font-weight: 500; color: var(--gold-d); margin-inline-start: 6px; }
+  .get--tot { background: linear-gradient(135deg, #ecd3a6, #c99a64); box-shadow: none; }
+  .get--tot > span:not(.mult) { color: rgba(27, 19, 15, .7); } .get--tot b { color: #1b130f; font-weight: 700; } .get--tot b small { color: rgba(27, 19, 15, .7); }
+  .vs { margin-top: 4px; display: grid; gap: 6px; }
+  .vs div { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 10px; align-items: center; font-size: 12.5px; color: rgba(27, 19, 15, .75); }
+  .vs i { display: block; height: 8px; border-radius: 999px; background: rgba(27, 19, 15, .8); transition: width 1s var(--spring); }
+  .vs div:first-child i { background: rgba(27, 19, 15, .3); }
+  .get .mult { display: inline-flex; justify-self: start; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 800; color: #f6e7cf; background: #1b130f; margin-top: 6px; }
+  .full { margin-top: 14px; border-radius: 24px; background: var(--card); box-shadow: inset 0 0 0 1px var(--hair-l); overflow: hidden; }
+  .full summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 24px; font-size: 15.5px; font-weight: 800; color: var(--brown); }
+  .full summary::-webkit-details-marker { display: none; }
+  .full summary i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .45); transition: transform .4s var(--spring); }
+  .full summary i::before { content: ""; width: 7px; height: 7px; border: solid var(--gold-d); border-width: 0 1.6px 1.6px 0; transform: rotate(45deg) translate(-1px, -1px); }
+  .full[open] summary i { transform: rotate(180deg); }
+  .full summary:focus-visible { outline: 2px solid var(--gold-d); outline-offset: -4px; }
+  .tbl { overflow-x: auto; }
+  .full .tbl { border-top: 1px solid var(--hair-l); }
   table { width: 100%; border-collapse: collapse; min-width: 640px; font: 500 16px/1.5 Tajawal, sans-serif; color: var(--brown); }
   th { text-align: start; font-size: 14px; font-weight: 800; color: var(--gold-d); padding: 16px 20px; border-bottom: 1px solid rgba(168, 121, 74, .35); }
   td { padding: 13px 20px; border-bottom: 1px solid var(--hair-l); }
   td:first-child { font-weight: 700; }
   td .n { font-size: 17px; letter-spacing: .01em; }
   tr:last-child td { border-bottom: 0; }
-  tr.on td { background: rgba(214, 173, 114, .2); font-weight: 800; }
+  tr.on td { background: rgba(214, 173, 114, .22); font-weight: 800; }
   tr.cap td { color: var(--gold-d); font-weight: 700; }
-  .tbl__note { margin-top: 12px; font-size: 14px; color: var(--mocha); }
+  tr[data-i] { cursor: pointer; }
 
   /* scenarios */
   .sc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
@@ -245,7 +280,9 @@
     .tri, .sc { grid-template-columns: 1fr; }
     .charter { grid-template-columns: 1fr; } .charter__side { position: static; } .seal2 { width: 132px; } .seal2 b { font-size: 42px; }
     .tri > div + div { border-right: 0; border-top: 1px solid var(--hair-d); }
-    .intro, .why, .calc, .pay, .lv { grid-template-columns: 1fr; }
+    .intro, .why, .pay, .lv, .inst { grid-template-columns: 1fr; }
+    .inst__r { border-inline-start: 0; border-top: 1px solid var(--hair-d); }
+    .gets { grid-template-columns: 1fr 1fr; } .get--tot { grid-column: 1 / -1; } .ring2 { width: min(210px, 60vw); }
     .lgd { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 620px) {
@@ -254,7 +291,7 @@
     .art { grid-template-columns: 54px minmax(0, 1fr); gap: 14px; padding: 22px 12px 22px 0; } .art::before { font-size: 40px; } .art__ic { display: none; }
     .ladder li { grid-template-columns: 40px minmax(0, 1fr); } .ladder li > i { width: 40px; height: 40px; } .ladder b { grid-column: 2; }
     .bar2 { height: 56px; } .bar2 div { font-size: 12.5px; }
-    .figs, .res { grid-template-columns: 1fr 1fr; } .fg { min-height: 124px; padding: 18px; }
+    .figs { grid-template-columns: 1fr 1fr; } .ticks button { font-size: 11px; } .fg { min-height: 124px; padding: 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -338,23 +375,37 @@
 <section class="sec light" id="calc">
   <div class="w">
     <div class="head rv"><p class="eb">نسبتك وعائدك حسب مبلغ مشاركتك</p><h2 class="h2">اختر مبلغك <b>وشوف حصتك</b></h2></div>
-    <div class="calc">
-      <div class="pick rv">
-        <label id="amtL">مبلغ الدخول</label>
-        <div class="pick__amt"><span class="n" id="amt">10</span><small id="amtU">ملايين ريال</small></div>
-        <div class="chips" role="group" aria-labelledby="amtL" id="chips"></div>
+    <div class="inst rv">
+      <div class="inst__l">
+        <label for="amtR">مبلغ مشاركتك</label>
+        <div class="amt"><b class="n" id="amt">10</b><span id="amtU">ملايين ريال</span></div>
+        <div class="rail">
+          <input type="range" id="amtR" min="0" max="10" step="1" value="3" aria-valuetext="10 ملايين ريال">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <p class="inst__hint">حرّك المؤشر أو اختر مبلغاً · السهم الواحد مليون ريال والسقف <span class="n">47</span> سهماً</p>
       </div>
-      <div class="res rv">
-        <div><span>نسبتك في الشركة</span><b class="n" id="rPct">8.51%</b></div>
-        <div><span>ربحك في السنة الأولى</span><b><span class="n" id="rY1">1,179,000</span><small>ريال</small></b></div>
-        <div><span>ربحك في السنة الرابعة</span><b><span class="n" id="rY4">1,916,000</span><small>ريال</small></b></div>
-        <div><span>مجموع ما تستلمه خلال <span class="n">25</span> سنة</span><b><span class="n" id="rTot">34.4</span><small>مليون ريال</small></b></div>
+      <div class="inst__r">
+        <div class="ring2" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="cap" cx="50" cy="50" r="42" id="capArc"/><circle class="fg" cx="50" cy="50" r="42" id="shareArc" style="stroke-dasharray:0 400"/></svg>
+          <div><b class="n" id="rPct">8.51%</b><span>نسبتك في الشركة</span><em>من حصة المستثمرين <span class="n">40%</span></em></div>
+        </div>
       </div>
     </div>
-    <div class="tbl rv"><table>
-      <thead><tr><th>مبلغ الدخول</th><th>نسبتك في الشركة</th><th>ربحك في السنة الأولى</th><th>ربحك في السنة الرابعة</th><th>مجموع ما تستلمه خلال 25 سنة</th></tr></thead>
-      <tbody id="rows"></tbody>
-    </table></div>
+    <div class="gets">
+      <div class="get rv"><span>ربحك في السنة الأولى</span><b><span class="n" id="rY1">1,179,000</span><small>ريال</small></b></div>
+      <div class="get rv"><span>ربحك في السنة الرابعة</span><b><span class="n" id="rY4">1,916,000</span><small>ريال</small></b></div>
+      <div class="get get--tot rv"><span>مجموع ما تستلمه خلال <span class="n">25</span> سنة</span><b><span class="n" id="rTot">34.4</span><small>مليون ريال</small></b>
+        <div class="vs" aria-hidden="true"><div><span>رأس مالك</span><i id="vIn"></i></div><div><span>ما تستلمه</span><i id="vOut"></i></div></div>
+        <span class="mult"><span class="n" id="mult">3.4×</span> رأس مالك</span></div>
+    </div>
+    <details class="full rv">
+      <summary>عرض جدول كل المبالغ<i aria-hidden="true"></i></summary>
+      <div class="tbl"><table>
+        <thead><tr><th>مبلغ الدخول</th><th>نسبتك في الشركة</th><th>ربحك في السنة الأولى</th><th>ربحك في السنة الرابعة</th><th>مجموع ما تستلمه خلال 25 سنة</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+    </details>
   </div>
 </section>
 
@@ -493,7 +544,7 @@
     const sib = [...el.parentElement.children].filter(c => c.classList.contains('rv'));
     el.style.transitionDelay = (Math.max(0, sib.indexOf(el)) % 6) * 80 + 'ms'; io.observe(el);
   });
-  // share table (from the PDF) + amount picker
+  // share table (from the PDF) + amount slider
   const R = [ // amount (million), share, year-1 profit, year-4 profit, total over 25 years (million)
     [1, '0.85%', '117,900', '191,600', '3.4'], [3, '2.55%', '353,700', '574,800', '10.3'], [5, '4.26%', '589,500', '958,000', '17.2'],
     [10, '8.51%', '1,179,000', '1,916,000', '34.4'], [15, '12.77%', '1,768,500', '2,874,000', '51.6'], [20, '17.02%', '2,357,900', '3,832,000', '68.8'],
@@ -501,21 +552,28 @@
     [40, '34.04%', '4,715,900', '7,664,000', '137.6'], [47, '40%', '5,541,200', '9,005,000', '161.6']];
   const unit = m => m === 1 ? 'مليون' : (m <= 10 ? 'ملايين' : 'مليون');
   const label = m => m === 1 ? 'مليون' : m + ' ' + unit(m) + (m === 47 ? ' (السقف)' : '');
-  const rows = document.getElementById('rows'), chips = document.getElementById('chips');
+  const $ = id => document.getElementById(id);
+  const rows = $('rows'), ticks = $('ticks'), range = $('amtR'), C = 2 * Math.PI * 42;
+  $('capArc').style.strokeDasharray = `${C * .40} 400`;      // the investors' 40% of the company, faint
   R.forEach((r, i) => {
-    const tr = document.createElement('tr'); if (r[0] === 47) tr.className = 'cap';
+    const tr = document.createElement('tr'); tr.dataset.i = i; if (r[0] === 47) tr.className = 'cap';
     tr.innerHTML = `<td>${label(r[0])}</td><td><span class="n">${r[1]}</span></td><td><span class="n">${r[2]}</span></td><td><span class="n">${r[3]}</span></td><td><span class="n">${r[4]}</span> مليون</td>`;
-    rows.append(tr);
-    const b = document.createElement('button'); b.type = 'button'; b.innerHTML = r[0] === 1 ? 'مليون' : `<span class="n">${r[0]}</span> ${unit(r[0])}`;
-    b.addEventListener('click', () => pick(i)); chips.append(b);
+    tr.addEventListener('click', () => pick(i)); rows.append(tr);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'n'; b.textContent = r[0];
+    b.style.right = (i / (R.length - 1) * 100) + '%'; b.setAttribute('aria-label', label(r[0]));
+    b.addEventListener('click', () => pick(i)); ticks.append(b);
   });
+  range.addEventListener('input', () => pick(+range.value));
   function pick(i) {
-    const r = R[i];
-    document.getElementById('amt').textContent = r[0];
-    document.getElementById('amtU').textContent = (r[0] === 1 ? 'مليون' : unit(r[0])) + ' ريال';
-    document.getElementById('rPct').textContent = r[1]; document.getElementById('rY1').textContent = r[2];
-    document.getElementById('rY4').textContent = r[3]; document.getElementById('rTot').textContent = r[4];
-    [...chips.children].forEach((c, k) => c.setAttribute('aria-pressed', k === i));
+    const r = R[i], tot = parseFloat(r[4]);
+    range.value = i; range.style.setProperty('--p', (i / (R.length - 1) * 100) + '%');
+    range.setAttribute('aria-valuetext', label(r[0]) + ' ريال');
+    $('amt').textContent = r[0]; $('amtU').textContent = (r[0] === 1 ? 'مليون' : unit(r[0])) + ' ريال';
+    $('rPct').textContent = r[1]; $('rY1').textContent = r[2]; $('rY4').textContent = r[3]; $('rTot').textContent = r[4];
+    $('shareArc').style.strokeDasharray = `${C * parseFloat(r[1]) / 100} 400`;
+    $('vIn').style.width = (r[0] / tot * 100) + '%'; $('vOut').style.width = '100%';
+    $('mult').textContent = (tot / r[0]).toFixed(1) + '×';
+    [...ticks.children].forEach((t, k) => t.classList.toggle('on', k === i));
     [...rows.children].forEach((tr, k) => tr.classList.toggle('on', k === i));
   }
   pick(3);
