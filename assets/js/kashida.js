@@ -44,7 +44,8 @@
     // the lines as the browser breaks them
     const lines = []; let cur = null;
     spans.forEach((s, i) => { const t = top(s); if (!cur || Math.abs(t - cur.t) > 4) lines.push(cur = { t, idx: [] }); cur.idx.push(i); });
-    const probe = document.createElement('span'); probe.textContent = T.repeat(20); el.append(probe);
+    // «ـ» is measured apart from the text: appended to the paragraph it joined the last word and left its final letter mis-shaped
+    const probe = document.createElement('span'); probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:' + getComputedStyle(el).font; probe.textContent = T.repeat(20); document.body.append(probe);
     const tw = probe.getBoundingClientRect().width / 20; probe.remove();
     const width = ids => { let l = Infinity, r = -Infinity; ids.forEach(i => { const b = spans[i].getBoundingClientRect(); l = Math.min(l, b.left); r = Math.max(r, b.right); }); return r - l; };
     lines.slice(0, -1).forEach(line => {

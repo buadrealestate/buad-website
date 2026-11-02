@@ -499,7 +499,7 @@
       });
       const wid = (it, ids) => { let l = 1e9, r = -1e9; ids.forEach(i => { const b = it.spans[i].getBoundingClientRect(); l = Math.min(l, b.left); r = Math.max(r, b.right); }); return r - l; };
       const full = ul.children[0] ? ul.children[0].clientWidth - 22 : 0;
-      const probe = document.createElement('span'); probe.textContent = T.repeat(20); ul.children[0].append(probe); const tw = probe.getBoundingClientRect().width / 20; probe.remove();
+      const probe = document.createElement('span'); probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:' + getComputedStyle(ul.children[0]).font; probe.textContent = T.repeat(20); document.body.append(probe); const tw = probe.getBoundingClientRect().width / 20; probe.remove();   // measured apart: appending it to the text broke the last word's final letter
       const lastW = items.map(it => wid(it, it.lines[it.lines.length - 1].idx));
       const target = Math.min(full, Math.max(...lastW));
       items.forEach((it, k) => it.lines.forEach((ln, j) => {
