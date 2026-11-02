@@ -122,6 +122,7 @@
   .dim li { position: relative; padding: 9px 22px 9px 0; font-size: 15.5px; line-height: 1.6; border-top: 1px solid var(--hair-l); }
   .dim li::before { content: ""; position: absolute; right: 2px; top: 18px; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold-d); }
   .dim li.add { font-weight: 700; }
+  .dim li .k { white-space: nowrap; }
   .dim li.add em { font-style: normal; font-size: 11.5px; font-weight: 700; color: var(--ink); background: var(--gold); padding: 1px 8px; border-radius: 999px; margin-inline-start: 8px; vertical-align: 2px; }
   .dim--dark { color: #f6e7cf; background: radial-gradient(80% 60% at 70% 0%, rgba(230, 196, 141, .2), transparent 70%), linear-gradient(165deg, #3a2418, #1b120d); }
   .dim--dark h3 small { color: var(--gold); } .dim--dark .dim__no { -webkit-text-stroke-color: var(--gold); }
@@ -189,8 +190,8 @@
   .hub__core img { width: 38%; margin-inline: auto; display: block; }
   .hub__core b { display: block; margin-top: 6px; font-size: clamp(12px, 1.2vw, 15px); font-weight: 700; color: #f6e7cf; line-height: 1.4; }
   .hub__ring ul { list-style: none; }
-  .hub__ring li { position: absolute; transform: translate(-50%, -50%);
-    max-width: 11em; text-align: center; line-height: 1.35; padding: 8px 15px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #f6e7cf; background: rgba(34, 22, 15, .92); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
+  .hub__ring li { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; width: 9.4em; height: 3.6em; text-align: center; line-height: 1.35;
+    border-radius: 1.4em; font-size: 14px; font-weight: 700; color: #f6e7cf; background: rgba(34, 22, 15, .94); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45), 0 10px 22px -12px rgba(0, 0, 0, .8); }
   .hub__txt p { font-size: clamp(16px, 1.4vw, 19px); line-height: 2; color: var(--soft); text-align: justify; }
   .hub__txt strong { display: block; text-align: center; margin-top: 22px; padding: 18px 22px; border-radius: 20px; font-size: clamp(17px, 1.6vw, 20px); font-weight: 700; color: #f6e7cf; line-height: 1.7;
     background: linear-gradient(100deg, rgba(230, 196, 141, .16), rgba(230, 196, 141, .04)); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
@@ -257,7 +258,7 @@
     .bar__tag { display: none; }
     .seal { width: 108px; }
     .clear { grid-template-columns: 1fr; }
-    .hub__ring { width: 78%; } .hub__ring li { font-size: 11px; padding: 5px 9px; max-width: 9em; }
+    .hub__ring { width: 80%; } .hub__ring li { font-size: 11px; }
     .ops li { grid-template-columns: 52px minmax(0, 1fr); } .ops li b { width: 52px; height: 52px; } .ops li em { grid-column: 2; }
     .ref span + span { padding-inline-start: 0; border-inline-start: 0; }
   }
@@ -377,7 +378,7 @@
   <div class="w hub">
     <div class="hub__ring rv" aria-hidden="true">
       <ul>
-        <li style="top:10.0%;left:50.0%">الدراسات الفنية والنظامية</li><li style="top:25.1%;left:18.7%">التعاقدات والإعتمادات</li><li style="top:58.9%;left:11.0%">التسويق والتأجير</li><li style="top:86.0%;left:32.6%">التشغيل والصيانة</li><li style="top:86.0%;left:67.4%">الإنشاءات والتجهيز</li><li style="top:58.9%;left:89.0%">التصميم والإشراف</li><li style="top:25.1%;left:81.3%">الأمن والضبط</li>
+        <li style="top:10.0%;left:50.0%">الدراسات الفنية<br>والنظامية</li><li style="top:25.1%;left:18.7%">التعاقدات<br>والإعتمادات</li><li style="top:58.9%;left:11.0%">التسويق<br>والتأجير</li><li style="top:86.0%;left:32.6%">التشغيل<br>والصيانة</li><li style="top:86.0%;left:67.4%">الإنشاءات<br>والتجهيز</li><li style="top:58.9%;left:89.0%">التصميم<br>والإشراف</li><li style="top:25.1%;left:81.3%">الأمن<br>والضبط</li>
       </ul>
       <div class="hub__core"><div><img src="../../assets/img/logo-mark-sand.png" alt=""><b>بُعد مسؤولة<br>أمامكم</b></div></div>
     </div>
@@ -477,6 +478,46 @@
     jr.style.setProperty('--jp', t.toFixed(3));
   }
   addEventListener('scroll', jp, { passive: true }); addEventListener('resize', jp); jp();
+  // the three dimensions: lines of a similar length are stretched with «ـ» (kashida) to the same length, and every line
+  // of an item that wraps but its last one reaches the full width — the house kashida rule (assets/js/kashida.js), per card
+  (() => {
+    const T = 'ـ', NJ = new Set([...'اأإآٱدذرزوؤةىء']), LET = /[ؠ-يٱ-ۓ]/, ALEF = /[اأإآٱ]/;
+    const slots = w => { const c = [...w], o = []; if (c.filter(x => LET.test(x)).length < 4) return o;
+      for (let i = 0; i < c.length - 1; i++) { if (!LET.test(c[i]) || NJ.has(c[i]) || !LET.test(c[i + 1])) continue; if (c[i] === 'ل' && ALEF.test(c[i + 1])) continue; o.push(i + 1); }
+      const m = (c.length - 1) / 2; return o.sort((a, b) => Math.abs(a - m) - Math.abs(b - m)).slice(0, 3); };
+    const build = (w, n) => [...w].map((ch, i) => (n[i] ? T.repeat(n[i]) : '') + ch).join('');
+    function card(ul) {
+      const items = [...ul.children].map(li => {
+        if (li.dataset.k === undefined) li.dataset.k = li.textContent.replace(/ـ/g, '').replace(/\s+/g, ' ').trim();
+        const words = li.dataset.k.split(' '); li.textContent = '';
+        const spans = words.map((w, i) => { if (i) li.append(' '); const sp = document.createElement('span'); sp.textContent = w; li.append(sp); return sp; });
+        const lines = []; let cur = null;
+        spans.forEach((sp, i) => { const t = Math.round(sp.offsetTop); if (!cur || Math.abs(t - cur.t) > 4) lines.push(cur = { t, idx: [] }); cur.idx.push(i); });
+        return { li, words, spans, lines };
+      });
+      const wid = (it, ids) => { let l = 1e9, r = -1e9; ids.forEach(i => { const b = it.spans[i].getBoundingClientRect(); l = Math.min(l, b.left); r = Math.max(r, b.right); }); return r - l; };
+      const full = ul.children[0] ? ul.children[0].clientWidth - 22 : 0;
+      const probe = document.createElement('span'); probe.textContent = T.repeat(20); ul.children[0].append(probe); const tw = probe.getBoundingClientRect().width / 20; probe.remove();
+      const lastW = items.map(it => wid(it, it.lines[it.lines.length - 1].idx));
+      const target = Math.min(full, Math.max(...lastW));
+      items.forEach((it, k) => it.lines.forEach((ln, j) => {
+        const last = j === it.lines.length - 1, w = wid(it, ln.idx);
+        const goal = last ? (w >= target * .84 ? target : 0) : full;
+        if (goal - w > goal * .17) return;                    // a long stretch reads badly: leave that line as it is
+        let need = Math.floor((goal - w) / tw); if (need <= 0) return;
+        const ws = ln.idx.map(i => ({ i, w: it.words[i], s: slots(it.words[i]), n: {}, k: 0 })).filter(o => o.s.length).sort((a, b) => b.w.length - a.w.length);
+        if (!ws.length) return; let g = 0;
+        while (need > 0 && g++ < 400) { const o = ws[g % ws.length], pos = o.s[o.k++ % o.s.length]; if ((o.n[pos] || 0) >= 3) continue;
+          o.n[pos] = (o.n[pos] || 0) + 1; it.spans[o.i].textContent = build(o.w, o.n);
+          if (Math.round(it.spans[ln.idx[ln.idx.length - 1]].offsetTop) !== ln.t || Math.round(it.spans[ln.idx[0]].offsetTop) !== ln.t) { o.n[pos]--; it.spans[o.i].textContent = build(o.w, o.n); break; }
+          need--; }
+      }));
+    }
+    const run = () => document.querySelectorAll('.dim ul').forEach(card);
+    let lw = innerWidth, tm = 0;
+    addEventListener('resize', () => { if (innerWidth === lw) return; lw = innerWidth; clearTimeout(tm); tm = setTimeout(run, 160); });
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(run, 60));
+  })();
 </script>
 </body>
 </html>
