@@ -161,7 +161,7 @@
   .fee--b .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
   .fee--b .ring circle { fill: none; stroke-width: 7; }
   .fee--b .ring .bg { stroke: rgba(239, 225, 202, .1); } .fee--b .ring .fg { stroke: var(--gold); stroke-linecap: round; stroke-dasharray: 0 400; transition: stroke-dasharray 1.8s var(--spring); }
-  .fee--b .ring.in .fg { stroke-dasharray: 18.5 400; }   /* 7% of 2π·42 */
+  .fee--b .ring.in .fg { stroke-dasharray: 19.8 400; }   /* 7.5% of 2π·42 */
   .fee--b .ring span { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 12.5px; color: var(--soft); line-height: 1.45; }
   .fee--b .ring span b { font-size: 30px; font-weight: 800; color: var(--gold); line-height: 1.05; margin-bottom: 4px; }
   .fee--b .ring { width: 170px; }
@@ -190,7 +190,7 @@
   .hub__core b { display: block; margin-top: 6px; font-size: clamp(12px, 1.2vw, 15px); font-weight: 700; color: #f6e7cf; line-height: 1.4; }
   .hub__ring ul { list-style: none; }
   .hub__ring li { position: absolute; transform: translate(-50%, -50%);
-    white-space: nowrap; padding: 8px 15px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #f6e7cf; background: rgba(34, 22, 15, .92); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
+    max-width: 11em; text-align: center; line-height: 1.35; padding: 8px 15px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #f6e7cf; background: rgba(34, 22, 15, .92); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
   .hub__txt p { font-size: clamp(16px, 1.4vw, 19px); line-height: 2; color: var(--soft); text-align: justify; }
   .hub__txt strong { display: block; text-align: center; margin-top: 22px; padding: 18px 22px; border-radius: 20px; font-size: clamp(17px, 1.6vw, 20px); font-weight: 700; color: #f6e7cf; line-height: 1.7;
     background: linear-gradient(100deg, rgba(230, 196, 141, .16), rgba(230, 196, 141, .04)); box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .45); }
@@ -257,7 +257,7 @@
     .bar__tag { display: none; }
     .seal { width: 108px; }
     .clear { grid-template-columns: 1fr; }
-    .hub__ring li { font-size: 12px; padding: 6px 11px; }
+    .hub__ring { width: 78%; } .hub__ring li { font-size: 11px; padding: 5px 9px; max-width: 9em; }
     .ops li { grid-template-columns: 52px minmax(0, 1fr); } .ops li b { width: 52px; height: 52px; } .ops li em { grid-column: 2; }
     .ref span + span { padding-inline-start: 0; border-inline-start: 0; }
   }
@@ -292,7 +292,6 @@
       </div>
       <div class="cta rv">
         <a class="btn btn--gold" href="#dims">إطلع على العرض<i aria-hidden="true"></i></a>
-        <a class="btn btn--ghost" href="../buad-system-offer-aljuhani.pdf" download="عرض منظومة بُعد - محطة الجهني.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل العرض PDF</a>
       </div>
     </div>
     <div class="hero__plan" aria-label="المخطط الهندسي المعتمد للمحطة">
@@ -349,9 +348,9 @@
       </article>
       <article class="fee fee--b rv">
         <div><span class="fee__k">أتعاب البُعد <span class="n">03</span></span>
-          <div class="fee__v"><b class="n">7<sup>%</sup></b><span>سنوياً</span></div>
-          <p class="fee__s">من الإيراد المحصّل</p></div>
-        <div class="ring" id="ring"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" cx="50" cy="50" r="42"/></svg><span><b class="n">7%</b>من كل ريال<br>يُحصَّل للعقار</span></div>
+          <div class="fee__v"><b class="n">7.5<sup>%</sup></b><span>سنوياً</span></div>
+          <p class="fee__s">من الإيرادات المحصّلة</p></div>
+        <div class="ring" id="ring"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" cx="50" cy="50" r="42"/></svg><span><b class="n">7.5%</b>من كل ريال<br>يُحصَّل للعقار</span></div>
       </article>
     </div>
     <p class="fee-note rv">الأتعاب غير شاملة ضريبة القيمة المضافة ولا تشمل تكاليف التنفيذ والرسوم الحكومية</p>
@@ -378,7 +377,7 @@
   <div class="w hub">
     <div class="hub__ring rv" aria-hidden="true">
       <ul>
-        <li style="top:9.0%;left:50.0%">الإنشاء والتجهيز</li><li style="top:24.4%;left:17.9%">التصميم والإشراف</li><li style="top:59.1%;left:10.0%">التشغيل</li><li style="top:86.9%;left:32.2%">الصيانة</li><li style="top:86.9%;left:67.8%">النظافة</li><li style="top:59.1%;left:90.0%">الأمن</li><li style="top:24.4%;left:82.1%">التسويق والتأجير</li>
+        <li style="top:10.0%;left:50.0%">الدراسات الفنية والنظامية</li><li style="top:25.1%;left:18.7%">التعاقدات والإعتمادات</li><li style="top:58.9%;left:11.0%">التسويق والتأجير</li><li style="top:86.0%;left:32.6%">التشغيل والصيانة</li><li style="top:86.0%;left:67.4%">الإنشاءات والتجهيز</li><li style="top:58.9%;left:89.0%">التصميم والإشراف</li><li style="top:25.1%;left:81.3%">الأمن والضبط</li>
       </ul>
       <div class="hub__core"><div><img src="../../assets/img/logo-mark-sand.png" alt=""><b>بُعد مسؤولة<br>أمامكم</b></div></div>
     </div>
@@ -444,8 +443,7 @@
       <a class="btn btn--ghost" href="../buad-system-offer-aljuhani.pdf" download="عرض منظومة بُعد - محطة الجهني.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل العرض PDF</a>
     </div>
     <p class="bye rv">أطيب الأمنيات ودمتم بخير</p>
-    <p class="sign rv"><b>بُعد</b> - إدارة تطوير الأعمال</p>
-    <p class="fine">تخضع الأتعاب والإلتزامات التفصيلية لعقد الإدارة والتطوير والتشغيل</p>
+        <p class="fine">تخضع الأتعاب والإلتزامات التفصيلية لعقد الإدارة والتطوير والتشغيل</p>
     <div class="contact"><span>buad.sa</span><span>info@buad-r.sa</span><span>+966 55 000 0126</span><span>4030560162</span></div>
   </div>
 </section>
