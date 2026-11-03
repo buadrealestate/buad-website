@@ -91,7 +91,7 @@
   .tri b small { font-size: .34em; font-weight: 700; color: var(--gold); margin-inline-start: 8px; }
   .tri > div > span { display: block; margin-top: 12px; font-size: 15.5px; font-weight: 700; color: #f6e7cf; }
   .tri > div > em { display: block; margin-top: 4px; font-style: normal; font-size: 14px; color: var(--soft); line-height: 1.7; }
-  .tri > div:nth-child(2) { background: radial-gradient(80% 90% at 50% 0%, rgba(230, 196, 141, .16), transparent 70%); }
+  .tri > div:nth-child(3) { background: radial-gradient(80% 90% at 50% 0%, rgba(230, 196, 141, .22), transparent 70%); } .tri > div:nth-child(3) > b, .tri > div:nth-child(3) > b .n { color: var(--gold); }
 
   /* intro */
   .intro { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(26px, 4vw, 70px); align-items: center; }
@@ -110,6 +110,8 @@
   .pts { list-style: none; display: grid; gap: 10px; }
   .pts li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 16px 20px; border-radius: 20px; background: rgba(239, 225, 202, .04); box-shadow: inset 0 0 0 1px var(--hair-d); }
   .pts b { font-size: 15px; font-weight: 800; color: var(--gold); }
+  .pts li > span strong { display: block; font-size: 17px; font-weight: 800; color: #f6e7cf; }
+  .pts li > span em { display: block; font-style: normal; font-size: 14px; color: var(--soft); line-height: 1.7; }
   .pts li > span { font-size: 15.5px; line-height: 1.8; color: #f6e7cf; }
   .mk { border-radius: 26px; overflow: hidden; background: linear-gradient(170deg, rgba(58, 38, 26, .7), rgba(22, 14, 10, .9)); box-shadow: inset 0 0 0 1px var(--hair-d); }
   .mk h3 { padding: 20px 24px 6px; font-size: 18px; font-weight: 800; color: #f6e7cf; }
@@ -268,7 +270,12 @@
   .quote { padding: 26px 28px; border-radius: 26px; font-size: clamp(17px, 1.5vw, 20px); line-height: 2; color: var(--brown); background: var(--card); box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .4); }
   .quote b { font-weight: 800; }
   .ex { margin-top: 14px; padding: 20px 24px; border-radius: 22px; font-size: 15px; line-height: 1.9; color: var(--mocha); background: rgba(214, 173, 114, .14); }
-  .ex b { color: var(--brown); }
+  .ex > b { display: block; color: var(--brown); font-size: 16px; margin-bottom: 12px; }
+  .ex__g { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .ex__g > div { display: grid; gap: 2px; padding: 12px; border-radius: 16px; text-align: center; background: var(--card); }
+  .ex__g span { font-size: 12.5px; color: var(--mocha); } .ex__g strong .n, .ex__g strong { font-size: 26px; font-weight: 800; color: var(--brown); line-height: 1.2; } .ex__g em { font-style: normal; font-size: 13px; color: var(--mocha); white-space: nowrap; }
+  .ex__hl { background: linear-gradient(160deg, #3a2418, #1b120d) !important; } .ex__hl span, .ex__hl em { color: var(--soft) !important; } .ex__hl strong { color: var(--gold) !important; }
+  @media (max-width: 620px) { .ex__g { grid-template-columns: 1fr 1fr; } }
   .ladder { list-style: none; display: grid; gap: 10px; }
   .ladder li { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 16px 20px; border-radius: 22px; background: var(--card); box-shadow: inset 0 0 0 1px var(--hair-l); }
   .ladder li > i { font-style: normal; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: var(--gold); background: var(--esp); }
@@ -380,12 +387,12 @@
     <div class="head rv"><p class="eb">لماذا هذه الأرض</p><h2 class="h2" style="color:#f8ecd8">موقع وطلب ودخلان <b>بسعر دخول أقل من السوق</b></h2></div>
     <div class="why">
       <ul class="pts rv">
-        <li><b>الموقع</b><span><span class="n">16</span> دقيقة للحرم و<span class="n">30</span> دقيقة لمطار جدة و<span class="n">40</span> دقيقة للطائف على طريق المعتمرين والزوار</span></li>
-        <li><b>المساحة</b><span><span class="n">468,322</span> م² منها <span class="n">304,409</span> م² قابلة للتأجير</span></li>
-        <li><b>الطلب</b><span>الجموم أكثر من <span class="n">110</span> آلاف نسمة ومركز لثمانية مراكز إدارية</span></li>
-        <li><b>التكلفة</b><span>إيجار الأمانة <span class="n">3.4</span> ريال للمتر ونؤجر بـ <span class="n">35</span> ريال بعد التجهيز</span></li>
-        <li><b>دخلان</b><span>تأجير الأراضي ومحطة وقود ومرافق خدمية</span></li>
-        <li><b>جاهزية</b><span>التأجير على الخارطة يبدأ خلال سنة</span></li>
+        <li><b>الموقع</b><span><strong><span class="n">16</span> دقيقة للحرم</strong><em>على طريق المعتمرين والزوار · <span class="n">30</span> دقيقة لمطار جدة · <span class="n">40</span> دقيقة للطائف</em></span></li>
+        <li><b>المساحة</b><span><strong><span class="n">468,322</span> م²</strong><em>منها <span class="n">304,409</span> م² قابلة للتأجير</em></span></li>
+        <li><b>الطلب</b><span><strong>أكثر من <span class="n">110</span> آلاف نسمة</strong><em>الجموم مركز لثمانية مراكز إدارية</em></span></li>
+        <li><b>التكلفة</b><span><strong><span class="n">3.4</span> مقابل <span class="n">35</span> ريال/م²</strong><em>إيجار الأمانة مقابل سعر التأجير بعد التجهيز</em></span></li>
+        <li><b>مصادر الدخل</b><span><strong>دخلان</strong><em>تأجير الأراضي ومحطة وقود ومرافق خدمية</em></span></li>
+        <li><b>الجاهزية</b><span><strong>خلال سنة</strong><em>التأجير على الخارطة</em></span></li>
       </ul>
       <div class="mk rv">
         <h3>مؤيدات السوق على سعر المتر</h3>
@@ -484,8 +491,8 @@
     <ol class="arts">
       <li class="art rv"><div><h3>توزيع الأرباح</h3><p>ما لا يقل عن <b><span class="n">70%</span></b> من صافي الدخل النقدي مرتين في السنة بعد تحصيل إيجار المستأجرين</p><span class="art__chip">مرتين في السنة</span></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span></li>
       <li class="art rv"><div><h3>المشاركة في الإدارة</h3><p>نرحب بدخول كفاءات من طرفك في الإدارة مع شركة المشروع</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4M16 4.8a3 3 0 0 1 0 6M18 14.6c1.8.6 2.8 2.4 3 5.4"/></svg></span></li>
-      <li class="art rv"><div><h3>القرارات الكبرى</h3><p>بيع الأصل والاقتراض وإدخال شريك ومرحلة جديدة: بموافقة مجلس الإدارة وفق سياسة الحوكمة المعتمدة في نظام الشركة ويُمثَّل الشركاء في المجلس بحسب حصصهم</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-3 7h6zM17 7l-3 7h6z"/><path d="M8 21h8"/></svg></span></li>
-      <li class="art rv"><div><h3>الشفافية</h3><p>حساب مستقل لشركة المشروع والصرف على بنود المرحلة حسب الإنجاز وتقرير ربع سنوي وقوائم مالية سنوية مدققة</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg></span></li>
+      <li class="art rv"><div><h3>القرارات الكبرى</h3><p>بيع الأصل والاقتراض وإدخال شريك ومرحلة جديدة بموافقة مجلس الإدارة وفق سياسة الحوكمة في نظام الشركة ويُمثَّل الشركاء في المجلس بحسب حصصهم</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-3 7h6zM17 7l-3 7h6z"/><path d="M8 21h8"/></svg></span></li>
+      <li class="art rv"><div><h3>الشفافية</h3><p>حساب مستقل لشركة المشروع والصرف على الأعمال حسب الإنجاز وتقرير ربع سنوي وقوائم مالية سنوية مدققة</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg></span></li>
       <li class="art rv"><div><h3>حق التخارج</h3><p>بعد <b><span class="n">6</span> سنوات</b> من بدء الدخل بسعر يحدده مقيّم معتمد</p></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8M10 5H5v14h14v-5"/></svg></span></li>
       <li class="art rv"><div><h3>المراحل القادمة</h3><p>حق الأولوية في أي زيادة رأس مال أو مرحلة جديدة ولا يُطلب منك تمويل إضافي في المرحلة الأولى</p><span class="art__chip">بلا تمويل إضافي</span></div><span class="art__ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V10l6-5 6 5v11"/><path d="M10 21v-5h4v5"/></svg></span></li>
     </ol>
@@ -500,7 +507,9 @@
     <div class="lv">
       <div class="rv">
         <p class="quote">الشركاء الأصليون لا يملكون الأرض بل يملكون حق إستثمارها <span class="n">25</span> سنة وقيمة هذا الحق ببساطة: <b>كم تكسب الأرض لو أُجّرت بسعر السوق ناقص ما ندفعه للأمانة</b> محسوباً بقيمة اليوم</p>
-        <p class="ex"><b>مثال الخصم:</b> الريال الذي يصلنا في <span class="n">2028</span> يساوي اليوم <span class="n">0.86</span> وفي <span class="n">2038</span> يساوي <span class="n">0.33</span> وفي <span class="n">2053</span> يساوي <span class="n">0.08</span> لذلك أول <span class="n">5</span> سنوات وحدها تمثل قرابة <span class="n">40%</span> من القيمة</p>
+        <div class="ex"><b>مثال الخصم: كم يساوي اليوم الريال الذي يصلنا لاحقاً؟</b>
+          <div class="ex__g"><div><span>ريال يصلنا في</span><strong><span class="n">2028</span></strong><em>يساوي اليوم <span class="n">0.86</span></em></div><div><span>ريال يصلنا في</span><strong><span class="n">2038</span></strong><em>يساوي اليوم <span class="n">0.33</span></em></div>
+          <div><span>ريال يصلنا في</span><strong><span class="n">2053</span></strong><em>يساوي اليوم <span class="n">0.08</span></em></div><div class="ex__hl"><span>أول <span class="n">5</span> سنوات وحدها</span><strong><span class="n">40%</span></strong><em>من قيمة حق الأرض تقريباً</em></div></div></div>
       </div>
       <ol class="ladder rv">
         <li><i class="n">1</i><div><strong>دخل الأرض بحالتها بسعر متحفظ</strong><small><span class="n">12.5</span> ريال × <span class="n">468,322</span> م²</small></div><b><span class="n">5.85</span> مليون سنوياً</b></li>
