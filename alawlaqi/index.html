@@ -7,7 +7,7 @@
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');if(Date.now()>Date.parse('2026-11-13T23:59:59+03:00'))document.documentElement.classList.add('expired')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -577,9 +577,21 @@ p, small, dd, td, li { text-wrap: pretty; }
   .bar__in { padding-left: 6px; gap: 6px; } .bar__in img { height: 18px; } .bar__nav a { font-size: 12.5px; padding: 6px 10px; }
 }
 @media (max-width: 620px) { .promo span::before, .promo span::after { display: none; } }
-</style></head><body><nav class="bar"><div class="bar__in"><img src="../assets/img/logo-h-sand.png" alt="بُعد"><div class="bar__nav"><a href="#o1" data-s="o1">الخيار الأول</a><a href="#o2" data-s="o2">الخيار الثاني</a><a href="#o3" data-s="o3">الخيار الثالث</a><a href="#faq" data-s="faq">الأسئلة الشائعة</a></div><a class="bar__go" href="jumum-options.pdf" download="خيارات المشاركة في مشروع واجهة الجموم.pdf">PDF</a></div></nav>
+
+/* the offer's end: everything but the notice is hidden */
+.clk--h { margin-top: 18px; color: #f6e7cf; background: rgba(22, 14, 10, .5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.gone { display: none; }
+.expired body > *:not(.gone):not(script):not(dialog) { display: none !important; }
+.expired .gone { display: grid; place-items: center; min-height: 100dvh; padding: 24px; text-align: center; background: radial-gradient(60% 60% at 50% 0%, rgba(230, 196, 141, .16), transparent 70%), linear-gradient(180deg, #1a110c, #0f0906); }
+.gone img { height: 72px; margin: 0 auto 26px; display: block; }
+.gone h1 { font-size: clamp(40px, 6.4vw, 84px); font-weight: 200; line-height: 1.15; color: #f8ecd8; }
+.gone h1 b { font-weight: 800; color: var(--gold); }
+.gone p { margin: 18px auto 30px; max-width: 34em; font-size: 18px; line-height: 1.9; color: var(--soft); }
+@media (max-width: 620px) { .bar2 > div > span { white-space: normal; text-align: center; font-size: 10px; line-height: 1.15; padding-inline: 1px; } }
+</style></head><body><section class="gone"><div><img src="../assets/img/logo-mark-sand.png" alt="بُعد"><h1>انتهت مدة <b>هذا العرض</b></h1><p>انتهت مدة العرض بنهاية يوم <span class="n">2026/11/13</span>م ويُعد لاغياً بعدها ما لم يُمدد كتابياً</p><a class="btn btn--gold" href="https://wa.me/966550000126?text=%D8%B9%D8%B1%D8%B6%20%D8%AE%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9%20%D9%81%D9%8A%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D9%88%D8%A7%D8%AC%D9%87%D8%A9%20%D8%A7%D9%84%D8%AC%D9%85%D9%88%D9%85" target="_blank" rel="noopener">تواصل عبر واتساب<i aria-hidden="true"></i></a></div></section><nav class="bar"><div class="bar__in"><img src="../assets/img/logo-h-sand.png" alt="بُعد"><div class="bar__nav"><a href="#o1" data-s="o1">الخيار الأول</a><a href="#o2" data-s="o2">الخيار الثاني</a><a href="#o3" data-s="o3">الخيار الثالث</a><a href="#faq" data-s="faq">الأسئلة الشائعة</a></div><a class="bar__go" href="jumum-options.pdf" download="خيارات المشاركة في مشروع واجهة الجموم.pdf">PDF</a></div></nav>
 <header class="hero"><img class="hero__img" src="../assets/img/jumum-aerial.webp" alt="واجهة الجموم"><div class="w">
 <p class="hero__k rv">عرض خاص مقدم إلى: السيد كامل العولقي وشركائه الموقرين</p><h1 class="rv">خيارات <b>المشاركة</b></h1><p class="hero__sub rv">في مشروع واجهة الجموم</p>
+<div class="clk clk--h rv" data-deadline="2026-11-13T23:59:59+03:00"><span class="clk__dot"></span><span>هذا العرض ساري لمدة خمسة أيام وينتهي بنهاية يوم <span class="n">2026/11/13</span>م</span><b class="clk__v"></b></div>
 <div class="cta rv"><a class="btn btn--gold" href="#choose">إطلع على الخيارات<i aria-hidden="true"></i></a><a class="btn btn--ghost" href="jumum-options.pdf" download="خيارات المشاركة في مشروع واجهة الجموم.pdf">تحميل الملف PDF</a></div></div></header>
 <main>
 <section class="sec light" id="choose"><div class="w"><div class="head rv"><p class="eb">عرض خاص مقدم إلى:</p><h2 class="h2"><b>ثلاثة خيارات</b> للمشاركة</h2><p class="lead">السيد كامل العولقي وشركائه الموقرين</p></div><div class="cards"><a class="optc rv" href="#o1"><span class="optc__n">01</span><span class="optc__k">الخيار الأول</span><strong>شراكة استراتيجية بحصص متساوية</strong><ul><li><b><span class="n">100</span> مليون ريال</b><span>رأس مال الشركة</span></li><li><b><span class="n">50%</span> - <span class="n">50%</span></b><span>بالمناصفة</span></li></ul><i aria-hidden="true"></i></a><a class="optc optc--m rv" href="#o2"><span class="optc__n">02</span><span class="optc__k">الخيار الثاني</span><strong>تأجير أرض المحطة</strong><ul><li><b><span class="n">60,000</span> م²</b><span>موافقة وزارة الطاقة</span></li><li><b><span class="n">25</span> سنة</b><span>مدة الإيجار</span></li></ul><i aria-hidden="true"></i></a><a class="optc rv" href="#o3"><span class="optc__n">03</span><span class="optc__k">الخيار الثالث</span><strong>المشاركة بالأسهم مع حق التخارج بعد سنة ميلادية</strong><ul><li><b><span class="n">20%</span> - <span class="n">30%</span></b><span>العوائد</span></li><li><b><span class="n">12</span> شهراً</b><span>التخارج</span></li></ul><i aria-hidden="true"></i></a></div><div class="promo rv"><span>مع كل مليون <b>حصة تأسيس مجانية</b></span></div><div class="alsos rv"><a href="#faq"><b>الأسئلة الشائعة</b><span>الأسئلة الشائعة وأجوبتها</span><i aria-hidden="true"></i></a></div></div></section>
