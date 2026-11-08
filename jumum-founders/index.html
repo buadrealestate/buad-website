@@ -599,32 +599,77 @@ p, small, dd, td, li { text-wrap: pretty; }
 .tag { margin-top: 16px; display: inline-block; padding: 9px 20px; border-radius: 999px; font-size: 15.5px; font-weight: 700; color: var(--brown); background: rgba(214, 173, 114, .26); }
 .tag--d { color: #1b130f; background: rgba(27, 19, 15, .1); margin-top: 22px; }
 
-/* the field of 1,000 shares */
-.fld { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); border-radius: 32px; overflow: hidden; color: #f6e7cf; background: radial-gradient(70% 80% at 85% 0%, rgba(230, 196, 141, .2), transparent 70%), linear-gradient(165deg, #3a2418, #160e0a); box-shadow: inset 0 0 0 1px var(--hair-d), 0 50px 80px -50px rgba(0, 0, 0, .9); }
-.fld__c { padding: clamp(24px, 3.2vw, 44px); display: grid; align-content: start; gap: 8px; }
-.fld__c label { font-size: 14px; color: var(--soft); }
-.pres { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
-.pres button { font: inherit; font-size: 13.5px; padding: 6px 13px; border-radius: 999px; border: 0; cursor: pointer; color: var(--soft); background: none; box-shadow: inset 0 0 0 1px var(--hair-d); transition: background .3s, color .3s; }
-.pres button:hover { color: #f6e7cf; } .pres button.on { color: var(--ink); background: var(--gold); box-shadow: none; font-weight: 700; }
-.res { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--hair-d); }
-.res b { display: block; font-size: clamp(46px, 5.6vw, 80px); font-weight: 200; line-height: 1; color: var(--gold); direction: ltr; text-align: start; unicode-bidi: plaintext; }
-.res > div > span { font-size: 14.5px; color: var(--soft); }
-.split { margin-top: 12px; font-size: 15.5px; color: #f6e7cf; } .split span { font-weight: 800; color: var(--gold); } .split i { font-style: normal; color: var(--gold); margin-inline: 4px; }
-.fld__m { padding: clamp(20px, 3vw, 40px); border-inline-start: 1px solid var(--hair-d); background: rgba(22, 14, 10, .3); display: grid; align-content: center; gap: 18px; }
-.grid { display: grid; grid-template-columns: repeat(40, 1fr); gap: 3px; direction: rtl; }
-.grid i { aspect-ratio: 1; border-radius: 2px; background: var(--c, rgba(239, 225, 202, .1)); transition: background .45s var(--spring), box-shadow .45s var(--spring), transform .45s var(--spring); transition-delay: var(--d, 0ms); }
-.grid .land { --c: rgba(239, 225, 202, .3); } .grid .cash { --c: rgba(239, 225, 202, .42); } .grid .found { --c: rgba(201, 154, 100, .55); }
-.grid .pool { --c: transparent; box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .6); } .grid .free { --c: rgba(239, 225, 202, .09); }
-.grid .mine { background: var(--gold); box-shadow: none; }
-.grid .gift { background: #fff3d6; box-shadow: 0 0 9px 1px rgba(255, 228, 170, .85); transform: scale(1.12); }
-.lg { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--soft); }
-.lg > span { display: inline-flex; align-items: center; gap: 7px; } .lg b { color: #f6e7cf; font-weight: 700; }
-.lg i { width: 12px; height: 12px; border-radius: 2px; display: block; }
-.k-land i { background: rgba(239, 225, 202, .3); } .k-cash i { background: rgba(239, 225, 202, .42); } .k-found i { background: rgba(201, 154, 100, .55); }
-.k-pool i { box-shadow: inset 0 0 0 1px rgba(230, 196, 141, .7); } .k-free i { background: rgba(239, 225, 202, .12); } .k-you i { background: var(--gold); }
-.gets { grid-template-columns: 1fr 1fr; }
-.get b[dir=ltr] { text-align: start; justify-self: start; }
+/* amount, slider, gold share card, estimated profit */
+.head--c { text-align: center; justify-items: center; margin-inline: auto; }
+.dial { text-align: center; max-width: 960px; margin-inline: auto; }
+.dial label { font-size: 15px; color: var(--soft); } .dial label span { color: var(--gold); font-weight: 700; margin-inline-start: 4px; }
+.dial__in { display: grid; grid-template-columns: 60px minmax(0, 1fr) 60px; align-items: center; gap: 14px; margin-top: 8px; }
+.dial__in input { width: 100%; min-width: 0; text-align: center; direction: ltr; font: 200 clamp(58px, 11.5vw, 156px)/1.05 Tajawal, sans-serif; color: #f8ecd8; background: transparent; border: 0; outline: none; padding: 0; }
+.dial__in .typer__b { width: 60px; height: 60px; font-size: 30px; }
+.dial .inst__hint { margin-top: 6px; }
+.dial .rail { margin-top: 28px; padding-bottom: 42px; }
+.rail input { direction: rtl; }
+.dial__u { font-size: 12.5px; color: var(--soft); }
+.ticks button { font-size: 13.5px; }
+.out2 { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; margin-top: clamp(30px, 4vw, 52px); align-items: stretch; }
+.cert { perspective: 1200px; }
+.cert__in { position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; padding: clamp(24px, 3vw, 40px); border-radius: 30px; color: #1b130f; transform-style: preserve-3d; transition: transform .5s var(--spring);
+  background: radial-gradient(70% 70% at var(--gx, 25%) var(--gy, 10%), rgba(255, 246, 226, .75), transparent 70%), linear-gradient(135deg, #f0d9ae, #c99a64 62%, #b38450); box-shadow: inset 0 0 0 1px rgba(255, 244, 222, .55), 0 50px 70px -40px rgba(0, 0, 0, .95); }
+.cert__in::after { content: ""; position: absolute; inset: 12px; border-radius: 20px; border: 1px solid rgba(27, 19, 15, .24); pointer-events: none; }
+.cert__wm { position: absolute; left: -46px; bottom: -56px; width: 340px; opacity: .1; pointer-events: none; }
+.cert__top { position: relative; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 700; color: rgba(27, 19, 15, .72); }
+.cert__top img { height: 20px; }
+.cert__k { position: relative; margin-top: clamp(24px, 3.4vw, 44px); font-size: 15.5px; font-weight: 500; color: rgba(27, 19, 15, .74); }
+.cert__n { position: relative; display: flex; align-items: baseline; gap: 12px; }
+.cert__n b { font-size: clamp(90px, 13vw, 176px); font-weight: 200; line-height: 1; letter-spacing: -.02em; }
+.cert__n span { font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; }
+.cert__sp { position: relative; display: flex; align-items: center; gap: 16px; margin-top: 12px; }
+.cert__sp b { display: block; font-size: 30px; font-weight: 700; line-height: 1.1; } .cert__sp span { font-size: 14px; color: rgba(27, 19, 15, .74); }
+.cert__sp i { font-style: normal; font-size: 28px; font-weight: 200; }
+.cert__sp .gift { padding: 8px 16px; border-radius: 16px; background: rgba(27, 19, 15, .9); } .cert__sp .gift b { color: var(--gold); } .cert__sp .gift span { color: #f6e7cf; }
+.cert__f { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 34px; margin-top: auto; padding-top: 18px; }
+.cert__f > div { padding-top: 14px; border-top: 1px solid rgba(27, 19, 15, .26); }
+.cert__f span { display: block; font-size: 14px; color: rgba(27, 19, 15, .74); } .cert__f b { display: block; text-align: start; unicode-bidi: plaintext; font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; line-height: 1.25; }
+.prof { display: flex; flex-direction: column; gap: clamp(26px, 3.4vw, 46px); padding: clamp(24px, 3vw, 40px); border-radius: 30px; background: linear-gradient(170deg, rgba(58, 38, 26, .75), rgba(22, 14, 10, .92)); box-shadow: inset 0 0 0 1px var(--hair-d); }
+.prof__t { font-size: clamp(19px, 1.9vw, 24px); font-weight: 300; color: #f6e7cf; }
+.pr__h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.pr__h span { font-size: 15px; color: var(--soft); }
+.pr__h b { font-size: clamp(36px, 4.7vw, 66px); font-weight: 200; line-height: 1.1; color: #f8ecd8; }
+.pr--g .pr__h b { color: var(--gold); font-weight: 300; }
+.pr__b { height: 8px; margin-top: 10px; border-radius: 99px; overflow: hidden; background: rgba(239, 225, 202, .1); }
+.pr__b i { display: block; height: 100%; border-radius: 99px; background: #a8794a; transition: width .7s var(--spring); }
+.pr--g .pr__b i { background: linear-gradient(90deg, #d6ad72, #f0d3a2); }
+.prof__n { margin-top: auto; font-size: 14px; line-height: 1.75; color: var(--soft); }
 .full tr.on td { background: rgba(214, 173, 114, .3); font-weight: 800; }
+
+/* capital: the area of each tile is its share of the company */
+.tm { display: flex; gap: 14px; height: clamp(600px, 54vw, 720px); margin-bottom: 14px; }
+.tm__c { display: flex; flex-direction: column; min-width: 0; }
+.tm__c header { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 0 6px 12px; column-gap: 12px; }
+.tm__c header > span { font-size: 17px; font-weight: 800; color: var(--brown); }
+.tm__c header b { grid-row: 1 / 3; grid-column: 2; font-size: clamp(50px, 6vw, 86px); font-weight: 200; line-height: .95; color: var(--brown); }
+.tm__c header em { font-style: normal; font-size: 14.5px; color: var(--mocha); }
+.tm__s { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
+.tm__t { position: relative; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(18px, 2.2vw, 30px); border-radius: 22px; transform-origin: bottom; transition: transform 1s var(--spring), opacity .7s, filter .4s; }
+.tm__t:hover { filter: brightness(1.06); }
+.js .tm:not(.in) .tm__t { transform: scaleY(.2); opacity: 0; }
+.tm__n { display: flex; align-items: baseline; gap: 8px; }
+.tm__n b { font-size: clamp(60px, 8.4vw, 124px); font-weight: 200; line-height: .95; }
+.tm__n > span:not(.n) { font-size: 15px; font-weight: 700; }
+.tm__l strong { display: block; font-size: clamp(17px, 1.6vw, 21px); font-weight: 800; line-height: 1.4; }
+.tm__l em { display: block; font-style: normal; font-size: 14px; line-height: 1.55; opacity: .8; }
+.tm__p { position: absolute; left: clamp(16px, 2vw, 26px); top: clamp(14px, 1.8vw, 24px); font-style: normal; font-size: 16px; font-weight: 700; padding: 3px 12px; border-radius: 99px; box-shadow: inset 0 0 0 1px currentColor; }
+.t-land { color: #f6e7cf; background: radial-gradient(80% 80% at 80% 10%, rgba(230, 196, 141, .24), transparent 70%), linear-gradient(160deg, #3a2418, #160e0a); }
+.t-found { color: #f6e7cf; background: linear-gradient(150deg, #7a5a43, #5a3b28); }
+.t-found .tm__n b { font-size: clamp(44px, 5vw, 72px); }
+.t-cash { color: #f6e7cf; background: #a8794a; }
+.t-free { color: #1b130f; background: radial-gradient(70% 90% at 15% 0%, rgba(255, 244, 222, .55), transparent 70%), linear-gradient(135deg, #ecd3a6, #c99a64); }
+.t-free .tm__n b { font-size: clamp(90px, 13vw, 190px); }
+.t-pool { color: #1b130f; background: #fff3d6; box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .55); }
+.t-r { flex-direction: row; align-items: center; justify-content: flex-start; gap: 18px; padding-block: 6px; padding-inline-end: 76px; }
+.t-r .tm__n b { font-size: clamp(32px, 3.4vw, 46px); line-height: 1; }
+.t-r .tm__l strong { font-size: 16px; line-height: 1.25; } .t-r .tm__l em { font-size: 12.5px; line-height: 1.35; }
+.t-r .tm__p { top: 50%; translate: 0 -50%; }
 
 /* returns */
 .srcs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
@@ -641,35 +686,45 @@ p, small, dd, td, li { text-wrap: pretty; }
 .priv { margin-top: 22px !important; font-size: 14.5px !important; } .sgn { margin-top: 6px !important; font-weight: 800; color: var(--gold) !important; font-size: 16px !important; }
 
 @media (max-width: 980px) {
-  .fld { grid-template-columns: 1fr; } .fld__m { border-inline-start: 0; border-top: 1px solid var(--hair-d); }
+  .out2 { grid-template-columns: 1fr; }
+  .tm { flex-direction: column; height: auto; } .tm__c { flex: none !important; } .tm__s { flex: none; } .tm__c--b .tm__s { height: 500px; } .tm__c--p .tm__s { height: 470px; } .tm__c + .tm__c { margin-top: 14px; }
   .srcs { grid-template-columns: 1fr 1fr; } .srcs > div { min-height: 170px; }
   .plus { font-size: 34vw; bottom: auto; top: 96px; }
 }
 @media (max-width: 620px) {
-  .grid { gap: 2px; grid-template-columns: repeat(25, 1fr); }
+  .dial__in { grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 6px; } .dial__in .typer__b { width: 44px; height: 44px; font-size: 24px; } .dial__in input { font-size: clamp(38px, 12.4vw, 58px); }
+  .ticks button { font-size: 11.5px; }
+  .cert__sp { flex-wrap: wrap; } .cert__wm { width: 240px; }
+  .t-r { padding-inline-end: 66px; gap: 10px; }
   .srcs { grid-template-columns: 1fr; } .srcs > div { min-height: 0; gap: 14px; grid-template-columns: auto 1fr; align-items: center; }
   .arts--n .art { grid-template-columns: 54px minmax(0, 1fr); }
-  .gets { grid-template-columns: 1fr; }
 }
-.fld .typer input { font-size: clamp(32px, 3.5vw, 52px); }
+@media (max-width: 620px) { .t-r { flex: none !important; min-height: 88px; } }
 </style></head><body><nav class="bar"><div class="bar__in"><img src="../assets/img/logo-h-sand.png" alt="بُعد"><div class="bar__nav"><a href="#each" data-s="each">الحافز</a><a href="#calc" data-s="calc">احسب حصصك</a><a href="#capital" data-s="capital">رأس المال</a><a href="#returns" data-s="returns">مصادر العائد</a><a href="#notes" data-s="notes">قبل الانضمام</a></div><a class="bar__go" href="jumum-founders.pdf" download="عرض المساهمة مع حافز التأسيس.pdf">PDF</a></div></nav>
 <header class="hero hero--f"><img class="hero__img" src="hero.jpg" alt="واجهة الجموم"><div class="plus" aria-hidden="true">+1</div><div class="w">
 <p class="hero__k rv">عرض إلى أوائل الشركاء في مشروع واجهة الجموم</p><h1 class="rv">مع كل مليون <b>حصة تأسيس مجانية</b></h1><p class="hero__sub rv">رأس مال <span class="n">100</span> مليون · <span class="n">1,000</span> حصة بقيمة <span class="n">100</span> ألف ريال للحصة</p>
 <div class="cta rv"><a class="btn btn--gold" href="#calc">احسب حصصك<i aria-hidden="true"></i></a><a class="btn btn--ghost" href="jumum-founders.pdf" download="عرض المساهمة مع حافز التأسيس.pdf">تحميل الملف PDF</a></div></div></header>
 <main>
 <section class="sec light" id="each" data-chapter="each"><div class="w"><div class="head rv"><p class="eb">ما تحصل عليه مقابل كل مليون</p><h2 class="h2">ادفع <b><span class="n">10</span></b> وتملك <b><span class="n">11</span></b></h2></div><div class="eq"><div class="rv"><b><span class="n">10</span></b><span>حصص</span><em>الحصص النقدية · تدفعها نقد</em><small><span class="n">1,000,000</span> · <span class="n">1%</span></small></div><i class="rv" aria-hidden="true">+</i><div class="eq--g rv"><b><span class="n">1</span></b><span>حصة</span><em>حصة تأسيس مجانية · حافز أوائل الشركاء</em><small><span class="n">100,000</span> · <span class="n">0.1%</span></small></div><i class="rv" aria-hidden="true">=</i><div class="eq--t rv"><b><span class="n">11</span></b><span>حصة</span><em>ما تملكه مقابل كل مليون</em><small><span class="n">1,100,000</span> · <span class="n">1.1%</span></small></div></div><p class="tag rv">حافز التأسيس يرفع ملكيتك <span class="n">10%</span> فوق ما تدفعه</p><h3 class="sh rv">الفرصة في أرقام</h3><div class="quad rv"><div><b><span class="n">100</span> مليون ريال</b><span>رأس مال الشركة</span><em><span class="n">1,000</span> حصة بـ <span class="n">100</span> ألف</em></div><div><b><span class="n">15%</span></b><span>حصص التأسيس</span><em><span class="n">10%</span> للشريك الأول و<span class="n">5%</span> حافز</em></div><div><b><span class="n">35</span> مليون ريال</b><span>حصة الشريك الأول</span><em>الأرض <span class="n">30</span> ونقد <span class="n">5</span></em></div><div><b><span class="n">50</span> مليون ريال</b><span>الحصص المتاحة للشركاء</span><em><span class="n">500</span> حصة</em></div></div></div></section>
-<section class="sec dark deep" id="calc" data-chapter="calc"><div class="w"><div class="head rv"><p class="eb">احسب حصصك</p><h2 class="h2">شوف حصصك <b>داخل الشركة</b></h2></div><div class="fld rv"><div class="fld__c"><label for="amt">مبلغ المشاركة</label>
-<div class="typer"><button type="button" class="typer__b" data-step="-100000" aria-label="إنقاص">−</button><input id="amt" inputmode="numeric" autocomplete="off" value="1,000,000"><button type="button" class="typer__b" data-step="100000" aria-label="زيادة">+</button><span class="typer__u">ريال</span></div>
+<section class="sec dark deep" id="calc" data-chapter="calc"><div class="w"><div class="head head--c rv"><p class="eb">احسب حصصك</p><h2 class="h2">اكتب مبلغك <b>وشوف حصصك</b></h2></div>
+<div class="dial rv"><label for="amt">مبلغ المشاركة <span>بالريال</span></label>
+<div class="dial__in"><button type="button" class="typer__b" data-step="-100000" aria-label="إنقاص">−</button><input id="amt" inputmode="numeric" autocomplete="off" value="1,000,000"><button type="button" class="typer__b" data-step="100000" aria-label="زيادة">+</button></div>
 <p class="inst__hint" id="hint">أقل مشاركة مليون ريال</p>
-<div class="pres"><button type="button" data-amt="1000000" class=on><span class="n">1</span> مليون</button><button type="button" data-amt="2000000"><span class="n">2</span> مليون</button><button type="button" data-amt="3000000"><span class="n">3</span> مليون</button><button type="button" data-amt="5000000"><span class="n">5</span> مليون</button><button type="button" data-amt="10000000"><span class="n">10</span> مليون</button><button type="button" data-amt="15000000"><span class="n">15</span> مليون</button><button type="button" data-amt="20000000"><span class="n">20</span> مليون</button><button type="button" data-amt="25000000"><span class="n">25</span> مليون</button><button type="button" data-amt="50000000"><span class="n">50</span> مليون</button></div>
-<div class="res"><div><b id="o-s">11</b><span>حصصك مع الحافز</span></div><div><b id="o-p">1.1%</b><span>نسبتك في الشركة</span></div></div>
-<p class="split"><span id="o-paid">10</span> حصص تدفعها <i>+</i> <span id="o-free">1</span> حصة تأسيس مجانية</p></div>
-<div class="fld__m"><div class="grid" id="grid" role="img" aria-label="الحصص 1,000 في الشركة وحصصك منها"></div>
-<div class="lg"><span class="k-land"><i></i>الحصة العينية (الأرض) <b><span class="n">300</span></b></span><span class="k-cash"><i></i>الحصة النقدية <b><span class="n">50</span></b></span><span class="k-found"><i></i>حصة تأسيس الشريك الأول <b><span class="n">100</span></b></span><span class="k-pool"><i></i>حافز الشركاء <b><span class="n">50</span></b></span><span class="k-free"><i></i>الحصص المتاحة <b><span class="n">500</span></b></span><span class="k-you"><i></i>حصصك مع الحافز</span></div></div></div>
-<div class="gets"><div class="get rv"><span>ربحك السنوي التقديري بعائد <span class="n">12%</span></span><b id="o-12" dir="ltr">132,000</b></div><div class="get get--tot rv"><span>ربحك السنوي التقديري بعائد <span class="n">20%</span></span><b id="o-20" dir="ltr">220,000</b></div></div>
-<p class="note rv">العوائد تقديرية وغير مضمونة وخاضعة للزيادة أو النقصان</p>
+<div class="rail"><input id="rail" type="range" min="0" max="800" step="1" value="0" aria-label="مبلغ المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%" class=on><span class="n">1</span></button><button type="button" data-i="1" style="right:12.500%"><span class="n">2</span></button><button type="button" data-i="2" style="right:25.000%"><span class="n">3</span></button><button type="button" data-i="3" style="right:37.500%"><span class="n">5</span></button><button type="button" data-i="4" style="right:50.000%"><span class="n">10</span></button><button type="button" data-i="5" style="right:62.500%"><span class="n">15</span></button><button type="button" data-i="6" style="right:75.000%"><span class="n">20</span></button><button type="button" data-i="7" style="right:87.500%"><span class="n">25</span></button><button type="button" data-i="8" style="right:100.000%"><span class="n">50</span></button></div></div><p class="dial__u">مليون ريال</p></div>
+<div class="out2">
+<article class="cert rv" id="cert"><div class="cert__in"><img class="cert__wm" src="../assets/img/logo-mark-dark.png" alt="">
+<div class="cert__top"><span>مشروع واجهة الجموم</span><img src="../assets/img/logo-h-dark.png" alt="بُعد"></div>
+<p class="cert__k">حصصك مع الحافز</p><div class="cert__n"><b id="o-s" dir="ltr">11</b><span>حصة</span></div>
+<div class="cert__sp"><div><b id="o-paid">10</b><span>حصص تدفعها نقد</span></div><i aria-hidden="true">+</i><div class="gift"><b id="o-free">1</b><span>حصة تأسيس مجانية</span></div></div>
+<div class="cert__f"><div><span>نسبتك في الشركة</span><b id="o-p" dir="ltr">1.1%</b></div><div><span>القيمة</span><b id="o-v" dir="ltr">1,100,000</b></div></div></div></article>
+<aside class="prof rv"><p class="prof__t">ربحك السنوي التقديري</p>
+<div class="pr"><div class="pr__h"><span>بعائد <span class="n">12%</span></span><b id="o-12" dir="ltr">132,000</b></div><div class="pr__b"><i id="b-12"></i></div></div>
+<div class="pr pr--g"><div class="pr__h"><span>بعائد <span class="n">20%</span></span><b id="o-20" dir="ltr">220,000</b></div><div class="pr__b"><i id="b-20"></i></div></div>
+<p class="prof__n">العوائد تقديرية وغير مضمونة وخاضعة للزيادة أو النقصان</p></aside></div>
 <details class="full rv"><summary>حصصك ونسبتك وعائدك التقديري حسب مبلغ المشاركة<i aria-hidden="true"></i></summary><div class="tbl"><table class="five"><tr><th>مبلغ المشاركة</th><th>حصصك مع الحافز</th><th>نسبتك في الشركة</th><th>ربحك السنوي التقديري بعائد <span class="n">12%</span></th><th>ربحك السنوي التقديري بعائد <span class="n">20%</span></th></tr><tr data-m="1000000"><td><span class="n">1,000,000</span></td><td><span class="n">11</span> حصة</td><td><span class="n">1.1%</span></td><td><span class="n">132,000</span></td><td><span class="n">220,000</span></td></tr><tr data-m="2000000"><td><span class="n">2,000,000</span></td><td><span class="n">22</span> حصة</td><td><span class="n">2.2%</span></td><td><span class="n">264,000</span></td><td><span class="n">440,000</span></td></tr><tr data-m="3000000"><td><span class="n">3,000,000</span></td><td><span class="n">33</span> حصة</td><td><span class="n">3.3%</span></td><td><span class="n">396,000</span></td><td><span class="n">660,000</span></td></tr><tr data-m="5000000"><td><span class="n">5,000,000</span></td><td><span class="n">55</span> حصة</td><td><span class="n">5.5%</span></td><td><span class="n">660,000</span></td><td><span class="n">1,100,000</span></td></tr><tr data-m="10000000"><td><span class="n">10,000,000</span></td><td><span class="n">110</span> حصة</td><td><span class="n">11%</span></td><td><span class="n">1,320,000</span></td><td><span class="n">2,200,000</span></td></tr><tr data-m="15000000"><td><span class="n">15,000,000</span></td><td><span class="n">165</span> حصة</td><td><span class="n">16.5%</span></td><td><span class="n">1,980,000</span></td><td><span class="n">3,300,000</span></td></tr><tr data-m="20000000"><td><span class="n">20,000,000</span></td><td><span class="n">220</span> حصة</td><td><span class="n">22%</span></td><td><span class="n">2,640,000</span></td><td><span class="n">4,400,000</span></td></tr><tr data-m="25000000"><td><span class="n">25,000,000</span></td><td><span class="n">275</span> حصة</td><td><span class="n">27.5%</span></td><td><span class="n">3,300,000</span></td><td><span class="n">5,500,000</span></td></tr><tr data-m="50000000" class=cap><td><span class="n">50,000,000</span><small>كل الحصص المتاحة</small></td><td><span class="n">550</span> حصة</td><td><span class="n">55%</span></td><td><span class="n">6,600,000</span></td><td><span class="n">11,000,000</span></td></tr></table></div></details></div></section>
-<section class="sec light" id="capital" data-chapter="capital"><div class="w"><div class="head rv"><p class="eb">توزيع رأس المال</p><h2 class="h2">النسبة النهائية <b>لكل طرف</b></h2></div><div class="bar2 rv"><div style="width:30%;background:linear-gradient(135deg,#3a2418,#5a3b28);color:#f6e7cf"><span>الأرض <span class="n">30%</span></span></div><div style="width:5%;background:#6e4c3a;color:#f6e7cf"><span><span class="n">5%</span></span></div><div style="width:10%;background:#a8794a;color:#f6e7cf"><span>التأسيس <span class="n">10%</span></span></div><div style="width:5%;background:#e6c48d;color:#1b130f"><span><span class="n">5%</span></span></div><div style="width:50%;background:linear-gradient(135deg,#d6ad72,#f0d3a2);color:#1b130f"><span>الحصص المتاحة <span class="n">50%</span></span></div></div><div class="two rv"><div class="fgx fgx--a"><b><span class="n">45%</span></b><span>الشريك الأول (بُعد)</span><em><span class="n">450</span> حصة</em></div><div class="fgx"><b><span class="n">55%</span></b><span>الشركاء</span><em><span class="n">550</span> حصة</em></div></div><div class="card card--t rv" style="margin-top:14px"><div class="tbl tight"><table><tr><th>البند</th><th>الشريك الأول (بُعد)</th><th>الشركاء</th><th>الإجمالي</th></tr><tr><td>الحصة العينية (الأرض)</td><td><span class="n">300</span> حصة</td><td>—</td><td><span class="n">300</span> حصة</td></tr><tr><td>الحصة النقدية<small><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</small></td><td><span class="n">50</span> حصة</td><td>—</td><td><span class="n">50</span> حصة</td></tr><tr><td>حصص التأسيس<small><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل و<span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</small></td><td><span class="n">100</span> حصة</td><td><span class="n">50</span> حصة</td><td><span class="n">150</span> حصة</td></tr><tr><td>الحصص المتاحة</td><td>—</td><td><span class="n">500</span> حصة</td><td><span class="n">500</span> حصة</td></tr><tr class=tot><td>إجمالي الحصص</td><td><span class="n">450</span> حصة</td><td><span class="n">550</span> حصة</td><td><span class="n">1,000</span> حصة</td></tr><tr class=tot><td>النسبة النهائية</td><td><span class="n">45%</span></td><td><span class="n">55%</span></td><td><span class="n">100%</span></td></tr></table></div></div></div></section>
+<section class="sec light" id="capital" data-chapter="capital"><div class="w"><div class="head rv"><p class="eb">توزيع رأس المال</p><h2 class="h2">النسبة النهائية <b>لكل طرف</b></h2></div>
+<div class="tm rv"><div class="tm__c tm__c--b" style="flex:45 1 0"><header><span>الشريك الأول (بُعد)</span><b><span class="n">45%</span></b><em><span class="n">450</span> حصة</em></header><div class="tm__s"><div class="tm__t t-land" style="flex:300 1 0"><div class="tm__n"><b><span class="n">300</span></b><span>حصة</span></div><div class="tm__l"><strong>الحصة العينية (الأرض)</strong></div><i class="tm__p"><span class="n">30%</span></i></div><div class="tm__t t-found" style="flex:100 1 0"><div class="tm__n"><b><span class="n">100</span></b><span>حصة</span></div><div class="tm__l"><strong>حصص التأسيس</strong><em><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل</em></div><i class="tm__p"><span class="n">10%</span></i></div><div class="tm__t t-cash t-r" style="flex:50 1 0"><div class="tm__n"><b><span class="n">50</span></b><span>حصة</span></div><div class="tm__l"><strong>الحصة النقدية</strong><em><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</em></div><i class="tm__p"><span class="n">5%</span></i></div></div></div><div class="tm__c tm__c--p" style="flex:55 1 0"><header><span>الشركاء</span><b><span class="n">55%</span></b><em><span class="n">550</span> حصة</em></header><div class="tm__s"><div class="tm__t t-free" style="flex:500 1 0"><div class="tm__n"><b><span class="n">500</span></b><span>حصة</span></div><div class="tm__l"><strong>الحصص المتاحة</strong></div><i class="tm__p"><span class="n">50%</span></i></div><div class="tm__t t-pool t-r" style="flex:50 1 0"><div class="tm__n"><b><span class="n">50</span></b><span>حصة</span></div><div class="tm__l"><strong>حصص التأسيس</strong><em><span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</em></div><i class="tm__p"><span class="n">5%</span></i></div></div></div></div>
+<details class="full rv"><summary>توزيع رأس المال<i aria-hidden="true"></i></summary><div class="tbl tight"><table><tr><th>البند</th><th>الشريك الأول (بُعد)</th><th>الشركاء</th><th>الإجمالي</th></tr><tr><td>الحصة العينية (الأرض)</td><td><span class="n">300</span> حصة</td><td>—</td><td><span class="n">300</span> حصة</td></tr><tr><td>الحصة النقدية<small><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</small></td><td><span class="n">50</span> حصة</td><td>—</td><td><span class="n">50</span> حصة</td></tr><tr><td>حصص التأسيس<small><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل و<span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</small></td><td><span class="n">100</span> حصة</td><td><span class="n">50</span> حصة</td><td><span class="n">150</span> حصة</td></tr><tr><td>الحصص المتاحة</td><td>—</td><td><span class="n">500</span> حصة</td><td><span class="n">500</span> حصة</td></tr><tr class=tot><td>إجمالي الحصص</td><td><span class="n">450</span> حصة</td><td><span class="n">550</span> حصة</td><td><span class="n">1,000</span> حصة</td></tr><tr class=tot><td>النسبة النهائية</td><td><span class="n">45%</span></td><td><span class="n">55%</span></td><td><span class="n">100%</span></td></tr></table></div></details></div></section>
 <section class="sec goldb" id="returns" data-chapter="returns"><div class="w"><div class="head rv"><p class="eb">مصادر العائد</p><h2 class="h2">أربعة مصادر <b>للعائد</b></h2></div><div class="srcs"><div class="rv"><i><span class="n">01</span></i><b>إيجارات الأراضي والتأجير على الخارطة</b></div><div class="rv"><i><span class="n">02</span></i><b>محطة الوقود والمرافق الخدمية</b></div><div class="rv"><i><span class="n">03</span></i><b>المساحات الترفيهية والمطاعم</b></div><div class="rv"><i><span class="n">04</span></i><b>ارتفاع قيمة الحصة مع تقدم الأعمال</b></div></div><p class="tag tag--d rv">العوائد تقديرية وغير مضمونة وخاضعة للزيادة أو النقصان</p></div></section>
 <section class="sec dark" id="notes" data-chapter="notes"><div class="w"><div class="charter"><div class="charter__side rv"><p class="eb">عرض إلى أوائل الشركاء في مشروع واجهة الجموم</p><h2 class="h2">قبل <b>الانضمام</b></h2><div class="seal2"><div><b><span class="n">+1</span></b><span>مع كل مليون</span></div></div></div>
 <ol class="arts arts--n"><li class="art rv"><p>حافز التأسيس متاح للشركاء في هذه المرحلة فقط وبأسبقية التوقيع والإيداع الفعلي</p></li><li class="art rv"><p>ومخطط للمشروع أربع مراحل بواقع <span class="n">100</span> مليون لكل مرحلة</p></li><li class="art rv"><p>وتُتاح المراحل القادمة للمشاركة تباعاً وفق تقدم الأعمال</p></li><li class="art rv"><p>وتبقى حصة تأسيس الشريك الأول <span class="n">10%</span> من إجمالي الحصص في جميع المراحل</p></li><li class="art rv"><p>وتُعتمد التفاصيل النهائية في عقد الشراكة المعتمد بين الطرفين</p></li></ol></div></div></section>
@@ -692,44 +747,61 @@ p, small, dd, td, li { text-wrap: pretty; }
   }), { rootMargin: '-45% 0px -50% 0px' });
   $$('[data-chapter]').forEach(c => spy.observe(c));
 
-  // the 1,000 shares: land 300 · cash 50 · founder 100 · partners' incentive 50 · available 500
-  const grid = $('#grid'), bands = [['land', 300], ['cash', 50], ['found', 100], ['pool', 50], ['free', 500]], cells = [];
-  bands.forEach(([c, n]) => { for (let i = 0; i < n; i++) cells.push(c); });
-  const frag = document.createDocumentFragment();
-  const els = cells.map(c => { const i = document.createElement('i'); i.className = c; frag.appendChild(i); return i; });
-  grid.appendChild(frag);
-  const pool = els.slice(350 + 100, 500), free = els.slice(500);
-  function paint(paid, gift) {
-    free.forEach((e, n) => { e.style.setProperty('--d', Math.min(n * 2, 420) + 'ms'); e.classList.toggle('mine', n < paid); });
-    pool.forEach((e, n) => { e.style.setProperty('--d', Math.min(n * 8, 420) + 'ms'); e.classList.toggle('gift', n < gift); });
+  // amount: typed, stepped or dragged. One free founder share with every full million.
+  const STOPS = [1, 2, 3, 5, 10, 15, 20, 25, 50].map(m => m * 1e6);
+  const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), MIN = 1e6, MAX = 5e7, STEP = 1e5, F = n => n.toLocaleString('en-US');
+  const baseHint = hint.innerHTML, waBtn = $('[data-amount]'), waBase = waBtn.href, ticks = $$('.ticks button');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const toAmount = p => { const i = Math.min(Math.floor(p / 100), STOPS.length - 2), f = p / 100 - i; return Math.floor((STOPS[i] + f * (STOPS[i + 1] - STOPS[i])) / STEP) * STEP; };
+  const toRail = v => { let i = 0; while (i < STOPS.length - 2 && v >= STOPS[i + 1]) i++; return (i + (v - STOPS[i]) / (STOPS[i + 1] - STOPS[i])) * 100; };
+
+  // numbers run to their new value
+  const shown = new Map();
+  function run(el, to, suffix = '') {
+    const from = shown.has(el) ? shown.get(el) : to; shown.set(el, to);
+    const put = v => { el.textContent = (suffix ? +v.toFixed(2) : F(Math.round(v))) + suffix; };
+    cancelAnimationFrame(el._r);
+    if (reduced || from === to) return put(to);
+    const t0 = performance.now(), D = 450;
+    const step = now => { const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3); put(from + (to - from) * e); if (k < 1) el._r = requestAnimationFrame(step); };
+    el._r = requestAnimationFrame(step);
   }
 
-  const amt = $('#amt'), hint = $('#hint'), MIN = 1e6, MAX = 5e7, STEP = 1e5, F = n => n.toLocaleString('en-US');
-  const baseHint = hint.innerHTML, waBtn = $('[data-amount]'), waBase = waBtn.href;
-  function calc() {
+  function calc(fromRail) {
     const v = parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
     amt.value = v ? F(v) : '';
     hint.classList.toggle('bad', v > 0 && (v < MIN || v > MAX));
     hint.innerHTML = v > MAX ? 'الحصص المتاحة <span class="n">50,000,000</span> ريال' : baseHint;
     const use = Math.min(MAX, Math.max(MIN, Math.floor(v / STEP) * STEP));
     const paid = use / STEP, gift = Math.floor(use / 1e6), s = paid + gift;
-    $('#o-s').textContent = F(s);
-    $('#o-p').textContent = (+(s / 10).toFixed(2)) + '%';
-    $('#o-paid').textContent = F(paid);
-    $('#o-free').textContent = F(gift);
-    $('#o-12').textContent = F(s * 12000);
-    $('#o-20').textContent = F(s * 20000);
-    paint(paid, gift);
-    $$('.pres button').forEach(b => b.classList.toggle('on', +b.dataset.amt === use));
+    run($('#o-s'), s); run($('#o-paid'), paid); run($('#o-free'), gift);
+    run($('#o-p'), s / 10, '%'); run($('#o-v'), s * 1e5); run($('#o-12'), s * 12000); run($('#o-20'), s * 20000);
+    $('#b-12').style.width = Math.max(3, s * 12000 / 11e6 * 100) + '%';
+    $('#b-20').style.width = Math.max(4, s * 20000 / 11e6 * 100) + '%';
+    if (!fromRail) rail.value = toRail(use);
+    rail.style.setProperty('--p', (rail.value / rail.max * 100) + '%');
+    ticks.forEach(b => b.classList.toggle('on', STOPS[+b.dataset.i] === use));
     $$('.full tr[data-m]').forEach(r => r.classList.toggle('on', +r.dataset.m === use));
     waBtn.href = waBase + encodeURIComponent(' - مبلغ المشاركة ' + F(use) + ' ريال');
   }
-  amt.addEventListener('input', calc);
+  amt.addEventListener('input', () => calc());
+  rail.addEventListener('input', () => { amt.value = toAmount(+rail.value); calc(true); });
   $$('[data-step]').forEach(b => b.addEventListener('click', () => {
     const cur = parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
     amt.value = Math.min(MAX, Math.max(MIN, Math.floor(cur / STEP) * STEP + +b.dataset.step)); calc();
   }));
-  $$('[data-amt]').forEach(b => b.addEventListener('click', () => { amt.value = b.dataset.amt; calc(); }));
+  ticks.forEach(b => b.addEventListener('click', () => { amt.value = STOPS[+b.dataset.i]; calc(); }));
   calc();
+
+  // the share card leans towards the pointer
+  const cert = $('#cert'), inner = $('.cert__in');
+  if (!reduced && matchMedia('(hover: hover)').matches) {
+    cert.addEventListener('pointermove', e => {
+      const r = cert.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      inner.style.transform = `rotateY(${x * 9}deg) rotateX(${-y * 9}deg)`;
+      inner.style.setProperty('--gx', (x + .5) * 100 + '%'); inner.style.setProperty('--gy', (y + .5) * 100 + '%');
+    });
+    cert.addEventListener('pointerleave', () => { inner.style.transform = ''; });
+  }
 })();
 </script></body></html>
