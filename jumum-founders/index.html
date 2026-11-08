@@ -642,34 +642,33 @@ p, small, dd, td, li { text-wrap: pretty; }
 .prof__n { margin-top: auto; font-size: 14px; line-height: 1.75; color: var(--soft); }
 .full tr.on td { background: rgba(214, 173, 114, .3); font-weight: 800; }
 
-/* capital: the area of each tile is its share of the company */
-.tm { display: flex; gap: 14px; height: clamp(600px, 54vw, 720px); margin-bottom: 14px; }
-.tm__c { display: flex; flex-direction: column; min-width: 0; }
-.tm__c header { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 0 6px 12px; column-gap: 12px; }
-.tm__c header > span { font-size: 17px; font-weight: 800; color: var(--brown); }
-.tm__c header b { grid-row: 1 / 3; grid-column: 2; font-size: clamp(50px, 6vw, 86px); font-weight: 200; line-height: .95; color: var(--brown); }
-.tm__c header em { font-style: normal; font-size: 14.5px; color: var(--mocha); }
-.tm__s { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
-.tm__t { position: relative; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(18px, 2.2vw, 30px); border-radius: 22px; transform-origin: bottom; transition: transform 1s var(--spring), opacity .7s, filter .4s; }
-.tm__t:hover { filter: brightness(1.06); }
-.js .tm:not(.in) .tm__t { transform: scaleY(.2); opacity: 0; }
-.tm__n { display: flex; align-items: baseline; gap: 8px; }
-.tm__n b { font-size: clamp(60px, 8.4vw, 124px); font-weight: 200; line-height: .95; }
-.tm__n > span:not(.n) { font-size: 15px; font-weight: 700; }
-.tm__l strong { display: block; font-size: clamp(17px, 1.6vw, 21px); font-weight: 800; line-height: 1.4; }
-.tm__l em { display: block; font-style: normal; font-size: 14px; line-height: 1.55; opacity: .8; }
-.tm__p { position: absolute; left: clamp(16px, 2vw, 26px); top: clamp(14px, 1.8vw, 24px); font-style: normal; font-size: 16px; font-weight: 700; padding: 3px 12px; border-radius: 99px; box-shadow: inset 0 0 0 1px currentColor; }
-.t-land { color: #f6e7cf; background: radial-gradient(80% 80% at 80% 10%, rgba(230, 196, 141, .24), transparent 70%), linear-gradient(160deg, #3a2418, #160e0a); }
-.t-found { color: #f6e7cf; background: linear-gradient(150deg, #7a5a43, #5a3b28); }
-.t-found .tm__n b { font-size: clamp(44px, 5vw, 72px); }
-.t-cash { color: #f6e7cf; background: #a8794a; }
-.t-free { color: #1b130f; background: radial-gradient(70% 90% at 15% 0%, rgba(255, 244, 222, .55), transparent 70%), linear-gradient(135deg, #ecd3a6, #c99a64); }
-.t-free .tm__n b { font-size: clamp(90px, 13vw, 190px); }
-.t-pool { color: #1b130f; background: #fff3d6; box-shadow: inset 0 0 0 1px rgba(168, 121, 74, .55); }
-.t-r { flex-direction: row; align-items: center; justify-content: flex-start; gap: 18px; padding-block: 6px; padding-inline-end: 76px; }
-.t-r .tm__n b { font-size: clamp(32px, 3.4vw, 46px); line-height: 1; }
-.t-r .tm__l strong { font-size: 16px; line-height: 1.25; } .t-r .tm__l em { font-size: 12.5px; line-height: 1.35; }
-.t-r .tm__p { top: 50%; translate: 0 -50%; }
+/* capital: a ring of the 1,000 shares between the two sides */
+.rg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 440px) minmax(0, 1fr); gap: clamp(20px, 3vw, 48px); align-items: center; margin-bottom: 26px; }
+.rs header { display: flex; align-items: flex-end; gap: 14px; padding-bottom: 14px; border-bottom: 1.5px solid var(--brown); }
+.rs header > b { font-size: clamp(56px, 6.4vw, 92px); font-weight: 200; line-height: .9; color: var(--brown); }
+.rs header div > span { display: block; font-size: 17px; font-weight: 800; color: var(--brown); line-height: 1.35; }
+.rs header em { font-style: normal; font-size: 14.5px; color: var(--mocha); }
+.rw { width: 100%; display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 16px 10px 16px 6px; font: inherit; text-align: start; color: var(--brown); background: none; border: 0; border-bottom: 1px solid var(--hair-l); cursor: pointer; border-radius: 0; transition: background .35s, padding .5s var(--spring), opacity .35s; }
+.rw > i { width: 12px; height: 12px; transform: rotate(45deg); display: block; }
+.rw__t strong { display: block; font-size: 16.5px; font-weight: 800; line-height: 1.4; }
+.rw__t em { display: block; font-style: normal; font-size: 13.5px; line-height: 1.55; color: var(--mocha); }
+.rw__v { text-align: end; line-height: 1.1; white-space: nowrap; }
+.rw__v b { display: block; font-size: clamp(28px, 2.9vw, 40px); font-weight: 200; }
+.rw__v small { font-size: 14px; font-weight: 700; color: var(--gold-d); }
+.rw:hover, .rw:focus-visible, .rw.on { background: rgba(214, 173, 114, .2); padding-inline-start: 14px; outline: none; }
+.rg.has .rw:not(.on) { opacity: .55; }
+.rg__c { position: relative; aspect-ratio: 1; }
+.rg__c svg { width: 100%; height: 100%; display: block; transform: rotate(-90deg); overflow: visible; }
+.rg__c circle { fill: none; }
+.rg__c .tr { stroke: rgba(58, 36, 24, .07); stroke-width: 46; }
+.sg { stroke-width: 46; stroke-dasharray: var(--w) 100; stroke-dashoffset: var(--o); cursor: pointer; transition: stroke-dasharray 1.3s var(--spring), opacity .35s, stroke-width .45s var(--spring); }
+.js .rg__c:not(.in) .sg { stroke-dasharray: 0 100; }
+.rg.has .sg { opacity: .28; } .rg.has .sg.on { opacity: 1; stroke-width: 60; }
+.rg__m { position: absolute; inset: 22%; display: grid; place-content: center; justify-items: center; text-align: center; pointer-events: none; }
+.rg__m b { font-size: clamp(56px, 6.4vw, 92px); font-weight: 200; line-height: 1; color: var(--brown); }
+.rg__m #rc-u { font-size: 15px; font-weight: 700; color: var(--gold-d); }
+.rg__m em { margin-top: 8px; font-style: normal; font-size: 15.5px; font-weight: 800; line-height: 1.4; color: var(--brown); }
+.rg__m small { font-size: 14px; color: var(--mocha); }
 
 /* returns */
 .srcs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
@@ -687,7 +686,7 @@ p, small, dd, td, li { text-wrap: pretty; }
 
 @media (max-width: 980px) {
   .out2 { grid-template-columns: 1fr; }
-  .tm { flex-direction: column; height: auto; } .tm__c { flex: none !important; } .tm__s { flex: none; } .tm__c--b .tm__s { height: 500px; } .tm__c--p .tm__s { height: 470px; } .tm__c + .tm__c { margin-top: 14px; }
+  .rg { grid-template-columns: 1fr; } .rg__c { order: -1; width: min(420px, 100%); margin-inline: auto; }
   .srcs { grid-template-columns: 1fr 1fr; } .srcs > div { min-height: 170px; }
   .plus { font-size: 34vw; bottom: auto; top: 96px; }
 }
@@ -695,11 +694,9 @@ p, small, dd, td, li { text-wrap: pretty; }
   .dial__in { grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 6px; } .dial__in .typer__b { width: 44px; height: 44px; font-size: 24px; } .dial__in input { font-size: clamp(38px, 12.4vw, 58px); }
   .ticks button { font-size: 11.5px; }
   .cert__sp { flex-wrap: wrap; } .cert__wm { width: 240px; }
-  .t-r { padding-inline-end: 66px; gap: 10px; }
   .srcs { grid-template-columns: 1fr; } .srcs > div { min-height: 0; gap: 14px; grid-template-columns: auto 1fr; align-items: center; }
   .arts--n .art { grid-template-columns: 54px minmax(0, 1fr); }
 }
-@media (max-width: 620px) { .t-r { flex: none !important; min-height: 88px; } }
 </style></head><body><nav class="bar"><div class="bar__in"><img src="../assets/img/logo-h-sand.png" alt="بُعد"><div class="bar__nav"><a href="#each" data-s="each">الحافز</a><a href="#calc" data-s="calc">احسب حصصك</a><a href="#capital" data-s="capital">رأس المال</a><a href="#returns" data-s="returns">مصادر العائد</a><a href="#notes" data-s="notes">قبل الانضمام</a></div><a class="bar__go" href="jumum-founders.pdf" download="عرض المساهمة مع حافز التأسيس.pdf">PDF</a></div></nav>
 <header class="hero hero--f"><img class="hero__img" src="hero.jpg" alt="واجهة الجموم"><div class="plus" aria-hidden="true">+1</div><div class="w">
 <p class="hero__k rv">عرض إلى أوائل الشركاء في مشروع واجهة الجموم</p><h1 class="rv">مع كل مليون <b>حصة تأسيس مجانية</b></h1><p class="hero__sub rv">رأس مال <span class="n">100</span> مليون · <span class="n">1,000</span> حصة بقيمة <span class="n">100</span> ألف ريال للحصة</p>
@@ -722,8 +719,10 @@ p, small, dd, td, li { text-wrap: pretty; }
 <div class="pr pr--g"><div class="pr__h"><span>بعائد <span class="n">20%</span></span><b id="o-20" dir="ltr">220,000</b></div><div class="pr__b"><i id="b-20"></i></div></div>
 <p class="prof__n">العوائد تقديرية وغير مضمونة وخاضعة للزيادة أو النقصان</p></aside></div>
 <details class="full rv"><summary>حصصك ونسبتك وعائدك التقديري حسب مبلغ المشاركة<i aria-hidden="true"></i></summary><div class="tbl"><table class="five"><tr><th>مبلغ المشاركة</th><th>حصصك مع الحافز</th><th>نسبتك في الشركة</th><th>ربحك السنوي التقديري بعائد <span class="n">12%</span></th><th>ربحك السنوي التقديري بعائد <span class="n">20%</span></th></tr><tr data-m="1000000"><td><span class="n">1,000,000</span></td><td><span class="n">11</span> حصة</td><td><span class="n">1.1%</span></td><td><span class="n">132,000</span></td><td><span class="n">220,000</span></td></tr><tr data-m="2000000"><td><span class="n">2,000,000</span></td><td><span class="n">22</span> حصة</td><td><span class="n">2.2%</span></td><td><span class="n">264,000</span></td><td><span class="n">440,000</span></td></tr><tr data-m="3000000"><td><span class="n">3,000,000</span></td><td><span class="n">33</span> حصة</td><td><span class="n">3.3%</span></td><td><span class="n">396,000</span></td><td><span class="n">660,000</span></td></tr><tr data-m="5000000"><td><span class="n">5,000,000</span></td><td><span class="n">55</span> حصة</td><td><span class="n">5.5%</span></td><td><span class="n">660,000</span></td><td><span class="n">1,100,000</span></td></tr><tr data-m="10000000"><td><span class="n">10,000,000</span></td><td><span class="n">110</span> حصة</td><td><span class="n">11%</span></td><td><span class="n">1,320,000</span></td><td><span class="n">2,200,000</span></td></tr><tr data-m="15000000"><td><span class="n">15,000,000</span></td><td><span class="n">165</span> حصة</td><td><span class="n">16.5%</span></td><td><span class="n">1,980,000</span></td><td><span class="n">3,300,000</span></td></tr><tr data-m="20000000"><td><span class="n">20,000,000</span></td><td><span class="n">220</span> حصة</td><td><span class="n">22%</span></td><td><span class="n">2,640,000</span></td><td><span class="n">4,400,000</span></td></tr><tr data-m="25000000"><td><span class="n">25,000,000</span></td><td><span class="n">275</span> حصة</td><td><span class="n">27.5%</span></td><td><span class="n">3,300,000</span></td><td><span class="n">5,500,000</span></td></tr><tr data-m="50000000" class=cap><td><span class="n">50,000,000</span><small>كل الحصص المتاحة</small></td><td><span class="n">550</span> حصة</td><td><span class="n">55%</span></td><td><span class="n">6,600,000</span></td><td><span class="n">11,000,000</span></td></tr></table></div></details></div></section>
-<section class="sec light" id="capital" data-chapter="capital"><div class="w"><div class="head rv"><p class="eb">توزيع رأس المال</p><h2 class="h2">النسبة النهائية <b>لكل طرف</b></h2></div>
-<div class="tm rv"><div class="tm__c tm__c--b" style="flex:45 1 0"><header><span>الشريك الأول (بُعد)</span><b><span class="n">45%</span></b><em><span class="n">450</span> حصة</em></header><div class="tm__s"><div class="tm__t t-land" style="flex:300 1 0"><div class="tm__n"><b><span class="n">300</span></b><span>حصة</span></div><div class="tm__l"><strong>الحصة العينية (الأرض)</strong></div><i class="tm__p"><span class="n">30%</span></i></div><div class="tm__t t-found" style="flex:100 1 0"><div class="tm__n"><b><span class="n">100</span></b><span>حصة</span></div><div class="tm__l"><strong>حصص التأسيس</strong><em><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل</em></div><i class="tm__p"><span class="n">10%</span></i></div><div class="tm__t t-cash t-r" style="flex:50 1 0"><div class="tm__n"><b><span class="n">50</span></b><span>حصة</span></div><div class="tm__l"><strong>الحصة النقدية</strong><em><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</em></div><i class="tm__p"><span class="n">5%</span></i></div></div></div><div class="tm__c tm__c--p" style="flex:55 1 0"><header><span>الشركاء</span><b><span class="n">55%</span></b><em><span class="n">550</span> حصة</em></header><div class="tm__s"><div class="tm__t t-free" style="flex:500 1 0"><div class="tm__n"><b><span class="n">500</span></b><span>حصة</span></div><div class="tm__l"><strong>الحصص المتاحة</strong></div><i class="tm__p"><span class="n">50%</span></i></div><div class="tm__t t-pool t-r" style="flex:50 1 0"><div class="tm__n"><b><span class="n">50</span></b><span>حصة</span></div><div class="tm__l"><strong>حصص التأسيس</strong><em><span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</em></div><i class="tm__p"><span class="n">5%</span></i></div></div></div></div>
+<section class="sec light" id="capital" data-chapter="capital"><div class="w"><div class="head head--c rv"><p class="eb">توزيع رأس المال</p><h2 class="h2">النسبة النهائية <b>لكل طرف</b></h2></div>
+<div class="rg"><div class="rs rs--b rv"><header><b><span class="n">45%</span></b><div><span>الشريك الأول (بُعد)</span><em><span class="n">450</span> حصة</em></div></header><button type="button" class="rw" data-k="land" data-n="300" data-p="30%" data-t="الحصة العينية (الأرض)"><i style="background:#3a2418"></i><span class="rw__t"><strong>الحصة العينية (الأرض)</strong></span><span class="rw__v"><b><span class="n">300</span></b><small><span class="n">30%</span></small></span></button><button type="button" class="rw" data-k="found" data-n="100" data-p="10%" data-t="حصص التأسيس"><i style="background:#7a5a43"></i><span class="rw__t"><strong>حصص التأسيس</strong><em><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل</em></span><span class="rw__v"><b><span class="n">100</span></b><small><span class="n">10%</span></small></span></button><button type="button" class="rw" data-k="cash" data-n="50" data-p="5%" data-t="الحصة النقدية"><i style="background:#a8794a"></i><span class="rw__t"><strong>الحصة النقدية</strong><em><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</em></span><span class="rw__v"><b><span class="n">50</span></b><small><span class="n">5%</span></small></span></button></div>
+<div class="rg__c rv" id="ring"><svg viewBox="0 0 400 400" aria-hidden="true"><circle class="tr" cx="200" cy="200" r="160"/><circle class="sg" data-k="land" cx="200" cy="200" r="160" pathLength="100" stroke="#3a2418" style="--w:28.8;--o:-0.6;transition-delay:0.00s"/><circle class="sg" data-k="found" cx="200" cy="200" r="160" pathLength="100" stroke="#7a5a43" style="--w:8.8;--o:-30.6;transition-delay:0.12s"/><circle class="sg" data-k="cash" cx="200" cy="200" r="160" pathLength="100" stroke="#a8794a" style="--w:3.8;--o:-40.6;transition-delay:0.24s"/><circle class="sg" data-k="pool" cx="200" cy="200" r="160" pathLength="100" stroke="#ecd3a6" style="--w:3.8;--o:-45.6;transition-delay:0.36s"/><circle class="sg" data-k="free" cx="200" cy="200" r="160" pathLength="100" stroke="#c8955a" style="--w:48.8;--o:-50.6;transition-delay:0.48s"/></svg><div class="rg__m"><b id="rc-n" dir="ltr">1,000</b><span id="rc-u">حصة</span><em id="rc-t">رأس مال الشركة</em><small id="rc-p"><span class="n">100</span> مليون ريال</small></div></div>
+<div class="rs rs--p rv"><header><b><span class="n">55%</span></b><div><span>الشركاء</span><em><span class="n">550</span> حصة</em></div></header><button type="button" class="rw" data-k="pool" data-n="50" data-p="5%" data-t="حصص التأسيس"><i style="background:#ecd3a6"></i><span class="rw__t"><strong>حصص التأسيس</strong><em><span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</em></span><span class="rw__v"><b><span class="n">50</span></b><small><span class="n">5%</span></small></span></button><button type="button" class="rw" data-k="free" data-n="500" data-p="50%" data-t="الحصص المتاحة"><i style="background:#c8955a"></i><span class="rw__t"><strong>الحصص المتاحة</strong></span><span class="rw__v"><b><span class="n">500</span></b><small><span class="n">50%</span></small></span></button></div></div>
 <details class="full rv"><summary>توزيع رأس المال<i aria-hidden="true"></i></summary><div class="tbl tight"><table><tr><th>البند</th><th>الشريك الأول (بُعد)</th><th>الشركاء</th><th>الإجمالي</th></tr><tr><td>الحصة العينية (الأرض)</td><td><span class="n">300</span> حصة</td><td>—</td><td><span class="n">300</span> حصة</td></tr><tr><td>الحصة النقدية<small><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</small></td><td><span class="n">50</span> حصة</td><td>—</td><td><span class="n">50</span> حصة</td></tr><tr><td>حصص التأسيس<small><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل و<span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</small></td><td><span class="n">100</span> حصة</td><td><span class="n">50</span> حصة</td><td><span class="n">150</span> حصة</td></tr><tr><td>الحصص المتاحة</td><td>—</td><td><span class="n">500</span> حصة</td><td><span class="n">500</span> حصة</td></tr><tr class=tot><td>إجمالي الحصص</td><td><span class="n">450</span> حصة</td><td><span class="n">550</span> حصة</td><td><span class="n">1,000</span> حصة</td></tr><tr class=tot><td>النسبة النهائية</td><td><span class="n">45%</span></td><td><span class="n">55%</span></td><td><span class="n">100%</span></td></tr></table></div></details></div></section>
 <section class="sec goldb" id="returns" data-chapter="returns"><div class="w"><div class="head rv"><p class="eb">مصادر العائد</p><h2 class="h2">أربعة مصادر <b>للعائد</b></h2></div><div class="srcs"><div class="rv"><i><span class="n">01</span></i><b>إيجارات الأراضي والتأجير على الخارطة</b></div><div class="rv"><i><span class="n">02</span></i><b>محطة الوقود والمرافق الخدمية</b></div><div class="rv"><i><span class="n">03</span></i><b>المساحات الترفيهية والمطاعم</b></div><div class="rv"><i><span class="n">04</span></i><b>ارتفاع قيمة الحصة مع تقدم الأعمال</b></div></div><p class="tag tag--d rv">العوائد تقديرية وغير مضمونة وخاضعة للزيادة أو النقصان</p></div></section>
 <section class="sec dark" id="notes" data-chapter="notes"><div class="w"><div class="charter"><div class="charter__side rv"><p class="eb">عرض إلى أوائل الشركاء في مشروع واجهة الجموم</p><h2 class="h2">قبل <b>الانضمام</b></h2><div class="seal2"><div><b><span class="n">+1</span></b><span>مع كل مليون</span></div></div></div>
@@ -792,6 +791,25 @@ p, small, dd, td, li { text-wrap: pretty; }
   }));
   ticks.forEach(b => b.addEventListener('click', () => { amt.value = STOPS[+b.dataset.i]; calc(); }));
   calc();
+
+  // capital ring: a row or an arc lights up and its numbers show in the middle
+  const rg = $('.rg'), rows = $$('.rw'), arcs = $$('.sg'), cN = $('#rc-n'), cU = $('#rc-u'), cT = $('#rc-t'), cP = $('#rc-p');
+  const base = { n: cN.textContent, t: cT.textContent, p: cP.innerHTML };
+  let locked = null;
+  const light = k => {
+    rg.classList.toggle('has', !!k);
+    rows.forEach(r => r.classList.toggle('on', r.dataset.k === k)); arcs.forEach(a => a.classList.toggle('on', a.dataset.k === k));
+    const r = rows.find(x => x.dataset.k === k);
+    cN.textContent = r ? r.dataset.n : base.n; cT.textContent = r ? r.dataset.t : base.t;
+    if (r) cP.textContent = r.dataset.p; else cP.innerHTML = base.p;
+  };
+  [...rows, ...arcs].forEach(el => {
+    el.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') light(el.dataset.k); });
+    el.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') light(locked); });
+    el.addEventListener('focus', () => light(el.dataset.k));
+    el.addEventListener('blur', () => light(locked));
+    el.addEventListener('click', () => { locked = locked === el.dataset.k ? null : el.dataset.k; light(locked); });
+  });
 
   // the share card leans towards the pointer
   const cert = $('#cert'), inner = $('.cert__in');
