@@ -716,6 +716,9 @@ p, small, dd, td, li { text-wrap: pretty; }
 .capl > div > span { font-size: 15px; font-weight: 700; color: var(--mocha); }
 .capl b { font-size: clamp(34px, 4.4vw, 60px); font-weight: 200; line-height: 1.1; color: var(--brown); }
 .capl .me > span { color: var(--gold-d); } .capl .me b { font-weight: 400; color: var(--gold-d); }
+.cert__top--e { justify-content: flex-end; min-height: 24px; }
+.cert__top--e img { height: 30px; margin-block: -3px; }
+.cert__f > div:last-child span { text-align: left; }
 .way__d { margin-top: clamp(30px, 4vw, 48px); }
 .sec .cln { margin-top: 14px; }
 .sec .legal { margin-top: 14px; }
@@ -730,14 +733,14 @@ p, small, dd, td, li { text-wrap: pretty; }
 <p class="hero__k rv">في مشروع واجهة الجموم</p><h1 class="rv">المشاركة <b>بالأسهم</b></h1><p class="hero__sub rv">مع حق التخارج بعد سنة ميلادية</p>
 <div class="cta rv"><a class="btn btn--gold" href="#calc">احسب عائدك<i aria-hidden="true"></i></a><a class="btn btn--ghost" href="#returns">مصادر العائد</a></div></div></header>
 <main>
-<section class="sec goldb" id="over" data-chapter="over"><div class="w"><div class="head rv"><p class="eb">في مشروع واجهة الجموم</p><h2 class="h2">خيار المشاركة بالأسهم <b>مع حق التخارج بعد سنة ميلادية</b></h2></div><div class="lead2 lead2--g rv"><p>واجهة الجموم أرض بمساحة <span class="n">468,322</span> م² عند مدخل مكة المكرمة الشمالي</p><p>بعقد إستثمار مع أمانة العاصمة المقدسة لمدة <span class="n">25</span> سنة ممتدة إلى <span class="n">50</span> سنة</p></div><div class="tri rv"><div><b>حصص <small style="margin-inline-start:0">نقدية</small></b><span>نوع المشاركة</span><em>حصص نقدية مسجلة بالعقد الموثق</em></div><div><b><span class="n">15%</span> - <span class="n">25%</span></b><span>العوائد التقديرية</span><em>من <span class="n">15%</span> - <span class="n">25%</span></em></div><div><b><span class="n">12</span><small>شهراً</small></b><span>التخارج</span><em>يحق للشريك التخارج بعد <span class="n">12</span> شهراً</em></div></div></div></section>
+<section class="sec goldb" id="over" data-chapter="over"><div class="w"><div class="head rv"><p class="eb">في مشروع واجهة الجموم</p><h2 class="h2">خيار المشاركة بالأسهم <b>مع حق التخارج بعد سنة ميلادية</b></h2></div><div class="lead2 lead2--g rv"><p>واجهة الجموم أرض بمساحة <span class="n">468,322</span> م² عند مدخل مكة المكرمة الشمالي</p><p>بعقد إستثمار مع أمانة العاصمة المقدسة لمدة <span class="n">25</span> سنة ممتدة إلى <span class="n">50</span> سنة</p></div><div class="tri rv"><div><b>حصص <small style="margin-inline-start:0">نقدية</small></b><span>نوع المشاركة</span><em>حصص نقدية مسجلة بالعقد الموثق</em></div><div><b><span class="n">15%</span> - <span class="n">25%</span></b><span>العوائد التقديرية</span></div><div><b><span class="n">12</span><small>شهراً</small></b><span>التخارج</span><em>يحق للشريك التخارج بعد <span class="n">12</span> شهراً</em></div></div></div></section>
 <section class="sec dark deep" id="calc" data-chapter="calc"><div class="w"><div class="head head--c rv"><p class="eb">احسب عائدك</p><h2 class="h2">اكتب مبلغك <b>وشوف عائدك</b></h2></div><div class="dial rv"><label for="amt">قيمة المشاركة <span>بالريال</span></label>
 <div class="dial__in"><button type="button" class="typer__b" data-step="-100000" aria-label="إنقاص">−</button><input id="amt" inputmode="numeric" autocomplete="off" value="15,000,000"><button type="button" class="typer__b" data-step="100000" aria-label="زيادة">+</button></div>
 <p class="inst__hint" id="hint">اكتب أي مبلغ أو حرّك المؤشر</p>
-<div class="rail"><input id="rail" type="range" min="0" max="600" step="1" value="600" aria-label="قيمة المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%"><span class="n">0.5</span></button><button type="button" data-i="1" style="right:16.667%"><span class="n">1</span></button><button type="button" data-i="2" style="right:33.333%"><span class="n">2</span></button><button type="button" data-i="3" style="right:50.000%"><span class="n">3</span></button><button type="button" data-i="4" style="right:66.667%"><span class="n">5</span></button><button type="button" data-i="5" style="right:83.333%"><span class="n">10</span></button><button type="button" data-i="6" style="right:100.000%"><span class="n">15</span></button></div></div><p class="dial__u">مليون ريال</p></div>
+<div class="rail"><input id="rail" type="range" min="0" max="700" step="1" value="700" aria-label="قيمة المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%"><span class="n">0.1</span></button><button type="button" data-i="1" style="right:14.286%"><span class="n">0.5</span></button><button type="button" data-i="2" style="right:28.571%"><span class="n">1</span></button><button type="button" data-i="3" style="right:42.857%"><span class="n">2</span></button><button type="button" data-i="4" style="right:57.143%"><span class="n">3</span></button><button type="button" data-i="5" style="right:71.429%"><span class="n">5</span></button><button type="button" data-i="6" style="right:85.714%"><span class="n">10</span></button><button type="button" data-i="7" style="right:100.000%"><span class="n">15</span></button></div></div><p class="dial__u">مليون ريال</p></div>
 <div class="out2">
 <article class="cert rv" id="cert"><div class="cert__in"><img class="cert__wm" src="../assets/img/logo-mark-dark.png" alt="">
-<div class="cert__top"><span>مشروع واجهة الجموم</span><img src="../assets/img/logo-h-dark.png" alt="بُعد"></div>
+<div class="cert__top cert__top--e"><img src="../assets/img/logo-mark-dark.png" alt="بُعد"></div>
 <p class="cert__k">حصصك مع الحافز</p><div class="cert__n"><b id="o-s" dir="ltr">165</b><span>حصة</span></div>
 <div class="cert__sp"><div><b id="o-paid">150</b><span>حصة نقدية</span></div><i aria-hidden="true">+</i><div class="gift"><b id="o-free">15</b><span>حصة تأسيس مجانية</span></div></div>
 <div class="cert__f"><div><span>نسبتك في الشركة</span><b id="o-p" dir="ltr">16.5%</b></div><div><span>القيمة</span><b id="o-v" dir="ltr">16,500,000</b></div></div></div></article>
@@ -770,10 +773,10 @@ p, small, dd, td, li { text-wrap: pretty; }
   }), { rootMargin: '-45% 0px -50% 0px' });
   $$('[data-chapter]').forEach(c => spy.observe(c));
 
-  // amount: any number typed, or stepped / dragged between 500 thousand and 15 million.
+  // amount: typed, or stepped / dragged between 100 thousand and 15 million.
   // A share is 100,000; one free founder share with every full million; the cash shares on offer stop at 50 million.
-  const STOPS = [.5, 1, 2, 3, 5, 10, 15].map(m => m * 1e6);
-  const STEP = 1e5, MAX = 5e7, F = n => n.toLocaleString('en-US'), F2 = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+  const STOPS = [.1, .5, 1, 2, 3, 5, 10, 15].map(m => m * 1e6);
+  const STEP = 1e5, MIN = 1e5, MAX = 5e7, F = n => n.toLocaleString('en-US'), F2 = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
   const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), baseHint = hint.innerHTML, ticks = $$('.ticks button'), waBtn = $('[data-amount]'), waBase = waBtn.href;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   $('#o-s').dataset.frac = $('#o-paid').dataset.frac = '1';
@@ -796,9 +799,10 @@ p, small, dd, td, li { text-wrap: pretty; }
     const v = parse();
     amt.value = v ? F(v) : '';
     amt.classList.toggle('lng', amt.value.length > 10);
-    hint.classList.toggle('bad', v > MAX);
-    hint.innerHTML = v > MAX ? 'الحصص النقدية المتاحة <span class="n">50,000,000</span> ريال' : baseHint;
-    const use = Math.min(MAX, v), paid = use / STEP, gift = Math.floor(use / 1e6), s = paid + gift, value = s * STEP;
+    const low = v > 0 && v < MIN;
+    hint.classList.toggle('bad', v > MAX || low);
+    hint.innerHTML = v > MAX ? 'الحصص النقدية المتاحة <span class="n">50,000,000</span> ريال' : low ? 'أقل مبلغ <span class="n">100,000</span> ريال' : baseHint;
+    const use = v ? Math.min(MAX, Math.max(MIN, v)) : 0, paid = use / STEP, gift = Math.floor(use / 1e6), s = paid + gift, value = s * STEP;
     run($('#o-s'), s); run($('#o-paid'), paid); run($('#o-free'), gift);
     run($('#o-p'), s / 10, '%'); run($('#o-v'), value);
     run($('#o-15'), value * .15); run($('#o-25'), value * .25); run($('#o-x'), use * .1);
