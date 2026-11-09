@@ -774,12 +774,12 @@ p, small, dd, td, li { text-wrap: pretty; }
   $$('[data-chapter]').forEach(c => spy.observe(c));
 
   // amount: typed, or stepped / dragged between 100 thousand and 15 million.
-  // A share is 100,000; one free founder share with every full million; the cash shares on offer stop at 50 million.
+  // A share is 100,000. The 5% founder pool (50 shares) is spread pro rata over the 500 cash shares on offer: 0.1 founder share per cash share (user 2026-11-09). Cash shares stop at 50 million.
   const STOPS = [.1, .5, 1, 2, 3, 5, 10, 15].map(m => m * 1e6);
   const STEP = 1e5, MIN = 1e5, MAX = 5e7, F = n => n.toLocaleString('en-US'), F2 = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
   const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), baseHint = hint.innerHTML, ticks = $$('.ticks button'), waBtn = $('[data-amount]'), waBase = waBtn.href;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  $('#o-s').dataset.frac = $('#o-paid').dataset.frac = '1';
+  $('#o-s').dataset.frac = $('#o-paid').dataset.frac = $('#o-free').dataset.frac = '1';
   const toAmount = p => { const i = Math.min(Math.floor(p / 100), STOPS.length - 2), f = p / 100 - i; return Math.floor((STOPS[i] + f * (STOPS[i + 1] - STOPS[i])) / STEP) * STEP; };
   const toRail = v => { let i = 0; while (i < STOPS.length - 2 && v >= STOPS[i + 1]) i++; return (i + (v - STOPS[i]) / (STOPS[i + 1] - STOPS[i])) * 100; };
   const parse = () => parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
@@ -802,7 +802,7 @@ p, small, dd, td, li { text-wrap: pretty; }
     const low = v > 0 && v < MIN;
     hint.classList.toggle('bad', v > MAX || low);
     hint.innerHTML = v > MAX ? 'الحصص النقدية المتاحة <span class="n">50,000,000</span> ريال' : low ? 'أقل مبلغ <span class="n">100,000</span> ريال' : baseHint;
-    const use = v ? Math.min(MAX, Math.max(MIN, v)) : 0, paid = use / STEP, gift = Math.floor(use / 1e6), s = paid + gift, value = s * STEP;
+    const use = v ? Math.min(MAX, Math.max(MIN, v)) : 0, paid = use / STEP, gift = paid * .1, s = paid + gift, value = s * STEP;
     run($('#o-s'), s); run($('#o-paid'), paid); run($('#o-free'), gift);
     run($('#o-p'), s / 10, '%'); run($('#o-v'), value);
     run($('#o-15'), value * .15); run($('#o-25'), value * .25); run($('#o-x'), use * .1);
