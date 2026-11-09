@@ -605,6 +605,7 @@ p, small, dd, td, li { text-wrap: pretty; }
 .dial label { font-size: 15px; color: var(--soft); } .dial label span { color: var(--gold); font-weight: 700; margin-inline-start: 4px; }
 .dial__in { display: grid; grid-template-columns: 60px minmax(0, 1fr) 60px; align-items: center; gap: 14px; margin-top: 8px; }
 .dial__in input { width: 100%; min-width: 0; text-align: center; direction: ltr; font: 200 clamp(58px, 11.5vw, 156px)/1.05 Tajawal, sans-serif; color: #f8ecd8; background: transparent; border: 0; outline: none; padding: 0; }
+.dial__in input.lng { font-size: clamp(36px, 7.5vw, 104px); }
 .dial__in .typer__b { width: 60px; height: 60px; font-size: 30px; }
 .dial .inst__hint { margin-top: 6px; }
 .dial .rail { margin-top: 28px; padding-bottom: 42px; }
@@ -706,8 +707,8 @@ p, small, dd, td, li { text-wrap: pretty; }
 <section class="sec dark deep" id="calc" data-chapter="calc"><div class="w"><div class="head head--c rv"><p class="eb">احسب حصصك</p><h2 class="h2">اكتب مبلغك <b>وشوف حصصك</b></h2></div>
 <div class="dial rv"><label for="amt">مبلغ المشاركة <span>بالريال</span></label>
 <div class="dial__in"><button type="button" class="typer__b" data-step="-100000" aria-label="إنقاص">−</button><input id="amt" inputmode="numeric" autocomplete="off" value="1,000,000"><button type="button" class="typer__b" data-step="100000" aria-label="زيادة">+</button></div>
-<p class="inst__hint" id="hint">أقل مشاركة مليون ريال</p>
-<div class="rail"><input id="rail" type="range" min="0" max="800" step="1" value="0" aria-label="مبلغ المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%" class=on><span class="n">1</span></button><button type="button" data-i="1" style="right:12.500%"><span class="n">2</span></button><button type="button" data-i="2" style="right:25.000%"><span class="n">3</span></button><button type="button" data-i="3" style="right:37.500%"><span class="n">5</span></button><button type="button" data-i="4" style="right:50.000%"><span class="n">10</span></button><button type="button" data-i="5" style="right:62.500%"><span class="n">15</span></button><button type="button" data-i="6" style="right:75.000%"><span class="n">20</span></button><button type="button" data-i="7" style="right:87.500%"><span class="n">25</span></button><button type="button" data-i="8" style="right:100.000%"><span class="n">50</span></button></div></div><p class="dial__u">مليون ريال</p></div>
+<p class="inst__hint" id="hint">اكتب أي مبلغ أو حرّك المؤشر</p>
+<div class="rail"><input id="rail" type="range" min="0" max="600" step="1" value="0" aria-label="مبلغ المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%" class=on><span class="n">0.5</span></button><button type="button" data-i="1" style="right:16.667%"><span class="n">1</span></button><button type="button" data-i="2" style="right:33.333%"><span class="n">2</span></button><button type="button" data-i="3" style="right:50.000%"><span class="n">3</span></button><button type="button" data-i="4" style="right:66.667%"><span class="n">5</span></button><button type="button" data-i="5" style="right:83.333%"><span class="n">10</span></button><button type="button" data-i="6" style="right:100.000%"><span class="n">15</span></button></div></div><p class="dial__u">مليون ريال</p></div>
 <div class="out2">
 <article class="cert rv" id="cert"><div class="cert__in"><img class="cert__wm" src="../assets/img/logo-mark-dark.png" alt="">
 <div class="cert__top"><span>مشروع واجهة الجموم</span><img src="../assets/img/logo-h-dark.png" alt="بُعد"></div>
@@ -726,7 +727,7 @@ p, small, dd, td, li { text-wrap: pretty; }
 <details class="full rv"><summary>توزيع رأس المال<i aria-hidden="true"></i></summary><div class="tbl tight"><table><tr><th>البند</th><th>الشريك الأول (بُعد)</th><th>الشركاء</th><th>الإجمالي</th></tr><tr><td>الحصة العينية (الأرض)</td><td><span class="n">300</span> حصة</td><td>—</td><td><span class="n">300</span> حصة</td></tr><tr><td>الحصة النقدية<small><span class="n">5</span> ملايين نقد مصروفات إستثمارية على المشروع</small></td><td><span class="n">50</span> حصة</td><td>—</td><td><span class="n">50</span> حصة</td></tr><tr><td>حصص التأسيس<small><span class="n">10%</span> ثابتة للشريك الأول في جميع المراحل و<span class="n">5%</span> حافز للشركاء في هذه المرحلة فقط</small></td><td><span class="n">100</span> حصة</td><td><span class="n">50</span> حصة</td><td><span class="n">150</span> حصة</td></tr><tr><td>الحصص المتاحة</td><td>—</td><td><span class="n">500</span> حصة</td><td><span class="n">500</span> حصة</td></tr><tr class=tot><td>إجمالي الحصص</td><td><span class="n">450</span> حصة</td><td><span class="n">550</span> حصة</td><td><span class="n">1,000</span> حصة</td></tr><tr class=tot><td>النسبة النهائية</td><td><span class="n">45%</span></td><td><span class="n">55%</span></td><td><span class="n">100%</span></td></tr></table></div></details></div></section>
 <section class="sec goldb" id="returns" data-chapter="returns"><div class="w"><div class="head rv"><p class="eb">مصادر العائد</p><h2 class="h2">أربعة مصادر <b>للعائد</b></h2></div><div class="srcs"><div class="rv"><i><span class="n">01</span></i><b>إيجارات الأراضي والتأجير على الخارطة</b></div><div class="rv"><i><span class="n">02</span></i><b>محطة الوقود والمرافق الخدمية</b></div><div class="rv"><i><span class="n">03</span></i><b>المساحات الترفيهية والمطاعم</b></div><div class="rv"><i><span class="n">04</span></i><b>ارتفاع قيمة الحصة مع تقدم الأعمال</b></div></div><p class="tag tag--d rv">العوائد تقديرية وغير مضمونة وخاضعة للزيادة أو النقصان</p></div></section>
 <section class="sec dark" id="notes" data-chapter="notes"><div class="w"><div class="charter"><div class="charter__side rv"><p class="eb">عرض إلى أوائل الشركاء في مشروع واجهة الجموم</p><h2 class="h2">قبل <b>الانضمام</b></h2><div class="seal2"><div><b><span class="n">+1</span></b><span>مع كل مليون</span></div></div></div>
-<div><ol class="arts arts--n"><li class="art rv"><p>حافز التأسيس متاح للشركاء في هذه المرحلة فقط وبأسبقية التوقيع والإيداع الفعلي</p></li><li class="art rv"><p>ومخطط للمشروع أربع مراحل بواقع <span class="n">100</span> مليون لكل مرحلة</p></li><li class="art rv"><p>وتُتاح المراحل القادمة للمشاركة تباعاً وفق تقدم الأعمال</p></li><li class="art rv"><p>وتبقى حصة تأسيس الشريك الأول <span class="n">10%</span> من إجمالي الحصص في جميع المراحل</p></li><li class="art rv"><p>وتُعتمد التفاصيل النهائية في عقد الشراكة المعتمد بين الطرفين</p></li></ol><div class="legal rv"><b>إيضاح نظامي</b><p>هذه المعلومات للتعريف بالمشروع وليست عرضاً عاماً لأوراق مالية ولا توصية إستثمارية وتخضع الشراكة لنظام الشركات والأنظمة ذات العلاقة والإستثمار ينطوي على مخاطر والعوائد غير مضمونة وننصح بالاستعانة بمستشار مستقل قبل التوقيع</p></div></div></div></div></section>
+<div><ol class="arts arts--n"><li class="art rv"><p>حافز التأسيس متاح للشركاء في هذه المرحلة فقط وبأسبقية التوقيع والإيداع الفعلي</p></li><li class="art rv"><p>ومخطط للمشروع أربع مراحل بواقع <span class="n">100</span> مليون لكل مرحلة</p></li><li class="art rv"><p>وتُتاح المراحل القادمة للمشاركة تباعاً وفق تقدم الأعمال</p></li><li class="art rv"><p>وتبقى حصة تأسيس الشريك الأول <span class="n">10%</span> من إجمالي الحصص في جميع المراحل</p></li><li class="art rv"><p>وتُعتمد التفاصيل النهائية في عقد الشراكة المعتمد بين الطرفين</p></li></ol><div class="legal rv"><b>إيضاح نظامي</b><p>هذه المعلومات للتعريف بالمشروع وليست عرضاً عاماً لأوراق مالية ولا توصية إستثمارية وتخضع الشراكة لنظام الشركات والأنظمة ذات العلاقة والإستثمار ينطوي على مخاطر والعوائد غير مضمونة ولا مانع بالاستعانة بمستشار مستقل قبل التوقيع</p></div></div></div></div></section>
 </main>
 <section class="end"><div class="w"><img class="mark rv" src="../assets/img/logo-mark-sand.png" alt=""><h2 class="rv">أوائل <b>الشركاء</b></h2><p class="rv">في مشروع واجهة الجموم</p>
 <div class="cta cta--c rv"><a class="btn btn--gold" href="https://wa.me/966550000126?text=%D8%B9%D8%B1%D8%B6%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%87%D9%85%D8%A9%20%D9%85%D8%B9%20%D8%AD%D8%A7%D9%81%D8%B2%20%D8%A7%D9%84%D8%AA%D8%A3%D8%B3%D9%8A%D8%B3%20%D9%81%D9%8A%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D9%88%D8%A7%D8%AC%D9%87%D8%A9%20%D8%A7%D9%84%D8%AC%D9%85%D9%88%D9%85" target="_blank" rel="noopener" data-amount>تواصل عبر واتساب<i aria-hidden="true"></i></a><a class="btn btn--line" href="mailto:info@buad-r.sa?subject=%D8%B9%D8%B1%D8%B6%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%87%D9%85%D8%A9%20%D9%85%D8%B9%20%D8%AD%D8%A7%D9%81%D8%B2%20%D8%A7%D9%84%D8%AA%D8%A3%D8%B3%D9%8A%D8%B3%20%D9%81%D9%8A%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D9%88%D8%A7%D8%AC%D9%87%D8%A9%20%D8%A7%D9%84%D8%AC%D9%85%D9%88%D9%85">البريد الإلكتروني</a></div>
@@ -747,8 +748,10 @@ p, small, dd, td, li { text-wrap: pretty; }
   $$('[data-chapter]').forEach(c => spy.observe(c));
 
   // amount: typed, stepped or dragged. One free founder share with every full million.
-  const STOPS = [1, 2, 3, 5, 10, 15, 20, 25, 50].map(m => m * 1e6);
-  const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), MIN = 1e6, MAX = 5e7, STEP = 1e5, F = n => n.toLocaleString('en-US');
+  const STOPS = [.5, 1, 2, 3, 5, 10, 15].map(m => m * 1e6);
+  const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), MAX = 5e7, STEP = 1e5, F = n => n.toLocaleString('en-US');
+  const F2 = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+  $('#o-s').dataset.frac = $('#o-paid').dataset.frac = '1';
   const baseHint = hint.innerHTML, waBtn = $('[data-amount]'), waBase = waBtn.href, ticks = $$('.ticks button');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const toAmount = p => { const i = Math.min(Math.floor(p / 100), STOPS.length - 2), f = p / 100 - i; return Math.floor((STOPS[i] + f * (STOPS[i + 1] - STOPS[i])) / STEP) * STEP; };
@@ -758,25 +761,26 @@ p, small, dd, td, li { text-wrap: pretty; }
   const shown = new Map();
   function run(el, to, suffix = '') {
     const from = shown.has(el) ? shown.get(el) : to; shown.set(el, to);
-    const put = v => { el.textContent = (suffix ? +v.toFixed(2) : F(Math.round(v))) + suffix; };
+    const put = (v, end) => { el.textContent = (suffix ? +v.toFixed(2) : (end && el.dataset.frac ? F2(v) : F(Math.round(v)))) + suffix; };
     cancelAnimationFrame(el._r);
-    if (reduced || from === to) return put(to);
+    if (reduced || from === to) return put(to, true);
     const t0 = performance.now(), D = 450;
-    const step = now => { const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3); put(from + (to - from) * e); if (k < 1) el._r = requestAnimationFrame(step); };
+    const step = now => { const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3); put(k < 1 ? from + (to - from) * e : to, k >= 1); if (k < 1) el._r = requestAnimationFrame(step); };
     el._r = requestAnimationFrame(step);
   }
 
   function calc(fromRail) {
     const v = parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
     amt.value = v ? F(v) : '';
-    hint.classList.toggle('bad', v > 0 && (v < MIN || v > MAX));
+    amt.classList.toggle('lng', amt.value.length > 10);
+    hint.classList.toggle('bad', v > MAX);
     hint.innerHTML = v > MAX ? 'الحصص المتاحة <span class="n">50,000,000</span> ريال' : baseHint;
-    const use = Math.min(MAX, Math.max(MIN, Math.floor(v / STEP) * STEP));
+    const use = Math.min(MAX, v);
     const paid = use / STEP, gift = Math.floor(use / 1e6), s = paid + gift;
     run($('#o-s'), s); run($('#o-paid'), paid); run($('#o-free'), gift);
     run($('#o-p'), s / 10, '%'); run($('#o-v'), s * 1e5); run($('#o-12'), s * 12000); run($('#o-20'), s * 20000);
-    $('#b-12').style.width = Math.max(3, s * 12000 / 11e6 * 100) + '%';
-    $('#b-20').style.width = Math.max(4, s * 20000 / 11e6 * 100) + '%';
+    $('#b-12').style.width = Math.min(100, Math.max(3, s * 12000 / 33e5 * 100)) + '%';
+    $('#b-20').style.width = Math.min(100, Math.max(4, s * 20000 / 33e5 * 100)) + '%';
     if (!fromRail) rail.value = toRail(use);
     rail.style.setProperty('--p', (rail.value / rail.max * 100) + '%');
     ticks.forEach(b => b.classList.toggle('on', STOPS[+b.dataset.i] === use));
@@ -787,7 +791,7 @@ p, small, dd, td, li { text-wrap: pretty; }
   rail.addEventListener('input', () => { amt.value = toAmount(+rail.value); calc(true); });
   $$('[data-step]').forEach(b => b.addEventListener('click', () => {
     const cur = parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
-    amt.value = Math.min(MAX, Math.max(MIN, Math.floor(cur / STEP) * STEP + +b.dataset.step)); calc();
+    amt.value = Math.min(MAX, Math.max(STEP, Math.floor(cur / STEP) * STEP + +b.dataset.step)); calc();
   }));
   ticks.forEach(b => b.addEventListener('click', () => { amt.value = STOPS[+b.dataset.i]; calc(); }));
   calc();
