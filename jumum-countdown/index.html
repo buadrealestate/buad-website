@@ -45,10 +45,11 @@ h1{margin-top:clamp(2px,1vh,10px);font-size:clamp(26px,3.5vw,48px);font-weight:8
 .head::after{content:"";position:absolute;inset:-9px;border:1px solid rgba(240,205,145,.7);border-radius:50%}
 .m{position:absolute;top:50%;width:9px;height:9px;margin:-4.5px -4.5px 0 0;background:var(--ink);border:1.5px solid var(--gold);transform:rotate(45deg)}
 .m.done{background:var(--gold)}
+.mlogo{position:absolute;top:50%;left:0;width:36px;height:36px;object-fit:contain;transform:translate(-50%,-50%);filter:drop-shadow(0 0 8px rgba(21,13,9,.9))}
 .ml{position:absolute;top:16px;display:grid;gap:1px;font-size:clamp(12px,1.05vw,14px);font-weight:700;white-space:nowrap;transform:translateX(50%)}
 .ml small{font-size:.92em;font-weight:400;color:var(--gold);direction:ltr}
 .ml.a{transform:none;text-align:right;justify-items:start}
-.ml.z{transform:none;right:auto!important;left:0;text-align:left;justify-items:end}
+.ml.z{top:26px;transform:none;right:auto!important;left:0;text-align:left;justify-items:end}
 .ml.up{top:auto;bottom:16px;transform:none;right:auto!important;left:5%;justify-items:end;text-align:left}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 @media (prefers-reduced-motion:no-preference){
@@ -81,7 +82,7 @@ h1{margin-top:clamp(2px,1vh,10px);font-size:clamp(26px,3.5vw,48px);font-weight:8
 <div class="clock rise" style="--o:4" aria-hidden="true"><div class="unit"><div class="odo" id="h">00</div><span>ساعة</span></div><div class="unit"><div class="odo" id="mi">00</div><span>دقيقة</span></div><div class="unit"><div class="odo" id="s">00</div><span>ثانية</span></div></div>
 <p class="sr" id="sr" role="status"></p>
 </main>
-<section class="route rise" style="--o:5"><p class="st" id="st"></p><div class="track"><div class="fill" id="fill"></div><i class="m" data-d="1" style="right:0.000%"></i><div class="ml a" style="right:0.000%"><span>بداية التنفيذ</span><small>2026/11/15</small></div><i class="m" data-d="45" style="right:18.410%"></i><div class="ml b" style="right:18.410%"><span>اكتمال التصاميم</span><small>2026/12/29</small></div><i class="m" data-d="225" style="right:93.724%"></i><div class="ml up" style="right:93.724%"><span>اكتمال عبّارة السيول</span><small>2027/06/27</small></div><i class="m" data-d="240" style="right:100.000%"></i><div class="ml z" style="right:100.000%"><span>التسليم النهائي</span><small>2027/07/12</small></div><div class="head" id="head"></div></div></section><script>(() => {
+<section class="route rise" style="--o:5"><p class="st" id="st"></p><div class="track"><div class="fill" id="fill"></div><i class="m" data-d="1" style="right:0.000%"></i><div class="ml a" style="right:0.000%"><span>بداية التنفيذ</span><small>2026/11/15</small></div><i class="m" data-d="45" style="right:18.410%"></i><div class="ml b" style="right:18.410%"><span>اكتمال التصاميم</span><small>2026/12/29</small></div><i class="m" data-d="225" style="right:93.724%"></i><div class="ml up" style="right:93.724%"><span>اكتمال عبّارة السيول</span><small>2027/06/27</small></div><img class="mlogo" src="../assets/img/logo-mark-sand.png" alt=""><div class="ml z" style="right:100.000%"><span>التسليم النهائي</span><small>2027/07/12</small></div><div class="head" id="head"></div></div></section><script>(() => {
   const $ = id => document.getElementById(id);
   const P = (y, m, d) => Date.UTC(y, m - 1, d);
   const riyadhDay = ms => Math.floor((ms + 3 * 36e5) / 864e5);
