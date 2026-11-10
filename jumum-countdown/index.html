@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المتبقي على تسليم مرحلة التسوية والتمهيد</title>
+<meta name="robots" content="noindex, nofollow, noarchive"><meta name="description" content="مشروع واجهة الجموم">
+<meta property="og:type" content="website"><meta property="og:url" content="https://buad.sa/jumum-countdown/"><meta property="og:title" content="المتبقي على تسليم مرحلة التسوية والتمهيد">
+<meta property="og:description" content="مشروع واجهة الجموم"><meta property="og:site_name" content="بُعد"><meta property="og:image" content="https://buad.sa/jumum-countdown/og-jumum-countdown.jpg"><meta property="og:image:alt" content="المتبقي على تسليم مرحلة التسوية والتمهيد">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://buad.sa/jumum-countdown/og-jumum-countdown.jpg">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}html,body{min-height:100%}
+body{font-family:Tajawal,sans-serif;background:radial-gradient(70% 60% at 50% 0,#4a2f21,transparent 72%),linear-gradient(170deg,#2a1a12,#150d09);color:#ecd9ba;min-height:100svh;display:grid;align-items:center;padding:40px 20px}
+.n{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.w{width:min(860px,100%);margin:0 auto;text-align:center}
+.logo{height:46px;display:block;margin:0 auto 34px}
+h1{font-size:clamp(26px,4.4vw,40px);font-weight:800;color:#e6c48d;line-height:1.3}
+.sub{margin-top:6px;font-size:clamp(16px,2.2vw,19px);color:#ecd9ba}
+.lft{margin-top:60px;padding-top:48px;border-top:1px solid rgba(236,217,186,.22);text-align:center}.lft__k{font-size:21px;font-weight:500;color:#ecd9ba}.lft__n{display:flex;justify-content:center;align-items:baseline;gap:16px;margin-top:4px}.lft__n b{font-size:clamp(104px,18vw,190px);font-weight:800;line-height:1.05;color:#e6c48d}.lft__n span{font-size:clamp(28px,4vw,42px);font-weight:500;color:#ecd9ba}.lft__d{margin-top:6px;font-size:17px;color:#ecd9ba}.lft__bar{height:6px;max-width:760px;margin:36px auto 10px;border-radius:3px;background:rgba(236,217,186,.16);overflow:hidden}.lft__bar i{display:block;width:0;height:100%;background:#e6c48d}.lft__ends{display:flex;justify-content:space-between;max-width:760px;margin:0 auto;font-size:13px;color:#ecd9ba;opacity:.75}.lft__f{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:760px;margin:34px auto 0}.lft__f b{display:block;font-size:27px;font-weight:800;color:#ecd9ba}.lft__f>div>span{display:block;margin-top:4px;font-size:14px;color:#ecd9ba;opacity:.75}@media(max-width:560px){.lft__f{grid-template-columns:1fr}}.lft{margin-top:36px;padding-top:38px}</style></head><body><main class="w"><img class="logo" src="../assets/img/logo-h-sand.png" alt="بُعد">
+<h1>مرحلة التسوية والتمهيد</h1><p class="sub">مشروع واجهة الجموم</p><div class="lft" id="lft"><p class="lft__k" id="lft-k">المتبقي على التسليم النهائي</p>
+<p class="lft__n"><b id="lft-n" dir="ltr">244</b><span id="lft-u">يوماً</span></p>
+<p class="lft__d">موعد التسليم <span class="n">2027/07/12</span>م</p>
+<div class="lft__bar"><i id="lft-bar"></i></div><div class="lft__ends"><span>البداية <span class="n">2026/11/15</span>م</span><span>التسليم <span class="n">2027/07/12</span>م</span></div>
+<div class="lft__f"><div><b id="lft-a">5 أيام</b><span id="lft-al">المتبقي على بداية التنفيذ</span></div><div><b><span class="n">240</span> يوماً</b><span>مدة البرنامج</span></div><div><b id="lft-p" dir="ltr">0%</b><span>المنقضي من المدة</span></div></div></div></main>
+<script>(() => {
+  const dayNo = s => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d) / 864e5; };
+  const unit = n => n === 1 ? 'يوم' : n === 2 ? 'يومان' : n >= 3 && n <= 10 ? 'أيام' : 'يوماً';
+  const T = dayNo(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Riyadh' }).format(new Date())), S = dayNo('2026-11-15'), E = dayNo('2027-07-12'), ALL = 240;
+  const el = id => document.getElementById(id), left = Math.max(E - T, 0), inDay = Math.min(Math.max(T - S + 1, 0), ALL), pct = Math.round(inDay / ALL * 100);
+  el('lft-n').textContent = left; el('lft-u').textContent = unit(left); el('lft-p').textContent = pct + '%'; el('lft-bar').style.width = pct + '%';
+  if (T < S) { el('lft-a').textContent = (S - T) + ' ' + unit(S - T); el('lft-al').textContent = 'المتبقي على بداية التنفيذ'; }
+  else { el('lft-a').textContent = inDay + ' من ' + ALL; el('lft-al').textContent = 'اليوم الحالي من البرنامج'; }
+  if (T === E) el('lft-k').textContent = 'اليوم موعد التسليم النهائي'; else if (T > E) el('lft-k').textContent = 'انتهت مدة البرنامج';
+})();</script></body></html>
