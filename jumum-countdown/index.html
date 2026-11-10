@@ -1,34 +1,134 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>المتبقي على تسليم مرحلة التسوية والتمهيد</title>
-<meta name="robots" content="noindex, nofollow, noarchive"><meta name="description" content="مشروع واجهة الجموم">
+<meta name="robots" content="noindex, nofollow, noarchive"><meta name="description" content="مشروع واجهة الجموم"><meta name="theme-color" content="#150d09">
 <meta property="og:type" content="website"><meta property="og:url" content="https://buad.sa/jumum-countdown/"><meta property="og:title" content="المتبقي على تسليم مرحلة التسوية والتمهيد">
 <meta property="og:description" content="مشروع واجهة الجموم"><meta property="og:site_name" content="بُعد"><meta property="og:image" content="https://buad.sa/jumum-countdown/og-jumum-countdown.jpg"><meta property="og:image:alt" content="المتبقي على تسليم مرحلة التسوية والتمهيد">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://buad.sa/jumum-countdown/og-jumum-countdown.jpg">
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link rel="preload" as="image" href="bg.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-<style>*{box-sizing:border-box;margin:0;padding:0}html,body{min-height:100%}
-body{font-family:Tajawal,sans-serif;background:radial-gradient(70% 60% at 50% 0,#4a2f21,transparent 72%),linear-gradient(170deg,#2a1a12,#150d09);color:#ecd9ba;min-height:100svh;display:grid;align-items:center;padding:40px 20px}
-.n{direction:ltr;unicode-bidi:isolate;display:inline-block}
-.w{width:min(860px,100%);margin:0 auto;text-align:center}
-.logo{height:46px;display:block;margin:0 auto 34px}
-h1{font-size:clamp(26px,4.4vw,40px);font-weight:800;color:#e6c48d;line-height:1.3}
-.sub{margin-top:6px;font-size:clamp(16px,2.2vw,19px);color:#ecd9ba}
-.lft{margin-top:60px;padding-top:48px;border-top:1px solid rgba(236,217,186,.22);text-align:center}.lft__k{font-size:21px;font-weight:500;color:#ecd9ba}.lft__n{display:flex;justify-content:center;align-items:baseline;gap:16px;margin-top:4px}.lft__n b{font-size:clamp(104px,18vw,190px);font-weight:800;line-height:1.05;color:#e6c48d}.lft__n span{font-size:clamp(28px,4vw,42px);font-weight:500;color:#ecd9ba}.lft__d{margin-top:6px;font-size:17px;color:#ecd9ba}.lft__bar{height:6px;max-width:760px;margin:36px auto 10px;border-radius:3px;background:rgba(236,217,186,.16);overflow:hidden}.lft__bar i{display:block;width:0;height:100%;background:#e6c48d}.lft__ends{display:flex;justify-content:space-between;max-width:760px;margin:0 auto;font-size:13px;color:#ecd9ba;opacity:.75}.lft__f{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:760px;margin:34px auto 0}.lft__f b{display:block;font-size:27px;font-weight:800;color:#ecd9ba}.lft__f>div>span{display:block;margin-top:4px;font-size:14px;color:#ecd9ba;opacity:.75}@media(max-width:560px){.lft__f{grid-template-columns:1fr}}.lft{margin-top:36px;padding-top:38px}</style></head><body><main class="w"><img class="logo" src="../assets/img/logo-h-sand.png" alt="بُعد">
-<h1>مرحلة التسوية والتمهيد</h1><p class="sub">مشروع واجهة الجموم</p><div class="lft" id="lft"><p class="lft__k" id="lft-k">المتبقي على التسليم النهائي</p>
-<p class="lft__n"><b id="lft-n" dir="ltr">244</b><span id="lft-u">يوماً</span></p>
-<p class="lft__d">موعد التسليم <span class="n">2027/07/12</span>م</p>
-<div class="lft__bar"><i id="lft-bar"></i></div><div class="lft__ends"><span>البداية <span class="n">2026/11/15</span>م</span><span>التسليم <span class="n">2027/07/12</span>م</span></div>
-<div class="lft__f"><div><b id="lft-a">5 أيام</b><span id="lft-al">المتبقي على بداية التنفيذ</span></div><div><b><span class="n">240</span> يوماً</b><span>مدة البرنامج</span></div><div><b id="lft-p" dir="ltr">0%</b><span>المنقضي من المدة</span></div></div></div></main>
-<script>(() => {
-  const dayNo = s => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d) / 864e5; };
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#150d09;--sand:#ecd9ba;--gold:#e6c48d;--line:rgba(236,217,186,.26)}
+html{background:var(--ink)}
+body{position:relative;min-height:100dvh;display:grid;grid-template-rows:auto 1fr auto;gap:clamp(16px,3vh,34px);padding:clamp(22px,4vh,44px) clamp(20px,5vw,76px);font-family:Tajawal,sans-serif;color:var(--sand);overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--ink)}
+.bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:26% 52%}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,var(--ink) 20%,rgba(21,13,9,.86) 48%,rgba(21,13,9,.2) 82%),linear-gradient(to top,var(--ink) 4%,rgba(21,13,9,0) 42%)}
+.top img{display:block;height:clamp(34px,5vh,46px)}
+main{align-self:center;justify-self:start;width:min(900px,100%)}
+.eb{font-size:clamp(16px,1.6vw,21px);font-weight:500;color:var(--gold)}
+.count{display:flex;align-items:flex-end;gap:clamp(12px,1.6vw,26px);margin-top:4px}
+.odo{display:flex;direction:ltr;position:relative;line-height:1}
+.col{position:relative;display:block;height:1.06em;width:.6em;overflow:hidden}
+.reel{display:block;transition:transform .9s cubic-bezier(.16,1,.3,1);will-change:transform}
+.reel i{display:block;height:1.06em;line-height:1.06em;text-align:center;font-style:normal}
+.days{font-size:clamp(112px,min(23vw,32vh),300px);font-weight:800;filter:drop-shadow(0 0 30px rgba(232,192,128,.34))}
+.days i{background:linear-gradient(180deg,#fff2d6 8%,#e6c48d 56%,#a8794a 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.days .reel{transition-duration:2.2s}
+.days .shine{position:absolute;inset:0;overflow:hidden;mix-blend-mode:overlay;pointer-events:none}
+.days .shine::after{content:"";position:absolute;inset:-10% 0;width:40%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.95) 50%,transparent);transform:translateX(-130%)}
+.u{font-size:clamp(30px,4.6vw,60px);font-weight:300;padding-bottom:.34em}
+h1{margin-top:clamp(2px,1vh,10px);font-size:clamp(26px,3.5vw,48px);font-weight:800;line-height:1.28;text-wrap:balance}
+.clock{display:flex;align-items:flex-start;gap:clamp(20px,3vw,44px);margin-top:clamp(18px,3.4vh,34px)}
+.unit{display:grid;justify-items:center;gap:2px}
+.unit .odo{font-size:clamp(34px,min(4.2vw,7vh),58px);font-weight:300;color:var(--sand)}
+.unit .reel{transition-duration:.55s}
+.unit>span{font-size:clamp(13px,1.1vw,15px);font-weight:500;color:var(--gold)}
+.route{width:100%}
+.st{font-size:clamp(17px,1.7vw,23px);font-weight:700;margin-bottom:clamp(40px,6vh,50px)}
+.st em{font-style:normal;font-weight:400;color:var(--gold)}
+.track{position:relative;height:2px;background:var(--line);margin-bottom:56px}
+.fill{position:absolute;inset-block:0;right:0;width:0;background:linear-gradient(to left,#a8794a,#f2d7a4);transition:width 2.2s cubic-bezier(.16,1,.3,1)}
+.head{position:absolute;top:50%;right:0;width:13px;height:13px;margin:-6.5px -6.5px 0 0;border-radius:50%;background:#fff2d6;box-shadow:0 0 16px 3px rgba(240,205,145,.75);transition:right 2.2s cubic-bezier(.16,1,.3,1)}
+.head::after{content:"";position:absolute;inset:-9px;border:1px solid rgba(240,205,145,.7);border-radius:50%}
+.m{position:absolute;top:50%;width:9px;height:9px;margin:-4.5px -4.5px 0 0;background:var(--ink);border:1.5px solid var(--gold);transform:rotate(45deg)}
+.m.done{background:var(--gold)}
+.ml{position:absolute;top:16px;display:grid;gap:1px;font-size:clamp(12px,1.05vw,14px);font-weight:700;white-space:nowrap;transform:translateX(50%)}
+.ml small{font-size:.92em;font-weight:400;color:var(--gold);direction:ltr}
+.ml.a{transform:none;text-align:right;justify-items:start}
+.ml.z{transform:none;right:auto!important;left:0;text-align:left;justify-items:end}
+.ml.up{top:auto;bottom:16px;transform:none;right:auto!important;left:5%;justify-items:end;text-align:left}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media (prefers-reduced-motion:no-preference){
+ .bg img{animation:drift 46s ease-in-out infinite alternate}
+ .rise{opacity:0;animation:rise 1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--o,0)*.14s)}
+ .days .shine::after{animation:shine 7.5s 2.6s ease-in-out infinite}
+ .head::after{animation:pulse 2.6s ease-out infinite}
+}
+@media (prefers-reduced-motion:reduce){.reel,.fill,.head{transition:none!important}}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.13) translateX(-1.4%)}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes shine{0%{transform:translateX(-130%)}34%,100%{transform:translateX(300%)}}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}80%,100%{transform:scale(1.5);opacity:0}}
+@media (max-width:760px){
+ .bg img{object-position:40% 0;height:62%}
+ .bg::after{background:linear-gradient(to top,var(--ink) 40%,rgba(21,13,9,.74) 62%,rgba(21,13,9,.3) 100%)}
+ body{gap:12px}
+ main{align-self:end}
+ .ml.up{left:0}
+ .ml.b{top:auto;bottom:16px}
+}
+</style></head><body><div class="bg"><img src="bg.webp" alt=""></div>
+<header class="top rise" style="--o:0"><img src="../assets/img/logo-h-sand.png" alt="بُعد"></header>
+<main>
+<p class="eb rise" style="--o:1">مشروع واجهة الجموم</p>
+<div class="count rise" style="--o:2"><div class="odo days" id="d" aria-hidden="true">244</div><span class="u" id="u">يوماً</span></div>
+<h1 class="rise" style="--o:3" id="k">على تسليم مرحلة التسوية والتمهيد</h1>
+<div class="clock rise" style="--o:4" aria-hidden="true"><div class="unit"><div class="odo" id="h">00</div><span>ساعة</span></div><div class="unit"><div class="odo" id="mi">00</div><span>دقيقة</span></div><div class="unit"><div class="odo" id="s">00</div><span>ثانية</span></div></div>
+<p class="sr" id="sr" role="status"></p>
+</main>
+<section class="route rise" style="--o:5"><p class="st" id="st"></p><div class="track"><div class="fill" id="fill"></div><i class="m" data-d="1" style="right:0.000%"></i><div class="ml a" style="right:0.000%"><span>بداية التنفيذ</span><small>2026/11/15</small></div><i class="m" data-d="45" style="right:18.410%"></i><div class="ml b" style="right:18.410%"><span>اكتمال التصاميم</span><small>2026/12/29</small></div><i class="m" data-d="225" style="right:93.724%"></i><div class="ml up" style="right:93.724%"><span>اكتمال عبّارة السيول</span><small>2027/06/27</small></div><i class="m" data-d="240" style="right:100.000%"></i><div class="ml z" style="right:100.000%"><span>التسليم النهائي</span><small>2027/07/12</small></div><div class="head" id="head"></div></div></section><script>(() => {
+  const $ = id => document.getElementById(id);
+  const P = (y, m, d) => Date.UTC(y, m - 1, d);
+  const riyadhDay = ms => Math.floor((ms + 3 * 36e5) / 864e5);
+  const S = P(2026, 11, 15) / 864e5, E = P(2027, 7, 12) / 864e5, ALL = 240;
+  const END = P(2027, 7, 13) - 3 * 36e5;      // the end of delivery day in Riyadh
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const makeCol = () => {
+    const c = document.createElement('span'); c.className = 'col';
+    const r = document.createElement('span'); r.className = 'reel';
+    for (let i = 0; i <= 10; i++) { const d = document.createElement('i'); d.textContent = i % 10; r.append(d); }
+    c.append(r); c.reel = r; c.v = 0; return c;
+  };
+  const place = (c, i) => { c.reel.style.transform = 'translateY(' + (-i * 1.06) + 'em)'; };
+  function setOdo(el, str) {
+    let cols = [...el.querySelectorAll('.col')];
+    if (cols.length !== str.length) {
+      el.textContent = ''; cols = [...str].map(() => { const c = makeCol(); el.append(c); return c; });
+      if (el.classList.contains('days')) { const s = document.createElement('span'); s.className = 'shine'; el.append(s); }
+      cols.forEach(c => place(c, 0)); void el.offsetWidth;
+    }
+    [...str].forEach((ch, i) => {
+      const c = cols[i], v = +ch; if (c.v === v) return;
+      if (c.v === 0 && v === 9 && !reduced) {            // a counter going down wraps through the spare zero, so it keeps rolling the same way
+        c.reel.style.transition = 'none'; place(c, 10); void c.reel.offsetWidth; c.reel.style.transition = '';
+      }
+      place(c, v); c.v = v;
+    });
+  }
   const unit = n => n === 1 ? 'يوم' : n === 2 ? 'يومان' : n >= 3 && n <= 10 ? 'أيام' : 'يوماً';
-  const T = dayNo(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Riyadh' }).format(new Date())), S = dayNo('2026-11-15'), E = dayNo('2027-07-12'), ALL = 240;
-  const el = id => document.getElementById(id), left = Math.max(E - T, 0), inDay = Math.min(Math.max(T - S + 1, 0), ALL), pct = Math.round(inDay / ALL * 100);
-  el('lft-n').textContent = left; el('lft-u').textContent = unit(left); el('lft-p').textContent = pct + '%'; el('lft-bar').style.width = pct + '%';
-  if (T < S) { el('lft-a').textContent = (S - T) + ' ' + unit(S - T); el('lft-al').textContent = 'المتبقي على بداية التنفيذ'; }
-  else { el('lft-a').textContent = inDay + ' من ' + ALL; el('lft-al').textContent = 'اليوم الحالي من البرنامج'; }
-  if (T === E) el('lft-k').textContent = 'اليوم موعد التسليم النهائي'; else if (T > E) el('lft-k').textContent = 'انتهت مدة البرنامج';
+  const phrase = n => n === 1 ? 'يوم واحد' : n === 2 ? 'يومان' : n + ' ' + unit(n);
+  const two = n => String(n).padStart(2, '0');
+
+  function dates() {
+    const T = riyadhDay(Date.now()), day = Math.min(Math.max(T - S + 1, 0), ALL), pct = Math.round(day / ALL * 100), pos = day <= 1 ? 0 : (day - 1) / (ALL - 1) * 100;
+    $('fill').style.width = pos + '%'; $('head').style.right = pos + '%';
+    document.querySelectorAll('.m').forEach(m => m.classList.toggle('done', +m.dataset.d <= day));
+    if (T === E) $('k').textContent = 'اليوم موعد التسليم النهائي';
+    else if (T > E) $('k').textContent = 'انتهت مدة البرنامج';
+    $('st').innerHTML = (T < S ? phrase(S - T) + ' على بداية التنفيذ' : 'اليوم ' + day + ' من ' + ALL) + ' <em>- المنقضي من المدة ' + pct + '%</em>';
+  }
+  function tick() {
+    const left = Math.max(END - Date.now(), 0), d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, s = Math.floor(left / 1e3) % 60;
+    setOdo($('d'), String(d)); $('u').textContent = unit(d);
+    setOdo($('h'), two(h)); setOdo($('mi'), two(m)); setOdo($('s'), two(s));
+    $('sr').textContent = 'المتبقي ' + phrase(d);
+  }
+  dates(); tick();
+  let dayNow = riyadhDay(Date.now());
+  setInterval(() => { tick(); const t = riyadhDay(Date.now()); if (t !== dayNow) { dayNow = t; dates(); } }, 1000);
 })();</script></body></html>
