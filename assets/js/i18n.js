@@ -390,6 +390,7 @@ window.BUAD_EN = {
   'story.cap2': 'From opportunity… to operations',
   'story.cap3': 'One contract · one point of contact',
   'j.cost': 'Development cost',
+  'j.val': 'Estimated project value', 'j.val.pre': 'over',
   'unit.msar': 'million SAR',
   'unit.comm': 'commercial activities',
 };
