@@ -744,7 +744,7 @@ p, small, dd, td, li { text-wrap: pretty; }
 <div class="dial rv"><label for="amt">مبلغ المشاركة <span>بالريال</span></label>
 <div class="dial__in"><button type="button" class="typer__b" data-step="-100000" aria-label="إنقاص">−</button><input id="amt" inputmode="numeric" autocomplete="off" value="1,000,000"><button type="button" class="typer__b" data-step="100000" aria-label="زيادة">+</button></div>
 <p class="inst__hint" id="hint">اكتب أي مبلغ أو حرّك المؤشر</p>
-<div class="rail"><input id="rail" type="range" min="0" max="700" step="1" value="0" aria-label="مبلغ المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%"><span class="n">0.1</span></button><button type="button" data-i="1" style="right:14.286%"><span class="n">0.5</span></button><button type="button" data-i="2" style="right:28.571%"><span class="n">1</span></button><button type="button" data-i="3" style="right:42.857%"><span class="n">2</span></button><button type="button" data-i="4" style="right:57.143%"><span class="n">3</span></button><button type="button" data-i="5" style="right:71.429%"><span class="n">5</span></button><button type="button" data-i="6" style="right:85.714%"><span class="n">10</span></button><button type="button" data-i="7" style="right:100.000%"><span class="n">17</span></button></div></div><p class="dial__u">مليون ريال</p></div>
+<div class="rail"><input id="rail" type="range" min="0" max="700" step="1" value="0" aria-label="مبلغ المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%"><span class="n">0.1</span></button><button type="button" data-i="1" style="right:14.286%"><span class="n">0.5</span></button><button type="button" data-i="2" style="right:28.571%"><span class="n">1</span></button><button type="button" data-i="3" style="right:42.857%"><span class="n">2</span></button><button type="button" data-i="4" style="right:57.143%"><span class="n">3</span></button><button type="button" data-i="5" style="right:71.429%"><span class="n">5</span></button><button type="button" data-i="6" style="right:85.714%"><span class="n">10</span></button><button type="button" data-i="7" style="right:100.000%"><span class="n">17.3</span></button></div></div><p class="dial__u">مليون ريال</p></div>
 <div class="out2">
 <article class="cert rv" id="cert"><div class="cert__in"><img class="cert__wm" src="../assets/img/logo-mark-dark.png" alt="">
 <div class="cert__top cert__top--e"><img src="../assets/img/logo-mark-dark.png" alt="بُعد"></div>
@@ -784,14 +784,14 @@ p, small, dd, td, li { text-wrap: pretty; }
   $$('[data-chapter]').forEach(c => spy.observe(c));
 
   // amount: typed, stepped or dragged, from 100 thousand. 0.1 founder share per cash share, as on /jumum-shares/ (user 2026-11-10).
-  const STOPS = [.1, .5, 1, 2, 3, 5, 10, 17].map(m => m * 1e6), MIN = 1e5;
+  const STOPS = [.1, .5, 1, 2, 3, 5, 10, 17.30457075].map(m => m * 1e6), MIN = 1e5;   // top = the programme total 17,304,570.75 exactly (user 2026-11-15)
   const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), MAX = 5e7, STEP = 1e5, F = n => n.toLocaleString('en-US');
   const F2 = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
   $('#o-s').dataset.frac = $('#o-paid').dataset.frac = $('#o-free').dataset.frac = '1';
   $('#o-p').dataset.dec = $('#o-fp').dataset.dec = '3';
   const baseHint = hint.innerHTML, waBtn = $('[data-amount]'), waBase = waBtn.href, ticks = $$('.ticks button');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const toAmount = p => { const i = Math.min(Math.floor(p / 100), STOPS.length - 2), f = p / 100 - i; return Math.floor((STOPS[i] + f * (STOPS[i + 1] - STOPS[i])) / STEP) * STEP; };
+  const toAmount = p => { if (p >= (STOPS.length - 1) * 100) return STOPS[STOPS.length - 1]; const i = Math.min(Math.floor(p / 100), STOPS.length - 2), f = p / 100 - i; return Math.floor((STOPS[i] + f * (STOPS[i + 1] - STOPS[i])) / STEP) * STEP; };
   const toRail = v => { let i = 0; while (i < STOPS.length - 2 && v >= STOPS[i + 1]) i++; return (i + (v - STOPS[i]) / (STOPS[i + 1] - STOPS[i])) * 100; };
 
   // numbers run to their new value
@@ -807,8 +807,8 @@ p, small, dd, td, li { text-wrap: pretty; }
   }
 
   function calc(fromRail) {
-    const v = parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
-    amt.value = v ? F(v) : '';
+    const raw = amt.value.replace(/[^\d.]/g, ''), v = Math.round((parseFloat(raw) || 0) * 100) / 100;
+    if (!/\.\d?$/.test(raw)) amt.value = v ? F2(v) : '';   // halalas allowed (the top is 17,304,570.75)
     amt.classList.toggle('lng', amt.value.length > 10);
     const low = v > 0 && v < MIN;
     hint.classList.toggle('bad', v > MAX || low);
@@ -828,7 +828,7 @@ p, small, dd, td, li { text-wrap: pretty; }
   amt.addEventListener('input', () => calc());
   rail.addEventListener('input', () => { amt.value = toAmount(+rail.value); calc(true); });
   $$('[data-step]').forEach(b => b.addEventListener('click', () => {
-    const cur = parseInt(amt.value.replace(/[^\d]/g, ''), 10) || 0;
+    const cur = parseFloat(amt.value.replace(/[^\d.]/g, '')) || 0;
     amt.value = Math.min(MAX, Math.max(STEP, Math.floor(cur / STEP) * STEP + +b.dataset.step)); calc();
   }));
   ticks.forEach(b => b.addEventListener('click', () => { amt.value = STOPS[+b.dataset.i]; calc(); }));
