@@ -743,7 +743,7 @@ p, small, dd, td, li { text-wrap: pretty; }
 <section class="sec dark deep" id="calc" data-chapter="calc"><div class="w"><div class="head head--c rv"><p class="eb">احسب عائدك</p><h2 class="h2">اكتب مبلغك <b>وشوف عائدك</b></h2></div><div class="dial rv"><label for="amt">قيمة المشاركة <span>بالريال</span></label>
 <div class="dial__in"><button type="button" class="typer__b" data-step="-100000" aria-label="إنقاص">−</button><input id="amt" inputmode="numeric" autocomplete="off" value="15,000,000"><button type="button" class="typer__b" data-step="100000" aria-label="زيادة">+</button></div>
 <p class="inst__hint" id="hint">اكتب أي مبلغ أو حرّك المؤشر</p>
-<div class="rail"><input id="rail" type="range" min="0" max="700" step="1" value="700" aria-label="قيمة المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%"><span class="n">0.1</span></button><button type="button" data-i="1" style="right:14.286%"><span class="n">0.5</span></button><button type="button" data-i="2" style="right:28.571%"><span class="n">1</span></button><button type="button" data-i="3" style="right:42.857%"><span class="n">2</span></button><button type="button" data-i="4" style="right:57.143%"><span class="n">3</span></button><button type="button" data-i="5" style="right:71.429%"><span class="n">5</span></button><button type="button" data-i="6" style="right:85.714%"><span class="n">10</span></button><button type="button" data-i="7" style="right:100.000%"><span class="n">15</span></button></div></div><p class="dial__u">مليون ريال</p></div>
+<div class="rail"><input id="rail" type="range" min="0" max="700" step="1" value="700" aria-label="قيمة المشاركة"><div class="ticks"><button type="button" data-i="0" style="right:0.000%"><span class="n">0.1</span></button><button type="button" data-i="1" style="right:14.286%"><span class="n">0.5</span></button><button type="button" data-i="2" style="right:28.571%"><span class="n">1</span></button><button type="button" data-i="3" style="right:42.857%"><span class="n">2</span></button><button type="button" data-i="4" style="right:57.143%"><span class="n">3</span></button><button type="button" data-i="5" style="right:71.429%"><span class="n">5</span></button><button type="button" data-i="6" style="right:85.714%"><span class="n">10</span></button><button type="button" data-i="7" style="right:100.000%"><span class="n">17</span></button></div></div><p class="dial__u">مليون ريال</p></div>
 <div class="out2">
 <article class="cert rv" id="cert"><div class="cert__in"><img class="cert__wm" src="../assets/img/logo-mark-dark.png" alt="">
 <div class="cert__top cert__top--e"><img src="../assets/img/logo-mark-dark.png" alt="بُعد"></div>
@@ -781,7 +781,7 @@ p, small, dd, td, li { text-wrap: pretty; }
 
   // amount: typed, or stepped / dragged between 100 thousand and 15 million.
   // A share is 100,000. The 5% founder pool (50 shares) is spread pro rata over the 500 cash shares on offer: 0.1 founder share per cash share (user 2026-11-09). Cash shares stop at 50 million.
-  const STOPS = [.1, .5, 1, 2, 3, 5, 10, 15].map(m => m * 1e6);
+  const STOPS = [.1, .5, 1, 2, 3, 5, 10, 17].map(m => m * 1e6);
   const STEP = 1e5, MIN = 1e5, MAX = 5e7, F = n => n.toLocaleString('en-US'), F2 = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
   const amt = $('#amt'), rail = $('#rail'), hint = $('#hint'), baseHint = hint.innerHTML, ticks = $$('.ticks button'), waBtn = $('[data-amount]'), waBase = waBtn.href;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
