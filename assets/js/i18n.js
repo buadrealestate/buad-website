@@ -181,7 +181,7 @@ window.BUAD_EN = {
   'jp.z.kicker': 'Land allocation', 'jp.z.act': 'Activities &amp; uses', 'jp.z.plan': 'Roads &amp; planning areas',
   'jp.z.hint': 'Select a zone on the plan', 'jp.z.note': 'Approximate area per the target activities plan',
   'jp.phases.title': 'Four phases that build the destination step by step',
-  'jp.t.fuel': 'Fuel station &amp; service facilities', 'jp.t.farms': 'Recreational rural farms', 'jp.t.walk': 'Interface Walkway', 'jp.t.diw': 'Diwaniya &amp; administration',
+  'jp.t.fuel': 'Fuel station &amp; service facilities', 'jp.t.farms': 'Recreational rural farms', 'jp.t.walk': 'Interface Walkway', 'jp.t.diw': 'Administration',
   'jp.t.hall': 'Events Hall', 'jp.t.bank': 'Banking complex', 'jp.t.comm': 'Commercial showrooms', 'jp.t.pop': 'Popular markets', 'jp.t.mall': 'Open-air mall',
   'jp.t.modern': 'Modern markets', 'jp.t.log': 'Smart warehousing', 'jp.t.hang': 'Hanging popular restaurants', 'jp.t.visit': 'Visitor &amp; Umrah centre', 'jp.t.ent': 'Entertainment zones',
   'jp.t.chal': 'Chalets', 'jp.t.res': 'Resorts', 'jp.t.mot': 'Motels', 'jp.t.villa': 'Residential compounds',
@@ -201,7 +201,7 @@ window.BUAD_EN = {
   'ft.motto': 'Turning Vision into Reality', 'ft.copy': 'All rights reserved, Buad',
   // sections redesign (Oct 2026)
   'ph.l1': 'Phase One', 'ph.l2': 'Phase Two', 'ph.l3': 'Phase Three', 'ph.l4': 'Phase Four',
-  'ph.1a': 'Fuel station &amp; service centers', 'ph.1b': 'Rural farms', 'ph.1c': 'The Interface Walkway', 'ph.1d': 'Diwaniya &amp; administration',
+  'ph.1a': 'Fuel station &amp; service centers', 'ph.1b': 'Rural farms', 'ph.1c': 'The Interface Walkway', 'ph.1d': 'Administration',
   'ph.2a': 'Business hall', 'ph.2b': 'Commercial markets', 'ph.2c': 'Traditional souqs', 'ph.2d': 'Open-air mall',
   'ph.3a': 'Modern markets', 'ph.3b': 'Logistics services', 'ph.3c': 'Elevated traditional restaurants', 'ph.3d': 'Visitors &amp; pilgrims center', 'ph.3e': 'Entertainment zone',
   'ph.4a': 'Chalets', 'ph.4b': 'Resorts', 'ph.4c': 'Motels', 'ph.4d': 'Villa compound',
