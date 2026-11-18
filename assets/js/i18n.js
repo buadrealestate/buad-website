@@ -181,7 +181,7 @@ window.BUAD_EN = {
   'jp.z.kicker': 'Land allocation', 'jp.z.act': 'Activities &amp; uses', 'jp.z.plan': 'Roads &amp; planning areas',
   'jp.z.hint': 'Select a zone on the plan', 'jp.z.note': 'Approximate area per the target activities plan',
   'jp.phases.title': 'Four phases that build the destination step by step',
-  'jp.t.fuel': 'Fuel station &amp; service facilities', 'jp.t.farms': 'Recreational rural farms', 'jp.t.walk': 'Interface Walkway', 'jp.t.diw': 'Administration',
+  'jp.t.fuel': 'Fuel station &amp; service facilities', 'jp.t.farms': 'Recreational rural farms', 'jp.t.walk': 'Interface Walkway', 'jp.t.diw': 'Project administration &amp; operation',
   'jp.t.hall': 'Events Hall', 'jp.t.bank': 'Banking complex', 'jp.t.comm': 'Commercial showrooms', 'jp.t.pop': 'Popular markets', 'jp.t.mall': 'Open-air mall',
   'jp.t.modern': 'Modern markets', 'jp.t.log': 'Smart warehousing', 'jp.t.hang': 'Hanging popular restaurants', 'jp.t.visit': 'Visitor &amp; Umrah centre', 'jp.t.ent': 'Entertainment zones',
   'jp.t.chal': 'Chalets', 'jp.t.res': 'Resorts', 'jp.t.mot': 'Motels', 'jp.t.villa': 'Residential compounds',
