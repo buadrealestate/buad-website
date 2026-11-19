@@ -19,8 +19,10 @@
   // portrait phones get the portrait cut; everything else the full 16:9 film (re-checked on resize)
   const isPortrait = () => innerHeight > innerWidth * 1.15 && innerWidth < 820;
   const filmSrc = () => `assets/video/hero${isPortrait() ? '-m' : ''}.mp4?v=hf2`;   // hf1: the Higgsfield day -> night clip with the buildings around the project (user 2026-10-28)
-  const video = $('#heroVideo');
-  const track = $('#dayTrack'), dot = $('#dayDot'), clock = $('#dayClock'), phaseEl = $('#dayPhase');
+  // pages without the Al Jumum day/night film (the home page since 2026-11-19) get detached stand-ins, so the rest of the script runs
+  const stub = t => document.createElement(t);
+  const video = $('#heroVideo') || stub('video');
+  const track = $('#dayTrack') || stub('div'), dot = $('#dayDot') || stub('i'), clock = $('#dayClock') || stub('b'), phaseEl = $('#dayPhase') || stub('em');
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   // the film = clip A (day -> sunset, first half) + clip B (dusk -> night, second half)
   const PHASES = [[0, 'النهار', 'Day'], [.25, 'العصر', 'Afternoon'], [.42, 'الغروب', 'Sunset'],
@@ -124,7 +126,7 @@
     }, { once: true });
     if (auto && filmVisible) video.play().catch(() => {});   // muted inline films may start before the metadata event (iOS)
   }
-  const filmBox = $('[data-film]') || $('#jumumFilm');
+  const filmBox = $('[data-film]') || $('#jumumFilm') || stub('div');
   new IntersectionObserver(([e]) => { if (e.isIntersecting) loadFilm(); }, { rootMargin: '900px 0px' }).observe(filmBox);
   new IntersectionObserver(([e]) => {
     filmVisible = e.isIntersecting;

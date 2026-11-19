@@ -105,8 +105,8 @@
         <h2 class="docp__t">${E ? 'Official site documents' : 'المستندات النظامية للموقع'}</h2>
         <p class="docp__l">${E ? 'Hover a document to clear it and click to view it · view only' : 'مرّر على المستند ليتضح واضغط عليه لعرضه · للاطلاع فقط'}</p>
         <div class="jdocs__row docp__row">${KROKI.map((k, i) => `<button type="button" class="jdocs__item" data-doc-open="${i}"><img src="${B}${k.th}" alt="" loading="lazy"><span>${E ? k.en : k.ar}</span></button>`).join('')}</div>
-        <div class="docp__mp"><div><b>${E ? 'The masterplan' : 'الماستر بلان'}</b><span>${E ? 'Sent on request to interested parties' : 'يُرسل للمهتمين عند الطلب'}</span></div>
-          <button type="button" class="btn btn--light btn--ico" data-rq="masterplan"><span>${E ? 'Request the masterplan' : 'اطلب الماستر بلان'}</span><i class="btn__ico" aria-hidden="true"></i></button></div>
+        <div class="docp__mp"><div><b>${E ? 'The masterplan' : 'الماستر بلان'}</b><span>${E ? 'Open the full masterplan of the project' : 'تصفح الماستر بلان الكامل للمشروع'}</span></div>
+          <a class="btn btn--light btn--ico" href="${B}assets/docs/Jumum-Masterplan-AR.pdf" target="_blank" rel="noopener"><span>${E ? 'View the masterplan' : 'تصفح الماستر بلان'}</span><i class="btn__ico" aria-hidden="true"></i></a></div>
       </div>`;
     dp.querySelector('.docp__x').addEventListener('click', () => dp.close());
     dp.querySelector('[data-rq]').addEventListener('click', () => dp.close());

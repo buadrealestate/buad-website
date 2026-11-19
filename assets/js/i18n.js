@@ -6,6 +6,7 @@ window.BUAD_EN = {
   'nav.about': 'About', 'nav.dims': 'Dimensions', 'nav.jumum': 'Al Jumum', 'nav.station': 'The Station', 'nav.projects': 'Projects',
   'nav.goals': 'Where We Are Heading', 'nav.dims6': 'The Six Dimensions', 'nav.method': 'Our Methodology',
   'jp.loc.mins': 'in minutes', 'dl.pages': '6 pages', 'dl.read': 'Open the file', 'jp.t.food': 'Restaurants &amp; Cafés',
+  'hm.discover': 'Discover Al Jumum Interface', 'hm.mp': 'View the masterplan', 'hm.f1': 'm² site area', 'hm.f2': 'commercial activities', 'hm.f3': 'development phases', 'ct.unn': 'Unified National Number',
   'mp.e': 'More of our work', 'mp.t': 'Real experience', 'mp.all': 'All projects',
   'ja.e': 'Al Jumum Interface', 'ja.t': 'Project <b>Activities</b>', 'ja.l': 'Browse the activities of the project and tick the ones you are interested in; we will send you the leasing and investment opportunities in them',
   'jp.r.min': 'min', 'jp.r1': 'to the Grand Mosque', 'jp.r2': 'to the airport', 'jp.r3': 'to Taif', 'jp.r4': 'to Madinah',
