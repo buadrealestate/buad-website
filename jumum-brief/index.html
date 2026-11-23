@@ -817,6 +817,8 @@ p, small, dd, td, li { text-wrap: pretty; }
   .dl__doc { height: 280px; }
 }
 .now__ring > div { direction: ltr; } .now__ring p { direction: rtl; }
+/* the 65/35 ring stays inside its card (user 2026-11-23: it was cut at the left edge) */
+@media (min-width: 641px) { .bt--land { grid-template-columns: minmax(0, 1fr) auto; } } .bt--land .bt__big { font-size: clamp(46px, 5vw, 80px); } .ring { width: clamp(130px, 13vw, 190px); }
 </style></head><body><nav class="bar"><div class="bar__in"><img src="../assets/img/logo-h-sand.png" alt="بُعد"><div class="bar__nav"><a href="#numbers" data-s="numbers">المشروع</a><a href="#location" data-s="location">الموقع</a><a href="#why" data-s="why">لماذا الجموم</a><a href="#phases" data-s="phases">المراحل</a><a href="#now" data-s="now">أين وصلنا</a><a href="#revenue" data-s="revenue">الإيرادات</a><a href="#returns" data-s="returns">العوائد</a><a href="#join" data-s="join">احسب حصصك</a><a href="#download" data-s="download">تحميل PDF</a></div><a class="bar__go" href="https://wa.me/966550000126?text=%D9%86%D8%A8%D8%B0%D8%A9%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D9%88%D8%A7%D8%AC%D9%87%D8%A9%20%D8%A7%D9%84%D8%AC%D9%85%D9%88%D9%85%20-%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%A9" target="_blank" rel="noopener">تواصل</a></div></nav>
 <header class="bh"><img class="bh__img" src="../assets/img/jumum-aerial.webp" alt="مشروع واجهة الجموم"><div class="bh__glow" aria-hidden="true"></div>
 <div class="w bh__in"><p class="bh__k rv">نبذة للمساهمين - SmartFace</p><h1 class="rv">واجهة <b>الجموم</b></h1><p class="bh__sub rv">الوجهة الحضرية عند مدخل مكة المكرمة الشمالي</p>
